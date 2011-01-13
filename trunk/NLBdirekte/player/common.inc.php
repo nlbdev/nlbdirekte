@@ -1,29 +1,46 @@
 <?php
 # version of NLBdirekte
-$version = 0.2;
+$version = '0.2.1';
 
 # relative paths to general DMZ and profile storage
-$shared = '../books';
-$profiles = '../profiles';
+$shared = getcwd().'/../books';
+$profiles = getcwd().'/../profiles';
 
 # other logfiles go in this directory
-$logdir = getcwd().DIRECTORY_SEPARATOR.'logs';
+$logdir = getcwd().'/logs';
 
 # all PHP-errors, warnings and notices are appended to this file
-$logfile = $logdir.DIRECTORY_SEPARATOR.'log.txt';
+$logfile = $logdir.'/log.txt';
 
 # debugging
 $debug = true;
 
-# ---- end of configurable variables ----
+# ---- end of configuration variables ----
 
 # decoding tickets
 # usage: list($userId, $bookId) = decodeTicket($ticket);
 function decodeTicket($ticket) {
 	global $debug;
-    $ret = explode('_',str_replace(array('/','\\'),'',$ticket));
+    $ret = explode('_',str_replace(array('/',"\\"),'',$ticket));
 	if ($debug) trigger_error("ticket $ticket decoded as userId=".$ret[0].", bookId=".$ret[1]);
     return $ret;
+}
+
+function path_as_url($filepath) {
+	global $debug;
+	$url = 'file:';
+	if (substr($filepath,0,1)!=='/')
+		$url .= '/';
+	$url .= str_replace(' ','%20',str_replace("\\",'/',$filepath));
+	if ($debug) trigger_error("$filepath as URL: $url");
+	return $url;
+}
+
+function fix_directory_separators($filepath) {
+	global $debug;
+	$path = str_replace('/',DIRECTORY_SEPARATOR,str_replace("\\",'/',$filepath));
+	if ($debug) trigger_error("$filepath with fixed directory separators: $path");
+	return $path;
 }
 
 # debugging (http://php.net/manual/en/function.set-error-handler.php)
@@ -32,7 +49,7 @@ register_shutdown_function('shutdownHandler');
 set_error_handler("errorHandler");
 ob_start("fatalErrorHandler");
 if ($debug) {
-	$fd = fopen($logfile, "a");
+	$fd = fopen(realpath($logfile), "a");
 	fwrite($fd, "\n");
 	fclose($fd);
 	trigger_error("---- ".$_SERVER['SCRIPT_NAME']." ----");
@@ -79,7 +96,7 @@ function errorHandler($errno, $errstr, $errfile, $errline)
 		default: $type = "(unknown error type: $errno)";
 	}
 	
-	$fd = fopen($logfile, "a");
+	$fd = fopen(realpath($logfile), "a");
 	$str = "[" . date("Y-m-d H:i:s", mktime()) . "] " . "$type: $errstr (at $errfile:$errline)";
 	fwrite($fd, $str . "\n");
 	fclose($fd);

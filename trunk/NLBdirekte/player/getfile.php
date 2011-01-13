@@ -6,12 +6,7 @@
 
 include('common.inc.php');
 
-# relative paths to general DMZ and profile storage
-#$shared = '../books';
-#$profiles = '../profiles';
-
 # decode ticket here
-#list($user, $book) = explode('_',str_replace(array('/','\\'),'',$_REQUEST['ticket']));
 list($user, $book) = decodeTicket($_REQUEST['ticket']);
 $file = $_REQUEST['file'];
 if ($debug) trigger_error("requested file $file");
@@ -22,10 +17,10 @@ if ($debug) trigger_error("requested file $file");
 }*/
 
 // Book not ready for playback?
-if (!file_exists("$profiles/$user/books/$book/metadata.json")
-	or !file_exists("$profiles/$user/books/$book/pagelist.json")
-	or !file_exists("$profiles/$user/books/$book/smil.json")
-	or !file_exists("$profiles/$user/books/$book/toc.json")) {
+if (!file_exists(realpath("$profiles/$user/books/$book/metadata.json"))
+	or !file_exists(realpath("$profiles/$user/books/$book/pagelist.json"))
+	or !file_exists(realpath("$profiles/$user/books/$book/smil.json"))
+	or !file_exists(realpath("$profiles/$user/books/$book/toc.json"))) {
   // Is book not being prepared?
   //if (!(book being prepared)) {
   header("Content-Type: text/plain");
@@ -35,9 +30,9 @@ if (!file_exists("$profiles/$user/books/$book/metadata.json")
 }
 
 // Does file exist in profile area?
-else if (file_exists("$profiles/$user/books/$book/$file")) {
+else if (file_exists(realpath("$profiles/$user/books/$book/$file"))) {
   if ($debug) trigger_error("returning file from profile storage");
-  $fullFile = "$profiles/$user/books/$book/$file";
+  $fullFile = realpath("$profiles/$user/books/$book/$file");
   
   $mime = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $fullFile);
   $size = filesize($fullFile);
@@ -47,13 +42,13 @@ else if (file_exists("$profiles/$user/books/$book/$file")) {
   header("Content-Description: File Transfer");
   header("Content-Length: $size");
   header("Content-Disposition: attachment; filename=$name");
-  readfile($fullFile);//"$profiles/$user/books/$book/$file");
+  readfile($fullFile);
 }
 
 // Does file exist in general DMZ area?
-else if (file_exists("$shared/$book/$file")) {
+else if (file_exists(realpath("$shared/$book/$file"))) {
   if ($debug) trigger_error("returning file from shared storage");
-  $fullFile = "$shared/$book/$file";
+  $fullFile = realpath("$shared/$book/$file");
   
   $mime = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $fullFile);
   $size = filesize($fullFile);
