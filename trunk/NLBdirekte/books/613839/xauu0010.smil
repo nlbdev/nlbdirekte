@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE smil PUBLIC "-//W3C//DTD SMIL 1.0//EN" "SMIL10.dtd">
+<smil>
+	<head>
+		<meta name="dc:format" content="Daisy 2.02"/>
+		<meta name="ncc:timeInThisSmil" content="00:14:41.122"/>
+		<meta name="ncc:totalElapsedTime" content="03:34:09.394"/>
+		<layout>
+			<region id="txt-view"/>
+		</layout>
+		<meta name="ncc:generator" content="EasePublisher 2.12 Build 142 # 044FS2210089119"/>
+    <meta name="title" content="Esaus hender, Hermann Willis"/>
+    <meta name="dc:title" content="Bare røre, ikke se"/>
+    <meta name="dc:identifier" content="Unknown"/>
+  </head>
+	<body>
+		<seq dur="881.122s">
+			<par endsync="last">
+				<text src="ncc.html#xauu_000f" id="xauu_000f"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=0.000s" clip-end="npt=2.939s" id="audio_0001"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=2.939s" clip-end="npt=5.642s" id="audio_0002"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=5.642s" clip-end="npt=9.300s" id="audio_0003"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=9.300s" clip-end="npt=17.580s" id="audio_0004"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=17.580s" clip-end="npt=31.569s" id="audio_0005"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=31.569s" clip-end="npt=39.902s" id="audio_0006"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=39.902s" clip-end="npt=43.141s" id="audio_0007"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=43.141s" clip-end="npt=46.746s" id="audio_0008"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=46.746s" clip-end="npt=50.765s" id="audio_0009"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=50.765s" clip-end="npt=58.999s" id="audio_0010"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=58.999s" clip-end="npt=69.866s" id="audio_0011"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=69.866s" clip-end="npt=75.025s" id="audio_0012"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=75.025s" clip-end="npt=79.466s" id="audio_0013"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=79.466s" clip-end="npt=81.504s" id="audio_0014"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=81.504s" clip-end="npt=82.823s" id="audio_0015"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=82.823s" clip-end="npt=84.499s" id="audio_0016"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vcco_0001" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00a4" id="vcco_000a"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=84.499s" clip-end="npt=84.890s" id="audio_0017"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000f" id="vcco_000b"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=84.890s" clip-end="npt=85.791s" id="audio_0018"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=85.791s" clip-end="npt=94.883s" id="audio_0019"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=94.883s" clip-end="npt=95.193s" id="audio_0020"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=95.193s" clip-end="npt=99.033s" id="audio_0021"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=99.033s" clip-end="npt=104.793s" id="audio_0022"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=104.793s" clip-end="npt=109.542s" id="audio_0023"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=109.542s" clip-end="npt=110.143s" id="audio_0024"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=110.143s" clip-end="npt=118.371s" id="audio_0025"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=118.371s" clip-end="npt=125.780s" id="audio_0026"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=125.780s" clip-end="npt=126.446s" id="audio_0027"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=126.446s" clip-end="npt=133.002s" id="audio_0028"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=133.002s" clip-end="npt=133.455s" id="audio_0029"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=133.455s" clip-end="npt=136.543s" id="audio_0030"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=136.543s" clip-end="npt=143.393s" id="audio_0031"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=143.393s" clip-end="npt=143.921s" id="audio_0032"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=143.921s" clip-end="npt=151.366s" id="audio_0033"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=151.366s" clip-end="npt=157.135s" id="audio_0034"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=157.135s" clip-end="npt=157.736s" id="audio_0035"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=157.736s" clip-end="npt=165.664s" id="audio_0036"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=165.664s" clip-end="npt=166.933s" id="audio_0037"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=166.933s" clip-end="npt=176.481s" id="audio_0038"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=176.481s" clip-end="npt=178.270s" id="audio_0039"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=178.270s" clip-end="npt=183.077s" id="audio_0040"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=183.077s" clip-end="npt=186.081s" id="audio_0041"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=186.081s" clip-end="npt=187.700s" id="audio_0042"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=187.700s" clip-end="npt=193.630s" id="audio_0043"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=193.630s" clip-end="npt=202.394s" id="audio_0044"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=202.394s" clip-end="npt=204.818s" id="audio_0045"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vcco_0002" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00a5" id="vcco_000c"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=204.818s" clip-end="npt=205.056s" id="audio_0046"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000f" id="vcco_000d"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=205.056s" clip-end="npt=206.344s" id="audio_0047"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=206.344s" clip-end="npt=209.766s" id="audio_0048"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=209.766s" clip-end="npt=214.325s" id="audio_0049"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=214.325s" clip-end="npt=218.099s" id="audio_0050"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=218.099s" clip-end="npt=224.098s" id="audio_0051"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=224.098s" clip-end="npt=224.699s" id="audio_0052"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=224.699s" clip-end="npt=236.336s" id="audio_0053"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=236.336s" clip-end="npt=242.227s" id="audio_0054"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=242.227s" clip-end="npt=252.288s" id="audio_0055"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=252.288s" clip-end="npt=252.896s" id="audio_0056"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=252.896s" clip-end="npt=262.357s" id="audio_0057"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=262.357s" clip-end="npt=263.075s" id="audio_0058"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=263.075s" clip-end="npt=268.718s" id="audio_0059"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=268.718s" clip-end="npt=272.558s" id="audio_0060"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=272.558s" clip-end="npt=277.064s" id="audio_0061"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=277.064s" clip-end="npt=281.139s" id="audio_0062"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=281.139s" clip-end="npt=282.033s" id="audio_0063"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=282.033s" clip-end="npt=282.699s" id="audio_0064"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=282.699s" clip-end="npt=290.797s" id="audio_0065"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=290.797s" clip-end="npt=299.195s" id="audio_0066"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=299.195s" clip-end="npt=304.172s" id="audio_0067"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=304.172s" clip-end="npt=306.602s" id="audio_0068"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=306.602s" clip-end="npt=315.902s" id="audio_0069"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vcco_0003" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00a6" id="vcco_000e"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=315.902s" clip-end="npt=316.303s" id="audio_0070"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000f" id="vcco_000f"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=316.303s" clip-end="npt=316.904s" id="audio_0071"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=316.904s" clip-end="npt=325.302s" id="audio_0072"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=325.302s" clip-end="npt=334.785s" id="audio_0073"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=334.785s" clip-end="npt=346.487s" id="audio_0074"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=346.487s" clip-end="npt=352.548s" id="audio_0075"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=352.548s" clip-end="npt=360.161s" id="audio_0076"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=360.161s" clip-end="npt=371.613s" id="audio_0077"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=371.613s" clip-end="npt=380.377s" id="audio_0078"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=380.377s" clip-end="npt=386.673s" id="audio_0079"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=386.673s" clip-end="npt=394.535s" id="audio_0080"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=394.535s" clip-end="npt=405.337s" id="audio_0081"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=405.337s" clip-end="npt=414.454s" id="audio_0082"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=414.454s" clip-end="npt=418.359s" id="audio_0083"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=418.359s" clip-end="npt=422.735s" id="audio_0084"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=422.735s" clip-end="npt=426.823s" id="audio_0085"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=426.823s" clip-end="npt=436.678s" id="audio_0086"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=436.678s" clip-end="npt=437.227s" id="audio_0087"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=437.227s" clip-end="npt=445.682s" id="audio_0088"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vcco_0004" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00a7" id="vcco_0010"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=445.682s" clip-end="npt=446.030s" id="audio_0089"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000f" id="vcco_0011"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=446.030s" clip-end="npt=448.532s" id="audio_0090"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=448.532s" clip-end="npt=455.141s" id="audio_0091"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=455.141s" clip-end="npt=463.239s" id="audio_0092"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=463.239s" clip-end="npt=474.329s" id="audio_0093"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=474.329s" clip-end="npt=474.644s" id="audio_0094"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=474.644s" clip-end="npt=477.948s" id="audio_0095"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=477.948s" clip-end="npt=484.107s" id="audio_0096"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=484.107s" clip-end="npt=495.274s" id="audio_0097"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=495.274s" clip-end="npt=497.730s" id="audio_0098"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=497.730s" clip-end="npt=500.289s" id="audio_0099"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=500.289s" clip-end="npt=500.772s" id="audio_0100"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=500.772s" clip-end="npt=503.176s" id="audio_0101"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=503.176s" clip-end="npt=508.870s" id="audio_0102"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=508.870s" clip-end="npt=513.847s" id="audio_0103"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=513.847s" clip-end="npt=516.498s" id="audio_0104"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=516.498s" clip-end="npt=518.771s" id="audio_0105"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=518.771s" clip-end="npt=538.770s" id="audio_0106"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=538.770s" clip-end="npt=539.550s" id="audio_0107"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=539.550s" clip-end="npt=540.817s" id="audio_0108"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=540.817s" clip-end="npt=542.857s" id="audio_0109"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=542.857s" clip-end="npt=551.190s" id="audio_0110"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=551.190s" clip-end="npt=559.059s" id="audio_0111"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=559.059s" clip-end="npt=559.608s" id="audio_0112"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=559.608s" clip-end="npt=570.549s" id="audio_0113"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vcco_0005" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00a8" id="vcco_0012"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=570.549s" clip-end="npt=570.800s" id="audio_0114"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000f" id="vcco_0013"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=570.800s" clip-end="npt=571.597s" id="audio_0115"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=571.597s" clip-end="npt=584.606s" id="audio_0116"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=584.606s" clip-end="npt=587.793s" id="audio_0117"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=587.793s" clip-end="npt=594.637s" id="audio_0118"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=594.637s" clip-end="npt=599.548s" id="audio_0119"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=599.548s" clip-end="npt=605.426s" id="audio_0120"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=605.426s" clip-end="npt=609.631s" id="audio_0121"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=609.631s" clip-end="npt=610.833s" id="audio_0122"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=610.833s" clip-end="npt=616.528s" id="audio_0123"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=616.528s" clip-end="npt=618.931s" id="audio_0124"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=618.931s" clip-end="npt=624.881s" id="audio_0125"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=624.881s" clip-end="npt=625.900s" id="audio_0126"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=625.900s" clip-end="npt=630.458s" id="audio_0127"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=630.458s" clip-end="npt=637.368s" id="audio_0128"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=637.368s" clip-end="npt=640.123s" id="audio_0129"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=640.123s" clip-end="npt=644.329s" id="audio_0130"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=644.329s" clip-end="npt=647.150s" id="audio_0131"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=647.150s" clip-end="npt=650.029s" id="audio_0132"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=650.029s" clip-end="npt=656.873s" id="audio_0133"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=656.873s" clip-end="npt=666.591s" id="audio_0134"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=666.591s" clip-end="npt=670.089s" id="audio_0135"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vcco_0006" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00a9" id="vcco_0014"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=670.089s" clip-end="npt=670.278s" id="audio_0136"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000f" id="vcco_0015"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=670.278s" clip-end="npt=671.531s" id="audio_0137"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=671.531s" clip-end="npt=676.189s" id="audio_0138"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=676.189s" clip-end="npt=688.793s" id="audio_0139"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=688.793s" clip-end="npt=691.549s" id="audio_0140"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=691.549s" clip-end="npt=696.238s" id="audio_0141"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=696.238s" clip-end="npt=700.778s" id="audio_0142"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=700.778s" clip-end="npt=701.737s" id="audio_0143"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=701.737s" clip-end="npt=712.549s" id="audio_0144"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=712.549s" clip-end="npt=719.998s" id="audio_0145"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=719.998s" clip-end="npt=720.664s" id="audio_0146"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=720.664s" clip-end="npt=730.201s" id="audio_0147"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=730.201s" clip-end="npt=736.362s" id="audio_0148"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=736.362s" clip-end="npt=737.350s" id="audio_0149"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=737.350s" clip-end="npt=740.642s" id="audio_0150"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=740.642s" clip-end="npt=741.909s" id="audio_0151"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=741.909s" clip-end="npt=745.251s" id="audio_0152"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=745.251s" clip-end="npt=748.203s" id="audio_0153"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=748.203s" clip-end="npt=750.423s" id="audio_0154"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=750.423s" clip-end="npt=757.084s" id="audio_0155"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=757.084s" clip-end="npt=763.262s" id="audio_0156"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=763.262s" clip-end="npt=770.707s" id="audio_0157"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=770.707s" clip-end="npt=775.265s" id="audio_0158"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=775.265s" clip-end="npt=780.046s" id="audio_0159"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=780.046s" clip-end="npt=783.065s" id="audio_0160"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=783.065s" clip-end="npt=793.397s" id="audio_0161"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=793.397s" clip-end="npt=794.188s" id="audio_0162"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=794.188s" clip-end="npt=802.689s" id="audio_0163"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vcco_0007" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00aa" id="vcco_0016"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=802.689s" clip-end="npt=802.866s" id="audio_0164"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000f" id="vcco_0017"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=802.866s" clip-end="npt=803.280s" id="audio_0165"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=803.280s" clip-end="npt=814.016s" id="audio_0166"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=814.016s" clip-end="npt=823.466s" id="audio_0167"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=823.466s" clip-end="npt=824.067s" id="audio_0168"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=824.067s" clip-end="npt=828.573s" id="audio_0169"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=828.573s" clip-end="npt=834.033s" id="audio_0170"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=834.033s" clip-end="npt=838.891s" id="audio_0171"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=838.891s" clip-end="npt=847.107s" id="audio_0172"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=847.107s" clip-end="npt=856.257s" id="audio_0173"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=856.257s" clip-end="npt=856.571s" id="audio_0174"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=856.571s" clip-end="npt=860.881s" id="audio_0175"/>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=860.881s" clip-end="npt=880.098s" id="audio_0176"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vcco_0008" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00ab" id="vcco_0018"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=880.098s" clip-end="npt=880.434s" id="audio_0177"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000f" id="vcco_0019"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=880.434s" clip-end="npt=880.624s" id="audio_0178"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vcco_0009" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00ac" id="vcco_001a"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=880.624s" clip-end="npt=880.838s" id="audio_0179"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000f" id="vcco_001b"/>
+				<seq>
+					<audio src="18_Esaus_hender_.mp3" clip-begin="npt=880.838s" clip-end="npt=881.122s" id="audio_0180"/>
+				</seq>
+			</par>
+		</seq>
+	</body>
+</smil>

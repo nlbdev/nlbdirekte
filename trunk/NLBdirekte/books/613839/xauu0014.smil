@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE smil PUBLIC "-//W3C//DTD SMIL 1.0//EN" "SMIL10.dtd">
+<smil>
+	<head>
+		<meta name="dc:format" content="Daisy 2.02"/>
+		<meta name="ncc:timeInThisSmil" content="00:00:37.522"/>
+		<meta name="ncc:totalElapsedTime" content="00:01:04.155"/>
+		<layout>
+			<region id="txt-view"/>
+		</layout>
+		<meta name="ncc:generator" content="EasePublisher 2.12 Build 142 # 044FS2210089119"/>
+    <meta name="title" content="Baksidetekst"/>
+    <meta name="dc:title" content="Bare røre, ikke se"/>
+    <meta name="dc:identifier" content="Unknown"/>
+  </head>
+	<body>
+		<seq dur="37.522s">
+			<par endsync="last">
+				<text src="ncc.html#xauu_00ad" id="xauu_00ad"/>
+				<seq>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=0.000s" clip-end="npt=2.769s" id="audio_0001"/>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=2.769s" clip-end="npt=7.333s" id="audio_0002"/>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=7.333s" clip-end="npt=12.724s" id="audio_0003"/>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=12.724s" clip-end="npt=16.034s" id="audio_0004"/>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=16.034s" clip-end="npt=19.391s" id="audio_0005"/>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=19.391s" clip-end="npt=21.977s" id="audio_0006"/>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=21.977s" clip-end="npt=33.014s" id="audio_0007"/>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=33.014s" clip-end="npt=35.294s" id="audio_0008"/>
+				</seq>
+			</par>
+			<par endsync="last" id="xauu_00ae" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00cd" id="xauu_00b3"/>
+				<seq>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=35.294s" clip-end="npt=35.520s" id="audio_0009"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_00ad" id="xauu_00b4"/>
+				<seq>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=35.520s" clip-end="npt=35.746s" id="audio_0010"/>
+				</seq>
+			</par>
+			<par endsync="last" id="xauu_00af" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00ce" id="xauu_00b5"/>
+				<seq>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=35.746s" clip-end="npt=35.947s" id="audio_0011"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_00ad" id="xauu_00b6"/>
+				<seq>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=35.947s" clip-end="npt=36.185s" id="audio_0012"/>
+				</seq>
+			</par>
+			<par endsync="last" id="xauu_00b0" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00cf" id="xauu_00b7"/>
+				<seq>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=36.185s" clip-end="npt=36.472s" id="audio_0013"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_00ad" id="xauu_00b8"/>
+				<seq>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=36.472s" clip-end="npt=36.722s" id="audio_0014"/>
+				</seq>
+			</par>
+			<par endsync="last" id="xauu_00b1" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00d0" id="xauu_00b9"/>
+				<seq>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=36.722s" clip-end="npt=36.911s" id="audio_0015"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_00ad" id="xauu_00ba"/>
+				<seq>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=36.911s" clip-end="npt=37.174s" id="audio_0016"/>
+				</seq>
+			</par>
+			<par endsync="last" id="xauu_00b2" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00d1" id="xauu_00bb"/>
+				<seq>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=37.174s" clip-end="npt=37.388s" id="audio_0017"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_00ad" id="xauu_00bc"/>
+				<seq>
+					<audio src="04_Baksidetekst.mp3" clip-begin="npt=37.388s" clip-end="npt=37.522s" id="audio_0018"/>
+				</seq>
+			</par>
+		</seq>
+	</body>
+</smil>

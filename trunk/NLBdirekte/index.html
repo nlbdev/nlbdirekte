@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+	<title>NLBdirekte</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+	<link type="text/css" href="Daisy202Book.css" rel="stylesheet" />
+	
+	<script type="text/javascript" charset="utf-8">
+	/* <![CDATA[ */
+	function login(username, bookId) {
+		window.location = 'player/direkte.php?username='+username+'&bookId='+bookId;
+	}
+	/* ]]> */
+	</script>
+</head>
+<body>
+	<!-- wrap in id=book so that we can simply use the book css -->
+	<div id="book">
+		<h1>NLBdirekte</h1>
+		<p>NLBdirekte (også kjent som "G35") er NLBs løsning for
+		direkteavspilling av lydbøker og andre elektroniske bøker over
+		internett. Alle NLBs lånere kan benytte seg av NLBdirekte.</p>
+		<p>Den tekniske løsningen bak NLBdirekte bygger på åpne standarder,
+		hovedsaklig den nye HTML5-standarden. Men NLBdirekte virker også
+		i eldre nettlesere ved hjelp av	lydbiblioteket
+		<a href="http://www.schillmania.com/projects/soundmanager2/">SoundManager 2</a>.</p>
+		<p>Avspilleren har innebygget bokmerke-funksjonalitet, og
+		for å kunne lagre dine bokmerker mellom hver gang du lukker
+		nettleseren, bytter nettleser, eller bytter maskin, så må
+		du være logget inn slik at vi kjenner deg igjen mellom hver
+		gang. For denne demonstrasjonen kreves det ikke noe passord,
+		og alle har dermed i praksis tilgang til hverandres konto,
+		så ikke legg igjen noe privat informasjon her. I den ferdige
+		løsningen vil du ha tilgang til NLBdirekte gjennom MappaMi,
+		hvor alt du foretar deg kun vil være tilgjengelig for deg.</p>
+		<h2>Innlogging til demonstrasjon av NLBdirekte</h2>
+		Brukernavn (maks fire tegn, f.eks. initialer):
+		<input id="username" type="text" onkeydown="if(event.which&&event.which===13||event.keyCode===13)login($('#username').val());"></input>
+		<input id="login" type="button" value="Logg inn" onclick="login($('#username').val(),$('#bookId').val());"></input><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;
+		<select id="bookId" size="3" style="width:228px;">
+			<option value="613839" selected="yes">Bare røre, ikke se</option>
+			<option value="613757">Jamen, Benny</option>
+		</select>
+	</div>
+</body>
+</html>

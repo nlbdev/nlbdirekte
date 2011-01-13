@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE smil PUBLIC "-//W3C//DTD SMIL 1.0//EN" "SMIL10.dtd">
+<smil>
+	<head>
+		<meta name="dc:format" content="Daisy 2.02"/>
+		<meta name="ncc:timeInThisSmil" content="00:01:52.783"/>
+		<meta name="ncc:totalElapsedTime" content="00:03:03.074"/>
+		<layout>
+			<region id="txt-view"/>
+		</layout>
+		<meta name="ncc:generator" content="EasePublisher 2.12 Build 142 # 044FS2210089119"/>
+    <meta name="title" content="Hilsen"/>
+    <meta name="dc:title" content="Bare røre, ikke se"/>
+    <meta name="dc:identifier" content="Unknown"/>
+  </head>
+	<body>
+		<seq dur="112.783s">
+			<par endsync="last">
+				<text src="ncc.html#xauu_0004" id="xauu_0004"/>
+				<seq>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=0.000s" clip-end="npt=3.304s" id="audio_0001"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=3.304s" clip-end="npt=8.829s" id="audio_0002"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=8.829s" clip-end="npt=16.691s" id="audio_0003"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=16.691s" clip-end="npt=22.631s" id="audio_0004"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=22.631s" clip-end="npt=32.140s" id="audio_0005"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=32.140s" clip-end="npt=32.689s" id="audio_0006"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=32.689s" clip-end="npt=42.889s" id="audio_0007"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=42.889s" clip-end="npt=50.460s" id="audio_0008"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=50.460s" clip-end="npt=51.061s" id="audio_0009"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=51.061s" clip-end="npt=60.844s" id="audio_0010"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=60.844s" clip-end="npt=67.963s" id="audio_0011"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=67.963s" clip-end="npt=69.047s" id="audio_0012"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=69.047s" clip-end="npt=76.727s" id="audio_0013"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=76.727s" clip-end="npt=83.686s" id="audio_0014"/>
+				</seq>
+			</par>
+			<par endsync="last" id="jmba_0023" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00cb" id="jmba_0025"/>
+				<seq>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=83.686s" clip-end="npt=83.907s" id="audio_0015"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0004" id="jmba_0026"/>
+				<seq>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=83.907s" clip-end="npt=84.456s" id="audio_0016"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=84.456s" clip-end="npt=92.070s" id="audio_0017"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=92.070s" clip-end="npt=98.496s" id="audio_0018"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=98.496s" clip-end="npt=103.773s" id="audio_0019"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=103.773s" clip-end="npt=106.529s" id="audio_0020"/>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=106.529s" clip-end="npt=112.092s" id="audio_0021"/>
+				</seq>
+			</par>
+			<par endsync="last" id="iwxc_0002" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_001d" id="iwxc_0005"/>
+				<seq>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=112.092s" clip-end="npt=112.402s" id="audio_0022"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0004" id="iwxc_0006"/>
+				<seq>
+					<audio src="07_Hilsen.mp3" clip-begin="npt=112.402s" clip-end="npt=112.783s" id="audio_0023"/>
+				</seq>
+			</par>
+		</seq>
+	</body>
+</smil>

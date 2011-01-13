@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE smil PUBLIC "-//W3C//DTD SMIL 1.0//EN" "SMIL10.dtd">
+<smil>
+	<head>
+		<meta name="dc:format" content="Daisy 2.02"/>
+		<meta name="ncc:timeInThisSmil" content="00:40:19.727"/>
+		<meta name="ncc:totalElapsedTime" content="00:56:52.906"/>
+		<layout>
+			<region id="txt-view"/>
+		</layout>
+		<meta name="ncc:generator" content="EasePublisher 2.12 Build 142 # 044FS2210089119"/>
+    <meta name="title" content="I lyset bak mørket. Historien om Louis Braille, Lise Männikkö"/>
+    <meta name="dc:title" content="Bare røre, ikke se"/>
+    <meta name="dc:identifier" content="Unknown"/>
+  </head>
+	<body>
+		<seq dur="2419.727s">
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="xauu_0009"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=0.000s" clip-end="npt=5.708s" id="audio_0001"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=5.708s" clip-end="npt=8.398s" id="audio_0002"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=8.398s" clip-end="npt=17.763s" id="audio_0003"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=17.763s" clip-end="npt=21.538s" id="audio_0004"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=21.538s" clip-end="npt=24.777s" id="audio_0005"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=24.777s" clip-end="npt=27.847s" id="audio_0006"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=27.847s" clip-end="npt=30.485s" id="audio_0007"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=30.485s" clip-end="npt=34.377s" id="audio_0008"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=34.377s" clip-end="npt=36.963s" id="audio_0009"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=36.963s" clip-end="npt=41.532s" id="audio_0010"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=41.532s" clip-end="npt=42.198s" id="audio_0011"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=42.198s" clip-end="npt=46.391s" id="audio_0012"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=46.391s" clip-end="npt=52.099s" id="audio_0013"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=52.099s" clip-end="npt=54.436s" id="audio_0014"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=54.436s" clip-end="npt=58.094s" id="audio_0015"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=58.094s" clip-end="npt=60.432s" id="audio_0016"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=60.432s" clip-end="npt=63.501s" id="audio_0017"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=63.501s" clip-end="npt=67.779s" id="audio_0018"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=67.779s" clip-end="npt=68.578s" id="audio_0019"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=68.578s" clip-end="npt=72.173s" id="audio_0020"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=72.173s" clip-end="npt=72.776s" id="audio_0021"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=72.776s" clip-end="npt=80.038s" id="audio_0022"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=80.038s" clip-end="npt=82.860s" id="audio_0023"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=82.860s" clip-end="npt=90.540s" id="audio_0024"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=90.540s" clip-end="npt=94.027s" id="audio_0025"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=94.027s" clip-end="npt=96.548s" id="audio_0026"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=96.548s" clip-end="npt=98.099s" id="audio_0027"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=98.099s" clip-end="npt=98.521s" id="audio_0028"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=98.521s" clip-end="npt=105.364s" id="audio_0029"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0001" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0044" id="yqsn_0017"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=105.364s" clip-end="npt=105.565s" id="audio_0030"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="yqsn_0018"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=105.565s" clip-end="npt=106.648s" id="audio_0031"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=106.648s" clip-end="npt=108.935s" id="audio_0032"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=108.935s" clip-end="npt=111.325s" id="audio_0033"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=111.325s" clip-end="npt=114.747s" id="audio_0034"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=114.747s" clip-end="npt=118.287s" id="audio_0035"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=118.287s" clip-end="npt=121.709s" id="audio_0036"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=121.709s" clip-end="npt=124.528s" id="audio_0037"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=124.528s" clip-end="npt=125.429s" id="audio_0038"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=125.429s" clip-end="npt=138.033s" id="audio_0039"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=138.033s" clip-end="npt=140.188s" id="audio_0040"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=140.188s" clip-end="npt=145.413s" id="audio_0041"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=145.413s" clip-end="npt=148.717s" id="audio_0042"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=148.717s" clip-end="npt=152.910s" id="audio_0043"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=152.910s" clip-end="npt=156.215s" id="audio_0044"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=156.215s" clip-end="npt=158.317s" id="audio_0045"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=158.317s" clip-end="npt=162.628s" id="audio_0046"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=162.628s" clip-end="npt=166.115s" id="audio_0047"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=166.115s" clip-end="npt=169.655s" id="audio_0048"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=169.655s" clip-end="npt=174.095s" id="audio_0049"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=174.095s" clip-end="npt=178.471s" id="audio_0050"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=178.471s" clip-end="npt=182.246s" id="audio_0051"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=182.246s" clip-end="npt=185.015s" id="audio_0052"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=185.015s" clip-end="npt=187.770s" id="audio_0053"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=187.770s" clip-end="npt=191.610s" id="audio_0054"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=191.610s" clip-end="npt=194.615s" id="audio_0055"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=194.615s" clip-end="npt=198.938s" id="audio_0056"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=198.938s" clip-end="npt=202.778s" id="audio_0057"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=202.778s" clip-end="npt=206.187s" id="audio_0058"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=206.187s" clip-end="npt=208.055s" id="audio_0059"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=208.055s" clip-end="npt=210.210s" id="audio_0060"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=210.210s" clip-end="npt=213.632s" id="audio_0061"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=213.632s" clip-end="npt=215.598s" id="audio_0062"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=215.598s" clip-end="npt=216.055s" id="audio_0063"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=216.055s" clip-end="npt=219.372s" id="audio_0064"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=219.372s" clip-end="npt=219.964s" id="audio_0065"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=219.964s" clip-end="npt=226.839s" id="audio_0066"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0002" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0045" id="yqsn_0019"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=226.839s" clip-end="npt=227.053s" id="audio_0067"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="yqsn_001a"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=227.053s" clip-end="npt=227.957s" id="audio_0068"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=227.957s" clip-end="npt=230.060s" id="audio_0069"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=230.060s" clip-end="npt=238.510s" id="audio_0070"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=238.510s" clip-end="npt=242.050s" id="audio_0071"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=242.050s" clip-end="npt=249.978s" id="audio_0072"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=249.978s" clip-end="npt=254.954s" id="audio_0073"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=254.954s" clip-end="npt=260.714s" id="audio_0074"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=260.714s" clip-end="npt=265.090s" id="audio_0075"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=265.090s" clip-end="npt=267.075s" id="audio_0076"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=267.075s" clip-end="npt=270.014s" id="audio_0077"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=270.014s" clip-end="npt=276.257s" id="audio_0078"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=276.257s" clip-end="npt=280.450s" id="audio_0079"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=280.450s" clip-end="npt=287.059s" id="audio_0080"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=287.059s" clip-end="npt=291.918s" id="audio_0081"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=291.918s" clip-end="npt=295.329s" id="audio_0082"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=295.329s" clip-end="npt=296.713s" id="audio_0083"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=296.713s" clip-end="npt=300.736s" id="audio_0084"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=300.736s" clip-end="npt=307.215s" id="audio_0085"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=307.215s" clip-end="npt=308.952s" id="audio_0086"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=308.952s" clip-end="npt=314.529s" id="audio_0087"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=314.529s" clip-end="npt=315.613s" id="audio_0088"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=315.613s" clip-end="npt=320.054s" id="audio_0089"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=320.054s" clip-end="npt=325.096s" id="audio_0090"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=325.096s" clip-end="npt=329.654s" id="audio_0091"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=329.654s" clip-end="npt=332.958s" id="audio_0092"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=332.958s" clip-end="npt=341.474s" id="audio_0093"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=341.474s" clip-end="npt=343.995s" id="audio_0094"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=343.995s" clip-end="npt=346.816s" id="audio_0095"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=346.816s" clip-end="npt=351.793s" id="audio_0096"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=351.793s" clip-end="npt=353.716s" id="audio_0097"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=353.716s" clip-end="npt=354.231s" id="audio_0098"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=354.231s" clip-end="npt=358.071s" id="audio_0099"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=358.071s" clip-end="npt=360.042s" id="audio_0100"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=360.042s" clip-end="npt=360.549s" id="audio_0101"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0003" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0046" id="yqsn_001b"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=360.549s" clip-end="npt=361.032s" id="audio_0102"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="yqsn_001c"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=361.032s" clip-end="npt=361.809s" id="audio_0103"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=361.809s" clip-end="npt=365.832s" id="audio_0104"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=365.832s" clip-end="npt=367.987s" id="audio_0105"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=367.987s" clip-end="npt=370.625s" id="audio_0106"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=370.625s" clip-end="npt=374.883s" id="audio_0107"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=374.883s" clip-end="npt=380.461s" id="audio_0108"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=380.461s" clip-end="npt=384.784s" id="audio_0109"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=384.784s" clip-end="npt=386.469s" id="audio_0110"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=386.469s" clip-end="npt=389.107s" id="audio_0111"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=389.107s" clip-end="npt=396.722s" id="audio_0112"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=396.722s" clip-end="npt=402.138s" id="audio_0113"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=402.138s" clip-end="npt=403.457s" id="audio_0114"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=403.457s" clip-end="npt=409.348s" id="audio_0115"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=409.348s" clip-end="npt=414.076s" id="audio_0116"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=414.076s" clip-end="npt=420.502s" id="audio_0117"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=420.502s" clip-end="npt=425.243s" id="audio_0118"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=425.243s" clip-end="npt=428.417s" id="audio_0119"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=428.417s" clip-end="npt=431.839s" id="audio_0120"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=431.839s" clip-end="npt=435.627s" id="audio_0121"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=435.627s" clip-end="npt=436.621s" id="audio_0122"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=436.621s" clip-end="npt=436.982s" id="audio_0123"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=436.982s" clip-end="npt=439.137s" id="audio_0124"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=439.137s" clip-end="npt=443.643s" id="audio_0125"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=443.643s" clip-end="npt=446.104s" id="audio_0126"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=446.104s" clip-end="npt=446.864s" id="audio_0127"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=446.864s" clip-end="npt=452.324s" id="audio_0128"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=452.324s" clip-end="npt=455.811s" id="audio_0129"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=455.811s" clip-end="npt=459.314s" id="audio_0130"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=459.314s" clip-end="npt=460.098s" id="audio_0131"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=460.098s" clip-end="npt=463.219s" id="audio_0132"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=463.219s" clip-end="npt=470.063s" id="audio_0133"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=470.063s" clip-end="npt=473.420s" id="audio_0134"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=473.420s" clip-end="npt=479.625s" id="audio_0135"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0004" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0047" id="yqsn_001d"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=479.625s" clip-end="npt=479.888s" id="audio_0136"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="yqsn_001e"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=479.888s" clip-end="npt=480.895s" id="audio_0137"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=480.895s" clip-end="npt=484.270s" id="audio_0138"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=484.270s" clip-end="npt=488.732s" id="audio_0139"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=488.732s" clip-end="npt=491.436s" id="audio_0140"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=491.436s" clip-end="npt=494.858s" id="audio_0141"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=494.858s" clip-end="npt=499.234s" id="audio_0142"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=499.234s" clip-end="npt=501.572s" id="audio_0143"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=501.572s" clip-end="npt=505.412s" id="audio_0144"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=505.412s" clip-end="npt=507.096s" id="audio_0145"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=507.096s" clip-end="npt=512.556s" id="audio_0146"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=512.556s" clip-end="npt=515.377s" id="audio_0147"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=515.377s" clip-end="npt=518.616s" id="audio_0148"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=518.616s" clip-end="npt=522.522s" id="audio_0149"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=522.522s" clip-end="npt=525.761s" id="audio_0150"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=525.761s" clip-end="npt=529.235s" id="audio_0151"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=529.235s" clip-end="npt=532.710s" id="audio_0152"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=532.710s" clip-end="npt=537.399s" id="audio_0153"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=537.399s" clip-end="npt=542.976s" id="audio_0154"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=542.976s" clip-end="npt=548.200s" id="audio_0155"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=548.200s" clip-end="npt=553.059s" id="audio_0156"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=553.059s" clip-end="npt=555.048s" id="audio_0157"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=555.048s" clip-end="npt=556.197s" id="audio_0158"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=556.197s" clip-end="npt=559.371s" id="audio_0159"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=559.371s" clip-end="npt=562.545s" id="audio_0160"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=562.545s" clip-end="npt=564.413s" id="audio_0161"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=564.413s" clip-end="npt=566.986s" id="audio_0162"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=566.986s" clip-end="npt=568.785s" id="audio_0163"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=568.785s" clip-end="npt=569.634s" id="audio_0164"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=569.634s" clip-end="npt=575.146s" id="audio_0165"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=575.146s" clip-end="npt=579.404s" id="audio_0166"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=579.404s" clip-end="npt=582.591s" id="audio_0167"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=582.591s" clip-end="npt=586.013s" id="audio_0168"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=586.013s" clip-end="npt=599.688s" id="audio_0169"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=599.688s" clip-end="npt=605.082s" id="audio_0170"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=605.082s" clip-end="npt=612.044s" id="audio_0171"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=612.044s" clip-end="npt=618.108s" id="audio_0172"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0005" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0048" id="yqsn_001f"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=618.108s" clip-end="npt=618.481s" id="audio_0173"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="yqsn_0020"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=618.481s" clip-end="npt=619.402s" id="audio_0174"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=619.402s" clip-end="npt=623.359s" id="audio_0175"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=623.359s" clip-end="npt=624.858s" id="audio_0176"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=624.858s" clip-end="npt=625.707s" id="audio_0177"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=625.707s" clip-end="npt=633.555s" id="audio_0178"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=633.555s" clip-end="npt=634.109s" id="audio_0179"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=634.109s" clip-end="npt=638.681s" id="audio_0180"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=638.681s" clip-end="npt=642.220s" id="audio_0181"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=642.220s" clip-end="npt=648.451s" id="audio_0182"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=648.451s" clip-end="npt=650.436s" id="audio_0183"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=650.436s" clip-end="npt=655.060s" id="audio_0184"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=655.060s" clip-end="npt=661.214s" id="audio_0185"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=661.214s" clip-end="npt=661.975s" id="audio_0186"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=661.975s" clip-end="npt=662.624s" id="audio_0187"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=662.624s" clip-end="npt=666.464s" id="audio_0188"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=666.464s" clip-end="npt=676.429s" id="audio_0189"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=676.429s" clip-end="npt=688.785s" id="audio_0190"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=688.785s" clip-end="npt=691.659s" id="audio_0191"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=691.659s" clip-end="npt=696.518s" id="audio_0192"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=696.518s" clip-end="npt=702.278s" id="audio_0193"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=702.278s" clip-end="npt=705.347s" id="audio_0194"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=705.347s" clip-end="npt=714.027s" id="audio_0195"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=714.027s" clip-end="npt=714.788s" id="audio_0196"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=714.788s" clip-end="npt=715.349s" id="audio_0197"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=715.349s" clip-end="npt=717.753s" id="audio_0198"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=717.753s" clip-end="npt=726.151s" id="audio_0199"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=726.151s" clip-end="npt=732.760s" id="audio_0200"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=732.760s" clip-end="npt=736.146s" id="audio_0201"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=736.146s" clip-end="npt=736.579s" id="audio_0202"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=736.579s" clip-end="npt=739.570s" id="audio_0203"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=739.570s" clip-end="npt=744.076s" id="audio_0204"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=744.076s" clip-end="npt=746.542s" id="audio_0205"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=746.542s" clip-end="npt=747.039s" id="audio_0206"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0006" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0049" id="vwbg_0123"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=747.039s" clip-end="npt=747.326s" id="audio_0207"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_0124"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=747.326s" clip-end="npt=749.081s" id="audio_0208"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=749.081s" clip-end="npt=754.175s" id="audio_0209"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=754.175s" clip-end="npt=762.090s" id="audio_0210"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=762.090s" clip-end="npt=767.732s" id="audio_0211"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=767.732s" clip-end="npt=771.638s" id="audio_0212"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=771.638s" clip-end="npt=775.360s" id="audio_0213"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=775.360s" clip-end="npt=781.355s" id="audio_0214"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=781.355s" clip-end="npt=783.811s" id="audio_0215"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=783.811s" clip-end="npt=786.096s" id="audio_0216"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=786.096s" clip-end="npt=787.716s" id="audio_0217"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=787.716s" clip-end="npt=794.260s" id="audio_0218"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=794.260s" clip-end="npt=798.779s" id="audio_0219"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=798.779s" clip-end="npt=799.328s" id="audio_0220"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=799.328s" clip-end="npt=809.228s" id="audio_0221"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=809.228s" clip-end="npt=812.036s" id="audio_0222"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=812.036s" clip-end="npt=816.660s" id="audio_0223"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=816.660s" clip-end="npt=820.983s" id="audio_0224"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=820.983s" clip-end="npt=825.724s" id="audio_0225"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=825.724s" clip-end="npt=829.264s" id="audio_0226"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=829.264s" clip-end="npt=832.986s" id="audio_0227"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=832.986s" clip-end="npt=838.146s" id="audio_0228"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=838.146s" clip-end="npt=842.756s" id="audio_0229"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=842.756s" clip-end="npt=850.018s" id="audio_0230"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=850.018s" clip-end="npt=852.186s" id="audio_0231"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=852.186s" clip-end="npt=855.543s" id="audio_0232"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=855.543s" clip-end="npt=857.881s" id="audio_0233"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=857.881s" clip-end="npt=859.618s" id="audio_0234"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=859.618s" clip-end="npt=864.777s" id="audio_0235"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=864.777s" clip-end="npt=866.645s" id="audio_0236"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=866.645s" clip-end="npt=868.901s" id="audio_0237"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=868.901s" clip-end="npt=875.202s" id="audio_0238"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=875.202s" clip-end="npt=875.920s" id="audio_0239"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=875.920s" clip-end="npt=886.135s" id="audio_0240"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0007" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_004a" id="vwbg_0125"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=886.135s" clip-end="npt=886.558s" id="audio_0241"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_0126"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=886.558s" clip-end="npt=886.976s" id="audio_0242"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=886.976s" clip-end="npt=892.801s" id="audio_0243"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=892.801s" clip-end="npt=897.588s" id="audio_0244"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=897.588s" clip-end="npt=900.357s" id="audio_0245"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=900.357s" clip-end="npt=902.395s" id="audio_0246"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=902.395s" clip-end="npt=904.249s" id="audio_0247"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=904.249s" clip-end="npt=910.493s" id="audio_0248"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=910.493s" clip-end="npt=913.572s" id="audio_0249"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=913.572s" clip-end="npt=914.173s" id="audio_0250"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=914.173s" clip-end="npt=916.511s" id="audio_0251"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=916.511s" clip-end="npt=927.678s" id="audio_0252"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=927.678s" clip-end="npt=932.028s" id="audio_0253"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=932.028s" clip-end="npt=932.446s" id="audio_0254"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=932.446s" clip-end="npt=937.971s" id="audio_0255"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=937.971s" clip-end="npt=941.060s" id="audio_0256"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=941.060s" clip-end="npt=951.509s" id="audio_0257"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=951.509s" clip-end="npt=953.782s" id="audio_0258"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=953.782s" clip-end="npt=956.067s" id="audio_0259"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=956.067s" clip-end="npt=958.157s" id="audio_0260"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=958.157s" clip-end="npt=961.710s" id="audio_0261"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=961.710s" clip-end="npt=966.020s" id="audio_0262"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=966.020s" clip-end="npt=971.427s" id="audio_0263"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=971.427s" clip-end="npt=974.116s" id="audio_0264"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=974.116s" clip-end="npt=974.534s" id="audio_0265"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=974.534s" clip-end="npt=982.096s" id="audio_0266"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=982.096s" clip-end="npt=985.401s" id="audio_0267"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=985.401s" clip-end="npt=990.860s" id="audio_0268"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=990.860s" clip-end="npt=993.499s" id="audio_0269"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=993.499s" clip-end="npt=998.588s" id="audio_0270"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=998.588s" clip-end="npt=999.189s" id="audio_0271"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=999.189s" clip-end="npt=1003.577s" id="audio_0272"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1003.577s" clip-end="npt=1007.470s" id="audio_0273"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1007.470s" clip-end="npt=1011.434s" id="audio_0274"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0008" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_004b" id="vwbg_0127"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1011.434s" clip-end="npt=1011.697s" id="audio_0275"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_0128"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1011.697s" clip-end="npt=1012.554s" id="audio_0276"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1012.554s" clip-end="npt=1014.295s" id="audio_0277"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1014.295s" clip-end="npt=1018.905s" id="audio_0278"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1018.905s" clip-end="npt=1024.808s" id="audio_0279"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1024.808s" clip-end="npt=1032.874s" id="audio_0280"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1032.874s" clip-end="npt=1038.117s" id="audio_0281"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1038.117s" clip-end="npt=1041.220s" id="audio_0282"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1041.220s" clip-end="npt=1044.093s" id="audio_0283"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1044.093s" clip-end="npt=1052.374s" id="audio_0284"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1052.374s" clip-end="npt=1056.749s" id="audio_0285"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1056.749s" clip-end="npt=1064.913s" id="audio_0286"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1064.913s" clip-end="npt=1067.969s" id="audio_0287"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1067.969s" clip-end="npt=1069.837s" id="audio_0288"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1069.837s" clip-end="npt=1071.086s" id="audio_0289"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1071.086s" clip-end="npt=1076.493s" id="audio_0290"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1076.493s" clip-end="npt=1079.915s" id="audio_0291"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1079.915s" clip-end="npt=1084.056s" id="audio_0292"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1084.056s" clip-end="npt=1088.849s" id="audio_0293"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1088.849s" clip-end="npt=1093.055s" id="audio_0294"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1093.055s" clip-end="npt=1097.966s" id="audio_0295"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1097.966s" clip-end="npt=1103.909s" id="audio_0296"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1103.909s" clip-end="npt=1108.049s" id="audio_0297"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1108.049s" clip-end="npt=1113.875s" id="audio_0298"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1113.875s" clip-end="npt=1120.588s" id="audio_0299"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1120.588s" clip-end="npt=1125.329s" id="audio_0300"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1125.329s" clip-end="npt=1130.306s" id="audio_0301"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1130.306s" clip-end="npt=1134.263s" id="audio_0302"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1134.263s" clip-end="npt=1137.685s" id="audio_0303"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1137.685s" clip-end="npt=1141.055s" id="audio_0304"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1141.055s" clip-end="npt=1143.994s" id="audio_0305"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1143.994s" clip-end="npt=1146.849s" id="audio_0306"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0009" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_004c" id="vwbg_0129"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1146.849s" clip-end="npt=1147.134s" id="audio_0307"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_012a"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1147.134s" clip-end="npt=1147.800s" id="audio_0308"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1147.800s" clip-end="npt=1154.696s" id="audio_0309"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1154.696s" clip-end="npt=1158.840s" id="audio_0310"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1158.840s" clip-end="npt=1159.859s" id="audio_0311"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1159.859s" clip-end="npt=1163.699s" id="audio_0312"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1163.699s" clip-end="npt=1166.938s" id="audio_0313"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1166.938s" clip-end="npt=1169.707s" id="audio_0314"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1169.707s" clip-end="npt=1171.666s" id="audio_0315"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1171.666s" clip-end="npt=1172.149s" id="audio_0316"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1172.149s" clip-end="npt=1178.693s" id="audio_0317"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1178.693s" clip-end="npt=1181.749s" id="audio_0318"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1181.749s" clip-end="npt=1186.974s" id="audio_0319"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1186.974s" clip-end="npt=1198.193s" id="audio_0320"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1198.193s" clip-end="npt=1201.067s" id="audio_0321"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1201.067s" clip-end="npt=1208.446s" id="audio_0322"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1208.446s" clip-end="npt=1211.516s" id="audio_0323"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1211.516s" clip-end="npt=1214.873s" id="audio_0324"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1214.873s" clip-end="npt=1219.731s" id="audio_0325"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1219.731s" clip-end="npt=1235.509s" id="audio_0326"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1235.509s" clip-end="npt=1238.148s" id="audio_0327"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1238.148s" clip-end="npt=1243.255s" id="audio_0328"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1243.255s" clip-end="npt=1247.212s" id="audio_0329"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1247.212s" clip-end="npt=1252.789s" id="audio_0330"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1252.789s" clip-end="npt=1253.756s" id="audio_0331"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1253.756s" clip-end="npt=1256.146s" id="audio_0332"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1256.146s" clip-end="npt=1259.955s" id="audio_0333"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1259.955s" clip-end="npt=1260.621s" id="audio_0334"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1260.621s" clip-end="npt=1263.077s" id="audio_0335"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1263.077s" clip-end="npt=1269.085s" id="audio_0336"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1269.085s" clip-end="npt=1274.930s" id="audio_0337"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_000a" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_004d" id="vwbg_012b"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1274.930s" clip-end="npt=1275.290s" id="audio_0338"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_012c"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1275.290s" clip-end="npt=1276.152s" id="audio_0339"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1276.152s" clip-end="npt=1280.353s" id="audio_0340"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1280.353s" clip-end="npt=1283.226s" id="audio_0341"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1283.226s" clip-end="npt=1288.139s" id="audio_0342"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1288.139s" clip-end="npt=1288.805s" id="audio_0343"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1288.805s" clip-end="npt=1291.861s" id="audio_0344"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1291.861s" clip-end="npt=1297.203s" id="audio_0345"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1297.203s" clip-end="npt=1301.279s" id="audio_0346"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1301.279s" clip-end="npt=1306.921s" id="audio_0347"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1306.921s" clip-end="npt=1309.324s" id="audio_0348"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1309.324s" clip-end="npt=1313.700s" id="audio_0349"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1313.700s" clip-end="npt=1318.023s" id="audio_0350"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1318.023s" clip-end="npt=1321.746s" id="audio_0351"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1321.746s" clip-end="npt=1326.604s" id="audio_0352"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1326.604s" clip-end="npt=1332.091s" id="audio_0353"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1332.091s" clip-end="npt=1333.175s" id="audio_0354"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1333.175s" clip-end="npt=1336.297s" id="audio_0355"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1336.297s" clip-end="npt=1337.733s" id="audio_0356"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1337.733s" clip-end="npt=1346.432s" id="audio_0357"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1346.432s" clip-end="npt=1350.520s" id="audio_0358"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1350.520s" clip-end="npt=1354.159s" id="audio_0359"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1354.159s" clip-end="npt=1354.943s" id="audio_0360"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1354.943s" clip-end="npt=1357.163s" id="audio_0361"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1357.163s" clip-end="npt=1361.721s" id="audio_0362"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1361.721s" clip-end="npt=1366.698s" id="audio_0363"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1366.698s" clip-end="npt=1370.969s" id="audio_0364"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1370.969s" clip-end="npt=1379.785s" id="audio_0365"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1379.785s" clip-end="npt=1386.564s" id="audio_0366"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1386.564s" clip-end="npt=1388.263s" id="audio_0367"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1388.263s" clip-end="npt=1388.929s" id="audio_0368"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1388.929s" clip-end="npt=1399.313s" id="audio_0369"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1399.313s" clip-end="npt=1402.421s" id="audio_0370"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1402.421s" clip-end="npt=1405.806s" id="audio_0371"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_000b" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_004e" id="vwbg_012d"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1405.806s" clip-end="npt=1406.148s" id="audio_0372"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_012e"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1406.148s" clip-end="npt=1407.532s" id="audio_0373"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1407.532s" clip-end="npt=1412.391s" id="audio_0374"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1412.391s" clip-end="npt=1420.306s" id="audio_0375"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1420.306s" clip-end="npt=1423.728s" id="audio_0376"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1423.728s" clip-end="npt=1428.829s" id="audio_0377"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1428.829s" clip-end="npt=1433.881s" id="audio_0378"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1433.881s" clip-end="npt=1441.326s" id="audio_0379"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1441.326s" clip-end="npt=1445.584s" id="audio_0380"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1445.584s" clip-end="npt=1452.128s" id="audio_0381"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1452.128s" clip-end="npt=1457.705s" id="audio_0382"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1457.705s" clip-end="npt=1470.426s" id="audio_0383"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1470.426s" clip-end="npt=1475.703s" id="audio_0384"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1475.703s" clip-end="npt=1479.442s" id="audio_0385"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1479.442s" clip-end="npt=1480.108s" id="audio_0386"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1480.108s" clip-end="npt=1489.708s" id="audio_0387"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1489.708s" clip-end="npt=1494.031s" id="audio_0388"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1494.031s" clip-end="npt=1497.205s" id="audio_0389"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1497.205s" clip-end="npt=1504.049s" id="audio_0390"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1504.049s" clip-end="npt=1508.425s" id="audio_0391"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1508.425s" clip-end="npt=1513.950s" id="audio_0392"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1513.950s" clip-end="npt=1520.245s" id="audio_0393"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1520.245s" clip-end="npt=1525.111s" id="audio_0394"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_000c" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_004f" id="vwbg_012f"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1525.111s" clip-end="npt=1525.398s" id="audio_0395"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_0130"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1525.398s" clip-end="npt=1526.105s" id="audio_0396"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1526.105s" clip-end="npt=1529.619s" id="audio_0397"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1529.619s" clip-end="npt=1533.394s" id="audio_0398"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1533.394s" clip-end="npt=1539.366s" id="audio_0399"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1539.366s" clip-end="npt=1544.022s" id="audio_0400"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1544.022s" clip-end="npt=1547.614s" id="audio_0401"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1547.614s" clip-end="npt=1549.717s" id="audio_0402"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1549.717s" clip-end="npt=1552.765s" id="audio_0403"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1552.765s" clip-end="npt=1553.248s" id="audio_0404"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1553.248s" clip-end="npt=1556.788s" id="audio_0405"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1556.788s" clip-end="npt=1559.309s" id="audio_0406"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1559.309s" clip-end="npt=1561.278s" id="audio_0407"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1561.278s" clip-end="npt=1561.761s" id="audio_0408"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1561.761s" clip-end="npt=1565.236s" id="audio_0409"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1565.236s" clip-end="npt=1567.521s" id="audio_0410"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1567.521s" clip-end="npt=1573.765s" id="audio_0411"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1573.765s" clip-end="npt=1577.187s" id="audio_0412"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1577.187s" clip-end="npt=1582.163s" id="audio_0413"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1582.163s" clip-end="npt=1584.684s" id="audio_0414"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1584.684s" clip-end="npt=1589.125s" id="audio_0415"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1589.125s" clip-end="npt=1593.500s" id="audio_0416"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1593.500s" clip-end="npt=1595.838s" id="audio_0417"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1595.838s" clip-end="npt=1600.161s" id="audio_0418"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1600.161s" clip-end="npt=1606.230s" id="audio_0419"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1606.230s" clip-end="npt=1607.197s" id="audio_0420"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1607.197s" clip-end="npt=1617.149s" id="audio_0421"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1617.149s" clip-end="npt=1620.219s" id="audio_0422"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1620.219s" clip-end="npt=1623.510s" id="audio_0423"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1623.510s" clip-end="npt=1626.932s" id="audio_0424"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1626.932s" clip-end="npt=1632.457s" id="audio_0425"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1632.457s" clip-end="npt=1638.099s" id="audio_0426"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1638.099s" clip-end="npt=1648.888s" id="audio_0427"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1648.888s" clip-end="npt=1652.676s" id="audio_0428"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1652.676s" clip-end="npt=1657.299s" id="audio_0429"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1657.299s" clip-end="npt=1658.736s" id="audio_0430"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1658.736s" clip-end="npt=1661.192s" id="audio_0431"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1661.192s" clip-end="npt=1663.609s" id="audio_0432"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_000d" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0050" id="vwbg_0131"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1663.609s" clip-end="npt=1663.920s" id="audio_0433"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_0132"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1663.920s" clip-end="npt=1664.561s" id="audio_0434"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1664.561s" clip-end="npt=1666.011s" id="audio_0435"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1666.011s" clip-end="npt=1669.603s" id="audio_0436"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1669.603s" clip-end="npt=1674.004s" id="audio_0437"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1674.004s" clip-end="npt=1676.277s" id="audio_0438"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1676.277s" clip-end="npt=1680.652s" id="audio_0439"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1680.652s" clip-end="npt=1686.360s" id="audio_0440"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1686.360s" clip-end="npt=1690.200s" id="audio_0441"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1690.200s" clip-end="npt=1697.162s" id="audio_0442"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1697.162s" clip-end="npt=1699.852s" id="audio_0443"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1699.852s" clip-end="npt=1707.245s" id="audio_0444"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1707.245s" clip-end="npt=1708.917s" id="audio_0445"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1708.917s" clip-end="npt=1714.396s" id="audio_0446"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1714.396s" clip-end="npt=1715.180s" id="audio_0447"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1715.180s" clip-end="npt=1716.799s" id="audio_0448"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1716.799s" clip-end="npt=1721.723s" id="audio_0449"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1721.723s" clip-end="npt=1727.183s" id="audio_0450"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1727.183s" clip-end="npt=1732.394s" id="audio_0451"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1732.394s" clip-end="npt=1734.798s" id="audio_0452"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1734.798s" clip-end="npt=1737.736s" id="audio_0453"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1737.736s" clip-end="npt=1739.304s" id="audio_0454"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1739.304s" clip-end="npt=1741.524s" id="audio_0455"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1741.524s" clip-end="npt=1743.614s" id="audio_0456"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1743.614s" clip-end="npt=1746.017s" id="audio_0457"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1746.017s" clip-end="npt=1751.725s" id="audio_0458"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1751.725s" clip-end="npt=1755.016s" id="audio_0459"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1755.016s" clip-end="npt=1758.438s" id="audio_0460"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1758.438s" clip-end="npt=1760.842s" id="audio_0461"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1760.842s" clip-end="npt=1763.480s" id="audio_0462"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1763.480s" clip-end="npt=1765.883s" id="audio_0463"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1765.883s" clip-end="npt=1767.738s" id="audio_0464"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1767.738s" clip-end="npt=1769.827s" id="audio_0465"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1769.827s" clip-end="npt=1770.310s" id="audio_0466"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1770.310s" clip-end="npt=1776.005s" id="audio_0467"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1776.005s" clip-end="npt=1783.605s" id="audio_0468"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1783.605s" clip-end="npt=1789.900s" id="audio_0469"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1789.900s" clip-end="npt=1793.204s" id="audio_0470"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1793.204s" clip-end="npt=1796.613s" id="audio_0471"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1796.613s" clip-end="npt=1801.720s" id="audio_0472"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1801.720s" clip-end="npt=1803.340s" id="audio_0473"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1803.340s" clip-end="npt=1807.133s" id="audio_0474"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_000e" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0051" id="vwbg_0133"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1807.133s" clip-end="npt=1807.334s" id="audio_0475"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_0134"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1807.334s" clip-end="npt=1809.266s" id="audio_0476"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1809.266s" clip-end="npt=1815.425s" id="audio_0477"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1815.425s" clip-end="npt=1816.143s" id="audio_0478"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1816.143s" clip-end="npt=1820.649s" id="audio_0479"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1820.649s" clip-end="npt=1823.405s" id="audio_0480"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1823.405s" clip-end="npt=1824.944s" id="audio_0481"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1824.944s" clip-end="npt=1830.469s" id="audio_0482"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1830.469s" clip-end="npt=1846.613s" id="audio_0483"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1846.613s" clip-end="npt=1855.063s" id="audio_0484"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1855.063s" clip-end="npt=1859.086s" id="audio_0485"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1859.086s" clip-end="npt=1865.081s" id="audio_0486"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1865.081s" clip-end="npt=1870.123s" id="audio_0487"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1870.123s" clip-end="npt=1873.942s" id="audio_0488"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1873.942s" clip-end="npt=1874.660s" id="audio_0489"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1874.660s" clip-end="npt=1878.500s" id="audio_0490"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1878.500s" clip-end="npt=1884.025s" id="audio_0491"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1884.025s" clip-end="npt=1885.527s" id="audio_0492"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1885.527s" clip-end="npt=1897.047s" id="audio_0493"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1897.047s" clip-end="npt=1899.956s" id="audio_0494"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1899.956s" clip-end="npt=1900.439s" id="audio_0495"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1900.439s" clip-end="npt=1910.405s" id="audio_0496"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1910.405s" clip-end="npt=1915.917s" id="audio_0497"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1915.917s" clip-end="npt=1921.860s" id="audio_0498"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1921.860s" clip-end="npt=1926.028s" id="audio_0499"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_000f" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0052" id="vwbg_0135"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1926.028s" clip-end="npt=1926.397s" id="audio_0500"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_0136"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1926.397s" clip-end="npt=1926.998s" id="audio_0501"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1926.998s" clip-end="npt=1934.325s" id="audio_0502"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1934.325s" clip-end="npt=1939.661s" id="audio_0503"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1939.661s" clip-end="npt=1942.953s" id="audio_0504"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1942.953s" clip-end="npt=1947.994s" id="audio_0505"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1947.994s" clip-end="npt=1953.271s" id="audio_0506"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1953.271s" clip-end="npt=1958.678s" id="audio_0507"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1958.678s" clip-end="npt=1966.537s" id="audio_0508"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1966.537s" clip-end="npt=1967.621s" id="audio_0509"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1967.621s" clip-end="npt=1970.194s" id="audio_0510"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1970.194s" clip-end="npt=1973.015s" id="audio_0511"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1973.015s" clip-end="npt=1980.343s" id="audio_0512"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1980.343s" clip-end="npt=1983.281s" id="audio_0513"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1983.281s" clip-end="npt=1985.019s" id="audio_0514"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1985.019s" clip-end="npt=1990.759s" id="audio_0515"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1990.759s" clip-end="npt=1991.908s" id="audio_0516"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1991.908s" clip-end="npt=1994.547s" id="audio_0517"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=1994.547s" clip-end="npt=2001.561s" id="audio_0518"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2001.561s" clip-end="npt=2009.306s" id="audio_0519"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2009.306s" clip-end="npt=2013.616s" id="audio_0520"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2013.616s" clip-end="npt=2017.103s" id="audio_0521"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2017.103s" clip-end="npt=2021.009s" id="audio_0522"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2021.009s" clip-end="npt=2021.613s" id="audio_0523"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2021.613s" clip-end="npt=2026.890s" id="audio_0524"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2026.890s" clip-end="npt=2037.940s" id="audio_0525"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2037.940s" clip-end="npt=2038.724s" id="audio_0526"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2038.724s" clip-end="npt=2046.748s" id="audio_0527"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0010" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0053" id="vwbg_0137"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2046.748s" clip-end="npt=2047.146s" id="audio_0528"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_0138"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2047.146s" clip-end="npt=2047.864s" id="audio_0529"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2047.864s" clip-end="npt=2050.385s" id="audio_0530"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2050.385s" clip-end="npt=2053.742s" id="audio_0531"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2053.742s" clip-end="npt=2059.867s" id="audio_0532"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2059.867s" clip-end="npt=2061.376s" id="audio_0533"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2061.376s" clip-end="npt=2061.859s" id="audio_0534"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2061.859s" clip-end="npt=2070.023s" id="audio_0535"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2070.023s" clip-end="npt=2082.914s" id="audio_0536"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2082.914s" clip-end="npt=2086.519s" id="audio_0537"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2086.519s" clip-end="npt=2089.888s" id="audio_0538"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2089.888s" clip-end="npt=2090.554s" id="audio_0539"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2090.554s" clip-end="npt=2093.976s" id="audio_0540"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2093.976s" clip-end="npt=2095.948s" id="audio_0541"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2095.948s" clip-end="npt=2098.770s" id="audio_0542"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2098.770s" clip-end="npt=2100.872s" id="audio_0543"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2100.872s" clip-end="npt=2106.567s" id="audio_0544"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2106.567s" clip-end="npt=2113.396s" id="audio_0545"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2113.396s" clip-end="npt=2114.297s" id="audio_0546"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2114.297s" clip-end="npt=2119.456s" id="audio_0547"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2119.456s" clip-end="npt=2125.164s" id="audio_0548"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2125.164s" clip-end="npt=2130.741s" id="audio_0549"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2130.741s" clip-end="npt=2137.154s" id="audio_0550"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2137.154s" clip-end="npt=2142.261s" id="audio_0551"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2142.261s" clip-end="npt=2144.416s" id="audio_0552"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2144.416s" clip-end="npt=2149.693s" id="audio_0553"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2149.693s" clip-end="npt=2153.180s" id="audio_0554"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2153.180s" clip-end="npt=2156.237s" id="audio_0555"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2156.237s" clip-end="npt=2162.898s" id="audio_0556"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2162.898s" clip-end="npt=2171.745s" id="audio_0557"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2171.745s" clip-end="npt=2172.580s" id="audio_0558"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2172.580s" clip-end="npt=2178.223s" id="audio_0559"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2178.223s" clip-end="npt=2181.599s" id="audio_0560"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2181.599s" clip-end="npt=2181.914s" id="audio_0561"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2181.914s" clip-end="npt=2185.274s" id="audio_0562"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0011" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0054" id="vwbg_0139"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2185.274s" clip-end="npt=2185.537s" id="audio_0563"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_013a"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2185.537s" clip-end="npt=2186.258s" id="audio_0564"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2186.258s" clip-end="npt=2189.367s" id="audio_0565"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2189.367s" clip-end="npt=2197.229s" id="audio_0566"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2197.229s" clip-end="npt=2200.534s" id="audio_0567"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2200.534s" clip-end="npt=2204.073s" id="audio_0568"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2204.073s" clip-end="npt=2208.021s" id="audio_0569"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2208.021s" clip-end="npt=2210.428s" id="audio_0570"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2210.428s" clip-end="npt=2216.606s" id="audio_0571"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2216.606s" clip-end="npt=2225.642s" id="audio_0572"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2225.642s" clip-end="npt=2226.191s" id="audio_0573"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2226.191s" clip-end="npt=2229.665s" id="audio_0574"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2229.665s" clip-end="npt=2235.124s" id="audio_0575"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2235.124s" clip-end="npt=2243.035s" id="audio_0576"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2243.035s" clip-end="npt=2243.522s" id="audio_0577"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2243.522s" clip-end="npt=2247.935s" id="audio_0578"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2247.935s" clip-end="npt=2249.084s" id="audio_0579"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2249.084s" clip-end="npt=2253.460s" id="audio_0580"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2253.460s" clip-end="npt=2258.985s" id="audio_0581"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2258.985s" clip-end="npt=2262.694s" id="audio_0582"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2262.694s" clip-end="npt=2265.933s" id="audio_0583"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2265.933s" clip-end="npt=2271.341s" id="audio_0584"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2271.341s" clip-end="npt=2277.218s" id="audio_0585"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2277.218s" clip-end="npt=2285.682s" id="audio_0586"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2285.682s" clip-end="npt=2290.123s" id="audio_0587"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2290.123s" clip-end="npt=2294.381s" id="audio_0588"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2294.381s" clip-end="npt=2297.319s" id="audio_0589"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2297.319s" clip-end="npt=2301.460s" id="audio_0590"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2301.460s" clip-end="npt=2308.422s" id="audio_0591"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2308.422s" clip-end="npt=2316.723s" id="audio_0592"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0012" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0055" id="vwbg_013b"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2316.723s" clip-end="npt=2317.109s" id="audio_0593"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_013c"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2317.109s" clip-end="npt=2317.658s" id="audio_0594"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2317.658s" clip-end="npt=2324.253s" id="audio_0595"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2324.253s" clip-end="npt=2327.653s" id="audio_0596"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2327.653s" clip-end="npt=2332.264s" id="audio_0597"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2332.264s" clip-end="npt=2336.770s" id="audio_0598"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2336.770s" clip-end="npt=2338.990s" id="audio_0599"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2338.990s" clip-end="npt=2344.985s" id="audio_0600"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2344.985s" clip-end="npt=2350.628s" id="audio_0601"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2350.628s" clip-end="npt=2353.749s" id="audio_0602"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2353.749s" clip-end="npt=2358.007s" id="audio_0603"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2358.007s" clip-end="npt=2360.045s" id="audio_0604"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2360.045s" clip-end="npt=2361.765s" id="audio_0605"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2361.765s" clip-end="npt=2363.685s" id="audio_0606"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2363.685s" clip-end="npt=2369.092s" id="audio_0607"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2369.092s" clip-end="npt=2371.247s" id="audio_0608"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2371.247s" clip-end="npt=2373.468s" id="audio_0609"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2373.468s" clip-end="npt=2375.505s" id="audio_0610"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2375.505s" clip-end="npt=2377.726s" id="audio_0611"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2377.726s" clip-end="npt=2379.763s" id="audio_0612"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2379.763s" clip-end="npt=2389.494s" id="audio_0613"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2389.494s" clip-end="npt=2391.349s" id="audio_0614"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2391.349s" clip-end="npt=2392.658s" id="audio_0615"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2392.658s" clip-end="npt=2394.465s" id="audio_0616"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2394.465s" clip-end="npt=2396.215s" id="audio_0617"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2396.215s" clip-end="npt=2399.755s" id="audio_0618"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2399.755s" clip-end="npt=2401.492s" id="audio_0619"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2401.492s" clip-end="npt=2403.046s" id="audio_0620"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2403.046s" clip-end="npt=2405.933s" id="audio_0621"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2405.933s" clip-end="npt=2407.905s" id="audio_0622"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2407.905s" clip-end="npt=2409.708s" id="audio_0623"/>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2409.708s" clip-end="npt=2418.097s" id="audio_0624"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0013" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0056" id="vwbg_013d"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2418.097s" clip-end="npt=2418.311s" id="audio_0625"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_013e"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2418.311s" clip-end="npt=2418.474s" id="audio_0626"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0014" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0057" id="vwbg_013f"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2418.474s" clip-end="npt=2418.635s" id="audio_0627"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_0140"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2418.635s" clip-end="npt=2418.922s" id="audio_0628"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0015" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0058" id="vwbg_0141"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2418.922s" clip-end="npt=2419.111s" id="audio_0629"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_0142"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2419.111s" clip-end="npt=2419.337s" id="audio_0630"/>
+				</seq>
+			</par>
+			<par endsync="last" id="yqsn_0016" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0059" id="vwbg_0143"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2419.337s" clip-end="npt=2419.526s" id="audio_0631"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0009" id="vwbg_0144"/>
+				<seq>
+					<audio src="12_I_lyset_bak_m.mp3" clip-begin="npt=2419.526s" clip-end="npt=2419.727s" id="audio_0632"/>
+				</seq>
+			</par>
+		</seq>
+	</body>
+</smil>

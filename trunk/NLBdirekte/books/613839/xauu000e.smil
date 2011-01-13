@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE smil PUBLIC "-//W3C//DTD SMIL 1.0//EN" "SMIL10.dtd">
+<smil>
+	<head>
+		<meta name="dc:format" content="Daisy 2.02"/>
+		<meta name="ncc:timeInThisSmil" content="00:24:15.681"/>
+		<meta name="ncc:totalElapsedTime" content="02:41:59.389"/>
+		<layout>
+			<region id="txt-view"/>
+		</layout>
+		<meta name="ncc:generator" content="EasePublisher 2.12 Build 142 # 044FS2210089119"/>
+    <meta name="title" content="Tale er gull, Sylfest Lomheim"/>
+    <meta name="dc:title" content="Bare røre, ikke se"/>
+    <meta name="dc:identifier" content="Unknown"/>
+  </head>
+	<body>
+		<seq dur="1455.681s">
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="xauu_000d"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=0.000s" clip-end="npt=5.878s" id="audio_0001"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=5.878s" clip-end="npt=24.581s" id="audio_0002"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=24.581s" clip-end="npt=37.878s" id="audio_0003"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=37.878s" clip-end="npt=40.633s" id="audio_0004"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=40.633s" clip-end="npt=60.526s" id="audio_0005"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=60.526s" clip-end="npt=92.081s" id="audio_0006"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=92.081s" clip-end="npt=101.028s" id="audio_0007"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=101.028s" clip-end="npt=106.917s" id="audio_0008"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ipri_0001" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0084" id="ipri_000f"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=106.917s" clip-end="npt=107.124s" id="audio_0009"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="ipri_0010"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=107.124s" clip-end="npt=116.206s" id="audio_0010"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=116.206s" clip-end="npt=131.956s" id="audio_0011"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=131.956s" clip-end="npt=154.878s" id="audio_0012"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=154.878s" clip-end="npt=164.062s" id="audio_0013"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=164.062s" clip-end="npt=179.030s" id="audio_0014"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=179.030s" clip-end="npt=198.973s" id="audio_0015"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=198.973s" clip-end="npt=207.645s" id="audio_0016"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=207.645s" clip-end="npt=238.072s" id="audio_0017"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ipri_0002" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0085" id="ipri_0011"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=238.072s" clip-end="npt=238.378s" id="audio_0018"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="ipri_0012"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=238.378s" clip-end="npt=239.045s" id="audio_0019"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=239.045s" clip-end="npt=241.019s" id="audio_0020"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=241.019s" clip-end="npt=244.310s" id="audio_0021"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=244.310s" clip-end="npt=251.962s" id="audio_0022"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=251.962s" clip-end="npt=279.379s" id="audio_0023"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=279.379s" clip-end="npt=287.033s" id="audio_0024"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=287.033s" clip-end="npt=293.197s" id="audio_0025"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=293.197s" clip-end="npt=300.877s" id="audio_0026"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=300.877s" clip-end="npt=348.591s" id="audio_0027"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=348.591s" clip-end="npt=363.062s" id="audio_0028"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=363.062s" clip-end="npt=367.007s" id="audio_0029"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=367.007s" clip-end="npt=379.849s" id="audio_0030"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ipri_0003" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0086" id="ipri_0013"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=379.849s" clip-end="npt=380.160s" id="audio_0031"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="ipri_0014"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=380.160s" clip-end="npt=400.430s" id="audio_0032"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=400.430s" clip-end="npt=411.389s" id="audio_0033"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=411.389s" clip-end="npt=417.305s" id="audio_0034"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=417.305s" clip-end="npt=429.543s" id="audio_0035"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=429.543s" clip-end="npt=461.935s" id="audio_0036"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=461.935s" clip-end="npt=471.718s" id="audio_0037"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=471.718s" clip-end="npt=476.877s" id="audio_0038"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=476.877s" clip-end="npt=486.882s" id="audio_0039"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=486.882s" clip-end="npt=495.451s" id="audio_0040"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=495.451s" clip-end="npt=500.127s" id="audio_0041"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=500.127s" clip-end="npt=528.924s" id="audio_0042"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ipri_0004" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0087" id="ipri_0015"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=528.924s" clip-end="npt=529.187s" id="audio_0043"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="ipri_0016"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=529.187s" clip-end="npt=545.278s" id="audio_0044"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=545.278s" clip-end="npt=551.066s" id="audio_0045"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=551.066s" clip-end="npt=555.975s" id="audio_0046"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=555.975s" clip-end="npt=568.658s" id="audio_0047"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=568.658s" clip-end="npt=581.601s" id="audio_0048"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=581.601s" clip-end="npt=589.296s" id="audio_0049"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=589.296s" clip-end="npt=600.384s" id="audio_0050"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=600.384s" clip-end="npt=603.037s" id="audio_0051"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=603.037s" clip-end="npt=609.998s" id="audio_0052"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=609.998s" clip-end="npt=616.005s" id="audio_0053"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=616.005s" clip-end="npt=639.058s" id="audio_0054"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=639.058s" clip-end="npt=648.384s" id="audio_0055"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=648.384s" clip-end="npt=669.589s" id="audio_0056"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ipri_0005" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0088" id="ipri_0017"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=669.589s" clip-end="npt=669.884s" id="audio_0057"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="ipri_0018"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=669.884s" clip-end="npt=683.466s" id="audio_0058"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=683.466s" clip-end="npt=689.672s" id="audio_0059"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=689.672s" clip-end="npt=693.288s" id="audio_0060"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=693.288s" clip-end="npt=702.668s" id="audio_0061"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=702.668s" clip-end="npt=713.234s" id="audio_0062"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=713.234s" clip-end="npt=727.379s" id="audio_0063"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=727.379s" clip-end="npt=742.961s" id="audio_0064"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=742.961s" clip-end="npt=745.378s" id="audio_0065"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=745.378s" clip-end="npt=753.552s" id="audio_0066"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=753.552s" clip-end="npt=763.677s" id="audio_0067"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=763.677s" clip-end="npt=780.787s" id="audio_0068"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=780.787s" clip-end="npt=795.677s" id="audio_0069"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=795.677s" clip-end="npt=811.716s" id="audio_0070"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=811.716s" clip-end="npt=824.777s" id="audio_0071"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=824.777s" clip-end="npt=831.889s" id="audio_0072"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ipri_0006" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0089" id="ipri_0019"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=831.889s" clip-end="npt=832.168s" id="audio_0073"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="ipri_001a"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=832.168s" clip-end="npt=842.173s" id="audio_0074"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=842.173s" clip-end="npt=849.096s" id="audio_0075"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=849.096s" clip-end="npt=877.649s" id="audio_0076"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=877.649s" clip-end="npt=909.701s" id="audio_0077"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=909.701s" clip-end="npt=920.921s" id="audio_0078"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=920.921s" clip-end="npt=922.527s" id="audio_0079"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=922.527s" clip-end="npt=928.000s" id="audio_0080"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=928.000s" clip-end="npt=933.105s" id="audio_0081"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=933.105s" clip-end="npt=946.051s" id="audio_0082"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=946.051s" clip-end="npt=959.402s" id="audio_0083"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ipri_0007" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_008a" id="ipri_001b"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=959.402s" clip-end="npt=959.687s" id="audio_0084"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="ipri_001c"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=959.687s" clip-end="npt=971.153s" id="audio_0085"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=971.153s" clip-end="npt=977.293s" id="audio_0086"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=977.293s" clip-end="npt=986.879s" id="audio_0087"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=986.879s" clip-end="npt=991.240s" id="audio_0088"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=991.240s" clip-end="npt=996.034s" id="audio_0089"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=996.034s" clip-end="npt=1016.816s" id="audio_0090"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1016.816s" clip-end="npt=1032.268s" id="audio_0091"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1032.268s" clip-end="npt=1037.269s" id="audio_0092"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1037.269s" clip-end="npt=1041.881s" id="audio_0093"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1041.881s" clip-end="npt=1045.381s" id="audio_0094"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1045.381s" clip-end="npt=1048.945s" id="audio_0095"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1048.945s" clip-end="npt=1057.201s" id="audio_0096"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1057.201s" clip-end="npt=1075.829s" id="audio_0097"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ipri_0008" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_008b" id="ipri_001d"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1075.829s" clip-end="npt=1076.165s" id="audio_0098"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="ipri_001e"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1076.165s" clip-end="npt=1103.058s" id="audio_0099"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1103.058s" clip-end="npt=1108.976s" id="audio_0100"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1108.976s" clip-end="npt=1123.422s" id="audio_0101"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1123.422s" clip-end="npt=1142.805s" id="audio_0102"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1142.805s" clip-end="npt=1150.380s" id="audio_0103"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1150.380s" clip-end="npt=1164.289s" id="audio_0104"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1164.289s" clip-end="npt=1172.413s" id="audio_0105"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1172.413s" clip-end="npt=1176.501s" id="audio_0106"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1176.501s" clip-end="npt=1184.886s" id="audio_0107"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1184.886s" clip-end="npt=1208.438s" id="audio_0108"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1208.438s" clip-end="npt=1219.537s" id="audio_0109"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ipri_0009" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_008c" id="ipri_001f"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1219.537s" clip-end="npt=1219.760s" id="audio_0110"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="ipri_0020"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1219.760s" clip-end="npt=1229.153s" id="audio_0111"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1229.153s" clip-end="npt=1236.791s" id="audio_0112"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1236.791s" clip-end="npt=1263.711s" id="audio_0113"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1263.711s" clip-end="npt=1270.685s" id="audio_0114"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1270.685s" clip-end="npt=1283.383s" id="audio_0115"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1283.383s" clip-end="npt=1307.962s" id="audio_0116"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1307.962s" clip-end="npt=1321.742s" id="audio_0117"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1321.742s" clip-end="npt=1337.559s" id="audio_0118"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1337.559s" clip-end="npt=1348.441s" id="audio_0119"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1348.441s" clip-end="npt=1358.503s" id="audio_0120"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ipri_000a" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_008d" id="ipri_0021"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1358.503s" clip-end="npt=1358.785s" id="audio_0121"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="ipri_0022"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1358.785s" clip-end="npt=1370.384s" id="audio_0122"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1370.384s" clip-end="npt=1383.195s" id="audio_0123"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1383.195s" clip-end="npt=1394.900s" id="audio_0124"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1394.900s" clip-end="npt=1399.299s" id="audio_0125"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1399.299s" clip-end="npt=1402.553s" id="audio_0126"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1402.553s" clip-end="npt=1428.884s" id="audio_0127"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1428.884s" clip-end="npt=1435.636s" id="audio_0128"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1435.636s" clip-end="npt=1449.376s" id="audio_0129"/>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1449.376s" clip-end="npt=1453.848s" id="audio_0130"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ipri_000b" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_008e" id="ipri_0023"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1453.848s" clip-end="npt=1454.055s" id="audio_0131"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="ipri_0024"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1454.055s" clip-end="npt=1454.227s" id="audio_0132"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ipri_000c" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_008f" id="ipri_0025"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1454.227s" clip-end="npt=1454.410s" id="audio_0133"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="ipri_0026"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1454.410s" clip-end="npt=1454.606s" id="audio_0134"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ipri_000d" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0090" id="ipri_0027"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1454.606s" clip-end="npt=1454.777s" id="audio_0135"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="ipri_0028"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1454.777s" clip-end="npt=1454.960s" id="audio_0136"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ipri_000e" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0091" id="ipri_0029"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1454.960s" clip-end="npt=1455.180s" id="audio_0137"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000d" id="ipri_002a"/>
+				<seq>
+					<audio src="16_Tale_er_gull_.mp3" clip-begin="npt=1455.180s" clip-end="npt=1455.681s" id="audio_0138"/>
+				</seq>
+			</par>
+		</seq>
+	</body>
+</smil>

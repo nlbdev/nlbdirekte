@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE smil PUBLIC "-//W3C//DTD SMIL 1.0//EN" "SMIL10.dtd">
+<smil>
+	<head>
+		<meta name="dc:format" content="Daisy 2.02"/>
+		<meta name="ncc:timeInThisSmil" content="00:00:07.680"/>
+		<meta name="ncc:totalElapsedTime" content="04:44:48.224"/>
+		<layout>
+			<region id="txt-view"/>
+		</layout>
+		<meta name="ncc:generator" content="EasePublisher 2.12 Build 142 # 044FS2210089119"/>
+    <meta name="title" content="Norsk punktskrift"/>
+    <meta name="dc:title" content="Bare røre, ikke se"/>
+    <meta name="dc:identifier" content="Unknown"/>
+  </head>
+	<body>
+		<seq dur="7.680s">
+			<par endsync="last">
+				<text src="ncc.html#xauu_00d3" id="xauu_00d3"/>
+				<seq>
+					<audio src="21_Norsk_punktsk.mp3" clip-begin="npt=0.000s" clip-end="npt=7.680s" id="audio_0001"/>
+				</seq>
+			</par>
+		</seq>
+	</body>
+</smil>

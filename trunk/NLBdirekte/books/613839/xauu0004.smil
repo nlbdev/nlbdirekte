@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE smil PUBLIC "-//W3C//DTD SMIL 1.0//EN" "SMIL10.dtd">
+<smil>
+	<head>
+		<meta name="dc:format" content="Daisy 2.02"/>
+		<meta name="ncc:timeInThisSmil" content="00:01:15.015"/>
+		<meta name="ncc:totalElapsedTime" content="00:01:48.059"/>
+		<layout>
+			<region id="txt-view"/>
+		</layout>
+		<meta name="ncc:generator" content="EasePublisher 2.12 Build 142 # 044FS2210089119"/>
+    <meta name="title" content="Innhold"/>
+    <meta name="dc:title" content="Bare røre, ikke se"/>
+    <meta name="dc:identifier" content="Unknown"/>
+  </head>
+	<body>
+		<seq dur="75.015s">
+			<par endsync="last">
+				<text src="ncc.html#xauu_0003" id="xauu_0003"/>
+				<seq>
+					<audio src="06_Innhold.mp3" clip-begin="npt=0.000s" clip-end="npt=2.338s" id="audio_0001"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=2.338s" clip-end="npt=3.657s" id="audio_0002"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=3.657s" clip-end="npt=5.042s" id="audio_0003"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=5.042s" clip-end="npt=6.661s" id="audio_0004"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=6.661s" clip-end="npt=7.550s" id="audio_0005"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=7.550s" clip-end="npt=8.033s" id="audio_0006"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=8.033s" clip-end="npt=9.535s" id="audio_0007"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=9.535s" clip-end="npt=13.558s" id="audio_0008"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=13.558s" clip-end="npt=15.413s" id="audio_0009"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=15.413s" clip-end="npt=18.117s" id="audio_0010"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=18.117s" clip-end="npt=20.154s" id="audio_0011"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=20.154s" clip-end="npt=24.412s" id="audio_0012"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=24.412s" clip-end="npt=25.979s" id="audio_0013"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=25.979s" clip-end="npt=29.336s" id="audio_0014"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=29.336s" clip-end="npt=30.590s" id="audio_0015"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=30.590s" clip-end="npt=32.210s" id="audio_0016"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=32.210s" clip-end="npt=33.594s" id="audio_0017"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=33.594s" clip-end="npt=35.397s" id="audio_0018"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=35.397s" clip-end="npt=37.016s" id="audio_0019"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=37.016s" clip-end="npt=38.335s" id="audio_0020"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=38.335s" clip-end="npt=40.673s" id="audio_0021"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=40.673s" clip-end="npt=42.659s" id="audio_0022"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=42.659s" clip-end="npt=43.714s" id="audio_0023"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=43.714s" clip-end="npt=44.200s" id="audio_0024"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=44.200s" clip-end="npt=49.050s" id="audio_0025"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=49.050s" clip-end="npt=49.367s" id="audio_0026"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=49.367s" clip-end="npt=53.795s" id="audio_0027"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=53.795s" clip-end="npt=55.315s" id="audio_0028"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=55.315s" clip-end="npt=57.025s" id="audio_0029"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=57.025s" clip-end="npt=60.070s" id="audio_0030"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=60.070s" clip-end="npt=60.721s" id="audio_0031"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=60.721s" clip-end="npt=62.393s" id="audio_0032"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=62.393s" clip-end="npt=67.016s" id="audio_0033"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=67.016s" clip-end="npt=68.819s" id="audio_0034"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=68.819s" clip-end="npt=72.058s" id="audio_0035"/>
+					<audio src="06_Innhold.mp3" clip-begin="npt=72.058s" clip-end="npt=73.943s" id="audio_0036"/>
+				</seq>
+			</par>
+			<par endsync="last" id="cmtb_0001" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_001a" id="cmtb_0003"/>
+				<seq>
+					<audio src="06_Innhold.mp3" clip-begin="npt=73.943s" clip-end="npt=74.200s" id="audio_0037"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0003" id="cmtb_0004"/>
+				<seq>
+					<audio src="06_Innhold.mp3" clip-begin="npt=74.200s" clip-end="npt=74.457s" id="audio_0038"/>
+				</seq>
+			</par>
+			<par endsync="last" id="cmtb_0002" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_001b" id="cmtb_0005"/>
+				<seq>
+					<audio src="06_Innhold.mp3" clip-begin="npt=74.457s" clip-end="npt=74.701s" id="audio_0039"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_0003" id="cmtb_0006"/>
+				<seq>
+					<audio src="06_Innhold.mp3" clip-begin="npt=74.701s" clip-end="npt=75.015s" id="audio_0040"/>
+				</seq>
+			</par>
+		</seq>
+	</body>
+</smil>

@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE smil PUBLIC "-//W3C//DTD SMIL 1.0//EN" "SMIL10.dtd">
+<smil>
+	<head>
+		<meta name="dc:format" content="Daisy 2.02"/>
+		<meta name="ncc:timeInThisSmil" content="00:43:29.590"/>
+		<meta name="ncc:totalElapsedTime" content="01:58:29.799"/>
+		<layout>
+			<region id="txt-view"/>
+		</layout>
+		<meta name="ncc:generator" content="EasePublisher 2.12 Build 142 # 044FS2210089119"/>
+    <meta name="title" content="Anderledes eller normal? Per Koren Solvang"/>
+    <meta name="dc:title" content="Bare røre, ikke se"/>
+    <meta name="dc:identifier" content="Unknown"/>
+  </head>
+	<body>
+		<seq dur="2609.590s">
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="xauu_000c"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=0.000s" clip-end="npt=3.540s" id="audio_0001"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=3.540s" clip-end="npt=7.210s" id="audio_0002"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=7.210s" clip-end="npt=12.340s" id="audio_0003"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=12.340s" clip-end="npt=12.726s" id="audio_0004"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=12.726s" clip-end="npt=21.459s" id="audio_0005"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=21.459s" clip-end="npt=22.125s" id="audio_0006"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=22.125s" clip-end="npt=26.383s" id="audio_0007"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=26.383s" clip-end="npt=28.904s" id="audio_0008"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=28.904s" clip-end="npt=35.313s" id="audio_0009"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=35.313s" clip-end="npt=35.762s" id="audio_0010"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=35.762s" clip-end="npt=47.935s" id="audio_0011"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=47.935s" clip-end="npt=59.154s" id="audio_0012"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=59.154s" clip-end="npt=62.093s" id="audio_0013"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=62.093s" clip-end="npt=70.073s" id="audio_0014"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=70.073s" clip-end="npt=77.166s" id="audio_0015"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=77.166s" clip-end="npt=77.490s" id="audio_0016"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=77.490s" clip-end="npt=85.053s" id="audio_0017"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=85.053s" clip-end="npt=94.644s" id="audio_0018"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_0001" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_006a" id="ilaz_001b"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=94.644s" clip-end="npt=95.048s" id="audio_0019"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_001c"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=95.048s" clip-end="npt=102.258s" id="audio_0020"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=102.258s" clip-end="npt=108.512s" id="audio_0021"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=108.512s" clip-end="npt=112.207s" id="audio_0022"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=112.207s" clip-end="npt=118.803s" id="audio_0023"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=118.803s" clip-end="npt=127.172s" id="audio_0024"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=127.172s" clip-end="npt=127.538s" id="audio_0025"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=127.538s" clip-end="npt=134.918s" id="audio_0026"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=134.918s" clip-end="npt=138.427s" id="audio_0027"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=138.427s" clip-end="npt=139.576s" id="audio_0028"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=139.576s" clip-end="npt=148.994s" id="audio_0029"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=148.994s" clip-end="npt=157.927s" id="audio_0030"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=157.927s" clip-end="npt=162.616s" id="audio_0031"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=162.616s" clip-end="npt=167.645s" id="audio_0032"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=167.645s" clip-end="npt=171.903s" id="audio_0033"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=171.903s" clip-end="npt=180.785s" id="audio_0034"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=180.785s" clip-end="npt=192.422s" id="audio_0035"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=192.422s" clip-end="npt=197.163s" id="audio_0036"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=197.163s" clip-end="npt=207.575s" id="audio_0037"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_0002" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_006b" id="ilaz_001d"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=207.575s" clip-end="npt=207.838s" id="audio_0038"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_001e"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=207.838s" clip-end="npt=209.567s" id="audio_0039"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=209.567s" clip-end="npt=216.650s" id="audio_0040"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=216.650s" clip-end="npt=223.847s" id="audio_0041"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=223.847s" clip-end="npt=228.353s" id="audio_0042"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=228.353s" clip-end="npt=234.831s" id="audio_0043"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=234.831s" clip-end="npt=247.736s" id="audio_0044"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=247.736s" clip-end="npt=251.755s" id="audio_0045"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=251.755s" clip-end="npt=252.656s" id="audio_0046"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=252.656s" clip-end="npt=263.393s" id="audio_0047"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=263.393s" clip-end="npt=273.659s" id="audio_0048"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=273.659s" clip-end="npt=276.833s" id="audio_0049"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=276.833s" clip-end="npt=290.638s" id="audio_0050"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=290.638s" clip-end="npt=295.079s" id="audio_0051"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=295.079s" clip-end="npt=302.942s" id="audio_0052"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=302.942s" clip-end="npt=307.401s" id="audio_0053"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=307.401s" clip-end="npt=308.668s" id="audio_0054"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=308.668s" clip-end="npt=314.180s" id="audio_0055"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=314.180s" clip-end="npt=318.085s" id="audio_0056"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=318.085s" clip-end="npt=323.061s" id="audio_0057"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=323.061s" clip-end="npt=325.648s" id="audio_0058"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=325.648s" clip-end="npt=331.271s" id="audio_0059"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=331.271s" clip-end="npt=332.991s" id="audio_0060"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=332.991s" clip-end="npt=336.700s" id="audio_0061"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=336.700s" clip-end="npt=341.535s" id="audio_0062"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_0003" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_006c" id="ilaz_001f"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=341.535s" clip-end="npt=341.842s" id="audio_0063"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_0020"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=341.842s" clip-end="npt=342.743s" id="audio_0064"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=342.743s" clip-end="npt=348.268s" id="audio_0065"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=348.268s" clip-end="npt=361.290s" id="audio_0066"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=361.290s" clip-end="npt=365.182s" id="audio_0067"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=365.182s" clip-end="npt=368.238s" id="audio_0068"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=368.238s" clip-end="npt=382.575s" id="audio_0069"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=382.575s" clip-end="npt=383.176s" id="audio_0070"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=383.176s" clip-end="npt=385.462s" id="audio_0071"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=385.462s" clip-end="npt=392.776s" id="audio_0072"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=392.776s" clip-end="npt=400.639s" id="audio_0073"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=400.639s" clip-end="npt=410.774s" id="audio_0074"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=410.774s" clip-end="npt=416.665s" id="audio_0075"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=416.665s" clip-end="npt=434.844s" id="audio_0076"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=434.844s" clip-end="npt=435.445s" id="audio_0077"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=435.445s" clip-end="npt=440.669s" id="audio_0078"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=440.669s" clip-end="npt=448.885s" id="audio_0079"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=448.885s" clip-end="npt=460.522s" id="audio_0080"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=460.522s" clip-end="npt=468.333s" id="audio_0081"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=468.333s" clip-end="npt=480.989s" id="audio_0082"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=480.989s" clip-end="npt=484.646s" id="audio_0083"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=484.646s" clip-end="npt=488.904s" id="audio_0084"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=488.904s" clip-end="npt=495.075s" id="audio_0085"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_0004" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_006d" id="ilaz_0021"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=495.075s" clip-end="npt=495.411s" id="audio_0086"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_0022"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=495.411s" clip-end="npt=499.131s" id="audio_0087"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=499.131s" clip-end="npt=501.830s" id="audio_0088"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=501.830s" clip-end="npt=502.379s" id="audio_0089"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=502.379s" clip-end="npt=514.617s" id="audio_0090"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=514.617s" clip-end="npt=518.692s" id="audio_0091"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=518.692s" clip-end="npt=522.349s" id="audio_0092"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=522.349s" clip-end="npt=536.939s" id="audio_0093"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=536.939s" clip-end="npt=544.854s" id="audio_0094"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=544.854s" clip-end="npt=552.925s" id="audio_0095"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=552.925s" clip-end="npt=553.877s" id="audio_0096"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=553.877s" clip-end="npt=563.546s" id="audio_0097"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=563.546s" clip-end="npt=564.095s" id="audio_0098"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=564.095s" clip-end="npt=570.926s" id="audio_0099"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=570.926s" clip-end="npt=573.995s" id="audio_0100"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=573.995s" clip-end="npt=579.572s" id="audio_0101"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=579.572s" clip-end="npt=584.966s" id="audio_0102"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=584.966s" clip-end="npt=591.492s" id="audio_0103"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_0005" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_006e" id="ilaz_0023"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=591.492s" clip-end="npt=591.779s" id="audio_0104"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_0024"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=591.779s" clip-end="npt=597.776s" id="audio_0105"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=597.776s" clip-end="npt=606.357s" id="audio_0106"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=606.357s" clip-end="npt=612.535s" id="audio_0107"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=612.535s" clip-end="npt=616.623s" id="audio_0108"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=616.623s" clip-end="npt=624.483s" id="audio_0109"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=624.483s" clip-end="npt=625.750s" id="audio_0110"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=625.750s" clip-end="npt=633.430s" id="audio_0111"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=633.430s" clip-end="npt=643.631s" id="audio_0112"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=643.631s" clip-end="npt=647.641s" id="audio_0113"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=647.641s" clip-end="npt=656.587s" id="audio_0114"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=656.587s" clip-end="npt=661.825s" id="audio_0115"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=661.825s" clip-end="npt=668.904s" id="audio_0116"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=668.904s" clip-end="npt=676.885s" id="audio_0117"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=676.885s" clip-end="npt=687.085s" id="audio_0118"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=687.085s" clip-end="npt=695.432s" id="audio_0119"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=695.432s" clip-end="npt=699.570s" id="audio_0120"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=699.570s" clip-end="npt=700.053s" id="audio_0121"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=700.053s" clip-end="npt=707.550s" id="audio_0122"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=707.550s" clip-end="npt=710.019s" id="audio_0123"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=710.019s" clip-end="npt=716.850s" id="audio_0124"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=716.850s" clip-end="npt=723.156s" id="audio_0125"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=723.156s" clip-end="npt=731.737s" id="audio_0126"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=731.737s" clip-end="npt=738.341s" id="audio_0127"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_0006" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_006f" id="ilaz_0025"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=738.341s" clip-end="npt=738.628s" id="audio_0128"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_0026"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=738.628s" clip-end="npt=739.089s" id="audio_0129"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=739.089s" clip-end="npt=745.097s" id="audio_0130"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=745.097s" clip-end="npt=750.952s" id="audio_0131"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=750.952s" clip-end="npt=757.966s" id="audio_0132"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=757.966s" clip-end="npt=764.219s" id="audio_0133"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=764.219s" clip-end="npt=765.238s" id="audio_0134"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=765.238s" clip-end="npt=767.589s" id="audio_0135"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=767.589s" clip-end="npt=776.340s" id="audio_0136"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=776.340s" clip-end="npt=782.072s" id="audio_0137"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=782.072s" clip-end="npt=784.009s" id="audio_0138"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=784.009s" clip-end="npt=784.640s" id="audio_0139"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=784.640s" clip-end="npt=788.846s" id="audio_0140"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=788.846s" clip-end="npt=798.028s" id="audio_0141"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=798.028s" clip-end="npt=802.404s" id="audio_0142"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=802.404s" clip-end="npt=805.444s" id="audio_0143"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=805.444s" clip-end="npt=805.994s" id="audio_0144"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=805.994s" clip-end="npt=820.335s" id="audio_0145"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=820.335s" clip-end="npt=829.735s" id="audio_0146"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=829.735s" clip-end="npt=831.812s" id="audio_0147"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_0007" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0070" id="ilaz_0027"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=831.812s" clip-end="npt=832.111s" id="audio_0148"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_0028"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=832.111s" clip-end="npt=832.798s" id="audio_0149"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=832.798s" clip-end="npt=841.144s" id="audio_0150"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=841.144s" clip-end="npt=847.439s" id="audio_0151"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=847.439s" clip-end="npt=858.659s" id="audio_0152"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=858.659s" clip-end="npt=864.654s" id="audio_0153"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=864.654s" clip-end="npt=868.311s" id="audio_0154"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=868.311s" clip-end="npt=876.292s" id="audio_0155"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=876.292s" clip-end="npt=881.205s" id="audio_0156"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=881.205s" clip-end="npt=888.935s" id="audio_0157"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=888.935s" clip-end="npt=889.484s" id="audio_0158"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=889.484s" clip-end="npt=903.342s" id="audio_0159"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=903.342s" clip-end="npt=906.321s" id="audio_0160"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=906.321s" clip-end="npt=906.870s" id="audio_0161"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=906.870s" clip-end="npt=915.738s" id="audio_0162"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=915.738s" clip-end="npt=921.328s" id="audio_0163"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=921.328s" clip-end="npt=931.098s" id="audio_0164"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=931.098s" clip-end="npt=937.524s" id="audio_0165"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=937.524s" clip-end="npt=942.618s" id="audio_0166"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=942.618s" clip-end="npt=946.223s" id="audio_0167"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=946.223s" clip-end="npt=951.748s" id="audio_0168"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=951.748s" clip-end="npt=956.057s" id="audio_0169"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=956.057s" clip-end="npt=967.224s" id="audio_0170"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=967.224s" clip-end="npt=969.314s" id="audio_0171"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_0008" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0071" id="ilaz_0029"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=969.314s" clip-end="npt=969.577s" id="audio_0172"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_002a"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=969.577s" clip-end="npt=970.178s" id="audio_0173"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=970.178s" clip-end="npt=977.027s" id="audio_0174"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=977.027s" clip-end="npt=977.628s" id="audio_0175"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=977.628s" clip-end="npt=983.688s" id="audio_0176"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=983.688s" clip-end="npt=991.969s" id="audio_0177"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=991.969s" clip-end="npt=999.714s" id="audio_0178"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=999.714s" clip-end="npt=1002.052s" id="audio_0179"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1002.052s" clip-end="npt=1006.902s" id="audio_0180"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1006.902s" clip-end="npt=1007.385s" id="audio_0181"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1007.385s" clip-end="npt=1021.726s" id="audio_0182"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1021.726s" clip-end="npt=1024.665s" id="audio_0183"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1024.665s" clip-end="npt=1028.923s" id="audio_0184"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1028.923s" clip-end="npt=1034.931s" id="audio_0185"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1034.931s" clip-end="npt=1044.170s" id="audio_0186"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1044.170s" clip-end="npt=1044.589s" id="audio_0187"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1044.589s" clip-end="npt=1051.185s" id="audio_0188"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1051.185s" clip-end="npt=1058.593s" id="audio_0189"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1058.593s" clip-end="npt=1066.159s" id="audio_0190"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1066.159s" clip-end="npt=1068.668s" id="audio_0191"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1068.668s" clip-end="npt=1074.165s" id="audio_0192"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_0009" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0072" id="ilaz_002b"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1074.165s" clip-end="npt=1074.428s" id="audio_0193"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_002c"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1074.428s" clip-end="npt=1075.114s" id="audio_0194"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1075.114s" clip-end="npt=1080.273s" id="audio_0195"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1080.273s" clip-end="npt=1086.600s" id="audio_0196"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1086.600s" clip-end="npt=1099.060s" id="audio_0197"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1099.060s" clip-end="npt=1099.543s" id="audio_0198"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1099.543s" clip-end="npt=1106.270s" id="audio_0199"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1106.270s" clip-end="npt=1112.147s" id="audio_0200"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1112.147s" clip-end="npt=1116.941s" id="audio_0201"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1116.941s" clip-end="npt=1120.910s" id="audio_0202"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1120.910s" clip-end="npt=1121.459s" id="audio_0203"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1121.459s" clip-end="npt=1131.359s" id="audio_0204"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1131.359s" clip-end="npt=1136.819s" id="audio_0205"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1136.819s" clip-end="npt=1141.795s" id="audio_0206"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1141.795s" clip-end="npt=1145.529s" id="audio_0207"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1145.529s" clip-end="npt=1146.104s" id="audio_0208"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1146.104s" clip-end="npt=1155.556s" id="audio_0209"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1155.556s" clip-end="npt=1161.597s" id="audio_0210"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1161.597s" clip-end="npt=1167.057s" id="audio_0211"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1167.057s" clip-end="npt=1169.826s" id="audio_0212"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1169.826s" clip-end="npt=1177.623s" id="audio_0213"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1177.623s" clip-end="npt=1182.649s" id="audio_0214"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1182.649s" clip-end="npt=1194.057s" id="audio_0215"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1194.057s" clip-end="npt=1198.586s" id="audio_0216"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_000a" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0073" id="ilaz_002d"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1198.586s" clip-end="npt=1198.849s" id="audio_0217"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_002e"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1198.849s" clip-end="npt=1199.457s" id="audio_0218"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1199.457s" clip-end="npt=1207.503s" id="audio_0219"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1207.503s" clip-end="npt=1216.215s" id="audio_0220"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1216.215s" clip-end="npt=1236.564s" id="audio_0221"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1236.564s" clip-end="npt=1252.995s" id="audio_0222"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1252.995s" clip-end="npt=1253.596s" id="audio_0223"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1253.596s" clip-end="npt=1258.520s" id="audio_0224"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1258.520s" clip-end="npt=1271.124s" id="audio_0225"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1271.124s" clip-end="npt=1277.119s" id="audio_0226"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1277.119s" clip-end="npt=1292.597s" id="audio_0227"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1292.597s" clip-end="npt=1296.685s" id="audio_0228"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1296.685s" clip-end="npt=1299.375s" id="audio_0229"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1299.375s" clip-end="npt=1311.516s" id="audio_0230"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1311.516s" clip-end="npt=1318.778s" id="audio_0231"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1318.778s" clip-end="npt=1326.406s" id="audio_0232"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1326.406s" clip-end="npt=1331.608s" id="audio_0233"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_000b" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0074" id="ilaz_002f"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1331.608s" clip-end="npt=1331.968s" id="audio_0234"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_0030"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1331.968s" clip-end="npt=1332.560s" id="audio_0235"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1332.560s" clip-end="npt=1341.142s" id="audio_0236"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1341.142s" clip-end="npt=1349.370s" id="audio_0237"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1349.370s" clip-end="npt=1356.201s" id="audio_0238"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1356.201s" clip-end="npt=1363.163s" id="audio_0239"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1363.163s" clip-end="npt=1368.805s" id="audio_0240"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1368.805s" clip-end="npt=1370.864s" id="audio_0241"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1370.864s" clip-end="npt=1376.888s" id="audio_0242"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1376.888s" clip-end="npt=1385.911s" id="audio_0243"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1385.911s" clip-end="npt=1386.457s" id="audio_0244"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1386.457s" clip-end="npt=1398.330s" id="audio_0245"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1398.330s" clip-end="npt=1410.033s" id="audio_0246"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1410.033s" clip-end="npt=1416.292s" id="audio_0247"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1416.292s" clip-end="npt=1416.841s" id="audio_0248"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1416.841s" clip-end="npt=1425.957s" id="audio_0249"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1425.957s" clip-end="npt=1434.891s" id="audio_0250"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1434.891s" clip-end="npt=1441.020s" id="audio_0251"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1441.020s" clip-end="npt=1454.315s" id="audio_0252"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_000c" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0075" id="ilaz_0031"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1454.315s" clip-end="npt=1454.651s" id="audio_0253"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_0032"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1454.651s" clip-end="npt=1455.458s" id="audio_0254"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1455.458s" clip-end="npt=1458.279s" id="audio_0255"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1458.279s" clip-end="npt=1463.578s" id="audio_0256"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1463.578s" clip-end="npt=1475.516s" id="audio_0257"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1475.516s" clip-end="npt=1481.106s" id="audio_0258"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1481.106s" clip-end="npt=1486.984s" id="audio_0259"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1486.984s" clip-end="npt=1496.704s" id="audio_0260"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1496.704s" clip-end="npt=1497.109s" id="audio_0261"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1497.109s" clip-end="npt=1504.606s" id="audio_0262"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1504.606s" clip-end="npt=1507.846s" id="audio_0263"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1507.846s" clip-end="npt=1510.732s" id="audio_0264"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1510.732s" clip-end="npt=1516.074s" id="audio_0265"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1516.074s" clip-end="npt=1524.107s" id="audio_0266"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1524.107s" clip-end="npt=1526.745s" id="audio_0267"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1526.745s" clip-end="npt=1531.582s" id="audio_0268"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1531.582s" clip-end="npt=1537.960s" id="audio_0269"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1537.960s" clip-end="npt=1543.659s" id="audio_0270"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1543.659s" clip-end="npt=1548.595s" id="audio_0271"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1548.595s" clip-end="npt=1550.462s" id="audio_0272"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1550.462s" clip-end="npt=1555.791s" id="audio_0273"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1555.791s" clip-end="npt=1557.711s" id="audio_0274"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1557.711s" clip-end="npt=1559.814s" id="audio_0275"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1559.814s" clip-end="npt=1562.283s" id="audio_0276"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1562.283s" clip-end="npt=1564.621s" id="audio_0277"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1564.621s" clip-end="npt=1566.845s" id="audio_0278"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_000d" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0076" id="ilaz_0033"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1566.845s" clip-end="npt=1567.157s" id="audio_0279"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_0034"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1567.157s" clip-end="npt=1567.758s" id="audio_0280"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1567.758s" clip-end="npt=1586.588s" id="audio_0281"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1586.588s" clip-end="npt=1587.437s" id="audio_0282"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1587.437s" clip-end="npt=1593.467s" id="audio_0283"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1593.467s" clip-end="npt=1599.410s" id="audio_0284"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1599.410s" clip-end="npt=1608.709s" id="audio_0285"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1608.709s" clip-end="npt=1613.451s" id="audio_0286"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1613.451s" clip-end="npt=1618.309s" id="audio_0287"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1618.309s" clip-end="npt=1627.727s" id="audio_0288"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1627.727s" clip-end="npt=1636.062s" id="audio_0289"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1636.062s" clip-end="npt=1642.644s" id="audio_0290"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1642.644s" clip-end="npt=1646.923s" id="audio_0291"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1646.923s" clip-end="npt=1647.472s" id="audio_0292"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1647.472s" clip-end="npt=1654.303s" id="audio_0293"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1654.303s" clip-end="npt=1661.147s" id="audio_0294"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1661.147s" clip-end="npt=1666.552s" id="audio_0295"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1666.552s" clip-end="npt=1669.725s" id="audio_0296"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1669.725s" clip-end="npt=1679.158s" id="audio_0297"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_000e" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0077" id="ilaz_0035"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1679.158s" clip-end="npt=1679.482s" id="audio_0298"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_0036"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1679.482s" clip-end="npt=1680.439s" id="audio_0299"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1680.439s" clip-end="npt=1691.244s" id="audio_0300"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1691.244s" clip-end="npt=1691.689s" id="audio_0301"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1691.689s" clip-end="npt=1693.234s" id="audio_0302"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1693.234s" clip-end="npt=1693.754s" id="audio_0303"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1693.754s" clip-end="npt=1700.350s" id="audio_0304"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1700.350s" clip-end="npt=1703.236s" id="audio_0305"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1703.236s" clip-end="npt=1711.334s" id="audio_0306"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1711.334s" clip-end="npt=1722.253s" id="audio_0307"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1722.253s" clip-end="npt=1731.853s" id="audio_0308"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1731.853s" clip-end="npt=1736.232s" id="audio_0309"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1736.232s" clip-end="npt=1743.311s" id="audio_0310"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1743.311s" clip-end="npt=1749.319s" id="audio_0311"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1749.319s" clip-end="npt=1752.408s" id="audio_0312"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1752.408s" clip-end="npt=1757.632s" id="audio_0313"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1757.632s" clip-end="npt=1764.111s" id="audio_0314"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1764.111s" clip-end="npt=1768.787s" id="audio_0315"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1768.787s" clip-end="npt=1777.694s" id="audio_0316"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1777.694s" clip-end="npt=1778.202s" id="audio_0317"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1778.202s" clip-end="npt=1786.300s" id="audio_0318"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1786.300s" clip-end="npt=1788.468s" id="audio_0319"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1788.468s" clip-end="npt=1796.983s" id="audio_0320"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1796.983s" clip-end="npt=1798.747s" id="audio_0321"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_000f" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0078" id="ilaz_0037"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1798.747s" clip-end="npt=1799.010s" id="audio_0322"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_0038"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1799.010s" clip-end="npt=1799.372s" id="audio_0323"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1799.372s" clip-end="npt=1810.828s" id="audio_0324"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1810.828s" clip-end="npt=1815.682s" id="audio_0325"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1815.682s" clip-end="npt=1821.625s" id="audio_0326"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1821.625s" clip-end="npt=1822.963s" id="audio_0327"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1822.963s" clip-end="npt=1823.405s" id="audio_0328"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1823.405s" clip-end="npt=1830.066s" id="audio_0329"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1830.066s" clip-end="npt=1839.235s" id="audio_0330"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1839.235s" clip-end="npt=1842.957s" id="audio_0331"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1842.957s" clip-end="npt=1859.519s" id="audio_0332"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1859.519s" clip-end="npt=1866.245s" id="audio_0333"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1866.245s" clip-end="npt=1871.339s" id="audio_0334"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1871.339s" clip-end="npt=1875.798s" id="audio_0335"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1875.798s" clip-end="npt=1883.178s" id="audio_0336"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1883.178s" clip-end="npt=1890.622s" id="audio_0337"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1890.622s" clip-end="npt=1897.584s" id="audio_0338"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1897.584s" clip-end="npt=1908.621s" id="audio_0339"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1908.621s" clip-end="npt=1921.042s" id="audio_0340"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1921.042s" clip-end="npt=1923.751s" id="audio_0341"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1923.751s" clip-end="npt=1924.835s" id="audio_0342"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1924.835s" clip-end="npt=1930.229s" id="audio_0343"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1930.229s" clip-end="npt=1935.417s" id="audio_0344"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1935.417s" clip-end="npt=1945.279s" id="audio_0345"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_0010" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0079" id="ilaz_0039"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1945.279s" clip-end="npt=1945.664s" id="audio_0346"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_003a"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1945.664s" clip-end="npt=1946.081s" id="audio_0347"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1946.081s" clip-end="npt=1952.171s" id="audio_0348"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1952.171s" clip-end="npt=1957.395s" id="audio_0349"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1957.395s" clip-end="npt=1962.672s" id="audio_0350"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1962.672s" clip-end="npt=1965.676s" id="audio_0351"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1965.676s" clip-end="npt=1973.709s" id="audio_0352"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1973.709s" clip-end="npt=1977.614s" id="audio_0353"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1977.614s" clip-end="npt=1988.769s" id="audio_0354"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1988.769s" clip-end="npt=1996.031s" id="audio_0355"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=1996.031s" clip-end="npt=2002.339s" id="audio_0356"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2002.339s" clip-end="npt=2011.090s" id="audio_0357"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2011.090s" clip-end="npt=2019.188s" id="audio_0358"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2019.188s" clip-end="npt=2022.009s" id="audio_0359"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2022.009s" clip-end="npt=2032.238s" id="audio_0360"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2032.238s" clip-end="npt=2032.721s" id="audio_0361"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2032.721s" clip-end="npt=2039.866s" id="audio_0362"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2039.866s" clip-end="npt=2044.241s" id="audio_0363"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2044.241s" clip-end="npt=2049.335s" id="audio_0364"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2049.335s" clip-end="npt=2051.706s" id="audio_0365"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_0011" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_007a" id="ilaz_003b"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2051.706s" clip-end="npt=2051.944s" id="audio_0366"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_003c"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2051.944s" clip-end="npt=2053.131s" id="audio_0367"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2053.131s" clip-end="npt=2059.895s" id="audio_0368"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2059.895s" clip-end="npt=2067.436s" id="audio_0369"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2067.436s" clip-end="npt=2072.261s" id="audio_0370"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2072.261s" clip-end="npt=2073.110s" id="audio_0371"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2073.110s" clip-end="npt=2082.880s" id="audio_0372"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2082.880s" clip-end="npt=2091.827s" id="audio_0373"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2091.827s" clip-end="npt=2103.229s" id="audio_0374"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2103.229s" clip-end="npt=2108.623s" id="audio_0375"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2108.623s" clip-end="npt=2113.900s" id="audio_0376"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2113.900s" clip-end="npt=2119.125s" id="audio_0377"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2119.125s" clip-end="npt=2128.790s" id="audio_0378"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2128.790s" clip-end="npt=2132.382s" id="audio_0379"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2132.382s" clip-end="npt=2139.526s" id="audio_0380"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2139.526s" clip-end="npt=2152.601s" id="audio_0381"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2152.601s" clip-end="npt=2156.741s" id="audio_0382"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2156.741s" clip-end="npt=2170.965s" id="audio_0383"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2170.965s" clip-end="npt=2176.249s" id="audio_0384"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_0012" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_007b" id="ilaz_003d"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2176.249s" clip-end="npt=2176.585s" id="audio_0385"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_003e"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2176.585s" clip-end="npt=2177.071s" id="audio_0386"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2177.071s" clip-end="npt=2186.310s" id="audio_0387"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2186.310s" clip-end="npt=2187.028s" id="audio_0388"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2187.028s" clip-end="npt=2192.188s" id="audio_0389"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2192.188s" clip-end="npt=2199.065s" id="audio_0390"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2199.065s" clip-end="npt=2199.666s" id="audio_0391"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2199.666s" clip-end="npt=2206.275s" id="audio_0392"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2206.275s" clip-end="npt=2211.734s" id="audio_0393"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2211.734s" clip-end="npt=2215.314s" id="audio_0394"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2215.314s" clip-end="npt=2216.163s" id="audio_0395"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2216.163s" clip-end="npt=2221.074s" id="audio_0396"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2221.074s" clip-end="npt=2225.323s" id="audio_0397"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2225.323s" clip-end="npt=2239.912s" id="audio_0398"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2239.912s" clip-end="npt=2243.805s" id="audio_0399"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2243.805s" clip-end="npt=2248.729s" id="audio_0400"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2248.729s" clip-end="npt=2255.108s" id="audio_0401"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2255.108s" clip-end="npt=2268.012s" id="audio_0402"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2268.012s" clip-end="npt=2272.871s" id="audio_0403"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2272.871s" clip-end="npt=2279.768s" id="audio_0404"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2279.768s" clip-end="npt=2284.797s" id="audio_0405"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2284.797s" clip-end="npt=2285.398s" id="audio_0406"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2285.398s" clip-end="npt=2295.664s" id="audio_0407"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2295.664s" clip-end="npt=2296.553s" id="audio_0408"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2296.553s" clip-end="npt=2308.431s" id="audio_0409"/>
+				</seq>
+			</par>
+			<par endsync="last" id="ilaz_0013" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_007c" id="ilaz_003f"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2308.431s" clip-end="npt=2308.706s" id="audio_0410"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="ilaz_0040"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2308.706s" clip-end="npt=2309.307s" id="audio_0411"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2309.307s" clip-end="npt=2319.807s" id="audio_0412"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2319.807s" clip-end="npt=2320.299s" id="audio_0413"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2320.299s" clip-end="npt=2321.523s" id="audio_0414"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2321.523s" clip-end="npt=2344.806s" id="audio_0415"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2344.806s" clip-end="npt=2350.932s" id="audio_0416"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2350.932s" clip-end="npt=2354.406s" id="audio_0417"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2354.406s" clip-end="npt=2356.079s" id="audio_0418"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2356.079s" clip-end="npt=2356.804s" id="audio_0419"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2356.804s" clip-end="npt=2366.929s" id="audio_0420"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2366.929s" clip-end="npt=2367.948s" id="audio_0421"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2367.948s" clip-end="npt=2384.575s" id="audio_0422"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2384.575s" clip-end="npt=2386.795s" id="audio_0423"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2386.795s" clip-end="npt=2393.944s" id="audio_0424"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2393.944s" clip-end="npt=2394.662s" id="audio_0425"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2394.662s" clip-end="npt=2404.511s" id="audio_0426"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2404.511s" clip-end="npt=2412.674s" id="audio_0427"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2412.674s" clip-end="npt=2419.152s" id="audio_0428"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2419.152s" clip-end="npt=2423.529s" id="audio_0429"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2423.529s" clip-end="npt=2424.033s" id="audio_0430"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2424.033s" clip-end="npt=2438.221s" id="audio_0431"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2438.221s" clip-end="npt=2438.939s" id="audio_0432"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2438.939s" clip-end="npt=2447.201s" id="audio_0433"/>
+				</seq>
+			</par>
+			<par endsync="last" id="fgyk_02dc" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_001c" id="fgyk_02df"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2447.201s" clip-end="npt=2447.468s" id="audio_0434"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="fgyk_02e0"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2447.468s" clip-end="npt=2448.369s" id="audio_0435"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2448.369s" clip-end="npt=2454.012s" id="audio_0436"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2454.012s" clip-end="npt=2463.921s" id="audio_0437"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2463.921s" clip-end="npt=2464.339s" id="audio_0438"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2464.339s" clip-end="npt=2475.559s" id="audio_0439"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2475.559s" clip-end="npt=2479.699s" id="audio_0440"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2479.699s" clip-end="npt=2487.862s" id="audio_0441"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2487.862s" clip-end="npt=2492.669s" id="audio_0442"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2492.669s" clip-end="npt=2498.698s" id="audio_0443"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2498.698s" clip-end="npt=2499.247s" id="audio_0444"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2499.247s" clip-end="npt=2508.664s" id="audio_0445"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2508.664s" clip-end="npt=2510.819s" id="audio_0446"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2510.819s" clip-end="npt=2518.146s" id="audio_0447"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2518.146s" clip-end="npt=2523.906s" id="audio_0448"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2523.906s" clip-end="npt=2528.347s" id="audio_0449"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2528.347s" clip-end="npt=2531.276s" id="audio_0450"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2531.276s" clip-end="npt=2531.759s" id="audio_0451"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2531.759s" clip-end="npt=2537.637s" id="audio_0452"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2537.637s" clip-end="npt=2543.514s" id="audio_0453"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2543.514s" clip-end="npt=2548.922s" id="audio_0454"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2548.922s" clip-end="npt=2555.335s" id="audio_0455"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2555.335s" clip-end="npt=2562.114s" id="audio_0456"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2562.114s" clip-end="npt=2564.108s" id="audio_0457"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2564.108s" clip-end="npt=2568.749s" id="audio_0458"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vrcm_002e" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_007e" id="vrcm_002f"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2568.749s" clip-end="npt=2568.896s" id="audio_0459"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="vrcm_0030"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2568.896s" clip-end="npt=2569.680s" id="audio_0460"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2569.680s" clip-end="npt=2579.946s" id="audio_0461"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2579.946s" clip-end="npt=2593.503s" id="audio_0462"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2593.503s" clip-end="npt=2596.677s" id="audio_0463"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2596.677s" clip-end="npt=2598.570s" id="audio_0464"/>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2598.570s" clip-end="npt=2606.431s" id="audio_0465"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vrcm_003b" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_007f" id="vrcm_003e"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2606.431s" clip-end="npt=2606.511s" id="audio_0466"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="vrcm_003f"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2606.511s" clip-end="npt=2606.658s" id="audio_0467"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vrcm_0040" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0080" id="vrcm_0043"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2606.658s" clip-end="npt=2606.765s" id="audio_0468"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="vrcm_0044"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2606.765s" clip-end="npt=2606.871s" id="audio_0469"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vrcm_0045" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0081" id="vrcm_0048"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2606.871s" clip-end="npt=2606.952s" id="audio_0470"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="vrcm_0049"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2606.952s" clip-end="npt=2607.058s" id="audio_0471"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vrcm_004a" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0082" id="vrcm_004d"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2607.058s" clip-end="npt=2607.192s" id="audio_0472"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="vrcm_004e"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2607.192s" clip-end="npt=2607.366s" id="audio_0473"/>
+				</seq>
+			</par>
+			<par endsync="last" id="vrcm_004f" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0083" id="vrcm_0052"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2607.366s" clip-end="npt=2607.459s" id="audio_0474"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000c" id="vrcm_0053"/>
+				<seq>
+					<audio src="15_Anderledes_el.mp3" clip-begin="npt=2607.459s" clip-end="npt=2609.590s" id="audio_0475"/>
+				</seq>
+			</par>
+		</seq>
+	</body>
+</smil>

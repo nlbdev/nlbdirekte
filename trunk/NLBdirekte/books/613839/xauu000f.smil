@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE smil PUBLIC "-//W3C//DTD SMIL 1.0//EN" "SMIL10.dtd">
+<smil>
+	<head>
+		<meta name="dc:format" content="Daisy 2.02"/>
+		<meta name="ncc:timeInThisSmil" content="00:27:54.324"/>
+		<meta name="ncc:totalElapsedTime" content="03:06:15.070"/>
+		<layout>
+			<region id="txt-view"/>
+		</layout>
+		<meta name="ncc:generator" content="EasePublisher 2.12 Build 142 # 044FS2210089119"/>
+    <meta name="title" content="Den skadelige skriftkulturen, Syphilia Morgenstierne"/>
+    <meta name="dc:title" content="Bare røre, ikke se"/>
+    <meta name="dc:identifier" content="Unknown"/>
+  </head>
+	<body>
+		<seq dur="1674.324s">
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="xauu_000e"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=0.000s" clip-end="npt=6.008s" id="audio_0001"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=6.008s" clip-end="npt=8.040s" id="audio_0002"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=8.040s" clip-end="npt=10.496s" id="audio_0003"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=10.496s" clip-end="npt=16.405s" id="audio_0004"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=16.405s" clip-end="npt=16.865s" id="audio_0005"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=16.865s" clip-end="npt=28.985s" id="audio_0006"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=28.985s" clip-end="npt=31.536s" id="audio_0007"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=31.536s" clip-end="npt=32.028s" id="audio_0008"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=32.028s" clip-end="npt=40.491s" id="audio_0009"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=40.491s" clip-end="npt=48.054s" id="audio_0010"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=48.054s" clip-end="npt=55.669s" id="audio_0011"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=55.669s" clip-end="npt=60.292s" id="audio_0012"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=60.292s" clip-end="npt=68.025s" id="audio_0013"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=68.025s" clip-end="npt=75.342s" id="audio_0014"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=75.342s" clip-end="npt=75.747s" id="audio_0015"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=75.747s" clip-end="npt=87.671s" id="audio_0016"/>
+				</seq>
+			</par>
+			<par endsync="last" id="aoex_0086" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0092" id="aoex_0088"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=87.671s" clip-end="npt=87.776s" id="audio_0017"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="aoex_0089"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=87.776s" clip-end="npt=94.149s" id="audio_0018"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=94.149s" clip-end="npt=100.928s" id="audio_0019"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=100.928s" clip-end="npt=109.340s" id="audio_0020"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=109.340s" clip-end="npt=111.795s" id="audio_0021"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=111.795s" clip-end="npt=122.949s" id="audio_0022"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=122.949s" clip-end="npt=124.569s" id="audio_0023"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=124.569s" clip-end="npt=130.692s" id="audio_0024"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=130.692s" clip-end="npt=131.169s" id="audio_0025"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=131.169s" clip-end="npt=144.374s" id="audio_0026"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=144.374s" clip-end="npt=158.454s" id="audio_0027"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=158.454s" clip-end="npt=159.150s" id="audio_0028"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=159.150s" clip-end="npt=162.154s" id="audio_0029"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=162.154s" clip-end="npt=171.871s" id="audio_0030"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=171.871s" clip-end="npt=181.406s" id="audio_0031"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=181.406s" clip-end="npt=194.428s" id="audio_0032"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=194.428s" clip-end="npt=195.917s" id="audio_0033"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=195.917s" clip-end="npt=196.335s" id="audio_0034"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=196.335s" clip-end="npt=203.845s" id="audio_0035"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=203.845s" clip-end="npt=206.791s" id="audio_0036"/>
+				</seq>
+			</par>
+			<par endsync="last" id="aoex_008a" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0093" id="aoex_008b"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=206.791s" clip-end="npt=207.054s" id="audio_0037"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="aoex_008c"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=207.054s" clip-end="npt=208.207s" id="audio_0038"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=208.207s" clip-end="npt=216.070s" id="audio_0039"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=216.070s" clip-end="npt=222.731s" id="audio_0040"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=222.731s" clip-end="npt=227.538s" id="audio_0041"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=227.538s" clip-end="npt=230.527s" id="audio_0042"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=230.527s" clip-end="npt=231.245s" id="audio_0043"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=231.245s" clip-end="npt=240.676s" id="audio_0044"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=240.676s" clip-end="npt=244.450s" id="audio_0045"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=244.450s" clip-end="npt=249.126s" id="audio_0046"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=249.126s" clip-end="npt=255.134s" id="audio_0047"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=255.134s" clip-end="npt=258.609s" id="audio_0048"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=258.609s" clip-end="npt=263.910s" id="audio_0049"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=263.910s" clip-end="npt=267.128s" id="audio_0050"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=267.128s" clip-end="npt=276.611s" id="audio_0051"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=276.611s" clip-end="npt=281.510s" id="audio_0052"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=281.510s" clip-end="npt=293.839s" id="audio_0053"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=293.839s" clip-end="npt=299.968s" id="audio_0054"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=299.968s" clip-end="npt=304.945s" id="audio_0055"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=304.945s" clip-end="npt=311.784s" id="audio_0056"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=311.784s" clip-end="npt=319.325s" id="audio_0057"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=319.325s" clip-end="npt=324.091s" id="audio_0058"/>
+				</seq>
+			</par>
+			<par endsync="last" id="aoex_008d" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0094" id="aoex_008e"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=324.091s" clip-end="npt=324.409s" id="audio_0059"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="aoex_008f"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=324.409s" clip-end="npt=324.892s" id="audio_0060"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=324.892s" clip-end="npt=332.455s" id="audio_0061"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=332.455s" clip-end="npt=342.140s" id="audio_0062"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=342.140s" clip-end="npt=346.097s" id="audio_0063"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=346.097s" clip-end="npt=349.284s" id="audio_0064"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=349.284s" clip-end="npt=355.279s" id="audio_0065"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=355.279s" clip-end="npt=368.053s" id="audio_0066"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=368.053s" clip-end="npt=373.813s" id="audio_0067"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=373.813s" clip-end="npt=382.695s" id="audio_0068"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=382.695s" clip-end="npt=390.440s" id="audio_0069"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=390.440s" clip-end="npt=396.017s" id="audio_0070"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=396.017s" clip-end="npt=398.603s" id="audio_0071"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=398.603s" clip-end="npt=403.462s" id="audio_0072"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=403.462s" clip-end="npt=406.218s" id="audio_0073"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=406.218s" clip-end="npt=410.267s" id="audio_0074"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=410.267s" clip-end="npt=410.685s" id="audio_0075"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=410.685s" clip-end="npt=414.956s" id="audio_0076"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=414.956s" clip-end="npt=416.628s" id="audio_0077"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=416.628s" clip-end="npt=418.731s" id="audio_0078"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=418.731s" clip-end="npt=421.852s" id="audio_0079"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=421.852s" clip-end="npt=424.190s" id="audio_0080"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=424.190s" clip-end="npt=425.627s" id="audio_0081"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=425.627s" clip-end="npt=426.711s" id="audio_0082"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=426.711s" clip-end="npt=429.585s" id="audio_0083"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=429.585s" clip-end="npt=432.485s" id="audio_0084"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=432.485s" clip-end="npt=433.334s" id="audio_0085"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=433.334s" clip-end="npt=448.812s" id="audio_0086"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=448.812s" clip-end="npt=462.487s" id="audio_0087"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=462.487s" clip-end="npt=464.721s" id="audio_0088"/>
+				</seq>
+			</par>
+			<par endsync="last" id="nmdb_0004" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0095" id="nmdb_0019"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=464.721s" clip-end="npt=465.088s" id="audio_0089"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="nmdb_001a"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=465.088s" clip-end="npt=465.989s" id="audio_0090"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=465.989s" clip-end="npt=487.592s" id="audio_0091"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=487.592s" clip-end="npt=489.330s" id="audio_0092"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=489.330s" clip-end="npt=493.888s" id="audio_0093"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=493.888s" clip-end="npt=495.808s" id="audio_0094"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=495.808s" clip-end="npt=500.497s" id="audio_0095"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=500.497s" clip-end="npt=504.455s" id="audio_0096"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=504.455s" clip-end="npt=510.815s" id="audio_0097"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=510.815s" clip-end="npt=512.670s" id="audio_0098"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=512.670s" clip-end="npt=517.809s" id="audio_0099"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=517.809s" clip-end="npt=518.292s" id="audio_0100"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=518.292s" clip-end="npt=529.146s" id="audio_0101"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=529.146s" clip-end="npt=538.028s" id="audio_0102"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=538.028s" clip-end="npt=539.826s" id="audio_0103"/>
+				</seq>
+			</par>
+			<par endsync="last" id="nmdb_0005" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0096" id="nmdb_001b"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=539.826s" clip-end="npt=540.137s" id="audio_0104"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="nmdb_001c"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=540.137s" clip-end="npt=540.555s" id="audio_0105"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=540.555s" clip-end="npt=542.906s" id="audio_0106"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=542.906s" clip-end="npt=551.004s" id="audio_0107"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=551.004s" clip-end="npt=552.806s" id="audio_0108"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=552.806s" clip-end="npt=556.046s" id="audio_0109"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=556.046s" clip-end="npt=558.501s" id="audio_0110"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=558.501s" clip-end="npt=563.425s" id="audio_0111"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=563.425s" clip-end="npt=568.284s" id="audio_0112"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=568.284s" clip-end="npt=572.895s" id="audio_0113"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=572.895s" clip-end="npt=574.997s" id="audio_0114"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=574.997s" clip-end="npt=582.325s" id="audio_0115"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=582.325s" clip-end="npt=587.784s" id="audio_0116"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=587.784s" clip-end="npt=592.643s" id="audio_0117"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=592.643s" clip-end="npt=597.437s" id="audio_0118"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=597.437s" clip-end="npt=601.695s" id="audio_0119"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=601.695s" clip-end="npt=610.545s" id="audio_0120"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=610.545s" clip-end="npt=611.446s" id="audio_0121"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=611.446s" clip-end="npt=620.145s" id="audio_0122"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=620.145s" clip-end="npt=625.369s" id="audio_0123"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=625.369s" clip-end="npt=630.463s" id="audio_0124"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=630.463s" clip-end="npt=643.002s" id="audio_0125"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=643.002s" clip-end="npt=658.478s" id="audio_0126"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=658.478s" clip-end="npt=663.732s" id="audio_0127"/>
+				</seq>
+			</par>
+			<par endsync="last" id="aoex_00e8" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0097" id="aoex_00eb"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=663.732s" clip-end="npt=663.866s" id="audio_0128"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="aoex_00ec"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=663.866s" clip-end="npt=665.716s" id="audio_0129"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=665.716s" clip-end="npt=666.243s" id="audio_0130"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=666.243s" clip-end="npt=677.880s" id="audio_0131"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=677.880s" clip-end="npt=679.330s" id="audio_0132"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=679.330s" clip-end="npt=683.941s" id="audio_0133"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=683.941s" clip-end="npt=685.560s" id="audio_0134"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=685.560s" clip-end="npt=687.781s" id="audio_0135"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=687.781s" clip-end="npt=694.808s" id="audio_0136"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=694.808s" clip-end="npt=702.370s" id="audio_0137"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=702.370s" clip-end="npt=705.962s" id="audio_0138"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=705.962s" clip-end="npt=715.451s" id="audio_0139"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=715.451s" clip-end="npt=716.169s" id="audio_0140"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=716.169s" clip-end="npt=723.356s" id="audio_0141"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=723.356s" clip-end="npt=727.763s" id="audio_0142"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=727.763s" clip-end="npt=729.512s" id="audio_0143"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=729.512s" clip-end="npt=729.962s" id="audio_0144"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=729.962s" clip-end="npt=735.151s" id="audio_0145"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=735.151s" clip-end="npt=735.817s" id="audio_0146"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=735.817s" clip-end="npt=747.873s" id="audio_0147"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=747.873s" clip-end="npt=750.393s" id="audio_0148"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=750.393s" clip-end="npt=756.389s" id="audio_0149"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=756.389s" clip-end="npt=759.293s" id="audio_0150"/>
+				</seq>
+			</par>
+			<par endsync="last" id="nmdb_0007" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0098" id="nmdb_001f"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=759.293s" clip-end="npt=759.519s" id="audio_0151"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="nmdb_0020"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=759.519s" clip-end="npt=759.978s" id="audio_0152"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=759.978s" clip-end="npt=765.490s" id="audio_0153"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=765.490s" clip-end="npt=767.754s" id="audio_0154"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=767.754s" clip-end="npt=768.074s" id="audio_0155"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=768.074s" clip-end="npt=773.834s" id="audio_0156"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=773.834s" clip-end="npt=777.491s" id="audio_0157"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=777.491s" clip-end="npt=786.726s" id="audio_0158"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=786.726s" clip-end="npt=790.566s" id="audio_0159"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=790.566s" clip-end="npt=794.170s" id="audio_0160"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=794.170s" clip-end="npt=801.498s" id="audio_0161"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=801.498s" clip-end="npt=810.577s" id="audio_0162"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=810.577s" clip-end="npt=811.361s" id="audio_0163"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=811.361s" clip-end="npt=818.139s" id="audio_0164"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=818.139s" clip-end="npt=823.481s" id="audio_0165"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=823.481s" clip-end="npt=827.860s" id="audio_0166"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=827.860s" clip-end="npt=828.343s" id="audio_0167"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=828.343s" clip-end="npt=841.065s" id="audio_0168"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=841.065s" clip-end="npt=843.468s" id="audio_0169"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=843.468s" clip-end="npt=846.760s" id="audio_0170"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=846.760s" clip-end="npt=849.581s" id="audio_0171"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=849.581s" clip-end="npt=856.608s" id="audio_0172"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=856.608s" clip-end="npt=864.222s" id="audio_0173"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=864.222s" clip-end="npt=869.627s" id="audio_0174"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=869.627s" clip-end="npt=870.720s" id="audio_0175"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=870.720s" clip-end="npt=881.720s" id="audio_0176"/>
+				</seq>
+			</par>
+			<par endsync="last" id="nmdb_0008" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_0099" id="nmdb_0021"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=881.720s" clip-end="npt=882.056s" id="audio_0177"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="nmdb_0022"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=882.056s" clip-end="npt=882.509s" id="audio_0178"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=882.509s" clip-end="npt=885.565s" id="audio_0179"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=885.565s" clip-end="npt=894.395s" id="audio_0180"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=894.395s" clip-end="npt=900.690s" id="audio_0181"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=900.690s" clip-end="npt=906.750s" id="audio_0182"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=906.750s" clip-end="npt=909.088s" id="audio_0183"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=909.088s" clip-end="npt=912.811s" id="audio_0184"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=912.811s" clip-end="npt=918.937s" id="audio_0185"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=918.937s" clip-end="npt=921.575s" id="audio_0186"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=921.575s" clip-end="npt=925.609s" id="audio_0187"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=925.609s" clip-end="npt=926.097s" id="audio_0188"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=926.097s" clip-end="npt=930.668s" id="audio_0189"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=930.668s" clip-end="npt=931.269s" id="audio_0190"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=931.269s" clip-end="npt=939.315s" id="audio_0191"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=939.315s" clip-end="npt=949.633s" id="audio_0192"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=949.633s" clip-end="npt=951.788s" id="audio_0193"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=951.788s" clip-end="npt=955.628s" id="audio_0194"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=955.628s" clip-end="npt=958.266s" id="audio_0195"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=958.266s" clip-end="npt=961.989s" id="audio_0196"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=961.989s" clip-end="npt=970.452s" id="audio_0197"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=970.452s" clip-end="npt=971.731s" id="audio_0198"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=971.731s" clip-end="npt=973.769s" id="audio_0199"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=973.769s" clip-end="npt=975.271s" id="audio_0200"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=975.271s" clip-end="npt=977.609s" id="audio_0201"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=977.609s" clip-end="npt=983.576s" id="audio_0202"/>
+				</seq>
+			</par>
+			<par endsync="last" id="nmdb_0009" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_009a" id="nmdb_0023"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=983.576s" clip-end="npt=983.938s" id="audio_0203"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="nmdb_0024"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=983.938s" clip-end="npt=984.722s" id="audio_0204"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=984.722s" clip-end="npt=1002.347s" id="audio_0205"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1002.347s" clip-end="npt=1002.896s" id="audio_0206"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1002.896s" clip-end="npt=1007.571s" id="audio_0207"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1007.571s" clip-end="npt=1013.449s" id="audio_0208"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1013.449s" clip-end="npt=1017.524s" id="audio_0209"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1017.524s" clip-end="npt=1030.573s" id="audio_0210"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1030.573s" clip-end="npt=1031.540s" id="audio_0211"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1031.540s" clip-end="npt=1044.196s" id="audio_0212"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1044.196s" clip-end="npt=1059.791s" id="audio_0213"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1059.791s" clip-end="npt=1068.020s" id="audio_0214"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1068.020s" clip-end="npt=1073.897s" id="audio_0215"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1073.897s" clip-end="npt=1079.239s" id="audio_0216"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1079.239s" clip-end="npt=1085.182s" id="audio_0217"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1085.182s" clip-end="npt=1093.881s" id="audio_0218"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1093.881s" clip-end="npt=1103.614s" id="audio_0219"/>
+				</seq>
+			</par>
+			<par endsync="last" id="nmdb_000a" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_009b" id="nmdb_0025"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1103.614s" clip-end="npt=1104.158s" id="audio_0220"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="nmdb_0026"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1104.158s" clip-end="npt=1105.665s" id="audio_0221"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1105.665s" clip-end="npt=1110.654s" id="audio_0222"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1110.654s" clip-end="npt=1114.011s" id="audio_0223"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1114.011s" clip-end="npt=1121.626s" id="audio_0224"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1121.626s" clip-end="npt=1131.591s" id="audio_0225"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1131.591s" clip-end="npt=1134.948s" id="audio_0226"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1134.948s" clip-end="npt=1136.450s" id="audio_0227"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1136.450s" clip-end="npt=1138.969s" id="audio_0228"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1138.969s" clip-end="npt=1140.837s" id="audio_0229"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1140.837s" clip-end="npt=1142.456s" id="audio_0230"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1142.456s" clip-end="npt=1148.033s" id="audio_0231"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1148.033s" clip-end="npt=1151.808s" id="audio_0232"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1151.808s" clip-end="npt=1159.318s" id="audio_0233"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1159.318s" clip-end="npt=1162.127s" id="audio_0234"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1162.127s" clip-end="npt=1165.313s" id="audio_0235"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1165.313s" clip-end="npt=1168.435s" id="audio_0236"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1168.435s" clip-end="npt=1175.815s" id="audio_0237"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1175.815s" clip-end="npt=1183.978s" id="audio_0238"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1183.978s" clip-end="npt=1187.518s" id="audio_0239"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1187.518s" clip-end="npt=1190.066s" id="audio_0240"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1190.066s" clip-end="npt=1191.085s" id="audio_0241"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1191.085s" clip-end="npt=1194.154s" id="audio_0242"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1194.154s" clip-end="npt=1199.784s" id="audio_0243"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1199.784s" clip-end="npt=1202.435s" id="audio_0244"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1202.435s" clip-end="npt=1206.810s" id="audio_0245"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1206.810s" clip-end="npt=1210.233s" id="audio_0246"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1210.233s" clip-end="npt=1215.274s" id="audio_0247"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1215.274s" clip-end="npt=1231.224s" id="audio_0248"/>
+				</seq>
+			</par>
+			<par endsync="last" id="nmdb_000b" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_009c" id="nmdb_0027"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1231.224s" clip-end="npt=1231.649s" id="audio_0249"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="nmdb_0028"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1231.649s" clip-end="npt=1232.198s" id="audio_0250"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1232.198s" clip-end="npt=1237.592s" id="audio_0251"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1237.592s" clip-end="npt=1240.478s" id="audio_0252"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1240.478s" clip-end="npt=1244.971s" id="audio_0253"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1244.971s" clip-end="npt=1248.393s" id="audio_0254"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1248.393s" clip-end="npt=1250.731s" id="audio_0255"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1250.731s" clip-end="npt=1258.346s" id="audio_0256"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1258.346s" clip-end="npt=1261.651s" id="audio_0257"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1261.651s" clip-end="npt=1263.688s" id="audio_0258"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1263.688s" clip-end="npt=1265.791s" id="audio_0259"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1265.791s" clip-end="npt=1267.176s" id="audio_0260"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1267.176s" clip-end="npt=1270.114s" id="audio_0261"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1270.114s" clip-end="npt=1274.438s" id="audio_0262"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1274.438s" clip-end="npt=1276.527s" id="audio_0263"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1276.527s" clip-end="npt=1282.771s" id="audio_0264"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1282.771s" clip-end="npt=1284.808s" id="audio_0265"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1284.808s" clip-end="npt=1287.812s" id="audio_0266"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1287.812s" clip-end="npt=1299.021s" id="audio_0267"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1299.021s" clip-end="npt=1299.687s" id="audio_0268"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1299.687s" clip-end="npt=1301.424s" id="audio_0269"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1301.424s" clip-end="npt=1308.869s" id="audio_0270"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1308.869s" clip-end="npt=1310.724s" id="audio_0271"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1310.724s" clip-end="npt=1313.963s" id="audio_0272"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1313.963s" clip-end="npt=1320.559s" id="audio_0273"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1320.559s" clip-end="npt=1330.446s" id="audio_0274"/>
+				</seq>
+			</par>
+			<par endsync="last" id="nmdb_000c" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_009d" id="nmdb_0029"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1330.446s" clip-end="npt=1330.745s" id="audio_0275"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="nmdb_002a"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1330.745s" clip-end="npt=1331.111s" id="audio_0276"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1331.111s" clip-end="npt=1339.091s" id="audio_0277"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1339.091s" clip-end="npt=1347.108s" id="audio_0278"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1347.108s" clip-end="npt=1347.591s" id="audio_0279"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1347.591s" clip-end="npt=1354.800s" id="audio_0280"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1354.800s" clip-end="npt=1355.283s" id="audio_0281"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1355.283s" clip-end="npt=1369.141s" id="audio_0282"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1369.141s" clip-end="npt=1374.118s" id="audio_0283"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1374.118s" clip-end="npt=1376.338s" id="audio_0284"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1376.338s" clip-end="npt=1381.928s" id="audio_0285"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1381.928s" clip-end="npt=1387.388s" id="audio_0286"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1387.388s" clip-end="npt=1394.402s" id="audio_0287"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1394.402s" clip-end="npt=1396.139s" id="audio_0288"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1396.139s" clip-end="npt=1398.307s" id="audio_0289"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1398.307s" clip-end="npt=1399.927s" id="audio_0290"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1399.927s" clip-end="npt=1401.128s" id="audio_0291"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1401.128s" clip-end="npt=1401.964s" id="audio_0292"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1401.964s" clip-end="npt=1416.110s" id="audio_0293"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1416.110s" clip-end="npt=1417.156s" id="audio_0294"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1417.156s" clip-end="npt=1423.419s" id="audio_0295"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1423.419s" clip-end="npt=1432.183s" id="audio_0296"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1432.183s" clip-end="npt=1433.742s" id="audio_0297"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1433.742s" clip-end="npt=1435.780s" id="audio_0298"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1435.780s" clip-end="npt=1441.375s" id="audio_0299"/>
+				</seq>
+			</par>
+			<par endsync="last" id="nmdb_000d" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_009e" id="nmdb_002b"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1441.375s" clip-end="npt=1441.721s" id="audio_0300"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="nmdb_002c"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1441.721s" clip-end="npt=1442.505s" id="audio_0301"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1442.505s" clip-end="npt=1447.664s" id="audio_0302"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1447.664s" clip-end="npt=1450.543s" id="audio_0303"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1450.543s" clip-end="npt=1452.645s" id="audio_0304"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1452.645s" clip-end="npt=1460.451s" id="audio_0305"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1460.451s" clip-end="npt=1462.319s" id="audio_0306"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1462.319s" clip-end="npt=1463.821s" id="audio_0307"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1463.821s" clip-end="npt=1465.323s" id="audio_0308"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1465.323s" clip-end="npt=1469.764s" id="audio_0309"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1469.764s" clip-end="npt=1471.436s" id="audio_0310"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1471.436s" clip-end="npt=1475.458s" id="audio_0311"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1475.458s" clip-end="npt=1482.197s" id="audio_0312"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1482.197s" clip-end="npt=1482.680s" id="audio_0313"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1482.680s" clip-end="npt=1488.022s" id="audio_0314"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1488.022s" clip-end="npt=1493.717s" id="audio_0315"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1493.717s" clip-end="npt=1499.777s" id="audio_0316"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1499.777s" clip-end="npt=1504.937s" id="audio_0317"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1504.937s" clip-end="npt=1509.678s" id="audio_0318"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1509.678s" clip-end="npt=1511.964s" id="audio_0319"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1511.964s" clip-end="npt=1514.419s" id="audio_0320"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1514.419s" clip-end="npt=1517.306s" id="audio_0321"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1517.306s" clip-end="npt=1520.479s" id="audio_0322"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1520.479s" clip-end="npt=1521.799s" id="audio_0323"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1521.799s" clip-end="npt=1534.102s" id="audio_0324"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1534.102s" clip-end="npt=1542.383s" id="audio_0325"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1542.383s" clip-end="npt=1544.355s" id="audio_0326"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1544.355s" clip-end="npt=1546.106s" id="audio_0327"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1546.106s" clip-end="npt=1548.626s" id="audio_0328"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1548.626s" clip-end="npt=1553.272s" id="audio_0329"/>
+				</seq>
+			</par>
+			<par endsync="last" id="nmdb_000e" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_009f" id="nmdb_002d"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1553.272s" clip-end="npt=1553.510s" id="audio_0330"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="nmdb_002e"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1553.510s" clip-end="npt=1554.166s" id="audio_0331"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1554.166s" clip-end="npt=1555.837s" id="audio_0332"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1555.837s" clip-end="npt=1564.902s" id="audio_0333"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1564.902s" clip-end="npt=1572.935s" id="audio_0334"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1572.935s" clip-end="npt=1576.422s" id="audio_0335"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1576.422s" clip-end="npt=1580.144s" id="audio_0336"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1580.144s" clip-end="npt=1584.102s" id="audio_0337"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1584.102s" clip-end="npt=1585.656s" id="audio_0338"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1585.656s" clip-end="npt=1591.181s" id="audio_0339"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1591.181s" clip-end="npt=1599.762s" id="audio_0340"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1599.762s" clip-end="npt=1609.297s" id="audio_0341"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1609.297s" clip-end="npt=1620.817s" id="audio_0342"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1620.817s" clip-end="npt=1622.985s" id="audio_0343"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1622.985s" clip-end="npt=1628.980s" id="audio_0344"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1628.980s" clip-end="npt=1630.417s" id="audio_0345"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1630.417s" clip-end="npt=1636.396s" id="audio_0346"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1636.396s" clip-end="npt=1637.180s" id="audio_0347"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1637.180s" clip-end="npt=1640.301s" id="audio_0348"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1640.301s" clip-end="npt=1647.733s" id="audio_0349"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1647.733s" clip-end="npt=1651.821s" id="audio_0350"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1651.821s" clip-end="npt=1658.330s" id="audio_0351"/>
+				</seq>
+			</par>
+			<par endsync="last" id="nmdb_000f" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00a0" id="nmdb_002f"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1658.330s" clip-end="npt=1658.629s" id="audio_0352"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="nmdb_0030"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1658.629s" clip-end="npt=1659.159s" id="audio_0353"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1659.159s" clip-end="npt=1665.168s" id="audio_0354"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1665.168s" clip-end="npt=1668.524s" id="audio_0355"/>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1668.524s" clip-end="npt=1672.691s" id="audio_0356"/>
+				</seq>
+			</par>
+			<par endsync="last" id="nmdb_0010" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00a1" id="nmdb_0031"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1672.691s" clip-end="npt=1672.905s" id="audio_0357"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="nmdb_0032"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1672.905s" clip-end="npt=1673.192s" id="audio_0358"/>
+				</seq>
+			</par>
+			<par endsync="last" id="nmdb_0011" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00a2" id="nmdb_0033"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1673.192s" clip-end="npt=1673.491s" id="audio_0359"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="nmdb_0034"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1673.491s" clip-end="npt=1673.705s" id="audio_0360"/>
+				</seq>
+			</par>
+			<par endsync="last" id="nmdb_0012" system-required="pagenumber-on">
+				<text src="ncc.html#xauu_00a3" id="nmdb_0035"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1673.705s" clip-end="npt=1673.931s" id="audio_0361"/>
+				</seq>
+			</par>
+			<par endsync="last">
+				<text src="ncc.html#xauu_000e" id="nmdb_0036"/>
+				<seq>
+					<audio src="17_Den_skadelige.mp3" clip-begin="npt=1673.931s" clip-end="npt=1674.324s" id="audio_0362"/>
+				</seq>
+			</par>
+		</seq>
+	</body>
+</smil>
