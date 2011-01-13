@@ -39,7 +39,29 @@ function Daisy202Loader() {
 	};
 	
 	var loadCount = 0;
-	this.load = function(nccUrl) {
+	this.load = function() {
+		try {
+			JSONRequest.get(this.server.readyUrl(), delegate(that,function(sn, response, exception){
+				if (exception) {
+					//alert("Får ikke kontakt med NLB ("+exception+")");
+					window.setTimeout(this.load,10000);
+				}
+				else if (response.ready !== '1') {
+					//alert(response.state);
+					this.state = response.state;
+					window.setTimeout(this.load,10000);
+				}
+				else {
+					//alert("is ready! ("+response.state+")");
+					this.loadReady();
+				}
+			}));
+		} catch(e) {
+			window.setTimeout(this.load,10000);
+			//if (console) console.log("caught exception: "+e);
+		}
+	}
+	this.loadReady = function() {
 		this.state = 'loading metadata';
 		try {
 			JSONRequest.get(this.server.getUrl("metadata.json"), delegate(that,function(sn, response, exception){
@@ -47,7 +69,7 @@ function Daisy202Loader() {
 				if (++loadCount === 4) this.player.doneLoading = true;
 			}));
 		} catch(e1) {
-			//if (console) console.log("cought exception: "+e1);
+			//if (console) console.log("caught exception: "+e1);
 		}
 		this.state = 'loading smil';
 		try {
@@ -73,7 +95,7 @@ function Daisy202Loader() {
 				if (++loadCount === 4) this.player.doneLoading = true;
 			}));
 		} catch(e2) {
-			alert("cought exception: "+e2);
+			alert("caught exception: "+e2);
 		}
 		this.state = 'loading toc';
 		try {
@@ -82,7 +104,7 @@ function Daisy202Loader() {
 				if (++loadCount === 4) this.player.doneLoading = true;
 			}));
 		} catch(e3) {
-			alert("cought exception: "+e3);
+			alert("caught exception: "+e3);
 		}
 		this.state = 'loading pagelist';
 		try {
@@ -91,7 +113,7 @@ function Daisy202Loader() {
 				if (++loadCount === 4) this.player.doneLoading = true;
 			}));
 		} catch(e4) {
-			alert("cought exception: "+e4);
+			alert("caught exception: "+e4);
 		}
 	};
 	

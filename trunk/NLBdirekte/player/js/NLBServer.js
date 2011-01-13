@@ -1,12 +1,16 @@
-function StandardServer() {
+function NLBServer(ticket_) {
 	var that = this;
 	
-	this.relUrl = 'book/';
+	this.ticket = ticket_;
+	this.url = '';
 	this.state = "";
 	
 	this.getUrl = function(filename) {
-		return this.relUrl+filename;
+		return this.url+'getfile.php?ticket='+this.ticket+'&file='+filename;
 	};
+	this.readyUrl = function() {
+		return this.url+'isprepared.php?ticket='+this.ticket;
+	}
 	
 	// Retrieves an XML or HTML document
 	// Returns true if successfully sent request for file, false otherwise.

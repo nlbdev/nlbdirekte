@@ -136,99 +136,101 @@ function playerIsLoaded() {
 playerIsLoaded();
 
 function loadBookmarks() {
-	Bookmark.loadBookmarks(player.metadata[1]['dc:identifier'], function(bookmarkList, error) {
-		if (bookmarkList && typeof bookmarkList === 'object') {
-			myBookmarks = bookmarkList;
-			var htmlList = "<table style=''>";
-			htmlList += "<tr>";
-			htmlList += "<th>Tittel</th>";
-			htmlList += "<th>Brødtekst</th>";
-			htmlList += "<th>Posisjon</th>";
-			htmlList += "<th></th>";
-			htmlList += "</tr>";
-			for (var b = 0; b < myBookmarks.length; b++) {
-				// {uid,created,modified,bookId,title,text,isPublic,isReplyTo,startTime,startCharOffset,endTime,endCharOffset,isLastmark}
-				htmlList += "<tr id='bookmarkRow"+myBookmarks[b].uid+"'>";
-				htmlList += "<td style='padding-right:20px;'>"+
-								(myBookmarks[b].title.length<100?myBookmarks[b].title:(myBookmarks[b].title.substring(0,100)+'...'))
-							+"</td>";
-				htmlList += "<td style='padding-right:20px;'>"+
-								(myBookmarks[b].text.length<100?myBookmarks[b].text:(myBookmarks[b].text.substring(0,100)+'...'))
-							+"</td>";
-				htmlList += "<td><a onclick='player.skipToTime("+myBookmarks[b].startTime+");$(\"#menuCloseButton\").click();scrollToHighlightedText();return false;' href='#'>"+niceTime(myBookmarks[b].startTime)+"</a></td>";
-				htmlList += "<td><span id='editDeleteBookmarkButtons' style='text-align: center'>"+
-								"<button id='editBookmark_"+myBookmarks[b].uid+"' value='"+myBookmarks[b].uid+"' class='bookmarkEditButton'>Rediger</button>"+
-								"<button id='deleteBookmark_"+myBookmarks[b].uid+"' value='"+myBookmarks[b].uid+"' class='bookmarkDeleteButton'>Slett</button>"+
-							"</span></td>";
+	if (typeof Bookmark === 'function') {
+		Bookmark.loadBookmarks(player.metadata[1]['dc:identifier'], function(bookmarkList, error) {
+			if (bookmarkList && typeof bookmarkList === 'object') {
+				myBookmarks = bookmarkList;
+				var htmlList = "<table style=''>";
+				htmlList += "<tr>";
+				htmlList += "<th>Tittel</th>";
+				htmlList += "<th>Brødtekst</th>";
+				htmlList += "<th>Posisjon</th>";
+				htmlList += "<th></th>";
 				htmlList += "</tr>";
-			}
-			htmlList += "</table>";
-			$('#bookmarks').html(htmlList);
-			$(".bookmarkEditButton").button().click(function() {
-				currentBookmark = $(this).val();
-				var bookmarkNr = -1;
 				for (var b = 0; b < myBookmarks.length; b++) {
-					if (myBookmarks[b].uid == $(this).val()) {
-						bookmarkNr = b;
-						break;
-					}
+					// {uid,created,modified,bookId,title,text,isPublic,isReplyTo,startTime,startCharOffset,endTime,endCharOffset,isLastmark}
+					htmlList += "<tr id='bookmarkRow"+myBookmarks[b].uid+"'>";
+					htmlList += "<td style='padding-right:20px;'>"+
+									(myBookmarks[b].title.length<100?myBookmarks[b].title:(myBookmarks[b].title.substring(0,100)+'...'))
+								+"</td>";
+					htmlList += "<td style='padding-right:20px;'>"+
+									(myBookmarks[b].text.length<100?myBookmarks[b].text:(myBookmarks[b].text.substring(0,100)+'...'))
+								+"</td>";
+					htmlList += "<td><a onclick='player.skipToTime("+myBookmarks[b].startTime+");$(\"#menuCloseButton\").click();scrollToHighlightedText();return false;' href='#'>"+niceTime(myBookmarks[b].startTime)+"</a></td>";
+					htmlList += "<td><span id='editDeleteBookmarkButtons' style='text-align: center'>"+
+									"<button id='editBookmark_"+myBookmarks[b].uid+"' value='"+myBookmarks[b].uid+"' class='bookmarkEditButton'>Rediger</button>"+
+									"<button id='deleteBookmark_"+myBookmarks[b].uid+"' value='"+myBookmarks[b].uid+"' class='bookmarkDeleteButton'>Slett</button>"+
+								"</span></td>";
+					htmlList += "</tr>";
 				}
-				if (bookmarkNr !== -1) {
-					$('#bookmarkTitle').val(myBookmarks[bookmarkNr].title);
-					$('#bookmarkText').val(myBookmarks[bookmarkNr].text);
-					$('#bookmarkTime').val(myBookmarks[bookmarkNr].startTime);
-					$('#bookmarkTitle,#bookmarkText,#bookmarkTime,#bookmarkTimeNow,#bookmarkEndEdit_save,bookmarkEndEdit_cancel').attr("disabled", false);
-					$('#editBookmark').show('slow');
+				htmlList += "</table>";
+				$('#bookmarks').html(htmlList);
+				$(".bookmarkEditButton").button().click(function() {
+					currentBookmark = $(this).val();
+					var bookmarkNr = -1;
+					for (var b = 0; b < myBookmarks.length; b++) {
+						if (myBookmarks[b].uid == $(this).val()) {
+							bookmarkNr = b;
+							break;
+						}
+					}
+					if (bookmarkNr !== -1) {
+						$('#bookmarkTitle').val(myBookmarks[bookmarkNr].title);
+						$('#bookmarkText').val(myBookmarks[bookmarkNr].text);
+						$('#bookmarkTime').val(myBookmarks[bookmarkNr].startTime);
+						$('#bookmarkTitle,#bookmarkText,#bookmarkTime,#bookmarkTimeNow,#bookmarkEndEdit_save,bookmarkEndEdit_cancel').attr("disabled", false);
+						$('#editBookmark').show('slow');
+						$('.bookmarkEditButton').hide('slow');
+						$('.bookmarkDeleteButton').hide('slow');
+						//$("#bookmarkRow"+currentBookmark).addClass('ui-state-highlight');
+						$("#bookmarkRow"+currentBookmark).css('background-color','#FFFF99');
+					}
+				}).width('108px');
+				$(".bookmarkDeleteButton").button().click(function() {
+					currentBookmark = $(this).val();
+					$("#deleteBookmarkConfirmation_yes #deleteBookmarkConfirmation_no").attr("disabled", false);
+					$('#deleteBookmarkConfirmation').show('slow');
 					$('.bookmarkEditButton').hide('slow');
 					$('.bookmarkDeleteButton').hide('slow');
-					//$("#bookmarkRow"+currentBookmark).addClass('ui-state-highlight');
 					$("#bookmarkRow"+currentBookmark).css('background-color','#FFFF99');
-				}
-			}).width('108px');
-			$(".bookmarkDeleteButton").button().click(function() {
-				currentBookmark = $(this).val();
-				$("#deleteBookmarkConfirmation_yes #deleteBookmarkConfirmation_no").attr("disabled", false);
-				$('#deleteBookmarkConfirmation').show('slow');
-				$('.bookmarkEditButton').hide('slow');
-				$('.bookmarkDeleteButton').hide('slow');
-				$("#bookmarkRow"+currentBookmark).css('background-color','#FFFF99');
-			}).width('108px');
-			
-			// Add bookmark icons
-			$('.bookmarkLink').remove();
-			for (var b = 0; b < myBookmarks.length; b++) {
-				var smilsAtTime = player.getSmilElements(myBookmarks[b].startTime);
-				var smilAtTime = null;
-				for (var i = 0; i < smilsAtTime.length; i++) {
-					switch (getAttr(smilsAtTime[i],'t','').split('/')[0]) {
-					case 'text':
-						smilAtTime = smilsAtTime[i];
-						break;
-					}
-				}
+				}).width('108px');
 				
-				var fragment = getAttr(smilAtTime,'s','').split('#',2);
-				if (fragment.length === 2 && fragment[1] !== '') {
-					console.log('bookmark at id="'+fragment[1]+'"');
-					var textElement = player.textDocument.getElementById(fragment[1]);
-					console.log('player.textDocument.getElementById('+fragment[1]+') === '+textElement);
-					if (textElement) {console.log('inserting...');
-						// TODO: add bookmark icons ('img/nlb_bokmerke.png')
-						var span = player.textDocument.createElement('span');
-						span.innerHTML = "<a class='bookmarkLink' href=\"javascript:(function(){"
-											+"$('#menuOpenButton').click();"
-											+"$('#menuTab-bookmarks-button').click();"
-											+"$('#editBookmark_"+myBookmarks[b].uid+"').click();})();\">"
-											+"<img style='vertical-align: middle' src='img/nlb_bokmerke.png' alt='Bokmerke: "+
-												(myBookmarks[b].title.length>50?myBookmarks[b].title.substring(0,50):myBookmarks[b].title)
-											+"' />"
-										+"</a>";
-						textElement.parentNode.insertBefore(span, textElement);
+				// Add bookmark icons
+				$('.bookmarkLink').remove();
+				for (var b = 0; b < myBookmarks.length; b++) {
+					var smilsAtTime = player.getSmilElements(myBookmarks[b].startTime);
+					var smilAtTime = null;
+					for (var i = 0; i < smilsAtTime.length; i++) {
+						switch (getAttr(smilsAtTime[i],'t','').split('/')[0]) {
+						case 'text':
+							smilAtTime = smilsAtTime[i];
+							break;
+						}
+					}
+					
+					var fragment = getAttr(smilAtTime,'s','').split('#',2);
+					if (fragment.length === 2 && fragment[1] !== '') {
+						console.log('bookmark at id="'+fragment[1]+'"');
+						var textElement = player.textDocument.getElementById(fragment[1]);
+						console.log('player.textDocument.getElementById('+fragment[1]+') === '+textElement);
+						if (textElement) {console.log('inserting...');
+							// TODO: add bookmark icons ('img/nlb_bokmerke.png')
+							var span = player.textDocument.createElement('span');
+							span.innerHTML = "<a class='bookmarkLink' href=\"javascript:(function(){"
+												+"$('#menuOpenButton').click();"
+												+"$('#menuTab-bookmarks-button').click();"
+												+"$('#editBookmark_"+myBookmarks[b].uid+"').click();})();\">"
+												+"<img style='vertical-align: middle' src='img/nlb_bokmerke.png' alt='Bokmerke: "+
+													(myBookmarks[b].title.length>50?myBookmarks[b].title.substring(0,50):myBookmarks[b].title)
+												+"' />"
+											+"</a>";
+							textElement.parentNode.insertBefore(span, textElement);
+						}
 					}
 				}
 			}
-		}
-	});
+		});
+	}
 }
 
 function playerHasMetadata() {
@@ -447,6 +449,13 @@ $(function() {
 	}).click(function(){
 		player.skipToTime(player.getCurrentTime()-30);
 		scrollToHighlightedText();
+		if (typeof Bookmark === 'function') {
+			Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
+				function(success, error) {
+					//if (console) console.log('success:'+success+',error:'+error);
+				}
+			);
+		}
 	});
 	$('#smallBack').button({
 		text: false,
@@ -499,6 +508,13 @@ $(function() {
 	}).click(function(){
 		player.skipToTime(player.getCurrentTime()+30);
 		scrollToHighlightedText();
+		if (typeof Bookmark === 'function') {
+			Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
+				function(success, error) {
+					//if (console) console.log('success:'+success+',error:'+error);
+				}
+			);
+		}
 	});
 	$('#bookmark').button({
 		text: false,
@@ -644,7 +660,7 @@ window.setInterval(function(){
 				if (backend !== '') {
 					backend = '';
 					//$('#backend').text('<p style="text-size: 22; display: table-cell; vertical-align: middle;">No audio backend!</p>');
-					$('#backend').attr('src','img/NoAudio.png');
+					$('#backend').attr('src','img/noaudio.png');
 					$('#backend').attr('alt','Denne nettleseren støtter ikke avspilling av lyd');
 				}
 		}
@@ -752,12 +768,12 @@ function typeOf(value) {
 }
 
 function init() {
-	server = new StandardServer();	// authorization, downloading of files
+	server = new NLBServer(ticket);	// authorization, downloading of files
 	player = new SmilPlayer();		// playback of SMIL filesets
 	loader = new Daisy202Loader();	// loading and parsing SMIL-files from the server into the player
 	
-	server.relUrl = 'http://'+window.location.host+'/NLBdirekte/books/'+bookId+'/';
-	Bookmark.scriptUrl = 'http://'+window.location.host+'/NLBdirekte/patrondata/bookmarks.php';
+	server.url = 'http://'+window.location.host+'/NLBdirekte/player/';
+	//Bookmark.scriptUrl = 'http://'+window.location.host+'/NLBdirekte/patrondata/bookmarks.php';
 	
 	loader.player = player;
 	loader.server = server;

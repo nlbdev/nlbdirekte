@@ -56,17 +56,7 @@ function HTML5AudioNow(attributes) {
 	case 'aifc': 
 	case 'aiff': mime = 'audio/x-aiff'; break;
 	}
-	if (HTML5AudioSupport.supportsObj() && !!HTML5AudioSupport.supportsObjMime(mime)) {
-		// HTML5
-		//if (console) console.log('var htmlAudio = new Audio(attributes.src);');
-		var htmlAudio = new Audio(attributes.src);
-		if (typeof attributes.preload !== 'undefined') htmlAudio.preload = attributes.preload;
-		if (typeof attributes.autoplay !== 'undefined') htmlAudio.autoplay = attributes.autoplay;
-		if (typeof attributes.loop !== 'undefined') htmlAudio.loop = attributes.loop;
-		htmlAudio.backend = "html";
-		//if (console) console.log(typeof htmlAudio);
-		return htmlAudio;
-	} else if (!!soundManager && soundManager.supported()) {
+	if (!!soundManager && soundManager.supported()) {
 		// SoundManager2
 		var sm2Audio = new FlashHTMLAudioElement({
 			src: attributes.src,
@@ -77,6 +67,16 @@ function HTML5AudioNow(attributes) {
 		
 		sm2Audio.backend = "soundmanager";
 		return sm2Audio;
+	} else if (HTML5AudioSupport.supportsObj() && !!HTML5AudioSupport.supportsObjMime(mime)) {
+		// HTML5
+		//if (console) console.log('var htmlAudio = new Audio(attributes.src);');
+		var htmlAudio = new Audio(attributes.src);
+		if (typeof attributes.preload !== 'undefined') htmlAudio.preload = attributes.preload;
+		if (typeof attributes.autoplay !== 'undefined') htmlAudio.autoplay = attributes.autoplay;
+		if (typeof attributes.loop !== 'undefined') htmlAudio.loop = attributes.loop;
+		htmlAudio.backend = "html";
+		//if (console) console.log(typeof htmlAudio);
+		return htmlAudio;
 	} else {
 		//alert('if (HTML5AudioSupport.supportsObj():'+HTML5AudioSupport.supportsObj()+
 		//		' && !!HTML5AudioSupport.supportsObjMime('+mime+'):'+(!!HTML5AudioSupport.supportsObjMime(mime))+")\n"+

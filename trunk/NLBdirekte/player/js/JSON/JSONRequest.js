@@ -248,26 +248,29 @@ JSONRequest = new function(){
 					if(xhr.status === 200) {
 						clearTimeout(request.timeout);
 						try {
-							if (xhr.getResponseHeader("Content-Type") === "application/json" ||
-								xhr.getResponseHeader("Content-Type") === "application/jsonrequest" ||
-								xhr.getResponseHeader("Content-Type") === "application/x-www-form-urlencoded" ||
-								xhr.getResponseHeader("Content-Type") === "text/plain") {
+							if (xhr.getResponseHeader("Content-Type").indexOf("application/json") != -1 ||
+								xhr.getResponseHeader("Content-Type").indexOf("application/jsonrequest") != -1 ||
+								xhr.getResponseHeader("Content-Type").indexOf("application/x-www-form-urlencoded") != -1 ||
+								xhr.getResponseHeader("Content-Type").indexOf("text/plain") != -1) {
 								request.done(l+1, JSON.parse(xhr.responseText));
 								cancel(l);
 								changeDelay(-10);
 							}
 							else {
-								//if (console) console.log("expected JSON, received: "+xhr.getResponseHeader("Content-Type"));
-								//if (console) console.log(xhr.responseText);
+							  console.log('fail 1');
+								if (console) console.log("expected JSON, received: "+xhr.getResponseHeader("Content-Type"));//TODO
+								if (console) console.log(xhr.responseText);//TODO
 								throw new JSONRequestError;
 							}
 						}
 						catch(e) {
+						  	console.log('fail 2');//TODO
 							changeDelay(500, 512);
 							cancel(l, new JSONRequestError("bad response: "+e));
 						}
 					}
 					else {
+						console.log('fail 3');//TODO
 						changeDelay(500, 512);
 						cancel(l, new JSONRequestError("not ok"));
 					};

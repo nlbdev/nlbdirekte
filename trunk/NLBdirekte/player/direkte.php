@@ -9,13 +9,15 @@ if (!empty($_REQUEST['username'])) {
 	}
 }
 
-?>
-<!doctype html>
+?><!doctype html>
 <html lang="no">
 <head>
 	<title>NLBdirekte</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+	
+	<!-- Debug mechanism -->
+	<!--script type='text/javascript' src='https://damnit.jupiterit.com/damnit.js?e08775070c01628bb4f74f2e46734f670f2dadce'></script-->
 	
 	<!-- Easy fetching (and sending if needed) of JSON data structures -->
 	<script type='text/javascript' src='js/JSON/json2.js'></script>
@@ -29,7 +31,7 @@ if (!empty($_REQUEST['username'])) {
 		The server is an interface to a specific server that resolves URLs amongst other things.
 		The loader is an interface for a specific format that parses books into the player
 		The player is the object that handles the playback logic, including synchronization -->
-	<script src='js/StandardServer.js'></script>
+	<script src='js/NLBServer.js'></script>
 	<script src='js/Daisy202Loader.js'></script>
 	<script src='js/SmilPlayer.js'></script>
 	
@@ -46,14 +48,15 @@ if (!empty($_REQUEST['username'])) {
 	<script type="text/javascript" src="js/jQuery/jquery-ui-1.8.custom.min.js"></script>
 	
 	<!-- Bookmarks synchronization -->
-	<script type="text/javascript" src="js/Bookmarks.js" ></script>
+	<!--script type="text/javascript" src="js/Bookmarks.js" ></script-->
 	
 	<!-- Site-specific code for loading the player, updating the gui etc. -->
 	<script type="text/javascript" src="js/SmilPlayerUI.js"></script>
 	
 	<script type="text/javascript" charset="utf-8">
 	/* <![CDATA[ */
-		var bookId = '<?php echo $_REQUEST['bookId']; ?>';
+		var ticket = '<?php echo $_REQUEST['ticket']; ?>';
+		/*var bookId = '<?php echo $_REQUEST['bookId']; ?>';*/
 	/* ]]> */
 	</script>
 	
