@@ -1,6 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
+include('common.inc.php');
+
 session_start();
 if (!empty($_REQUEST['username'])) {
 	$_SESSION['patronId'] = '';
@@ -12,7 +14,7 @@ if (!empty($_REQUEST['username'])) {
 ?><!doctype html>
 <html lang="no">
 <head>
-	<title>NLBdirekte</title>
+	<title>NLBdirekte v<?php echo $version;?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 	
@@ -56,7 +58,6 @@ if (!empty($_REQUEST['username'])) {
 	<script type="text/javascript" charset="utf-8">
 	/* <![CDATA[ */
 		var ticket = '<?php echo $_REQUEST['ticket']; ?>';
-		/*var bookId = '<?php echo $_REQUEST['bookId']; ?>';*/
 	/* ]]> */
 	</script>
 	
