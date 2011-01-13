@@ -2,12 +2,8 @@
 <p:declare-step xmlns:p="http://www.w3.org/ns/xproc" xmlns:c="http://www.w3.org/ns/xproc-step"
     xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xd="http://www.daisy.org/pipeline2/docgen"
     xmlns:nlb="http://www.nlb.no/2010/XSL" version="1.0">
-    <p:input port="source"/>
-    <p:output port="result">
-        <p:empty/>
-    </p:output>
-
-    <p:serialization port="result" indent="true" encoding="UTF-8"/>
+    
+    <!--p:serialization port="result" indent="true" encoding="UTF-8"/-->
 
     <p:option name="shared-book" required="true"/>
     <p:option name="personal-book" required="true"/>
@@ -18,7 +14,8 @@
         select="replace(replace(resolve-uri(resolve-uri('.',concat($shared-book,'/'))),'^file:',''),'[^/]+$','')"/>
     <p:variable name="personalBook"
         select="replace(replace(resolve-uri(resolve-uri('.',concat($personal-book,'/'))),'^file:',''),'[^/]+$','')"/>
-    <p:variable name="tempDir" select="concat('temp/',
+    <p:variable name="tempDir"
+        select="concat('temp/',
                                               year-from-dateTime(current-dateTime()),
                                               month-from-dateTime(current-dateTime()),
                                               day-from-dateTime(current-dateTime()),
@@ -171,10 +168,13 @@
     </p:group>
 
     <p:exec name="prepare">
+        <p:input port="source">
+            <p:empty/>
+        </p:input>
         <p:with-option name="command" select="'python'">
             <p:pipe port="result" step="ncc-json"/>
         </p:with-option>
-        <p:with-option name="args" select="('prepare.py ',$tempDir)">
+        <p:with-option name="args" select="concat('prepare.py ',$tempDir)">
             <p:pipe port="result" step="smil-json"/>
         </p:with-option>
         <p:with-option name="result-is-xml" select="'false'"/>

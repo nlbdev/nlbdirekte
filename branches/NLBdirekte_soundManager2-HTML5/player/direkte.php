@@ -1,6 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
+include('common.inc.php');
+
 session_start();
 if (!empty($_REQUEST['username'])) {
 	$_SESSION['patronId'] = '';
@@ -12,7 +14,7 @@ if (!empty($_REQUEST['username'])) {
 ?><!doctype html>
 <html lang="no">
 <head>
-	<title>NLBdirekte</title>
+	<title>NLBdirekte v<?php echo $version;?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 	
@@ -27,21 +29,17 @@ if (!empty($_REQUEST['username'])) {
 	<!-- Provides a fallback mechanism for HTML5 Audio to SoundManager 2 -->
 	<!--script type="text/javascript" src="js/HTML5AudioNow/HTML5AudioNow.js"></script-->
 	
-	<!-- SoundManager (http://www.schillmania.com/projects/soundmanager2/) -->
-	<script type="text/javascript" src="js/soundmanager/script/soundmanager2.js"></script>
-	<script type="text/javascript">
-	if (!soundManager)
-		soundManager = new SoundManager();
-	soundManager.url = 'js/soundmanager/swf/';
-	soundManager.flashVersion = 8;
-	soundManager.allowFullScreen = false;
-	soundManager.wmode = 'transparent';
-	soundManager.debugMode = true;
-	soundManager.debugFlas = false;
-	soundManager.useHighPerformance = true;
-	// soundManager.useHTML5Audio = true;
-	soundManager.onready(function() {
-	});
+	<!-- SoundManager2 -->
+	<script type='text/javascript' src='js/soundmanager2/script/soundmanager2.js'></script>
+	<script type='text/javascript'>
+		soundManager.url = 'js/soundmanager2/swf/';
+		soundManager.flashVersion = 9; // optional: shiny features (default = 8)
+		soundManager.useFlashBlock = false; // optionally, enable when you're ready to dive in
+		// enable HTML5 audio support, if you're feeling adventurous. iPad/iPhone will always get this.
+		soundManager.useHTML5Audio = false;
+		soundManager.onready(function() {
+			  // Ready to use; soundManager.createSound() etc. can now be called.
+		});
 	</script>
 	
 	<!-- The player objects.
@@ -73,7 +71,6 @@ if (!empty($_REQUEST['username'])) {
 	<script type="text/javascript" charset="utf-8">
 	/* <![CDATA[ */
 		var ticket = '<?php echo $_REQUEST['ticket']; ?>';
-		/*var bookId = '<?php echo $_REQUEST['bookId']; ?>';*/
 	/* ]]> */
 	</script>
 	

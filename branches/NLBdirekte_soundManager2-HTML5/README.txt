@@ -1,6 +1,11 @@
 = NLBdirekte =
 by Jostein Austvik Jacobsen, NLB, 2010
 
+System requirements:
+- Calabash and Tagsoup (xmlcalabash.com / http://home.ccil.org/~cowan/XML/tagsoup/)
+- PHP
+- Python
+
 == ./index.html ./jquery-1.4.2.min.js ./favicon.ico ==
 Test page simulating a log-in screen. Lets you choose a book and username.
 

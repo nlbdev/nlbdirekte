@@ -38,7 +38,7 @@ function SmilPlayer() {
 	var audioObjectBegin = 0; // The offset into the SMIL content
 	
 	var threadId = null; // ID of the thread (so we can make sure there's only one of them)
-	var updateDelay = 1000; // Maximum delay between each time the thread() is run
+	var updateDelay = 1000; // Maximum delay between each time the thread() is run (TODO: was 100, sat to 1000 for debugging)
 	
 	// Starts, or prematurely updates, the thread
 	var lastThreadRun = new Date();
@@ -61,6 +61,7 @@ function SmilPlayer() {
 	// The main thread, which runs every updateDelay milliseconds
 	var lastThreadRun = Date.now();
 	function thread() {
+		window.audioObject=audioObject;
 		var thisThreadRun = Date.now();
 		
 		if (this.doneLoading) {
@@ -97,7 +98,7 @@ function SmilPlayer() {
 	function update() {
 		if (skipTo >= 0) {
 			currentTime = skipTo;
-			if (consoleLog && debugCurrentTime) console.log('#4 currentTime = '+currentTime+' audioObject.duration:'+(audioObject===null?'?':audioObject.duration));
+			if (consoleLog && debugCurrentTime) console.log('#4 currentTime = '+currentTime+' audioObject.duration:'+(audioObject===null?'?':audioObject.duration/1000.));
 		}
 		
 		var activeSmilElements = this.getSmilElements.call(that, currentTime);
@@ -137,7 +138,7 @@ function SmilPlayer() {
 					// skipping done
 					skipTo = -1;
 			} else {
-				window.setTimeout(delegate(that,function(){audioObject.pause();}),0);
+				window.setTimeout(delegate(that,function(){soundManager.pauseAll();}),0);
 			}
 		}
 	}
@@ -251,6 +252,7 @@ function SmilPlayer() {
 	var skipTo = -1; // hold the time to skip to while sound is loading
 	function updateAudio(smilNode) {
 		if (audioObject !== null && (audioObject.readyState === 0 || audioObject.readyState === 2)) {
+			soundManager.pauseAll();
 			audioObject.destruct();
 			audioObject = null;
 		}
@@ -271,9 +273,11 @@ function SmilPlayer() {
 					autoLoad: true,
 					autoPlay: paused?false:true,
 					onfinish: function() {
-							this.destruct();
-						  }
+									soundManager.pauseAll();
+									this.destruct();
+							  }
 				});
+				audioObject.play();
 				audioObjectBegin = getAttr(smilNode,'b',-1) - getAttr(smilNode,'B',-1);
 			} else if (consoleLog) console.log("soundManager not ready, audioObject not created");
 		}
@@ -283,7 +287,7 @@ function SmilPlayer() {
 			if (smilNode === null) {
 				// stop playing
 				if (consoleLog) console.log('stop playing');
-				audioObject.pause();
+				soundManager.pauseAll();
 				if (consoleLog) console.log('audioObject.pause();');
 				audioObject.destruct();
 				audioObject = null;
@@ -294,7 +298,7 @@ function SmilPlayer() {
 				if (isSameSrc(audioObject.url,this.server.getUrl(getAttr(smilNode,'s','')))) {
 					if (consoleLog) console.log('the right audioObject is selected (and loaded)');
 					// the right audioObject is selected (and loaded)
-					if (Math.abs(audioObjectBegin+audioObject.position/1000. - currentTime) > inaccurateTimeMeasurement) {
+					if (Math.abs(audioObjectBegin+audioObject.position/1000.) - currentTime > inaccurateTimeMeasurement) {
 						// currentTime is not close to the time indicated by the audioObject
 						if (consoleLog && debugCurrentTime) console.log('(Math.abs('+audioObjectBegin+'+'+audioObject.position/1000.+' - '+currentTime+' = '+Math.abs(audioObjectBegin+audioObject.position/1000.-currentTime)+') > '+inaccurateTimeMeasurement+')');
 						audioObject.setPosition(Math.floor((currentTime - audioObjectBegin)*1000.));
@@ -331,7 +335,7 @@ function SmilPlayer() {
 						// if (should not be playing && is playing)
 						if (paused && !audioObject.paused) {
 							//if (consoleLog) console.log('should not be playing but is playing; pause');
-							audioObject.pause();
+							soundManager.pauseAll();
 						}
 					}
 				} else {
@@ -340,6 +344,7 @@ function SmilPlayer() {
 						Math.abs(audioObject.position/1000. + audioObjectBegin - currentTime) > inaccurateTimeMeasurement) { // || audioObject.ended) {
 						// switch file
 						if (consoleLog) console.log('playing the wrong file, switch file');
+						soundManager.pauseAll();
 						audioObject.destruct();
 						if (!!soundManager && soundManager.ok()) {
 							if (consoleLog) console.log(!!soundManager+' && '+soundManager.ok());
@@ -351,9 +356,11 @@ function SmilPlayer() {
 								autoLoad: true,
 								autoPlay: paused?false:true,
 								onfinish: function() {
-										this.destruct();
-									  }
+												soundManager.pauseAll();
+												this.destruct();
+										  }
 							});
+							audioObject.play();
 							audioObjectBegin = getAttr(smilNode,'b',-1) - getAttr(smilNode,'B',-1);
 						} else if (consoleLog) console.log("soundManager not ready, audioObject not created");
 					} else if (!paused && consoleLog && debugCurrentTime) {

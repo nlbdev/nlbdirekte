@@ -1,7 +1,8 @@
 <!doctype html>
 <html>
+<?php include('player/common.inc.php'); ?>
 <head>
-	<title>NLBdirekte</title>
+	<title>NLBdirekte v<?php echo $version; ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 	<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
@@ -15,13 +16,13 @@
 	/* ]]> */
 	</script>
 </head>
-<body>
-	<!-- wrap in id=book so that we can simply use the book css -->
+<body style="font-family: futura, helvetica, arial, sans-serif">
+	<!-- wrap in id=book so that we can simply use the same css as for the book -->
 	<div id="book">
-		<h1>NLBdirekte</h1>
+		<h1>NLBdirekte v<?php echo $version; ?></h1>
 		<h2>Login</h2>
 		Username:
-		<input id="username" type="text" onkeydown="if(event.which&&event.which===13||event.keyCode===13)login($('#username').val());"></input>
+		<input id="username" type="text" onkeydown="if(event.which&&event.which===13||event.keyCode===13)login($('#username').val(),$('#bookId').val());"></input>
 		<input id="login" type="button" value="Logg inn" onclick="login($('#username').val(),$('#bookId').val());"></input><br/>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -29,8 +30,9 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;
 		<select id="bookId" size="3" style="width:228px;">
-			<option value="613839" selected="yes">Bare r&oslash;re, ikke se</option>
+			<!-- Add options for each test book here, with value=bookId and title as the text: -->
 			<option value="613757" selected="yes">Jamen, Benny</option>
+			<option value="613839">Bare r&oslash;re, ikke se</option>
 		</select>
 	</div>
 </body>
