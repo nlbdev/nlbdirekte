@@ -1,6 +1,6 @@
 <?php
 # version of NLBdirekte
-$version = '0.2.2';
+$version = '0.4.0';
 
 # relative paths to general DMZ and profile storage
 $shared = getcwd().'/../books';
