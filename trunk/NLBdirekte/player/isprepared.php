@@ -15,6 +15,10 @@ list($user, $book) = decodeTicket($_REQUEST['ticket']);
 	return "you are not logged in";
 }*/
 
+// Make sure that the patron has a profile directory
+if (!is_dir("$profiles/$user"))
+	mkdir("$profiles/$user");
+
 // So we don't have to run this twice...
 $userHasRunningProcess = isProcessing($user);
 
@@ -37,13 +41,16 @@ else if (!$userHasRunningProcess and (
 	$pid = execCalabashInBackground('prepare.xpl'.
 									' shared-book="'.path_as_url("$shared/$book").'"'.
 									' personal-book="'.path_as_url("$profiles/$user/books/$book").'"');
-	if (!is_dir("$profiles/$user"))
-		mkdir("$profiles/$user");
-	$processesFilename = str_replace("\\","/","$profiles/$user/processes.csv");
-	$processesFile = fopen($processesFilename, "ab");
-	if ($debug) trigger_error("appending calabash process with PID '$pid' to the processes.csv-file belonging to the user '$user'.");
-	fputcsv($processesFile, array(time(), $pid));
-	fclose($processesFile);
+	if ($pid > 0) {
+		$processesFilename = str_replace("\\","/","$profiles/$user/processes.csv");
+		$processesFile = fopen($processesFilename, "ab");
+		if ($debug) trigger_error("appending calabash process with PID '$pid' to the processes.csv-file belonging to the user '$user'.");
+		fputcsv($processesFile, array(time(), $pid));
+		fclose($processesFile);
+	}
+	else {
+		if ($debug) trigger_error("calabash process PID not determined. will be unable to determine whether it's running or not at next run.");
+	}
 	echo '{"ready":"0", "state":"a book is being prepared"}';
 }
 
@@ -67,66 +74,99 @@ function execCalabashInBackground($args, $logfile = NULL) {
 	if (!isset($logfile)) {
 		$logfile = fix_directory_separators($logdir.'/calabash-'.date('Ymd_His').'.'.((microtime(true)*1000000)%1000000).'.txt');
 	}
-	if (substr(php_uname(), 0, 7) == "Windows"){
-		$before = array();
+	$before = array();
+	$after = array();
+	
+	// start process
+	$isWindows = (substr(php_uname(), 0, 7) == "Windows")?true:false;
+	if ($isWindows){
 		exec("tasklist /V /FO CSV", $before);
 		if ($debug) {
 			trigger_error("forking Windows process: 'start /B calabash $args 1>$logfile 2>&1'");
 			pclose(popen("start /B calabash $args 1>$logfile 2>&1","rb"));
-			//pclose(popen("start /B $cmd 1>$logfile 2>&1", "rb"));
 		} else {
 			pclose(popen("start /B calabash $args", "rb"));
 		}
-		$after = array();
 		exec("tasklist /V /FO CSV", $after);
-		$pid = -1;
-		foreach ($after as $procAfter) {
-			list($imageNameAfter, $pidAfter, $sessionNameAfter, $sessionNumberAfter,
-				 $memUsageAfter, $statusAfter, $userNameAfter, $cpuTimeAfter, $windowTitleAfter) = str_getcsv($procAfter);
-			if (strtolower($imageNameAfter) !== 'java.exe')
-				continue;
-
-			$isNew = true;
-			foreach ($before as $procBefore) {
-				list($imageNameBefore, $pidBefore, $sessionNameBefore, $sessionNumberBefore,
-					 $memUsageBefore, $statusBefore, $userNameBefore, $cpuTimeBefore, $windowTitleBefore) = str_getcsv($procBefore);
-				if ($pidAfter === $pidBefore) {
-					// This is not a new java-process
-					$isNew = false;
-					break;
-				}
-			}
-			if ($isNew) {
-				if ($pid === -1) {
-					if ($debug) trigger_error("execInBackground(): Found the newly started Java-process '$imageNameAfter' with PID = $pidAfter");
-					$pid = $pidAfter;
-				}
-				else {
-					if ($debug) trigger_error("execInBackground(): Multiple new Java-processes found! (found $imageNameAfter with PID = $pidAfter)");
-					$pid = -2;
-				}
-			}
-		}
-		if ($debug) {
-			switch ($pid) {
-			case -2: trigger_error("execInBackground(): Warning: Unable to determine the correct PID. (Multiple new processes found)"); break;
-			case -1: trigger_error("execInBackground(): Warning: Unable to determine the correct PID. (No new processes found)"); break;
-			case 0: trigger_error("execInBackground(): Warning: Unable to determine the correct PID. (System Idle Process (PID=0) identified as the process)"); break;
-			default:
-				if ($pid > 0) trigger_error("execInBackground(): Successfully identified the PID of the newly started Calabash process: $pid");
-				else trigger_error("execInBackground(): Error: Unknown error code: $pid");
-			}
-		}
-		return $pid;
 	}
-	else {
+	else { // Linux
+		exec("ps axo pid,args", $before);
 		if ($debug) {
-			trigger_error("forking Linux (or MacOS?) process: 'calabash $args 1>$logfile 2>&1 &'");
+			trigger_error("forking Linux process: 'calabash $args 1>$logfile 2>&1 &'");
 			exec("calabash $args >$logfile 2>&1 &");
 		} else {
 			exec("calabash $args >/dev/null &");
 		}
+		exec("ps axo pid,args", $after);
 	}
+	
+	// determine PID
+	$pid = -1;
+	if (!$isWindows)
+		$args = exec("echo $args"); // perform expansions like "file://..." to file://... etc.
+	foreach ($after as $procAfter) {
+		$nameAfter = '';
+		$pidAfter = 0;
+		if ($isWindows) {
+			// image name, pid, session name, session number, memory usage, status, username, cpu time, window title
+			$line = str_getcsv($procAfter);
+			$nameAfter = $line[0];
+			$pidAfter = $line[1];
+			if (strtolower($nameAfter) !== 'java.exe')
+				continue;
+		}
+		else { // Linux
+			preg_match('/^\s*([0-9]*)\s*(.*)$/', $procAfter, $line);
+			$nameAfter = $line[2];
+			$pidAfter = $line[1];
+			if (strpos($nameAfter, "calabash $args") === false) // note the === to distinguish 0 from false!
+				continue;
+		}
+
+		$isNew = true;
+		foreach ($before as $procBefore) {
+			$nameBefore = '';
+			$pidBefore = -1;
+			if ($isWindows) {
+				// image name, pid, session name, session number, memory usage, status, username, cpu time, window title
+				$line = str_getcsv($procBefore);
+				$nameBefore = $line[0];
+				$pidBefore = $line[1];
+			}
+			else { // Linux
+				// pid args
+				preg_match('/^\s*([0-9]*)\s*(.*)$/', $procBefore, $line);
+				$nameBefore = $line[2];
+				$pidBefore = $line[1];
+			}
+			if ($pidAfter === $pidBefore) {
+				// This is not a new process
+				$isNew = false;
+				break;
+			}
+		}
+		if ($isNew) {
+			if ($pid === -1) {
+				if ($debug) trigger_error("execInBackground(): Found the newly started ".($isWindows?"Java":"Calabash")."-process '$nameAfter' with PID = $pidAfter");
+				$pid = $pidAfter;
+			}
+			else {
+				if ($debug) trigger_error("execInBackground(): Multiple new ".($isWindows?"Java":"Calabash")."-processes found! (found $nameAfter with PID = $pidAfter)");
+				$pid = -2;
+			}
+		}
+	}
+	if ($debug) {
+		switch ($pid) {
+		case -2: trigger_error("execInBackground(): Warning: Unable to determine the correct PID. (Multiple new processes found)"); break;
+		case -1: trigger_error("execInBackground(): Warning: Unable to determine the correct PID. (No new processes found)"); break;
+		case 0: trigger_error("execInBackground(): Warning: Unable to determine the correct PID. (PID=0 identified as the process)"); break;
+		default:
+			if ($pid > 0) trigger_error("execInBackground(): Successfully identified the PID of the newly started Calabash process: $pid");
+			else trigger_error("execInBackground(): Error: Unknown error code: $pid");
+		}
+	}
+	return $pid;
 }
 
 function processIsRunning($pid) {
@@ -135,24 +175,39 @@ function processIsRunning($pid) {
 		if ($debug) trigger_error("processIsRunning(): Missing PID-argument.");
 		return false;
 	}
+	
+	// get list of all processes and their PIDs
+	$processes = array();
 	if (substr(php_uname(), 0, 7) == "Windows") {
 		if ($debug) trigger_error("processIsRunning(): Fetching list of running Windows processes: 'tasklist /V /FO CSV'");
-		$processes = array();
 		exec("tasklist /V /FO CSV", $processes);
-		foreach ($processes as $process) {
-			// Example line: "python.exe","2072","Console","1","6ÿ540 K","Running","NLB\jostein","0:00:00","123456"
-			list($imageName, $processPID, $sessionName, $sessionNumber, $memUsage, $status, $userName, $cpuTime, $windowTitle) = str_getcsv($process);
-			if ($processPID === $pid) {
-				if ($debug) trigger_error("processIsRunning(): ".$imageName." has PID '".$processPID."' which is the PID that we're looking for. Good!");
-				return true;
-			}
-		}
-		return false; // process not found
 	}
 	else {
-		trigger_error("TODO: processIsRunning(\$processName) not yet implemented for Linux; returning true.");
-		return true;
+		if ($debug) trigger_error("processIsRunning(): Fetching list of running Linux processes: 'ps axo pid,args'");
+		exec("ps axo pid,args", $processes);
 	}
+	
+	// Inspect the list of processes and look for $pid among the PIDs
+	foreach ($processes as $process) {
+		$processName = '';
+		$processPID = -1;
+		if (substr(php_uname(), 0, 7) == "Windows") {
+			// Example line: "python.exe","2072","Console","1","6ÿ540 K","Running","NLB\jostein","0:00:00","123456"
+			$line = str_getcsv($process);
+			$processName = $line[0];
+			$processPID = $line[1];
+		}
+		else { // Linux
+			preg_match('/^\s*([0-9]*)\s*(.*)$/', $process, $line);
+			$processName = $line[2];
+			$processPID = $line[1];
+		}
+		if ($processPID === $pid) {
+			if ($debug) trigger_error("processIsRunning(): ".$processName." has PID '".$processPID."' which is the PID that we're looking for. Good!");
+			return true;
+		}
+	}
+	return false; // process not found
 }
 
 function isProcessing($user) {
