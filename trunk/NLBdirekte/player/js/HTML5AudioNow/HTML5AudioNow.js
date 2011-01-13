@@ -1,4 +1,4 @@
-HTML5AudioNow.version = "0.2";
+HTML5AudioNow.version = "0.2.1";
 
 // determine relative address
 var scriptName = "HTML5AudioNow.js";
@@ -33,7 +33,7 @@ HTML5AudioNow.loadSM2 = function() {
 		soundManager.onready(function(){HTML5AudioNow.ready = true;});
 		soundManager.useHTML5Audio = false;
 	} else {
-		window.setTimeout(HTML5AudioNow.loadSM2,10); // path to directory containing SoundManager2 .SWF file
+		window.setTimeout(HTML5AudioNow.loadSM2,10);
 	}
 };
 HTML5AudioNow.loadSM2();

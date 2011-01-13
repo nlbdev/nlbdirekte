@@ -1,0 +1,19 @@
+Changelog for major- and minor-version releases
+(bugfix-releases not mentioned)
+
+0.1: Start of versioning. Rewritten prepare-procedure
+		based on XProc, XSLT and Python starting
+		on-demand from a PHP-script when the user opens
+		the book in NLBdirekte for the first time.
+0.2: Works in both Windows and Linux. 
+0.3: Attempt at reverting to pure SoundManager2-playback,
+		without going through the HTML5AudioNow-script.
+0.4: Based on 0.2, has improved browser compatibility,
+		most notably IE9 (although Flash in IE9 is still
+		buggy at best). Chromium/Chrome, Firefox and
+		Opera seems to work best. Safari has issues.
+0.5: Quick attempt at improving mobile phone compatibility.
+0.6: Check whether the server is currently preparing the
+		book, and if so, don't start yet another process
+		preparing the book. (only Windows, Linux not
+		implemented yet)

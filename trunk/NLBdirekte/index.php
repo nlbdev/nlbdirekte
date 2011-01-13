@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-<?php include('player/common.inc.php'); ?>
+<?php $debug = false; include('player/common.inc.php'); ?>
 <head>
 	<title>NLBdirekte v<?php echo $version; ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

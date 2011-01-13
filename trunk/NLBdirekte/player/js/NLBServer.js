@@ -47,19 +47,28 @@ function NLBServer(ticket_) {
 				if (xmlhttp.readyState === 4) {
 					window.clearTimeout(failureThreadTimeout);
 					this.state = 'successfully loaded "'+this.getUrl(filename)+'"';
-					if (!xmlhttp.responseXML.documentElement && xmlhttp.responseStream) {
-						// TODO: handle "responseXML is null"
-						xmlhttp.responseXML.load(xmlhttp.responseStream);
+					var xmlDoc;
+					if (DOMParser) {
+						var parser = new DOMParser();
+						xmlDoc = parser.parseFromString(xmlhttp.responseText,"text/xml");
+					}
+					else { // Internet Explorer
+						//var withoutDoctype = xmlhttp.responseText.replace(/<!DOCTYPE[^>]*>/i,'');
+						//xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+						//xmlDoc.async="false";
+						//xmlDoc.loadXML(withoutDoctype);
+						window.alert('NLBdirekte fungerer dessverre inntil videre ikke med Internet Explorer 8 eller eldre. Det anbefales å bruke en annen nettleser enn Internet Explorer, eller alternativt Internet Explorer 9.');
 					}
 					if (this.isLoadingFile === true) {
 						this.isLoadingFile = false;
 						if (typeof callbackSuccess === 'function') {
-							callbackSuccess(xmlhttp);
+							callbackSuccess(xmlDoc);
 						}
 					}
 				}
 			});
-			xmlhttp.overrideMimeType('text/xml');
+			if (xmlhttp.overrideMimeType)
+				xmlhttp.overrideMimeType('text/xml');
 			xmlhttp.send();
 			this.state = 'requested "'+this.getUrl(filename)+'"';
 			failureThreadTimeout = window.setTimeout(delegate(that,function() {

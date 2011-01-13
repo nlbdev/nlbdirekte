@@ -218,7 +218,7 @@ function loadBookmarks() {
 							var span = player.textDocument.createElement('span');
 							span.innerHTML = "<a class='bookmarkLink' href=\"javascript:(function(){"
 												+"$('#menuOpenButton').click();"
-												+"$('#menuTab-bookmarks-button').click();"
+												/*+"$('#menuTab-bookmarks-button').click();"*/
 												+"$('#editBookmark_"+myBookmarks[b].uid+"').click();})();\">"
 												+"<img style='vertical-align: middle' src='img/nlb_bokmerke.png' alt='Bokmerke: "+
 													(myBookmarks[b].title.length>50?myBookmarks[b].title.substring(0,50):myBookmarks[b].title)
@@ -516,7 +516,7 @@ $(function() {
 			);
 		}
 	});
-	$('#bookmark').button({
+	/*$('#bookmark').button({
 		text: false,
 		icons: {
 			primary: 'ui-icon-pin-s'
@@ -525,9 +525,9 @@ $(function() {
 		$('#menuOpenButton').click();
 		$('#menuTab-bookmarks-button').click();
 		
-		currentBookmark = 0;
-		var title = $(player.getHighlightedTextElement()).text().replace(/^\s*/, "").replace(/\s*$/, "");
-		var time = player.getCurrentTime();
+		currentBookmark = 0; */
+//		var title = $(player.getHighlightedTextElement()).text().replace(/^\s*/, "").replace(/\s*$/, "");
+/*		var time = player.getCurrentTime();
 		if (title.length > 50)
 			title = title.substring(0,50);
 		title = niceTime(time)+' '+title;
@@ -538,7 +538,7 @@ $(function() {
 		$('#editBookmark').show('slow');
 		$('.bookmarkEditButton').hide('slow');
 		$('.bookmarkDeleteButton').hide('slow');
-	});
+	});*/
 	$('#mute').button({
 		text: false,
 		icons: {

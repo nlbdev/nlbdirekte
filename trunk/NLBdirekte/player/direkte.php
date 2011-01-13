@@ -109,7 +109,7 @@ if (!empty($_REQUEST['username'])) {
 				<button id="play">spill av</button>
 				<button id="forward">fremover</button>
 				<button id="mute">demp</button>
-				<button id="bookmark">sett bokmerke</button>
+				<!--button id="bookmark">sett bokmerke</button-->
 				<button id="menuOpenButton">åpne meny</button>
 			</div>
 		</div>
@@ -124,7 +124,7 @@ if (!empty($_REQUEST['username'])) {
 						<li class="ui-state-default ui-corner-top"><a href="#menuTab-settings" id="menuTab-settings-button">Alternativer</a></li>
 						<li class="ui-state-default ui-corner-top"><a href="#menuTab-contents" id="menuTab-contents-button">Innholdsfortegnelse</a></li>
 						<li class="ui-state-default ui-corner-top"><a href="#menuTab-pages" id="menuTab-pages-button">Sidetall</a></li>
-						<li class="ui-state-default ui-corner-top"><a href="#menuTab-bookmarks" id="menuTab-bookmarks-button">Bokmerker</a></li>
+						<!--li class="ui-state-default ui-corner-top"><a href="#menuTab-bookmarks" id="menuTab-bookmarks-button">Bokmerker</a></li-->
 					</ul>
 					</div>
 					<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-bookinfo">
@@ -167,7 +167,7 @@ if (!empty($_REQUEST['username'])) {
 					<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-pages">
 						<div id="pages"></div>
 					</div>
-					<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-bookmarks">
+					<!--div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-bookmarks">
 						<div id="bookmarkMessageBox" style="text-align: center; font-weigth: bold; background-color: #FFFF88;"></div>
 						<div id="editBookmark">
 							Tittel:
@@ -205,7 +205,7 @@ if (!empty($_REQUEST['username'])) {
 							<br/>
 						</div>
 						<div id="bookmarks"></div>
-					</div>
+					</div-->
 				</div>
 			</div>
 		</div>

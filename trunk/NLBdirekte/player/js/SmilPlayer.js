@@ -1,6 +1,6 @@
-var consoleLog = false; // set to true for debugging with Firebug
-var debugCurrentTime = false;
-var debugIsSameSrc = false;
+var consoleLog = true; // set to true for debugging with Firebug
+var debugCurrentTime = true;
+var debugIsSameSrc = true;
 var debugJsonML = false;
 function SmilPlayer() {
 	var that = this;
@@ -174,17 +174,18 @@ function SmilPlayer() {
 				// get the new text
 				isLoadingText = true;
 				textObjectSrc = filename;
-				
 				this.server.loadXmlFile(
 					filename,
-					delegate(that,function(xmlhttp) {
+					delegate(that,function(xmlDoc) {
 						// success
-						textObject = xmlhttp===null?null:(
-									 xmlhttp.responseXML===null?null:(
-									 xmlhttp.responseXML.documentElement===null?null:
-									 xmlhttp.responseXML.documentElement));
-						textObject = this.loader.xmlToHtml(textObject); // TODO: make async in case of time-consuming transformations
+						if (consoleLog && console !== null && typeof console !== "undefined") console.log('xmlDoc == '+typeof xmlDoc);
+						if (consoleLog && console !== null && typeof console !== "undefined") console.log('xmlDoc == '+xmlDoc);
+						if (consoleLog && console !== null && typeof console !== "undefined") console.log('xmlDoc == '+typeof xmlDoc.innerHTML);
+						if (consoleLog && console !== null && typeof console !== "undefined") console.log('xmlDoc == '+typeof xmlDoc.getElementsByTagNames);
+						textObject = this.loader.xmlToHtml(xmlDoc); // TODO: make async in case of time-consuming transformations
 						// TODO: handle textObject === null ?
+						if (consoleLog && console !== null && typeof console !== "undefined") console.log('textObject == '+textObject);
+						if (consoleLog && console !== null && typeof console !== "undefined") console.log('textObject.innerHTML == '+textObject.innerHTML);
 						this.textElement.innerHTML = textObject.innerHTML;
 						
 						// Resolve urls (i.e. images)
@@ -221,7 +222,7 @@ function SmilPlayer() {
 						textObjectSrc = '';
 						textObject = null;
 						isLoadingText = false;
-						if (consoleLog) console.log('failed to load'+textObjectSrc);
+						if (consoleLog) console.log('failed to load text object with src: "'+textObjectSrc+'"');
 					})
 				);
 			}
@@ -254,13 +255,14 @@ function SmilPlayer() {
 	
 	var skipTo = -1; // hold the time to skip to while sound is loading
 	function updateAudio(smilNode) {
+		//if (consoleLog && debugCurrentTime) console.log('updateAudio('+typeof smilNode+')');
 		if (audioObject === null && smilNode === null) {
 			// nothing playing and nothing to play
 			return;
 		}
 		if (audioObject === null) {
 			// nothing playing; start playing
-			if (consoleLog) console.log('nothing playing; start playing');
+			//if (consoleLog) console.log('nothing playing; start playing');
 			audioObject = HTML5AudioNow(this.server.getUrl(getAttr(smilNode,'s','')));
 			if (audioObject !== null) {
 				audioObject.controls = false;

@@ -1,0 +1,30 @@
+_Notes taken on how to set up NLBdirekte v0.2 in Windows_
+
+__Calabash__
+- Install Calabash 0.9.29 using the installer: 
+	http://xmlcalabash.com/download/calabash-0.9.29.jar.
+	o You can use a newer version if you want to, but I had some trouble getting 0.9.30 running on Windows 7.
+- Add Calabash to the PATH environment variable.
+	o In my case the path to Calabash is C:\Program Files (x86)\xmlcalabash-0.9.29
+- Download tagsoup-1.2.jar from http://home.ccil.org/~cowan/XML/tagsoup/tagsoup-1.2.jar and put in the Calabash lib directory
+- Edit calabash.bat and append the absolute path to tagsoup-1.2.jar to the classpath. My calabash.bat looks like this: 
+	@java -Xmx1024m -cp "C:\Program Files (x86)\xmlcalabash-0.9.29\lib\calabash.jar;C:\Program Files (x86)\xmlcalabash-0.9.29\lib\commons-codec-1.3.jar;C:\Program Files (x86)\xmlcalabash-0.9.29\lib\commons-logging-1.1.1.jar;C:\Program Files (x86)\xmlcalabash-0.9.29\lib\commons-httpclient-3.1.jar;C:\Program Files (x86)\xmlcalabash-0.9.29\lib\saxon9he.jar;C:\Program Files (x86)\xmlcalabash-0.9.29\lib\tagsoup-1.2.jar" com.xmlcalabash.drivers.Main %*
+
+_Python_
+- Install Python 2.7 from python.org.
+	o Python >3.0 will not work, but it wouldn't be too much work to upgrade the python script used in NLBdirekte if Python >3.0 is required.
+	o Pythons earlier than 2.7 might work but it's not been tested.
+- Check that Python is added to PATH
+
+_NLBdirekte_
+- Unzip the "NLBdirekte" folder to a desired location (typically the website root).
+	o NLBdirekte might not work if there are spaces in the directory path. It's not been tested though.
+- Edit common.in.php and set $shared and $profiles to point to the general DMZ area and the profile storage area respectively.
+	o Alternatively, leave them as is for testing purposes.
+- Make sure that there is at least one DAISY 2.02 book in the folder specified by $shared.
+	o Books have the same folder names as their book identifiers. ($shared\[bookId]\[ncc.html,*.smil,*.mp3,etc])
+- The contents of the profile storage are assumed to follow the structure (can be changed easily):
+	$profiles\[userId]\books\[bookId]\[watermarked mp3s and generated JSONs]
+- Edit index.php and add the testbooks to the list there (see inline comments in the source).
+- If NLBdirekte is exposed in another URL than http://<some-hostname>/NLBdirekte, then change server.url accordingly near the end of SmilPlayerUI.js
+- Bookmarks are currently disabled.
