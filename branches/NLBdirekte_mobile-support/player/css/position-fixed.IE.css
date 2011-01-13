@@ -1,0 +1,13 @@
+/** A WebReflection Solution */
+.position-fixed-top {
+    position: absolute !important;
+    top: expression(((document.documentElement.scrollTop || document.body.scrollTop) + (!this.offsetHeight && 0)) + "px");
+}
+.position-fixed-center {
+    position: absolute !important;
+    top: expression(((document.documentElement.scrollTop || document.body.scrollTop) + ((((document.documentElement.clientHeight || document.body.clientHeight) + (!this.offsetHeight && 0)) / 2) >> 0)) + "px");
+}
+.position-fixed-bottom {
+    position: absolute !important;
+    top: expression(((document.documentElement.scrollTop || document.body.scrollTop) + (document.documentElement.clientHeight || document.body.clientHeight) - this.offsetHeight) + "px");
+}
