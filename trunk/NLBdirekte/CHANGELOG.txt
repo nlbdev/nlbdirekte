@@ -27,3 +27,5 @@ Changelog for major- and minor-version releases
 		There is a bug with p:http-request in Calabash
 		(currently 0.9.30) as it does not make use
 		of the URI resolver given to Calabash.
+0.9: DTD resolution for Windows. Updated installation
+		instrunctions.

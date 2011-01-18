@@ -80,20 +80,19 @@ function execCalabashInBackground($args, $logfile = NULL, $catalog = NULL) {
 	
 	// start process
 	$isWindows = (substr(php_uname(), 0, 7) == "Windows")?true:false;
-	$cmd = '';
+	$cmd = "calabash -E org.apache.xml.resolver.tools.CatalogResolver -U org.apache.xml.resolver.tools.CatalogResolver";
 	if ($isWindows){
-		//$catalog = TODO
+		$catalog = empty($catalog)?"":"set _JAVA_OPTIONS=-Dcom.xmlcalabash.phonehome=false -Dxml.catalog.files=$catalog -Dxml.catalog.staticCatalog=1 -Dxml.catalog.verbosity=".($debug?10:0)." &&";
 		exec("tasklist /V /FO CSV", $before);
 		if ($debug) {
-			trigger_error("forking Windows process: 'start /B calabash $args 1>$logfile 2>&1'");
-			pclose(popen("start /B calabash $args 1>$logfile 2>&1","rb"));
+			trigger_error("forking Windows process: '$catalog start /B $cmd $args 1>$logfile 2>&1'");
+			pclose(popen("$catalog start /B $cmd $args 1>$logfile 2>&1","rb"));
 		} else {
-			pclose(popen("start /B calabash $args", "rb"));
+			pclose(popen("$catalog start /B $cmd $args", "rb"));
 		}
 		exec("tasklist /V /FO CSV", $after);
 	}
 	else { // Linux
-		$cmd = "calabash -E org.apache.xml.resolver.tools.CatalogResolver -U org.apache.xml.resolver.tools.CatalogResolver";
 		$catalog = empty($catalog)?"":"export _JAVA_OPTIONS='-Dcom.xmlcalabash.phonehome=false -Dxml.catalog.files=$catalog -Dxml.catalog.staticCatalog=1 -Dxml.catalog.verbosity=".($debug?10:0)."' &&";
 		exec("ps axo pid,args", $before);
 		if ($debug) {

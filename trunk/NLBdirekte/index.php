@@ -32,7 +32,7 @@
 		<select id="bookId" size="15" style="width:228px;">
 			<!-- Add options for each test book here, with value=bookId and title as the text: -->
 			<!--option value="613757">Frosken finn ein venn</option-->
-			<!--option value="613757" selected="yes">Jamen, Benny</option>
+			<option value="613757" selected="yes">Jamen, Benny</option>
 			<option value="613839">Bare r&oslash;re, ikke se</option>
 			<option value="213755">Verneombudet</option>
 			<option value="606939">Bestemors julebok for de sm&aring;</option>
@@ -41,7 +41,7 @@
 			<option value="611288">Fru Andersen har hump i halen</option>
 			<option value="612430">Illustrert vitenskap nr 01/2008</option>
 			<option value="614202">Min kamp: femte bok</option>
-			<option value="612045">TV-guiden</option-->
+			<option value="612045">TV-guiden</option>
 			
 			<option value="210012">Idrettens treningsl&aelig;re</option>
 			<option value="601005">Kjerringa som ble s&aring; lita som ei teskje</option>
