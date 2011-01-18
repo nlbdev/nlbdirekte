@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+	<!--systemSuffix systemIdSuffix=".dtd" uri="dummy.dtd"/-->
+	<uri
+			name="http://www.w3.org/TR/REC-SMIL/SMIL10.dtd"
+			uri="file:////home/jostein/nlbdirekte/trunk/NLBdirekte/player/prepare/catalog/SMIL10.dtd"/>
+	<public 
+			publicId="-//W3C//DTD SMIL 1.0//EN"
+			uri="file:////home/jostein/nlbdirekte/trunk/NLBdirekte/player/prepare/catalog/SMIL10.dtd"/>
+	<system
+			systemId="http://www.w3.org/TR/REC-SMIL/SMIL10.dtd"
+			uri="file:////home/jostein/nlbdirekte/trunk/NLBdirekte/player/prepare/catalog/SMIL10.dtd"/>
+	<system
+			systemId="SMIL10.dtd"
+			uri="file:////home/jostein/nlbdirekte/trunk/NLBdirekte/player/prepare/catalog/SMIL10.dtd"/>
+	
+	<uri
+			name="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+			uri="file:////home/jostein/nlbdirekte/trunk/NLBdirekte/player/prepare/catalog/xhtml1-transitional.dtd"/>
+	<public 
+			publicId="-//W3C//DTD XHTML 1.0 Transitional//EN"
+			uri="file:////home/jostein/nlbdirekte/trunk/NLBdirekte/player/prepare/catalog/xhtml1-transitional.dtd"/>
+	<system
+			systemId="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+			uri="file:////home/jostein/nlbdirekte/trunk/NLBdirekte/player/prepare/catalog/xhtml1-transitional.dtd"/>
+	<system
+			systemId="xhtml1-transitional.dtd"
+			uri="file:////home/jostein/nlbdirekte/trunk/NLBdirekte/player/prepare/catalog/xhtml1-transitional.dtd"/>
+	
+	<uri
+			name="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
+			uri="file:////home/jostein/nlbdirekte/trunk/NLBdirekte/player/prepare/catalog/xhtml1-strict.dtd"/>
+	<public 
+			publicId="-//W3C//DTD XHTML 1.0 Strict//EN"
+			uri="file:////home/jostein/nlbdirekte/trunk/NLBdirekte/player/prepare/catalog/xhtml1-strict.dtd"/>
+	<system
+			systemId="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
+			uri="file:////home/jostein/nlbdirekte/trunk/NLBdirekte/player/prepare/catalog/xhtml1-strict.dtd"/>
+	<system
+			systemId="xhtml1-strict.dtd"
+			uri="file:////home/jostein/nlbdirekte/trunk/NLBdirekte/player/prepare/catalog/xhtml1-strict.dtd"/>
+</catalog>

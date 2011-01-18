@@ -40,7 +40,8 @@ else if (!$userHasRunningProcess and (
 	chdir("prepare");
 	$pid = execCalabashInBackground('prepare.xpl'.
 									' shared-book="'.path_as_url("$shared/$book").'"'.
-									' personal-book="'.path_as_url("$profiles/$user/books/$book").'"');
+									' personal-book="'.path_as_url("$profiles/$user/books/$book").'"',
+									NULL, 'catalog'.DIRECTORY_SEPARATOR.'prepare-catalog.xml');
 	if ($pid > 0) {
 		$processesFilename = str_replace("\\","/","$profiles/$user/processes.csv");
 		$processesFile = fopen($processesFilename, "ab");
@@ -68,7 +69,7 @@ else {
 
 // Based on http://www.php.net/manual/en/function.exec.php#86329
 // Returns the PID of the newly created Calabash process
-function execCalabashInBackground($args, $logfile = NULL) {
+function execCalabashInBackground($args, $logfile = NULL, $catalog = NULL) {
 	global $debug;
 	global $logdir;
 	if (!isset($logfile)) {
@@ -79,7 +80,9 @@ function execCalabashInBackground($args, $logfile = NULL) {
 	
 	// start process
 	$isWindows = (substr(php_uname(), 0, 7) == "Windows")?true:false;
+	$cmd = '';
 	if ($isWindows){
+		//$catalog = TODO
 		exec("tasklist /V /FO CSV", $before);
 		if ($debug) {
 			trigger_error("forking Windows process: 'start /B calabash $args 1>$logfile 2>&1'");
@@ -90,12 +93,14 @@ function execCalabashInBackground($args, $logfile = NULL) {
 		exec("tasklist /V /FO CSV", $after);
 	}
 	else { // Linux
+		$cmd = "calabash -E org.apache.xml.resolver.tools.CatalogResolver -U org.apache.xml.resolver.tools.CatalogResolver";
+		$catalog = empty($catalog)?"":"export _JAVA_OPTIONS='-Dcom.xmlcalabash.phonehome=false -Dxml.catalog.files=$catalog -Dxml.catalog.staticCatalog=1 -Dxml.catalog.verbosity=".($debug?10:0)."' &&";
 		exec("ps axo pid,args", $before);
 		if ($debug) {
-			trigger_error("forking Linux process: 'calabash $args 1>$logfile 2>&1 &'");
-			exec("calabash $args >$logfile 2>&1 &");
+			trigger_error("forking Linux process: '$catalog $cmd $args 1>$logfile 2>&1 &'");
+			exec("$catalog $cmd $args >$logfile 2>&1 &");
 		} else {
-			exec("calabash $args >/dev/null &");
+			exec("$catalog $cmd $args >/dev/null &");
 		}
 		exec("ps axo pid,args", $after);
 	}
@@ -119,7 +124,7 @@ function execCalabashInBackground($args, $logfile = NULL) {
 			preg_match('/^\s*([0-9]*)\s*(.*)$/', $procAfter, $line);
 			$nameAfter = $line[2];
 			$pidAfter = $line[1];
-			if (strpos($nameAfter, "calabash $args") === false) // note the === to distinguish 0 from false!
+			if (strpos($nameAfter, "$cmd $args") === false) // note the === to distinguish 0 from false!
 				continue;
 		}
 

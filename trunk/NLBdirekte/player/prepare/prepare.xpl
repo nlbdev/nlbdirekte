@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <p:declare-step xmlns:p="http://www.w3.org/ns/xproc" xmlns:c="http://www.w3.org/ns/xproc-step"
-    xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xd="http://www.daisy.org/pipeline2/docgen"
-    xmlns:nlb="http://www.nlb.no/2010/XSL" version="1.0">
-    
+    xmlns:cx="http://xmlcalabash.com/ns/extensions" xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:xd="http://www.daisy.org/pipeline2/docgen" xmlns:nlb="http://www.nlb.no/2010/XSL"
+    version="1.0">
+
     <!--p:serialization port="result" indent="true" encoding="UTF-8"/-->
 
     <p:option name="shared-book" required="true"/>
     <p:option name="personal-book" required="true"/>
-
+    
+    <p:import href="library-1.0.xpl"/> <!-- cached http://xmlcalabash.com/extension/steps/library-1.0.xpl -->
     <p:import href="JsonML.xpl"/>
 
     <p:variable name="sharedBook"
@@ -41,7 +43,10 @@
                 <p:add-attribute match="c:request" attribute-name="href">
                     <p:with-option name="attribute-value" select="concat($sharedBook,'ncc.html')"/>
                 </p:add-attribute>
-                <p:http-request/>
+                <cx:message>
+                    <p:with-option name="message" select="concat('HTTP-REQUEST: ',/c:request/@href)"/>
+                </cx:message>
+                <p:http-request cx:timeout="20"/>
             </p:group>
             <p:catch>
                 <p:identity>
@@ -55,7 +60,10 @@
                 <p:add-attribute match="c:request" attribute-name="href">
                     <p:with-option name="attribute-value" select="concat($sharedBook,'ncc.xhtml')"/>
                 </p:add-attribute>
-                <p:http-request/>
+                <cx:message>
+                    <p:with-option name="message" select="concat('HTTP-REQUEST: ',/c:request/@href)"/>
+                </cx:message>
+                <p:http-request cx:timeout="20"/>
             </p:catch>
         </p:try>
         <p:unescape-markup content-type="text/html"/>
@@ -124,6 +132,14 @@
             <p:variable name="smil" select="/flow/@smil"/>
             <p:try>
                 <p:group>
+                    <cx:message>
+                        <p:with-option name="message" select="concat('LOAD: ',concat($sharedBook,$smil))"/>
+                    </cx:message>
+                    <p:load>
+                        <p:with-option name="href" select="concat($sharedBook,$smil)"/>
+                    </p:load>
+                </p:group>
+                <p:catch>
                     <p:identity>
                         <p:input port="source">
                             <p:inline>
@@ -135,12 +151,10 @@
                     <p:add-attribute match="c:request" attribute-name="href">
                         <p:with-option name="attribute-value" select="concat($sharedBook,$smil)"/>
                     </p:add-attribute>
-                    <p:http-request/>
-                </p:group>
-                <p:catch>
-                    <p:load>
-                        <p:with-option name="href" select="concat($sharedBook,$smil)"/>
-                    </p:load>
+                    <cx:message>
+                        <p:with-option name="message" select="concat('HTTP-REQUEST: ',/c:request/@href)"/>
+                    </cx:message>
+                    <p:http-request cx:timeout="20"/>
                 </p:catch>
             </p:try>
             <p:xslt>
@@ -201,7 +215,10 @@
                 <p:pipe port="result" step="prepare"/>
             </p:with-option>
         </p:add-attribute>
-        <p:http-request/>
+        <cx:message>
+            <p:with-option name="message" select="concat('HTTP-REQUEST: ',/c:request/@href)"/>
+        </cx:message>
+        <p:http-request cx:timeout="20"/>
         <p:store>
             <p:input port="source" select="/c:body"/>
             <p:with-option name="href" select="concat($personalBook,'metadata.json')"/>
@@ -222,7 +239,10 @@
                 <p:pipe port="result" step="prepare"/>
             </p:with-option>
         </p:add-attribute>
-        <p:http-request/>
+        <cx:message>
+            <p:with-option name="message" select="concat('HTTP-REQUEST: ',/c:request/@href)"/>
+        </cx:message>
+        <p:http-request cx:timeout="20"/>
         <p:store>
             <p:input port="source" select="/c:body"/>
             <p:with-option name="href" select="concat($personalBook,'toc.json')"/>
@@ -243,7 +263,10 @@
                 <p:pipe port="result" step="prepare"/>
             </p:with-option>
         </p:add-attribute>
-        <p:http-request/>
+        <cx:message>
+            <p:with-option name="message" select="concat('HTTP-REQUEST: ',/c:request/@href)"/>
+        </cx:message>
+        <p:http-request cx:timeout="20"/>
         <p:store>
             <p:input port="source" select="/c:body"/>
             <p:with-option name="href" select="concat($personalBook,'pagelist.json')"/>
@@ -264,7 +287,10 @@
                 <p:pipe port="result" step="prepare"/>
             </p:with-option>
         </p:add-attribute>
-        <p:http-request/>
+        <cx:message>
+            <p:with-option name="message" select="concat('HTTP-REQUEST: ',/c:request/@href)"/>
+        </cx:message>
+        <p:http-request cx:timeout="20"/>
         <p:store>
             <p:input port="source" select="/c:body"/>
             <p:with-option name="href" select="concat($personalBook,'smil.json')"/>

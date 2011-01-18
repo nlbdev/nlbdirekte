@@ -19,3 +19,6 @@ syntax: regexp
 
 # ignore all output/ directories
 (^|/)output/
+
+# ignore all books in books/ directories except 613839
+books/(?!613839)

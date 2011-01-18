@@ -17,3 +17,13 @@ Changelog for major- and minor-version releases
 		book, and if so, don't start yet another process
 		preparing the book. (only Windows, Linux not
 		implemented yet)
+0.7: Same as 0.6, but with Linux support.
+0.8: DTD resolution against a catalog of cached DTDs is
+		implemented and works in Linux. Next up is
+		Windows. This DTD resolution is needed since it
+		turns out that a lot of XML-files target
+		non-existing files. Also, in an operational
+		environment DTDs should be cached anyway.
+		There is a bug with p:http-request in Calabash
+		(currently 0.9.30) as it does not make use
+		of the URI resolver given to Calabash.
