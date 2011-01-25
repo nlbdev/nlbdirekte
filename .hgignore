@@ -21,4 +21,9 @@ syntax: regexp
 (^|/)output/
 
 # ignore all books in books/ directories except 613839
-books/(?!613839)
+(^|/)books/(?!613839)
+
+# ignore temporary files, logs and profile area
+(^|/)profiles/
+(^|/)player/logs/
+(^|/)player/prepare/temp/

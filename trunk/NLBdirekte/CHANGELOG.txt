@@ -29,3 +29,6 @@ Changelog for major- and minor-version releases
 		of the URI resolver given to Calabash.
 0.9: DTD resolution for Windows. Updated installation
 		instrunctions.
+0.10: Accesskeys for the menu buttons (map to numbers 1-6),
+		Prettier TOC, Prettier pagelist (fixed pagelist
+		not being created in python script as well)
