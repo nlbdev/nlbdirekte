@@ -1,6 +1,6 @@
-var consoleLog = true; // set to true for debugging with Firebug
-var debugCurrentTime = true;
-var debugIsSameSrc = true;
+var consoleLog = debug?debug:false; // set to true for debugging with Firebug
+var debugCurrentTime = false;
+var debugIsSameSrc = false;
 var debugJsonML = false;
 function SmilPlayer() {
 	var that = this;

@@ -18,8 +18,13 @@ if (!empty($_REQUEST['username'])) {
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 	
+	<link type="text/css" href="css/NLBdirekte.css" rel="stylesheet" />
+	
+	<!-- Configuration for NLBdirekte -->
+	<script type="text/javascript" src="config/config.js"></script>
+	
 	<!-- Debug mechanism -->
-	<!--script type='text/javascript' src='https://damnit.jupiterit.com/damnit.js?e08775070c01628bb4f74f2e46734f670f2dadce'></script-->
+	<script type='text/javascript' src='https://damnit.jupiterit.com/damnit.js?f4beb70f446e2e2ff2f26681e39a3bb5c533df1b'></script>
 	
 	<!-- Easy fetching (and sending if needed) of JSON data structures -->
 	<script type='text/javascript' src='js/JSON/json2.js'></script>
@@ -105,12 +110,12 @@ if (!empty($_REQUEST['username'])) {
 	<div>
 		<div id="controls" class='ui-widget centered' style="position: fixed; top: 0%; width: 100%; text-align: center;">
 			<div id="controlButtons">
-				<button id="back">tilbake</button>
-				<button id="play">spill av</button>
-				<button id="forward">fremover</button>
-				<button id="mute">demp</button>
-				<!--button id="bookmark">sett bokmerke</button-->
-				<button id="menuOpenButton">åpne meny</button>
+				<button id="back" accesskey="1">tilbake</button>
+				<button id="play" accesskey="2">spill av</button>
+				<button id="forward" accesskey="3">fremover</button>
+				<button id="mute" accesskey="4">demp</button>
+				<!--button id="bookmark" accesskey="5">sett bokmerke</button-->
+				<button id="menuOpenButton" accesskey="6">åpne meny</button>
 			</div>
 		</div>
 		<div id="book" style="height: 100%; margin-top: 100px;"></div>

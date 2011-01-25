@@ -1,23 +1,30 @@
 <?php
+
 # version of NLBdirekte
-$version = '0.10';
+$version = '0.11';
+
+include('config/config.inc.php'); // import users config-file
+
+# ---- default configuration variables ----
 
 # relative paths to general DMZ and profile storage
-$shared = getcwd().'/../books';
-$profiles = getcwd().'/../profiles';
+if (!isset($shared)) $shared = getcwd().'/../books';
+if (!isset($profiles)) $profiles = getcwd().'/../profiles';
 
 # other logfiles go in this directory
-$logdir = getcwd().'/logs';
+if (!isset($logdir)) $logdir = getcwd().'/logs';
 
 # all PHP-errors, warnings and notices are appended to this file
-$logfile = $logdir.'/log.txt';
+if (!isset($logfile)) $logfile = $logdir.'/log.txt';
 
-$calabashExec = "C:\\xmlcalabash-0.9.29\\calabash.bat";
+# in case Calabash is not in PATH, the absolute path can
+# be given in $calabashExec
+if (!isset($calabashExec)) $calabashExec = "calabash";
 
 # debugging
-$debug = isset($debug)?$debug:true;
+if (!isset($debug)) $debug = false;
 
-# ---- end of configuration variables, there should be no need to modify the stuff below here. ----
+# ---- end of default configuration variables ----
 
 # should make it easy to distinguish log entries in the log when they get intertwined
 $sessionUID = microtime(true);

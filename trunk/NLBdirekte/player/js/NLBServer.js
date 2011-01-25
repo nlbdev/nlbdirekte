@@ -50,14 +50,20 @@ function NLBServer(ticket_) {
 					var xmlDoc;
 					if (DOMParser) {
 						var parser = new DOMParser();
-						xmlDoc = parser.parseFromString(xmlhttp.responseText,"text/xml");
+						try {
+							xmlDoc = parser.parseFromString(xmlhttp.responseText,"text/xml");
+						}
+						catch (e) {
+							if (console) console.log("Unable to parse responseText: \n"+xmlhttp.responseText);
+							throw e;
+						}
 					}
 					else { // Internet Explorer
 						//var withoutDoctype = xmlhttp.responseText.replace(/<!DOCTYPE[^>]*>/i,'');
 						//xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
 						//xmlDoc.async="false";
 						//xmlDoc.loadXML(withoutDoctype);
-						window.alert('NLBdirekte fungerer dessverre inntil videre ikke med Internet Explorer 8 eller eldre. Det anbefales å bruke en annen nettleser enn Internet Explorer, eller alternativt Internet Explorer 9.');
+						window.alert('NLBdirekte fungerer dessverre inntil videre ikke med Internet Explorer 8 eller eldre. Det anbefales ï¿½ bruke en annen nettleser enn Internet Explorer, eller alternativt Internet Explorer 9.');
 					}
 					if (this.isLoadingFile === true) {
 						this.isLoadingFile = false;
