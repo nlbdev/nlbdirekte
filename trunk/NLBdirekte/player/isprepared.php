@@ -87,8 +87,8 @@ function execCalabashInBackground($args, $logfile = NULL, $catalog = NULL) {
 		$catalog = empty($catalog)?"":"set _JAVA_OPTIONS=-Dcom.xmlcalabash.phonehome=false -Dxml.catalog.files=$catalog -Dxml.catalog.staticCatalog=1 -Dxml.catalog.verbosity=".($debug?10:0)." &&";
 		exec("tasklist /V /FO CSV", $before);
 		if ($debug) {
-			trigger_error("forking Windows process: '$catalog start /B $cmd $args 2>$logfile 1>&2'");
-			pclose(popen("$catalog start /B $cmd $args 2>$logfile 1>&2","rb"));
+			trigger_error("forking Windows process: '$catalog start /B $cmd $args 1>$logfile 2>&1'");
+			pclose(popen("$catalog start /B $cmd $args 1>$logfile 2>&1","rb"));
 		} else {
 			pclose(popen("$catalog start /B $cmd $args", "rb"));
 		}
@@ -198,7 +198,7 @@ function processIsRunning($pid) {
 		$processName = '';
 		$processPID = -1;
 		if (substr(php_uname(), 0, 7) == "Windows") {
-			// Example line: "python.exe","2072","Console","1","6ÿ540 K","Running","NLB\jostein","0:00:00","123456"
+			// Example line: "python.exe","2072","Console","1","6540 K","Running","NLB\jostein","0:00:00","123456"
 			$line = str_getcsv($process);
 			$processName = $line[0];
 			$processPID = $line[1];

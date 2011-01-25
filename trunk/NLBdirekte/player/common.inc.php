@@ -1,13 +1,13 @@
 <?php
 # version of NLBdirekte
-$version = '0.9';
+$version = '0.10';
 
 # relative paths to general DMZ and profile storage
-$shared = 'c:/dds-dmz/books';
-$profiles = 'c:/dds-dmz/profiles';
+$shared = getcwd().'/../books';
+$profiles = getcwd().'/../profiles';
 
 # other logfiles go in this directory
-$logdir = 'c:/dds-dmz/logs';
+$logdir = getcwd().'/logs';
 
 # all PHP-errors, warnings and notices are appended to this file
 $logfile = $logdir.'/log.txt';
