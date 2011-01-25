@@ -1,16 +1,18 @@
 <?php
 # version of NLBdirekte
-$version = '0.10';
+$version = '0.9';
 
 # relative paths to general DMZ and profile storage
-$shared = getcwd().'/../books';
-$profiles = getcwd().'/../profiles';
+$shared = 'c:/dds-dmz/books';
+$profiles = 'c:/dds-dmz/profiles';
 
 # other logfiles go in this directory
-$logdir = getcwd().'/logs';
+$logdir = 'c:/dds-dmz/logs';
 
 # all PHP-errors, warnings and notices are appended to this file
 $logfile = $logdir.'/log.txt';
+
+$calabashExec = "C:\\xmlcalabash-0.9.29\\calabash.bat";
 
 # debugging
 $debug = isset($debug)?$debug:true;

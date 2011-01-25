@@ -72,6 +72,7 @@ else {
 function execCalabashInBackground($args, $logfile = NULL, $catalog = NULL) {
 	global $debug;
 	global $logdir;
+	global $calabashExec;
 	if (!isset($logfile)) {
 		$logfile = fix_directory_separators($logdir.'/calabash-'.date('Ymd_His').'.'.((microtime(true)*1000000)%1000000).'.txt');
 	}
@@ -82,11 +83,12 @@ function execCalabashInBackground($args, $logfile = NULL, $catalog = NULL) {
 	$isWindows = (substr(php_uname(), 0, 7) == "Windows")?true:false;
 	$cmd = "calabash -E org.apache.xml.resolver.tools.CatalogResolver -U org.apache.xml.resolver.tools.CatalogResolver";
 	if ($isWindows){
+		$cmd = "$calabashExec -E org.apache.xml.resolver.tools.CatalogResolver -U org.apache.xml.resolver.tools.CatalogResolver";
 		$catalog = empty($catalog)?"":"set _JAVA_OPTIONS=-Dcom.xmlcalabash.phonehome=false -Dxml.catalog.files=$catalog -Dxml.catalog.staticCatalog=1 -Dxml.catalog.verbosity=".($debug?10:0)." &&";
 		exec("tasklist /V /FO CSV", $before);
 		if ($debug) {
-			trigger_error("forking Windows process: '$catalog start /B $cmd $args 1>$logfile 2>&1'");
-			pclose(popen("$catalog start /B $cmd $args 1>$logfile 2>&1","rb"));
+			trigger_error("forking Windows process: '$catalog start /B $cmd $args 2>$logfile 1>&2'");
+			pclose(popen("$catalog start /B $cmd $args 2>$logfile 1>&2","rb"));
 		} else {
 			pclose(popen("$catalog start /B $cmd $args", "rb"));
 		}

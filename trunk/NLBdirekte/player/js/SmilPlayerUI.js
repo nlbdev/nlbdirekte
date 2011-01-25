@@ -772,7 +772,7 @@ function init() {
 	player = new SmilPlayer();		// playback of SMIL filesets
 	loader = new Daisy202Loader();	// loading and parsing SMIL-files from the server into the player
 	
-	server.url = 'http://'+window.location.host+'/NLBdirekte/player/'; // <-- place in a config-file or something?
+	server.url = 'http://'+window.location.host+'/NLBdirekte/beta/player/'; // <-- place in a config-file or something?
 	//Bookmark.scriptUrl = 'http://'+window.location.host+'/NLBdirekte/patrondata/bookmarks.php';
 	
 	loader.player = player;
