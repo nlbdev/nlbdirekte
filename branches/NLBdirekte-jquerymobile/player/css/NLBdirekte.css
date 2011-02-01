@@ -1,0 +1,144 @@
+#toc .toc-level-1 {
+	font-size: 1.2em;
+	/*margin-left: 0px;*/
+}
+#toc .toc-level-2 {
+	font-size: 1.1em;
+	/*margin-left: 50px;*/
+}
+#toc .toc-level-3 {
+	font-size: 1.0em;
+	/*margin-left: 100px;*/
+}
+#toc .toc-level-4 {
+	font-size: 0.9em;
+	/*margin-left: 150px;*/
+}
+#toc .toc-level-5 {
+	font-size: 0.8em;
+	/*margin-left: 200px;*/
+}
+#toc .toc-level-6 {
+	font-size: 0.7em;
+	/*margin-left: 250px;*/
+}
+#toc .toc-level {
+	padding: 0;
+	list-style-type: none;
+}
+#toc .toc-level a {
+	text-decoration: none;
+}
+
+#pages .pagelist-entry {
+	font-size: 1em;
+	/*margin-left: 0px;*/
+	padding: 0;
+	list-style-type: none;
+}
+#pages .pagelist-entry a {
+	text-decoration: none;
+}
+
+.timerange {
+	font-style: italic;
+	font-size: 0.9em;
+	font-family: monospace;
+}
+
+body {
+   -webkit-user-select:none;
+   -webkit-touch-callout:none;
+   -webkit-tap-highlight-color: rgba(0,0,0,0);
+   font-family:helvetica neue;
+	font-size:18px;
+   margin:0;
+   padding:0;
+}
+
+#controls, #ft {
+    position:fixed;
+    width:100%;
+	text-align:center;
+	font-weight:bold;
+}
+
+#controls {
+    top:0;
+    background:#fff;
+	line-height:50px;
+	height:50px;
+	color:#000;
+	border-bottom:0px solid rgba(0, 0, 0, 0.2);
+}
+
+/*#controls {
+    height:50px;
+    top:0;
+	line-height:50px;
+	color:#fff;
+	text-align:center;
+    background:transparent url(img/UITabBarBkgd.png) 0 0 repeat-x;
+}*/
+
+#ft {
+    height:49px;
+    bottom:0;
+	line-height:48px;
+	color:#fff;
+	text-align:center;
+    background:transparent url(img/UITabBarBkgd.png) 0 0 repeat-x;
+}
+
+#bd {
+    background:#fff;
+    margin:44px 0 49px 0;
+}
+
+div, ul, li {
+    margin:0;
+    padding:0;
+}
+
+#soundmanager-debug {
+ position:fixed;
+ bottom:1em;
+ right:1em;
+ width:38em;
+ height:30em;
+ overflow:auto;
+ padding:0px;
+ margin:1em;
+ font-family:monaco,"VT-100",terminal,"lucida console",courier,system;
+ opacity:0.9;
+ color:#333;
+ border:1px solid #ccddee;
+ -moz-border-radius:3px;
+ -khtml-border-radius:3px;
+ -webkit-border-radius:3px;
+ background:#f3f9ff;
+}
+
+#soundmanager-debug div {
+ font-size:x-small;
+ padding:0.2em;
+ margin:0px;
+}
+
+.nav-nlbdirekte .ui-btn .ui-btn-inner { padding-top: 40px !important; }
+.nav-nlbdirekte .ui-btn .ui-icon { width: 36px!important; height: 36px!important; margin-left: -18px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: none !important; border-radius: none !important; }
+#backward .ui-icon { background:  url(../img/icons/png/32x32/media-fast-backward.png) 50% 50% no-repeat; background-size: 32px 32px; }
+#forward .ui-icon { background:  url(../img/icons/png/32x32/media-fast-forward.png) 50% 50% no-repeat; background-size: 32px 32px;  }
+.playing .ui-icon { background:  url(../img/icons/png/32x32/media-pause.png) 50% 50% no-repeat; background-size: 32px 32px; }
+.paused .ui-icon { background:  url(../img/icons/png/32x32/media-play.png) 50% 50% no-repeat; background-size: 32px 32px; }
+.unmuted  .ui-icon { background:  url(../img/icons/png/32x32/media-volume-3.png) 50% 50% no-repeat; background-size: 32px 32px; }
+.muted  .ui-icon { background:  url(../img/icons/png/32x32/media-volume-0.png) 50% 50% no-repeat; background-size: 32px 32px; }
+/*#bookmark .ui-icon { background:  url(../img/icons/png/32x32/media-disk-3-5.png) 50% 50% no-repeat; background-size: 32px 32px; }*/
+/*.viewingContent .ui-icon { background:  url(../img/icons/png/32x32/tools.png) 50% 50% no-repeat; background-size: 32px 32px; }
+.viewingMenu .ui-icon { background:  url(../img/icons/png/32x32/undo.png) 50% 50% no-repeat; background-size: 32px 32px; }*/
+#menu .ui-icon { background:  url(../img/icons/png/32x32/tools.png) 50% 50% no-repeat; background-size: 32px 32px; }
+.menu-exit .ui-icon { background:  url(../img/icons/png/32x32/undo.png) 50% 50% no-repeat; background-size: 32px 32px; }*/
+.settingsQ .ui-icon { background:  url(../img/icons/png/32x32/tools.png) 50% 50% no-repeat; background-size: 32px 32px; }
+.metadata .ui-icon { background:  url(../img/icons/png/32x32/tools.png) 50% 50% no-repeat; background-size: 32px 32px; }
+.toc .ui-icon { background:  url(../img/icons/png/32x32/tools.png) 50% 50% no-repeat; background-size: 32px 32px; }
+.pages .ui-icon { background:  url(../img/icons/png/32x32/tools.png) 50% 50% no-repeat; background-size: 32px 32px; }
