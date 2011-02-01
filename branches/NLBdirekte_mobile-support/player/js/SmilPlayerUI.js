@@ -90,11 +90,23 @@ function playerIsLoaded() {
 			(player.toc.length>2||player.toc.length===2&&typeof player.toc[1]!=='object')) {
 			var toc = player.toc;
 			txt = "";
+			var previousLevel = 0;
 			for (var i = (toc.length>1&&typeof toc[1]==='object')?2:1; i < toc.length; i++) {
 				// {title,level,id,begin,end}
-				var level = "";
-				for (var l = 1; l < toc[i][1]['level']; l++) { level += "&nbsp;&nbsp;&nbsp;&nbsp;"; }
-				txt += level+'<nobr><a onclick="player.skipToTime('+toc[i][1]['b']+');$(\'#menuCloseButton\').click();scrollToHighlightedText();return false;" href="">'+toc[i][1]['title']+" ("+niceTime(toc[i][1]['b'])+' - '+niceTime(toc[i][1]['e'])+')</a></nobr><br/>';
+				//var level = "";
+				//for (var l = 1; l < toc[i][1]['level']; l++) { level += "&nbsp;&nbsp;&nbsp;&nbsp;"; }
+				//txt += level+'<nobr><a onclick="player.skipToTime('+toc[i][1]['b']+');$(\'#menuCloseButton\').click();scrollToHighlightedText();return false;" href="">'+toc[i][1]['title']+" ("+niceTime(toc[i][1]['b'])+' - '+niceTime(toc[i][1]['e'])+')</a></nobr><br/>';
+				for (var l = previousLevel; l < toc[i][1]['level']; l++) {
+					txt += '<ul>';
+				}
+				for (var l = previousLevel; l > toc[i][1]['level']; l--) {
+					txt += '</ul>';
+				}
+				txt += '<li class="toc-level toc-level-'+toc[i][1]['level']+'"><a onclick="player.skipToTime('+toc[i][1]['b']+');$(\'#menuCloseButton\').click();scrollToHighlightedText();return false;" href="">'+toc[i][1]['title']+" <span class='timerange'>("+niceTime(toc[i][1]['b'])+' - '+niceTime(toc[i][1]['e'])+')</span></a></li>';
+				previousLevel = toc[i][1]['level'];
+			}
+			for (var l = previousLevel; l > 0; l--) {
+				txt += '</ul>';
 			}
 		} else {
 			txt = "<p>Boken har ingen innholdsfortegnelse</p>";
@@ -108,9 +120,9 @@ function playerIsLoaded() {
 			txt = "";
 			for (var i = (pagelist.length>1&&typeof pagelist[1]==='object')?2:1; i < pagelist.length; i++) {
 				// {page,id,begin,end}
-				txt += '<a onclick="player.skipToTime('+pagelist[i][1]['b']+');$(\'#menuCloseButton\').click();scrollToHighlightedText();return false;" href="">side '+pagelist[i][1]['page']+
-					" ("+niceTime(i===0?0:pagelist[i][1]['b'])+' - '+niceTime((i+1===pagelist.length)?player.getTotalTime():pagelist[i+1][1]['b'])+
-					')</a><br/>';
+				txt += '<span class="pagelist-entry"><a onclick="player.skipToTime('+pagelist[i][1]['b']+');$(\'#menuCloseButton\').click();scrollToHighlightedText();return false;" href="">side '+pagelist[i][1]['page']+
+					" <span class='timerange'>("+niceTime(i===0?0:pagelist[i][1]['b'])+' - '+niceTime((i+1===pagelist.length)?player.getTotalTime():pagelist[i+1][1]['b'])+
+					')</span></a></span><br/>';
 			}
 		} else {
 			txt = "<p>Boken har ikke sideinformasjon</p>";
@@ -210,16 +222,15 @@ function loadBookmarks() {
 					
 					var fragment = getAttr(smilAtTime,'s','').split('#',2);
 					if (fragment.length === 2 && fragment[1] !== '') {
-						if (console) console.log('bookmark at id="'+fragment[1]+'"');
+						console.log('bookmark at id="'+fragment[1]+'"');
 						var textElement = player.textDocument.getElementById(fragment[1]);
-						if (console) console.log('player.textDocument.getElementById('+fragment[1]+') === '+textElement);
-						if (textElement) {
-							if (console) console.log('inserting...');
+						console.log('player.textDocument.getElementById('+fragment[1]+') === '+textElement);
+						if (textElement) {console.log('inserting...');
 							// TODO: add bookmark icons ('img/nlb_bokmerke.png')
 							var span = player.textDocument.createElement('span');
 							span.innerHTML = "<a class='bookmarkLink' href=\"javascript:(function(){"
 												+"$('#menuOpenButton').click();"
-												+"$('#menuTab-bookmarks-button').click();"
+												/*+"$('#menuTab-bookmarks-button').click();"*/
 												+"$('#editBookmark_"+myBookmarks[b].uid+"').click();})();\">"
 												+"<img style='vertical-align: middle' src='img/nlb_bokmerke.png' alt='Bokmerke: "+
 													(myBookmarks[b].title.length>50?myBookmarks[b].title.substring(0,50):myBookmarks[b].title)
@@ -517,7 +528,7 @@ $(function() {
 			);
 		}
 	});
-	$('#bookmark').button({
+	/*$('#bookmark').button({
 		text: false,
 		icons: {
 			primary: 'ui-icon-pin-s'
@@ -526,9 +537,9 @@ $(function() {
 		$('#menuOpenButton').click();
 		$('#menuTab-bookmarks-button').click();
 		
-		currentBookmark = 0;
-		var title = $(player.getHighlightedTextElement()).text().replace(/^\s*/, "").replace(/\s*$/, "");
-		var time = player.getCurrentTime();
+		currentBookmark = 0; */
+//		var title = $(player.getHighlightedTextElement()).text().replace(/^\s*/, "").replace(/\s*$/, "");
+/*		var time = player.getCurrentTime();
 		if (title.length > 50)
 			title = title.substring(0,50);
 		title = niceTime(time)+' '+title;
@@ -539,7 +550,7 @@ $(function() {
 		$('#editBookmark').show('slow');
 		$('.bookmarkEditButton').hide('slow');
 		$('.bookmarkDeleteButton').hide('slow');
-	});
+	});*/
 	$('#mute').button({
 		text: false,
 		icons: {
@@ -669,20 +680,9 @@ window.setInterval(function(){
 		if (autoScroll && player.isPlaying()) {
 			keepHighlightedTextOnScreen();
 		}
-		
-		// update progress bar and volume
-		// hvis feil volum; $('#volume').progressbar('value', player.getVolume() );
-		if (player.getAudioBackend() !== '' && player.getCurrentAudioTimeLoaded() < player.getCurrentAudioDuration) {
-			$('#loadbar').css('width',player.getCurrentAudioTimeLoaded()/player.getCurrentAudioDuration()+'%');
-		} else {
-			$('#loadbar').css('width','0px');
-		}
-		if (console) console.log('beginning: '+player.getCurrentAudioBeginning()
-								+' loaded: '+player.getCurrentAudioTimeLoaded()
-								+' duration: '+player.getCurrentAudioDuration());
-		$('#controls').css('top','0px');
 	}
-	
+	// update progress bar and volume
+	// hvis feil volum; $('#volume').progressbar('value', player.getVolume() );
 },100);
 window.setInterval(function(){
 	if (player === null || server === null || loader === null)
@@ -784,7 +784,11 @@ function init() {
 	player = new SmilPlayer();		// playback of SMIL filesets
 	loader = new Daisy202Loader();	// loading and parsing SMIL-files from the server into the player
 	
-	server.url = 'http://'+window.location.host+'/NLBdirekte/player/'; // <-- place in a config-file or something?
+	if (typeof serverUrl !== 'undefined')
+		server.url = serverUrl;
+	else
+		server.url = 'http://'+window.location.host+'/NLBdirekte/player/'; // default location of NLBdirekte
+	
 	//Bookmark.scriptUrl = 'http://'+window.location.host+'/NLBdirekte/patrondata/bookmarks.php';
 	
 	loader.player = player;

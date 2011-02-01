@@ -1,21 +1,34 @@
 <?php
+
 # version of NLBdirekte
-$version = '0.5.0';
+$version = '0.11';
+
+include('config/config.inc.php'); // import users config-file
+
+# ---- default configuration variables ----
 
 # relative paths to general DMZ and profile storage
-$shared = getcwd().'/../books';
-$profiles = getcwd().'/../profiles';
+if (!isset($shared)) $shared = getcwd().'/../books';
+if (!isset($profiles)) $profiles = getcwd().'/../profiles';
 
 # other logfiles go in this directory
-$logdir = getcwd().'/logs';
+if (!isset($logdir)) $logdir = getcwd().'/logs';
 
 # all PHP-errors, warnings and notices are appended to this file
-$logfile = $logdir.'/log.txt';
+if (!isset($logfile)) $logfile = $logdir.'/log.txt';
+
+# in case Calabash is not in PATH, the absolute path can
+# be given in $calabashExec
+if (!isset($calabashExec)) $calabashExec = "calabash";
 
 # debugging
-$debug = true;
+if (!isset($debug)) $debug = false;
 
-# ---- end of configuration variables ----
+# ---- end of default configuration variables ----
+
+# should make it easy to distinguish log entries in the log when they get intertwined
+$sessionUID = microtime(true);
+$sessionUID = ($sessionUID%60) + ($sessionUID-floor($sessionUID));
 
 # decoding tickets
 # usage: list($userId, $bookId) = decodeTicket($ticket);
@@ -32,14 +45,14 @@ function path_as_url($filepath) {
 	if (substr($filepath,0,1)!=='/')
 		$url .= '/';
 	$url .= str_replace(' ','%20',str_replace("\\",'/',$filepath));
-	if ($debug) trigger_error("$filepath as URL: $url");
+	//if ($debug) trigger_error("$filepath as URL: $url");
 	return $url;
 }
 
 function fix_directory_separators($filepath) {
 	global $debug;
 	$path = str_replace('/',DIRECTORY_SEPARATOR,str_replace("\\",'/',$filepath));
-	if ($debug) trigger_error("$filepath with fixed directory separators: $path");
+	//if ($debug) trigger_error("$filepath with fixed directory separators: $path");
 	return $path;
 }
 
@@ -49,7 +62,7 @@ register_shutdown_function('shutdownHandler');
 set_error_handler("errorHandler");
 ob_start("fatalErrorHandler");
 if ($debug) {
-	$fd = fopen(realpath($logfile), "a");
+	$fd = fopen(fix_directory_separators($logfile), "a");
 	fwrite($fd, "\n");
 	fclose($fd);
 	trigger_error("---- ".$_SERVER['SCRIPT_NAME']." ----");
@@ -68,7 +81,7 @@ function fatalErrorHandler($buffer) {
 }
 function errorHandler($errno, $errstr, $errfile, $errline)
 {
-	global $logfile;
+	global $logfile, $sessionUID;
 	
     if (!(error_reporting() & $errno)) {
         // This error code is not included in error_reporting
@@ -96,8 +109,8 @@ function errorHandler($errno, $errstr, $errfile, $errline)
 		default: $type = "(unknown error type: $errno)";
 	}
 	
-	$fd = fopen(realpath($logfile), "a");
-	$str = "[" . date("Y-m-d H:i:s", mktime()) . "] " . "$type: $errstr (at $errfile:$errline)";
+	$fd = fopen(fix_directory_separators($logfile), "a");
+	$str = "[" . date("Y-m-d H:i:s", mktime()) . "] [" . $sessionUID . "] [$type]: $errstr (at $errfile:$errline)";
 	fwrite($fd, $str . "\n");
 	fclose($fd);
 	

@@ -13,3 +13,22 @@ Changelog for major- and minor-version releases
 		buggy at best). Chromium/Chrome, Firefox and
 		Opera seems to work best. Safari has issues.
 0.5: Quick attempt at improving mobile phone compatibility.
+0.6: Check whether the server is currently preparing the
+		book, and if so, don't start yet another process
+		preparing the book. (only Windows, Linux not
+		implemented yet)
+0.7: Same as 0.6, but with Linux support.
+0.8: DTD resolution against a catalog of cached DTDs is
+		implemented and works in Linux. Next up is
+		Windows. This DTD resolution is needed since it
+		turns out that a lot of XML-files target
+		non-existing files. Also, in an operational
+		environment DTDs should be cached anyway.
+		There is a bug with p:http-request in Calabash
+		(currently 0.9.30) as it does not make use
+		of the URI resolver given to Calabash.
+0.9: DTD resolution for Windows. Updated installation
+		instrunctions.
+0.10: Accesskeys for the menu buttons (map to numbers 1-6),
+		Prettier TOC, Prettier pagelist (fixed pagelist
+		not being created in python script as well)

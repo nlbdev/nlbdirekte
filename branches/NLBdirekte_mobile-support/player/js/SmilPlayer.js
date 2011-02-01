@@ -1,4 +1,4 @@
-var consoleLog = false; // set to true for debugging with Firebug
+var consoleLog = debug?debug:false; // set to true for debugging with Firebug
 var debugCurrentTime = false;
 var debugIsSameSrc = false;
 var debugJsonML = false;
@@ -178,8 +178,14 @@ function SmilPlayer() {
 					filename,
 					delegate(that,function(xmlDoc) {
 						// success
+						if (consoleLog && console !== null && typeof console !== "undefined") console.log('xmlDoc == '+typeof xmlDoc);
+						if (consoleLog && console !== null && typeof console !== "undefined") console.log('xmlDoc == '+xmlDoc);
+						if (consoleLog && console !== null && typeof console !== "undefined") console.log('xmlDoc == '+typeof xmlDoc.innerHTML);
+						if (consoleLog && console !== null && typeof console !== "undefined") console.log('xmlDoc == '+typeof xmlDoc.getElementsByTagNames);
 						textObject = this.loader.xmlToHtml(xmlDoc); // TODO: make async in case of time-consuming transformations
 						// TODO: handle textObject === null ?
+						if (consoleLog && console !== null && typeof console !== "undefined") console.log('textObject == '+textObject);
+						if (consoleLog && console !== null && typeof console !== "undefined") console.log('textObject.innerHTML == '+textObject.innerHTML);
 						this.textElement.innerHTML = textObject.innerHTML;
 						
 						// Resolve urls (i.e. images)
@@ -582,25 +588,6 @@ function SmilPlayer() {
 		if (audioObject === null)
 			return '';
 		return audioObject.backend;
-	}
-	this.getCurrentAudioBeginning = function() {
-		if (audioObject === null)
-			return 0;
-		return audioObjectBegin;
-	}
-	this.getCurrentAudioDuration = function() {
-		if (audioObject === null)
-			return 1;
-		return audioObject.duration;
-	}
-	this.getCurrentAudioTimeLoaded = function() {
-		if (audioObject === null)
-			return 0;
-		var time = 0;
-		for (var i = 0; i < audioObject.seekable.length; i++) {
-			time += audioObject.seekable.end(i) - audioObject.seekable.start(i);
-		}
-		return time;
 	}
 	
 	// Functions for easier use of JsonML elements

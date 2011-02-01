@@ -17,10 +17,10 @@ if ($debug) trigger_error("requested file $file");
 }*/
 
 // Book not ready for playback?
-if (!file_exists(realpath("$profiles/$user/books/$book/metadata.json"))
-	or !file_exists(realpath("$profiles/$user/books/$book/pagelist.json"))
-	or !file_exists(realpath("$profiles/$user/books/$book/smil.json"))
-	or !file_exists(realpath("$profiles/$user/books/$book/toc.json"))) {
+if (!file_exists(fix_directory_separators("$profiles/$user/books/$book/metadata.json"))
+	or !file_exists(fix_directory_separators("$profiles/$user/books/$book/pagelist.json"))
+	or !file_exists(fix_directory_separators("$profiles/$user/books/$book/smil.json"))
+	or !file_exists(fix_directory_separators("$profiles/$user/books/$book/toc.json"))) {
   // Is book not being prepared?
   //if (!(book being prepared)) {
   header("Content-Type: text/plain");
@@ -30,9 +30,9 @@ if (!file_exists(realpath("$profiles/$user/books/$book/metadata.json"))
 }
 
 // Does file exist in profile area?
-else if (file_exists(realpath("$profiles/$user/books/$book/$file"))) {
+else if (file_exists(fix_directory_separators("$profiles/$user/books/$book/$file"))) {
   if ($debug) trigger_error("returning file from profile storage");
-  $fullFile = realpath("$profiles/$user/books/$book/$file");
+  $fullFile = fix_directory_separators("$profiles/$user/books/$book/$file");
   
   $mime = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $fullFile);
   $size = filesize($fullFile);
@@ -46,9 +46,9 @@ else if (file_exists(realpath("$profiles/$user/books/$book/$file"))) {
 }
 
 // Does file exist in general DMZ area?
-else if (file_exists(realpath("$shared/$book/$file"))) {
+else if (file_exists(fix_directory_separators("$shared/$book/$file"))) {
   if ($debug) trigger_error("returning file from shared storage");
-  $fullFile = realpath("$shared/$book/$file");
+  $fullFile = fix_directory_separators("$shared/$book/$file");
   
   $mime = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $fullFile);
   $size = filesize($fullFile);

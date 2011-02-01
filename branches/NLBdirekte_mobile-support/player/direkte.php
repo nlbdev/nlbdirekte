@@ -16,24 +16,15 @@ if (!empty($_REQUEST['username'])) {
 <head>
 	<title>NLBdirekte v<?php echo $version;?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<!--meta
-     name="viewport"
-     content="width=100%; 
-             initial-scale=1;
-             maximum-scale=1;
-             minimum-scale=1; 
-             user-scalable=no;"
-    /-->
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 	
-	<!-- fix for positioning things fixed in most browsers -->
-	<!--link rel="stylesheet" type="text/css" href="css/position-fixed.css" /-->
-	<!--[if IE]>
-		<link rel="stylesheet" type="text/css" href="css/position-fixed.IE.css" />
-	<![endif]-->
+	<link type="text/css" href="css/NLBdirekte.css" rel="stylesheet" />
+	
+	<!-- Configuration for NLBdirekte -->
+	<script type="text/javascript" src="config/config.js"></script>
 	
 	<!-- Debug mechanism -->
-	<!--script type='text/javascript' src='https://damnit.jupiterit.com/damnit.js?e08775070c01628bb4f74f2e46734f670f2dadce'></script-->
+	<script type='text/javascript' src='https://damnit.jupiterit.com/damnit.js?f4beb70f446e2e2ff2f26681e39a3bb5c533df1b'></script>
 	
 	<!-- Easy fetching (and sending if needed) of JSON data structures -->
 	<script type='text/javascript' src='js/JSON/json2.js'></script>
@@ -112,45 +103,19 @@ if (!empty($_REQUEST['username'])) {
  padding:0.2em;
  margin:0px;
 }
-
-#loadbar {
-	position:fixed;
-	top:0;
-	left:0;
-	width:100%;
-	height:5px;
-	background-color: green;
-}
-
-/* Is supposed to make Android update while scrolling */
-body {
-	background: url(data:null) fixed;
-	-webkit-user-select:none;
-	-webkit-touch-callout:none;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
-	margin:0;
-	padding:0;
-}
-
-#controls {
-	position:fixed;
-	top:0;
-	margin:0;
-    padding:0;
-}
 	</style>
 	
 </head>
 <body>
-	<!--div-->
-		<div id="controls" class='ui-widget centered' style="width: 100%; text-align: center;">
+	<div>
+		<div id="controls" class='ui-widget centered' style="position: fixed; top: 0%; width: 100%; text-align: center;">
 			<div id="controlButtons">
-				<button id="back">tilbake</button>
-				<button id="play">spill av</button>
-				<button id="forward">fremover</button>
-				<button id="mute">demp</button>
-				<button id="bookmark">sett bokmerke</button>
-				<button id="menuOpenButton">åpne meny</button>
+				<button id="back" accesskey="1">tilbake</button>
+				<button id="play" accesskey="2">spill av</button>
+				<button id="forward" accesskey="3">fremover</button>
+				<button id="mute" accesskey="4">demp</button>
+				<!--button id="bookmark" accesskey="5">sett bokmerke</button-->
+				<button id="menuOpenButton" accesskey="6">åpne meny</button>
 			</div>
 		</div>
 		<div id="book" style="height: 100%; margin-top: 100px;"></div>
@@ -164,7 +129,7 @@ body {
 						<li class="ui-state-default ui-corner-top"><a href="#menuTab-settings" id="menuTab-settings-button">Alternativer</a></li>
 						<li class="ui-state-default ui-corner-top"><a href="#menuTab-contents" id="menuTab-contents-button">Innholdsfortegnelse</a></li>
 						<li class="ui-state-default ui-corner-top"><a href="#menuTab-pages" id="menuTab-pages-button">Sidetall</a></li>
-						<li class="ui-state-default ui-corner-top"><a href="#menuTab-bookmarks" id="menuTab-bookmarks-button">Bokmerker</a></li>
+						<!--li class="ui-state-default ui-corner-top"><a href="#menuTab-bookmarks" id="menuTab-bookmarks-button">Bokmerker</a></li-->
 					</ul>
 					</div>
 					<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-bookinfo">
@@ -207,7 +172,7 @@ body {
 					<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-pages">
 						<div id="pages"></div>
 					</div>
-					<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-bookmarks">
+					<!--div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-bookmarks">
 						<div id="bookmarkMessageBox" style="text-align: center; font-weigth: bold; background-color: #FFFF88;"></div>
 						<div id="editBookmark">
 							Tittel:
@@ -245,12 +210,11 @@ body {
 							<br/>
 						</div>
 						<div id="bookmarks"></div>
-					</div>
+					</div-->
 				</div>
 			</div>
 		</div>
-	<!--/div-->
-	<div id="loadbar" class="position-fixed-top"></div>
+	</div>
 	<!--div id="soundmanager-debug" style="display: block;"></div-->
 </body>
 </html>

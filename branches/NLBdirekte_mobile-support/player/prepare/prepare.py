@@ -364,7 +364,9 @@ for child in body:
 	if (child[0] == 'h6'):
 		toc.append(["h",dict({'title': text, 'level':6 , 'i': id, 'b':-1 , 'e':-1})])
 	if (child[0] == 'span'):
-		pagelist.append(["p",dict({'page':int(float(textContent(a))) , 'i':id , 'b':-1 , 'e':-1})])
+		if (clazz.startswith("page-")):
+			pagelist.append(["p",dict({'page':int(float(textContent(a))) , 'i':id , 'b':-1 , 'e':-1})])
+			
 	#if (child[0] == 'div'):
 	
 	if (alreadyThere < 0):
