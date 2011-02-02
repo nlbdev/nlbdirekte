@@ -18,6 +18,6 @@ $logfile = $logdir.'/log.txt';
 $calabashExec = "calabash"; // full path example: "C:\\xmlcalabash-0.9.29\\calabash.bat"
 
 # debugging
-$debug = true;
+$debug = isset($debug)?$debug:true;
 
 ?>

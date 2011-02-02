@@ -6,6 +6,8 @@ function NLBServer(ticket_) {
 	this.state = "";
 	
 	this.getUrl = function(filename) {
+		// Note: SmilPlayer.js depends on NLBServer.getUrl returning the
+		// same URL each time for the same filename.
 		return this.url+'getfile.php?ticket='+this.ticket+'&file='+filename;
 	};
 	this.readyUrl = function() {

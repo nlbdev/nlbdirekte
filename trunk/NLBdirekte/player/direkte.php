@@ -20,6 +20,11 @@ if (!empty($_REQUEST['username'])) {
 	
 	<link type="text/css" href="css/NLBdirekte.css" rel="stylesheet" />
 	
+	<!-- jQuery -->
+	<link type="text/css" href="css/jQuery/smoothness/jquery-ui-1.8.custom.css" rel="stylesheet" />
+	<script type="text/javascript" src="js/jQuery/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="js/jQuery/jquery-ui-1.8.custom.min.js"></script>
+	
 	<!-- Configuration for NLBdirekte -->
 	<script type="text/javascript" src="config/config.js"></script>
 	
@@ -32,7 +37,22 @@ if (!empty($_REQUEST['username'])) {
 	<script type='text/javascript' src='js/JSON/JSONRequestError.js'></script>
 	
 	<!-- Provides a fallback mechanism for HTML5 Audio to SoundManager 2 -->
-	<script type="text/javascript" src="js/HTML5AudioNow/HTML5AudioNow.js"></script>
+	<script type="text/javascript" src="js/soundmanager/script/soundmanager2-jsmin.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			if (!soundManager)
+					soundManager = new SoundManager();
+			soundManager.url = 'js/soundmanager/swf'; // path to directory containing SoundManager2 .SWF file
+			soundManager.flashVersion = 8;
+			soundManager.allowFullScreen = false;
+			soundManager.wmode = 'transparent';
+			soundManager.debugMode = false;
+			soundManager.debugFlash = false;
+			soundManager.useHighPerformance = true;
+			//soundManager.onready(function(){});
+			soundManager.useHTML5Audio = false;
+		});
+	</script>
 	
 	<!-- The player objects.
 		The server is an interface to a specific server that resolves URLs amongst other things.
@@ -48,11 +68,6 @@ if (!empty($_REQUEST['username'])) {
 		padding: 10px 4px;
 	}*/
 	</style>
-	
-	<!-- jQuery -->
-	<link type="text/css" href="css/jQuery/smoothness/jquery-ui-1.8.custom.css" rel="stylesheet" />
-	<script type="text/javascript" src="js/jQuery/jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="js/jQuery/jquery-ui-1.8.custom.min.js"></script>
 	
 	<!-- Bookmarks synchronization -->
 	<!--script type="text/javascript" src="js/Bookmarks.js" ></script-->
@@ -90,13 +105,6 @@ if (!empty($_REQUEST['username'])) {
  -webkit-border-radius:3px;
  background:#f3f9ff;
 }
-
-/*
-#soundmanager-debug code {
- font-size:1.1em;
- *font-size:1em;
-}
-*/
 
 #soundmanager-debug div {
  font-size:x-small;

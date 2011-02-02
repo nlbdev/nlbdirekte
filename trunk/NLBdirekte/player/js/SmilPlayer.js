@@ -1,6 +1,6 @@
-var consoleLog = debug?debug:false; // set to true for debugging with Firebug
-var debugCurrentTime = false;
-var debugIsSameSrc = false;
+var consoleLog = debug?debug:true; // set to true for debugging with Firebug
+var debugCurrentTime = true;
+var debugIsSameSrc = true;
 var debugJsonML = false;
 function SmilPlayer() {
 	var that = this;
@@ -65,12 +65,13 @@ function SmilPlayer() {
 		
 		if (this.doneLoading) {
 			if (!paused) {
-				if (audioObject !== null && audioObject.readyState >= 3 && !audioObject.ended) {
+				//if (audioObject !== null && audioObject.readyState >= 3 && !audioObject.ended) {
+				if (audioObject !== null && audioObject.readyState >= 3 && audioObject.playState === 1) {
 					// wait until we're done loading the audio file
 					// (don't bother checking the text file anywhere, it loads quickly anyway)
 					// use audio object to calculate currentTime
-					currentTime = audioObjectBegin + audioObject.currentTime;
-					if (consoleLog && debugCurrentTime) console.log('#2A currentTime = '+currentTime+' audioObject.duration:'+audioObject.duration);
+					currentTime = audioObjectBegin + audioObject.position/1000.;
+					if (consoleLog && debugCurrentTime) console.log('#2A currentTime = '+currentTime+' audioObject.duration:'+(audioObject.duration/1000.));
 				} else {
 					// use timers to update currentTime when no audio is playing
 					if (consoleLog && debugCurrentTime) console.log('currentTime:'+currentTime+' += '+((thisThreadRun-lastThreadRun)/1000.));
@@ -101,7 +102,7 @@ function SmilPlayer() {
 	function update() {
 		if (skipTo >= 0) {
 			currentTime = skipTo;
-			if (consoleLog && debugCurrentTime) console.log('#4 currentTime = '+currentTime+' audioObject.duration:'+(audioObject===null?'?':audioObject.duration));
+			if (consoleLog && debugCurrentTime) console.log('#4 currentTime = '+currentTime+' audioObject.duration:'+(audioObject===null?'?':(audioObject.duration/1000.)));
 		}
 		
 		var activeSmilElements = this.getSmilElements.call(that, currentTime);
@@ -130,10 +131,11 @@ function SmilPlayer() {
 		updateExtra.call(that, extra);
 		
 		if (skipTo >= 0) {
-			if (!paused && consoleLog && debugIsSameSrc && !(typeof audioObject === 'object' && typeof audioObject.src === 'string'))
-				console.log('isSameSrc #1: audioObject:'+typeof audioObject+(typeof audioObject==='object'?(' audioObject.src:'+typeof audioObject.src):''));
-			if (   (audioObject === null || isSameSrc(audioObject.src,this.server.getUrl(getAttr(audio,'s',''))) &&
-											Math.abs(audioObjectBegin+audioObject.currentTime - currentTime) < inaccurateTimeMeasurement)
+			if (!paused && consoleLog && debugIsSameSrc && audioObject !== null)
+				console.log('isSameSrc #1: audioObject.src:'+audioObject.src);
+			
+			if (   (audioObject === null || isSameSrc(audioObject.url,this.server.getUrl(getAttr(audio,'s',''))) &&
+											Math.abs(audioObjectBegin+audioObject.position/1000. - currentTime) < inaccurateTimeMeasurement)
 				/*|| (this.textElement === null || textObject === null ||
 							!isSameSrc(textObjectSrc,this.server.getUrl(getAttr(text,'s',''))) || isLoadingText)*/
 				/*|| (this.extraElement === null || extraObject === null ||
@@ -262,14 +264,18 @@ function SmilPlayer() {
 		}
 		if (audioObject === null) {
 			// nothing playing; start playing
-			//if (consoleLog) console.log('nothing playing; start playing');
-			audioObject = HTML5AudioNow(this.server.getUrl(getAttr(smilNode,'s','')));
+			if (consoleLog) console.log('nothing playing; start playing');
+			audioObject = soundManager.createSound({
+				id: "audio"+(new Date()).getTime(),
+				url: this.server.getUrl(getAttr(smilNode,'s','')),
+				volume: Math.round(volume*100.),
+				autoPlay: false
+			});
 			if (audioObject !== null) {
-				audioObject.controls = false;
-				audioObject.volume = volume;
+				audioObject.setVolume(Math.round(volume*100.));
 				if (audioObject.readyState >= 3) {
-					audioObject.currentTime = getAttr(smilNode,'B',-1) + (currentTime - getAttr(smilNode,'b',-1));
-					if (consoleLog && debugCurrentTime) console.log('#1B audioObject.currentTime = '+audioObject.currentTime);
+					audioObject.setPosition(Math.round((getAttr(smilNode,'B',-1) + (currentTime - getAttr(smilNode,'b',-1)))*1000.));
+					if (consoleLog && debugCurrentTime) console.log('#1B audioObject.position/1000. = '+audioObject.position/1000.);
 				}
 				audioObjectBegin = getAttr(smilNode,'b',-1) - getAttr(smilNode,'B',-1);
 				audioObject.load();
@@ -280,46 +286,46 @@ function SmilPlayer() {
 			}
 		} else if (audioObject.readyState >= 3) {
 			// something playing (might be paused though)
-			//if (consoleLog) console.log('something playing');
 			if (smilNode === null) {
 				// stop playing
 				if (consoleLog) console.log('stop playing');
 				audioObject.pause();
 				if (consoleLog) console.log('audioObject.pause();');
-				if (audioObject.backend === 'soundmanager') // preserve memory
-					audioObject.destroySound(); // only defined for soundManager-objects
+				audioObject.destruct(); // preserve memory
 				audioObject = null;
 			} else {
 				// play the right thing
 				if (consoleLog && !paused && debugIsSameSrc)
-					console.log('isSameSrc #2: audioObject:'+typeof audioObject+(typeof audioObject==='object'?(' audioObject.src:'+typeof audioObject.src):''));
-				if (isSameSrc(audioObject.src,this.server.getUrl(getAttr(smilNode,'s','')))) {
+					console.log('isSameSrc #2: audioObject:'+typeof audioObject+(typeof audioObject==='object'?(' audioObject.src:'+audioObject.src):''));
+				
+				if (isSameSrc(audioObject.url,this.server.getUrl(getAttr(smilNode,'s','')))) {
 					// the right audioObject is selected
 					if (audioObject.readyState >= 3) {
 						// the audioObject is loaded
-						if (Math.abs(audioObjectBegin+(audioObject.ended?audioObject.duration:audioObject.currentTime) - currentTime) > inaccurateTimeMeasurement) {
+						if (Math.abs(audioObjectBegin+(audioObject.playState!==1?(audioObject.duration/1000.):(audioObject.position/1000.)) - currentTime) > inaccurateTimeMeasurement) {
 							// currentTime is not close to the time indicated by the audioObject
-							if (consoleLog && debugCurrentTime) console.log('(Math.abs('+audioObjectBegin+'+'+audioObject.currentTime+' - '+currentTime+' = '+Math.abs(audioObjectBegin+audioObject.currentTime-currentTime)+') > '+inaccurateTimeMeasurement+')');
-							audioObject.currentTime = currentTime - audioObjectBegin;
-							if (consoleLog && debugCurrentTime) console.log('#2B audioObject.currentTime = '+currentTime+' - '+audioObjectBegin+' = '+audioObject.currentTime);
+							if (consoleLog && debugCurrentTime) console.log('(Math.abs('+audioObjectBegin+'+'+(audioObject.position/1000.)+' - '+currentTime+' = '+Math.abs(audioObjectBegin+audioObject.position/1000.-currentTime)+') > '+inaccurateTimeMeasurement+')');
+							audioObject.setPosition(Math.round((currentTime - audioObjectBegin)*1000.));
+							if (consoleLog && debugCurrentTime) console.log('#2B audioObject.currentTime = '+currentTime+' - '+audioObjectBegin+' = '+audioObject.position/1000.);
 							audioObject.play(); // update position
 							if (paused) {
 								window.setTimeout(delegate(that,function(){audioObject.pause()}),0);
 								if (consoleLog) console.log('adjusting time to '+currentTime+'-'+audioObjectBegin+' = '+(currentTime-audioObjectBegin));
 							}
 						}
-						if (audioObject.currentTime < getAttr(smilNode,'B',-1)-inaccurateTimeMeasurement ||
-							audioObject.currentTime > getAttr(smilNode,'E',-1)+inaccurateTimeMeasurement) {
+						if (audioObject.position/1000. < getAttr(smilNode,'B',-1)-inaccurateTimeMeasurement ||
+							audioObject.position/1000. > getAttr(smilNode,'E',-1)+inaccurateTimeMeasurement) {
 								// correct file, but too far off. we probably skipped to another place in the file...
 								if (consoleLog) console.log('correct file, but too far off. we probably skipped to another place in the file...');
-								if (consoleLog && debugCurrentTime) console.log('if ('+getAttr(smilNode,'B',-1)+' > '+audioObject.currentTime+' || '+audioObject.currentTime+' > '+(getAttr(smilNode,'B',-1)+inaccurateTimeMeasurement)+')');
-								audioObject.currentTime = getAttr(smilNode,'B',-1);
-								if (consoleLog && debugCurrentTime) console.log('#3B audioObject.currentTime = '+audioObject.currentTime);
-								if (consoleLog && debugCurrentTime) console.log('audioObject.currentTime = '+getAttr(smilNode,'B',-1)+' = '+audioObject.currentTime);
+								if (consoleLog && debugCurrentTime) console.log('if ('+(audioObject.position/1000.)+' < '+(getAttr(smilNode,'B',-1)-inaccurateTimeMeasurement)+' || '+(audioObject.position/1000.)+' > '+(getAttr(smilNode,'E',-1)+inaccurateTimeMeasurement)+')');
+								audioObject.setPosition(Math.round(getAttr(smilNode,'B',-1)*1000.) + 100);
+								//audioObject.setPosition(Math.round((currentTime-audioObjectBegin)*1000.));
+								//if (consoleLog && debugCurrentTime) console.log('#3B audioObject.position/1000. = '+(audioObject.position/1000.));
+								//if (consoleLog && debugCurrentTime) console.log('audioObject.position/1000. = '+getAttr(smilNode,'B',-1)+' = '+(audioObject.position/1000.));
 								audioObject.play(); // update position
 								if (paused)
 									window.setTimeout(delegate(that,function(){audioObject.pause()}),0);
-								if (consoleLog && debugCurrentTime) console.log(audioObject.currentTime);
+								if (consoleLog && debugCurrentTime) console.log('audioObject.position/1000. = '+audioObject.position/1000.);
 						} else {
 							// everything playing as it should. pause/resume as needed
 							
@@ -329,7 +335,7 @@ function SmilPlayer() {
 								audioObject.play();
 							}
 							// if (should not be playing && is playing)
-							if (paused && !audioObject.paused) {
+							if (paused && !audioObject.paused && audioObject.playState !== 1) {
 								if (consoleLog) console.log('should not be playing but is playing; pause');
 								audioObject.pause();
 							}
@@ -337,28 +343,33 @@ function SmilPlayer() {
 					}
 				} else {
 					// playing the wrong file
-					if (Math.abs(audioObject.duration - audioObject.currentTime) > inaccurateTimeMeasurement &&
-						Math.abs(audioObject.currentTime+audioObjectBegin - currentTime) > inaccurateTimeMeasurement
-						|| audioObject.ended) {
+					// if (not near end of file && not near currentTime || ended)
+					if (Math.abs(audioObject.duration/1000. - audioObject.position/1000.) > inaccurateTimeMeasurement &&
+						Math.abs(audioObject.position/1000.+audioObjectBegin - currentTime) > inaccurateTimeMeasurement
+						|| audioObject.playState !== 1) {
 						// switch file
 						if (consoleLog) console.log('playing the wrong file, switch file');
 						audioObject.pause();
-						if (audioObject.backend === 'soundmanager') // preserve memory
-							audioObject.destroySound(); // only defined for soundManager-objects
-						audioObject = HTML5AudioNow(this.server.getUrl(getAttr(smilNode,'s','')));
-						audioObject.controls = false;
-						audioObject.volume = volume;
+						audioObject.destruct(); // preserve memory
+						//audioObject = HTML5AudioNow(this.server.getUrl(getAttr(smilNode,'s','')));
+						audioObject = soundManager.createSound({
+							id: "audio"+(new Date()).getTime(),
+							url: this.server.getUrl(getAttr(smilNode,'s','')),
+							volume: Math.round(volume*100.),
+							autoPlay: false
+						});
+						audioObject.setVolume(Math.round(volume*100.));
 						if (audioObject.readyState >= 3) {
-							audioObject.currentTime = getAttr(smilNode,'B',-1) + (currentTime - getAttr(smilNode,'b',-1));
-							if (consoleLog && debugCurrentTime) console.log('#A1 audioObject.currentTime = '+audioObject.currentTime);
+							audioObject.setPosition(Math.round((getAttr(smilNode,'B',-1) + (currentTime - getAttr(smilNode,'b',-1)))*1000.));
+							if (consoleLog && debugCurrentTime) console.log('#A1 audioObject.position/1000. = '+audioObject.position/1000.);
 						}
 						audioObject.play(); // update position
 						if (paused)
 							window.setTimeout(delegate(that,function(){audioObject.pause()}),0);
 						audioObjectBegin = getAttr(smilNode,'b',-1) - getAttr(smilNode,'B',-1);
 					} else if (!paused && consoleLog && debugCurrentTime) {
-						console.log("if ("+Math.abs(audioObject.duration - audioObject.currentTime)+" > "+inaccurateTimeMeasurement+" &&\n"+
-									"    "+Math.abs(audioObject.currentTime+audioObjectBegin - currentTime)+" > "+inaccurateTimeMeasurement+")");
+						console.log("if ("+Math.abs(audioObject.duration/1000. - audioObject.position/1000.)+" > "+inaccurateTimeMeasurement+" &&\n"+
+									"    "+Math.abs(audioObject.position/1000.+audioObjectBegin - currentTime)+" > "+inaccurateTimeMeasurement+")");
 					}
 				}
 			}
@@ -374,7 +385,7 @@ function SmilPlayer() {
 			}
 			
 			if (getAttr(smilNode,'t','').split('/')[0] === 'video') {
-				// Only support actual HTML5 for video for now (untested. and SM2 video support might be added later)
+				// Only support actual HTML5 for video for now (untested. and SM2 video support might be added later?)
 				var video = this.textDocument.createElement('video');
 				video.setAttribute('src',this.server.getUrl(getAttr(smilNode,'s','')));
 				video.setAttribute('width',this.extraElement.clientWidth);
@@ -473,6 +484,7 @@ function SmilPlayer() {
 	
 	var thisURL = window.location.href;
 	thisURL = thisURL.substring(0,thisURL.lastIndexOf('/')+1);
+	// TODO: re-check this function for correctness
 	function isSameSrc(srcA, srcB) {
 		if (srcA.indexOf(thisURL) === -1)
 			srcA = thisURL+srcA;
@@ -495,7 +507,7 @@ function SmilPlayer() {
 		else if (ms >= this.getTotalTime())
 			skipTo = this.getTotalTime();
 		else
-			skipTo = ms+0.001;
+			skipTo = ms;
 		delegate(that,update)();
 		return true;
 	}
@@ -553,14 +565,14 @@ function SmilPlayer() {
 		if (vol > 1.0) vol = 1.0;
 		volume = vol;
 		if (audioObject !== null) {
-			audioObject.volume = volume;
+			audioObject.setVolume(Math.round(volume*100.));
 		}
 	}
 	
 	// Functions for checking the state of the player
 	this.getVolume = function() {
 		if (audioObject !== null)
-			volume = audioObject.volume;
+			volume = audioObject.volume/100.;
 		return volume;
 	}
 	this.getCurrentTime = function() {
@@ -587,7 +599,7 @@ function SmilPlayer() {
 	this.getAudioBackend = function() {
 		if (audioObject === null)
 			return '';
-		return audioObject.backend;
+		return 'soundmanager'; // TODO: should return 'html' when HTML5 is used
 	}
 	
 	// Functions for easier use of JsonML elements
@@ -685,6 +697,8 @@ function SmilPlayer() {
 	};
 	
 	run(0);
+	
+	this.test = function(){return audioObject;}
 }
 
 // Date.now for old browsers
