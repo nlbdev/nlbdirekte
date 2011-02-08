@@ -18,7 +18,11 @@ if (!empty($_REQUEST['username'])) {
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 	
-	<link type="text/css" href="css/NLBdirekte.css" rel="stylesheet" />
+	<script type="text/javascript" charset="utf-8">
+	/* <![CDATA[ */
+		var ticket = '<?php echo $_REQUEST['ticket']; ?>';
+	/* ]]> */
+	</script>
 	
 	<!-- jQuery -->
 	<link type="text/css" href="css/jQuery/smoothness/jquery-ui-1.8.custom.css" rel="stylesheet" />
@@ -29,7 +33,47 @@ if (!empty($_REQUEST['username'])) {
 	<script type="text/javascript" src="config/config.js"></script>
 	
 	<!-- Debug mechanism -->
-	<script type='text/javascript' src='https://damnit.jupiterit.com/damnit.js?f4beb70f446e2e2ff2f26681e39a3bb5c533df1b'></script>
+	<!--?php if (!empty($damnit)) { ?>
+		<script type='text/javascript' src='https://damnit.jupiterit.com/damnit.js?< ?php echo $damnit; ?>'></script>
+	< ?php } ?-->
+	<!-- Logging framework -->
+	<script type="text/javascript" src="js/log4javascript/log4javascript.js"></script>
+	<script type="text/javascript">
+		//<![CDATA[
+		var log = log4javascript.getLogger();
+		var browserConsoleAppender = new log4javascript.BrowserConsoleAppender();
+		//var browserConsoleLayout = new log4javascript.PatternLayout("%d{HH:mm:ss} %-5p - %m%n");
+		//browserConsoleAppender.setLayout(browserConsoleLayout);
+		if (typeof logging_client_level=="string") switch (logging_client_level) {
+			case 'ALL':		browserConsoleAppender.setThreshold(log4javascript.Level.ALL);   break;
+			case 'TRACE':	browserConsoleAppender.setThreshold(log4javascript.Level.TRACE); break;
+			case 'DEBUG':	browserConsoleAppender.setThreshold(log4javascript.Level.DEBUG); break;
+			case 'INFO':	browserConsoleAppender.setThreshold(log4javascript.Level.INFO);  break;
+			case 'WARN':	browserConsoleAppender.setThreshold(log4javascript.Level.WARN);  break;
+			case 'ERROR':	browserConsoleAppender.setThreshold(log4javascript.Level.ERROR); break;
+			case 'FATAL':	browserConsoleAppender.setThreshold(log4javascript.Level.FATAL); break;
+			case 'OFF':		browserConsoleAppender.setThreshold(log4javascript.Level.OFF);   break;
+		}
+		log.addAppender(browserConsoleAppender);
+		var ajaxAppender = new log4javascript.AjaxAppender(serverUrl+"log.php");
+		var jsonLayout = new log4javascript.JsonLayout();
+		jsonLayout.setCustomField('ticket',ticket);
+		ajaxAppender.setLayout(jsonLayout);
+		//ajaxAppender.setBatchSize(20);
+		//ajaxAppender.setTimerInterval(5000);
+		if (typeof logging_server_level=="string") switch (logging_server_level) {
+			case 'ALL':		ajaxAppender.setThreshold(log4javascript.Level.ALL);   break;
+			case 'TRACE':	ajaxAppender.setThreshold(log4javascript.Level.TRACE); break;
+			case 'DEBUG':	ajaxAppender.setThreshold(log4javascript.Level.DEBUG); break;
+			case 'INFO':	ajaxAppender.setThreshold(log4javascript.Level.INFO);  break;
+			case 'WARN':	ajaxAppender.setThreshold(log4javascript.Level.WARN);  break;
+			case 'ERROR':	ajaxAppender.setThreshold(log4javascript.Level.ERROR); break;
+			case 'FATAL':	ajaxAppender.setThreshold(log4javascript.Level.FATAL); break;
+			case 'OFF':		ajaxAppender.setThreshold(log4javascript.Level.OFF);   break;
+		}
+		log.addAppender(ajaxAppender);
+		//]]>
+	</script>
 	
 	<!-- Easy fetching (and sending if needed) of JSON data structures -->
 	<script type='text/javascript' src='js/JSON/json2.js'></script>
@@ -74,12 +118,6 @@ if (!empty($_REQUEST['username'])) {
 	
 	<!-- Site-specific code for loading the player, updating the gui etc. -->
 	<script type="text/javascript" src="js/SmilPlayerUI.js"></script>
-	
-	<script type="text/javascript" charset="utf-8">
-	/* <![CDATA[ */
-		var ticket = '<?php echo $_REQUEST['ticket']; ?>';
-	/* ]]> */
-	</script>
 	
 	<style>
 	/* jQuery centered tabs: http://osdir.com/ml/jquery-ui/2009-04/msg00472.html */

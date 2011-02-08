@@ -58,7 +58,7 @@ function Daisy202Loader() {
 			}));
 		} catch(e) {
 			window.setTimeout(this.load,10000);
-			//if (console) console.log("caught exception: "+e);
+			if (typeof log=='object') log.warn("caught exception: "+e);
 		}
 	}
 	this.loadReady = function() {
@@ -69,7 +69,7 @@ function Daisy202Loader() {
 				if (++loadCount === 4) this.player.doneLoading = true;
 			}));
 		} catch(e1) {
-			//if (console) console.log("caught exception: "+e1);
+			if (typeof log=='object') log.warn("caught exception: "+e1);
 		}
 		this.state = 'loading smil';
 		try {

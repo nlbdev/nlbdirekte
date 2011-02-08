@@ -56,7 +56,7 @@ function NLBServer(ticket_) {
 							xmlDoc = parser.parseFromString(xmlhttp.responseText,"text/xml");
 						}
 						catch (e) {
-							if (console) console.log("Unable to parse responseText: \n"+xmlhttp.responseText);
+							if (typeof log=='object') log.warn("Unable to parse responseText: \n"+xmlhttp.responseText);
 							throw e;
 						}
 					}

@@ -222,10 +222,10 @@ function loadBookmarks() {
 					
 					var fragment = getAttr(smilAtTime,'s','').split('#',2);
 					if (fragment.length === 2 && fragment[1] !== '') {
-						console.log('bookmark at id="'+fragment[1]+'"');
+						if (typeof log=='object') log.debug('bookmark at id="'+fragment[1]+'"');
 						var textElement = player.textDocument.getElementById(fragment[1]);
-						console.log('player.textDocument.getElementById('+fragment[1]+') === '+textElement);
-						if (textElement) {console.log('inserting...');
+						if (typeof log=='object') log.debug('player.textDocument.getElementById('+fragment[1]+') === '+textElement);
+						if (typeof textElement == 'object'){if (typeof log=='object') log.trace('inserting...');
 							// TODO: add bookmark icons ('img/nlb_bokmerke.png')
 							var span = player.textDocument.createElement('span');
 							span.innerHTML = "<a class='bookmarkLink' href=\"javascript:(function(){"
@@ -464,7 +464,7 @@ $(function() {
 		if (typeof Bookmark === 'function') {
 			Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
 				function(success, error) {
-					//if (console) console.log('success:'+success+',error:'+error);
+					if (typeof log=='object') log.info('success:'+success+',error:'+error);
 				}
 			);
 		}
@@ -523,7 +523,7 @@ $(function() {
 		if (typeof Bookmark === 'function') {
 			Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
 				function(success, error) {
-					//if (console) console.log('success:'+success+',error:'+error);
+					if (typeof log=='object') log.info('success:'+success+',error:'+error);
 				}
 			);
 		}
@@ -693,10 +693,10 @@ window.setInterval(function(){
 			// it seems we have bookmark support
 			Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
 				function(success, error) {
-					//if (console) console.log('success:'+success+',error:'+error);
+					if (typeof log=='object') log.info('success:'+success+',error:'+error);
 				}
 			);
-		}// else if (console) console.log('typeof Bookmark: '+typeof Bookmark+', isPlaying: '+player.isPlaying());
+		} else if (typeof log=='object') log.trace('typeof Bookmark: '+typeof Bookmark+', isPlaying: '+player.isPlaying());
 	}
 	
 },5000);
@@ -706,7 +706,7 @@ function s(id) {
 	if (typeof Bookmark === 'function') {
 		Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
 			function(success, error) {
-				//if (console) console.log('success:'+success+',error:'+error);
+				if (typeof log=='object') log.info('success:'+success+',error:'+error);
 			}
 		);
 	}
@@ -804,11 +804,12 @@ function init() {
 	
 	document.body.focus();
 }
-if (typeof window.onload !== 'function') {
+if (typeof window.onload != "function") {
 	window.onload = init;
 } else {
-	window.onload = function() {
-		if (oldonload) oldonload();
-		init();
+	var oldonload = window.onload;
+	window.onload = function(evt) {
+		if (oldonload) oldonload(evt);
+		init(evt);
 	};
 }

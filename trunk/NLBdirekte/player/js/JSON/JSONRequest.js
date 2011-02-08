@@ -257,18 +257,18 @@ JSONRequest = new function(){
 								changeDelay(-10);
 							}
 							else {
-								if (console) console.log("JSONRequest error: expected JSON, received: "+xhr.getResponseHeader("Content-Type"));
+								if (typeof log=='object') log.warn("JSONRequest error: expected JSON, received: "+xhr.getResponseHeader("Content-Type"));
 								throw new JSONRequestError;
 							}
 						}
 						catch(e) {
-						  	if (console) console.log("JSONRequest error: Did not complete with HTTP status 200 ('OK'), instead got status: "+xhr.status);
+						  	if (typeof log=='object') log.warn("JSONRequest error: Did not complete with HTTP status 200 ('OK'), instead got status: "+xhr.status);
 							changeDelay(500, 512);
 							cancel(l, new JSONRequestError("bad response: "+e));
 						}
 					}
 					else {
-						if (console) console.log('JSONRequest error: ');
+						if (typeof log=='object') log.warn('JSONRequest error: ');
 						changeDelay(500, 512);
 						cancel(l, new JSONRequestError("not ok"));
 					};

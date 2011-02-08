@@ -1,7 +1,7 @@
 <?php
 
 # version of NLBdirekte
-$version = '0.12';
+$version = '0.13';
 
 include('config/config.inc.php'); // import users config-file
 
@@ -24,6 +24,9 @@ if (!isset($calabashExec)) $calabashExec = "calabash";
 # debugging
 if (!isset($debug)) $debug = false;
 
+# DamnIT application key (damnit.jupiterit.com)
+if (!isset($damnit)) $damnit = NULL;
+
 # ---- end of default configuration variables ----
 
 # should make it easy to distinguish log entries in the log when they get intertwined
@@ -35,7 +38,7 @@ $sessionUID = ($sessionUID%60) + ($sessionUID-floor($sessionUID));
 function decodeTicket($ticket) {
 	global $debug;
     $ret = explode('_',str_replace(array('/',"\\"),'',$ticket));
-	if ($debug) trigger_error("ticket $ticket decoded as userId=".$ret[0].", bookId=".$ret[1]);
+	//if ($debug) trigger_error("ticket $ticket decoded as userId=".$ret[0].", bookId=".$ret[1]);
     return $ret;
 }
 
