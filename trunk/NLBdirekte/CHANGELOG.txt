@@ -32,3 +32,18 @@ Changelog for major- and minor-version releases
 0.10: Accesskeys for the menu buttons (map to numbers 1-6),
 		Prettier TOC, Prettier pagelist (fixed pagelist
 		not being created in python script as well)
+0.11: config.inc.php and config.js are now used to configure
+		each specific installation of NLBdirekte.
+0.12: Replaced the HTML5Now-module with pure SoundManager2.
+		Audio playback now works across more browsers but
+		stuttering and other problems have been introduced.
+		Further debugging and improvements are still needed
+		on the audio playback front.
+0.13: Tried with configurable DamnIT-integration. Then
+		removed it and introduced log4javascript as an
+		optional dependency for logging. log4javascript
+		replaces all the 'console.log'-calls that caused
+		problems earlier. log4javascript is configurable
+		through config.js and logs to both Firebug-style
+		browser-logs as well as server-side log files
+		through JSON XMLHttpRequests.
