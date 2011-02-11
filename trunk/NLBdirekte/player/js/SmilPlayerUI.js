@@ -17,34 +17,6 @@ function niceTime(s) {
 	if (m > 0) return m+':'+s;
 	return '0:'+s;
 }
-var CSS = {
-	load: /*static*/ function (url_, /*optional*/ media_, /*optional*/ document_) {
-		// For using iframes or similar
-		document_ = typeof document_ === 'undefined' || document_ === null ? document : document_;
-		
-		// make url_ absolute if needed
-		var thisUrl_ = window.location.href;
-		thisUrl_ = thisUrl_.substring(0,thisUrl_.lastIndexOf('/')+1);
-		if (url_.indexOf('://') === -1)
-			url_ = thisUrl_+url_;
-		
-		// We are preventing loading a file already loaded
-		var _links = document_.getElementsByTagName("link");
-		if (_links.length > 0 && _links["href"] === url_) { return; }
-		
-		// Optional parameters check
-		var _media = typeof media_ === 'undefined' || media_ === null ? "all" : media_;
-		
-		var _elstyle = document_.createElement("link");
-		_elstyle.setAttribute("rel", "stylesheet");
-		_elstyle.setAttribute("type", "text/css");
-		_elstyle.setAttribute("media", _media);
-		_elstyle.setAttribute("href", url_);
-		
-		var _head = document_.getElementsByTagName("head")[0];
-		_head.appendChild(_elstyle);
-	}
-};
 function postProcessText() {
 	// Add links for skipping to paragraphs
 	var stack = [];
@@ -74,13 +46,13 @@ function postProcessText() {
 	}
 	
 	// default stylesheet
-	CSS.load('css/Daisy202Book.css','screen',document);
+	//CSS.load('css/Daisy202Book.css','screen',document); TODO
 	
-	loadBookmarks();
+	//loadBookmarks();
 }
 var totalTime = Infinity;
-var myBookmarks = [];
-var currentBookmark = -1;
+//var myBookmarks = [];
+//var currentBookmark = -1;
 function playerIsLoaded() {
 	if (player !== null && player.doneLoading) {
 
@@ -145,105 +117,7 @@ function playerIsLoaded() {
 		window.setTimeout(playerIsLoaded,100);
 	}
 }
-playerIsLoaded();
-
-function loadBookmarks() {
-	if (typeof Bookmark === 'function') {
-		Bookmark.loadBookmarks(player.metadata[1]['dc:identifier'], function(bookmarkList, error) {
-			if (bookmarkList && typeof bookmarkList === 'object') {
-				myBookmarks = bookmarkList;
-				var htmlList = "<table style=''>";
-				htmlList += "<tr>";
-				htmlList += "<th>Tittel</th>";
-				htmlList += "<th>Brødtekst</th>";
-				htmlList += "<th>Posisjon</th>";
-				htmlList += "<th></th>";
-				htmlList += "</tr>";
-				for (var b = 0; b < myBookmarks.length; b++) {
-					// {uid,created,modified,bookId,title,text,isPublic,isReplyTo,startTime,startCharOffset,endTime,endCharOffset,isLastmark}
-					htmlList += "<tr id='bookmarkRow"+myBookmarks[b].uid+"'>";
-					htmlList += "<td style='padding-right:20px;'>"+
-									(myBookmarks[b].title.length<100?myBookmarks[b].title:(myBookmarks[b].title.substring(0,100)+'...'))
-								+"</td>";
-					htmlList += "<td style='padding-right:20px;'>"+
-									(myBookmarks[b].text.length<100?myBookmarks[b].text:(myBookmarks[b].text.substring(0,100)+'...'))
-								+"</td>";
-					htmlList += "<td><a onclick='player.skipToTime("+myBookmarks[b].startTime+");$(\"#menuCloseButton\").click();scrollToHighlightedText();return false;' href='#'>"+niceTime(myBookmarks[b].startTime)+"</a></td>";
-					htmlList += "<td><span id='editDeleteBookmarkButtons' style='text-align: center'>"+
-									"<button id='editBookmark_"+myBookmarks[b].uid+"' value='"+myBookmarks[b].uid+"' class='bookmarkEditButton'>Rediger</button>"+
-									"<button id='deleteBookmark_"+myBookmarks[b].uid+"' value='"+myBookmarks[b].uid+"' class='bookmarkDeleteButton'>Slett</button>"+
-								"</span></td>";
-					htmlList += "</tr>";
-				}
-				htmlList += "</table>";
-				$('#bookmarks').html(htmlList);
-				$(".bookmarkEditButton").button().click(function() {
-					currentBookmark = $(this).val();
-					var bookmarkNr = -1;
-					for (var b = 0; b < myBookmarks.length; b++) {
-						if (myBookmarks[b].uid == $(this).val()) {
-							bookmarkNr = b;
-							break;
-						}
-					}
-					if (bookmarkNr !== -1) {
-						$('#bookmarkTitle').val(myBookmarks[bookmarkNr].title);
-						$('#bookmarkText').val(myBookmarks[bookmarkNr].text);
-						$('#bookmarkTime').val(myBookmarks[bookmarkNr].startTime);
-						$('#bookmarkTitle,#bookmarkText,#bookmarkTime,#bookmarkTimeNow,#bookmarkEndEdit_save,bookmarkEndEdit_cancel').attr("disabled", false);
-						$('#editBookmark').show('slow');
-						$('.bookmarkEditButton').hide('slow');
-						$('.bookmarkDeleteButton').hide('slow');
-						//$("#bookmarkRow"+currentBookmark).addClass('ui-state-highlight');
-						$("#bookmarkRow"+currentBookmark).css('background-color','#FFFF99');
-					}
-				}).width('108px');
-				$(".bookmarkDeleteButton").button().click(function() {
-					currentBookmark = $(this).val();
-					$("#deleteBookmarkConfirmation_yes #deleteBookmarkConfirmation_no").attr("disabled", false);
-					$('#deleteBookmarkConfirmation').show('slow');
-					$('.bookmarkEditButton').hide('slow');
-					$('.bookmarkDeleteButton').hide('slow');
-					$("#bookmarkRow"+currentBookmark).css('background-color','#FFFF99');
-				}).width('108px');
-				
-				// Add bookmark icons
-				$('.bookmarkLink').remove();
-				for (var b = 0; b < myBookmarks.length; b++) {
-					var smilsAtTime = player.getSmilElements(myBookmarks[b].startTime);
-					var smilAtTime = null;
-					for (var i = 0; i < smilsAtTime.length; i++) {
-						switch (getAttr(smilsAtTime[i],'t','').split('/')[0]) {
-						case 'text':
-							smilAtTime = smilsAtTime[i];
-							break;
-						}
-					}
-					
-					var fragment = getAttr(smilAtTime,'s','').split('#',2);
-					if (fragment.length === 2 && fragment[1] !== '') {
-						if (typeof log=='object') log.debug('bookmark at id="'+fragment[1]+'"');
-						var textElement = player.textDocument.getElementById(fragment[1]);
-						if (typeof log=='object') log.debug('player.textDocument.getElementById('+fragment[1]+') === '+textElement);
-						if (typeof textElement == 'object'){if (typeof log=='object') log.trace('inserting...');
-							// TODO: add bookmark icons ('img/nlb_bokmerke.png')
-							var span = player.textDocument.createElement('span');
-							span.innerHTML = "<a class='bookmarkLink' href=\"javascript:(function(){"
-												+"$('#menuOpenButton').click();"
-												/*+"$('#menuTab-bookmarks-button').click();"*/
-												+"$('#editBookmark_"+myBookmarks[b].uid+"').click();})();\">"
-												+"<img style='vertical-align: middle' src='img/nlb_bokmerke.png' alt='Bokmerke: "+
-													(myBookmarks[b].title.length>50?myBookmarks[b].title.substring(0,50):myBookmarks[b].title)
-												+"' />"
-											+"</a>";
-							textElement.parentNode.insertBefore(span, textElement);
-						}
-					}
-				}
-			}
-		});
-	}
-}
+//playerIsLoaded(); TODO
 
 function playerHasMetadata() {
 	var hasMetadata = false;
@@ -299,9 +173,10 @@ function playerHasMetadata() {
 		window.setTimeout(playerHasMetadata,100);
 	}
 }
-playerHasMetadata();
+//playerHasMetadata(); TODO
 var isAnimatingScroll = false;
 function scrollToHighlightedText() {
+	return;//TODO
 	if (isAnimatingScroll) {
 		return;
 	}
@@ -322,8 +197,9 @@ function scrollToHighlightedText() {
 	});
 	//scrollTo(position.left,position.top-100);
 }
-var autoScroll = true;
+var autoScroll = false;
 function keepHighlightedTextOnScreen() {
+	return;//TODO
 	var element = player.getHighlightedTextElement();
 	if (element === null)
 		return;
@@ -336,7 +212,7 @@ function keepHighlightedTextOnScreen() {
 		scrollToHighlightedText();
 }
 $(function() {
-	$("#volume").slider({
+	/*$("#volume").slider({ TODO
 		min: 0,
 		max: 100,
 		animate: true,
@@ -345,8 +221,8 @@ $(function() {
 			// set player volume here
 			player.setVolume( $('#volume').slider('value')/100 );
 		}
-	});
-	$("#autoscroll_buttons").buttonset(
+	});*/
+	/*$("#autoscroll_buttons").buttonset(
 	).change(function() {
 		switch ($('input[name="autoscroll"]:checked').val()) {
 		case 'on':
@@ -356,301 +232,92 @@ $(function() {
 			autoScroll = false;
 			break;
 		}
-	});
-});
-$(function() {
-	$("#deleteBookmarkConfirmation_yes").button().click(function() {
-		$("#deleteBookmarkConfirmation_yes #deleteBookmarkConfirmation_no").attr("disabled", true);
-		$('#bookmarkMessageBox').html('Deleting bookmark...');
-		$('#bookmarkMessageBox').show('slow');
-		
-		var error = Bookmark.deleteBookmark(currentBookmark, function(bm, e) {
-			if (e) {
-				$('#bookmarkMessageBox').html('Klarte ikke å slette bokmerket:<br/>'+e);
-				$("#deleteBookmarkConfirmation_yes #deleteBookmarkConfirmation_no").attr("disabled", false);
-			} else {
-				$('#bookmarkMessageBox').html('Bokmerket ble slettet.');
-				setTimeout(function(){
-					$('#bookmarkMessageBox').hide('slow');
-					$('#deleteBookmarkConfirmation').hide('slow');
-					$('.bookmarkEditButton').show('slow');
-					$('.bookmarkDeleteButton').show('slow');
-					$("#bookmarkRow"+currentBookmark).css('background-color','#FFFFFF');
-				},1000);
-				$("#deleteBookmarkConfirmation_yes #deleteBookmarkConfirmation_no").attr("disabled", false);
-				loadBookmarks();
-			}
-		});
-		if (error !== false) {
-			$('#bookmarkMessageBox').html('Klarte ikke å be om å få bokmerket slettet:<br/>'+error);
-			$("#deleteBookmarkConfirmation_yes #deleteBookmarkConfirmation_no").attr("disabled", false);
-		}
-	});
-	$("#deleteBookmarkConfirmation_no").button().click(function() {
-		currentBookmark = -1;
-		$("#deleteBookmarkConfirmation_yes #deleteBookmarkConfirmation_no").attr("disabled", true);
-		$("#deleteBookmarkConfirmation").hide('slow');
-	});
-	$("#bookmarkTimeNow").button().click(function() {
-		
-	});
-	$("#bookmarkEndEdit_save").button().click(function() {
-		$('#bookmarkTitle,#bookmarkText,#bookmarkTime,#bookmarkTimeNow,#bookmarkEndEdit_save,bookmarkEndEdit_cancel').attr("disabled", true);
-		$('#bookmarkMessageBox').html('Saving bookmark...');
-		$('#bookmarkMessageBox').show('slow');
-		
-		var bookmark = null;
-		
-		for (var b = 0; b < myBookmarks.length; b++) {
-			if (myBookmarks[b].uid == currentBookmark) {
-				bookmark = myBookmarks[b];
-				break;
-			}
-		}
-		if (bookmark === null) {
-			bookmark = new Bookmark();
-			bookmark.uid = 0;
-			bookmark.bookId = bookId;
-			bookmark.isPublic = false;
-			bookmark.isReplyTo = 0;
-			bookmark.startCharOffset = 0;
-			bookmark.endTime = 0;
-			bookmark.endCharOffset = 0;
-			bookmark.isLastmark = false;
-		}
-		bookmark.title = $('#bookmarkTitle').val();
-		bookmark.text = $('#bookmarkText').val();
-		bookmark.startTime = $('#bookmarkTime').val();
-		
-		var error = Bookmark.saveBookmark(bookmark, function(bm, e) {
-			if (e) {
-				$('#bookmarkMessageBox').html('Klarte ikke å lagre bokmerket:<br/>'+e);
-				$('#bookmarkTitle,#bookmarkText,#bookmarkTime,#bookmarkTimeNow,#bookmarkEndEdit_save,bookmarkEndEdit_cancel').attr("disabled", false);
-			} else {
-				$('#bookmarkMessageBox').html('Bokmerket ble lagret.');
-				setTimeout(function(){
-					$('#bookmarkMessageBox').hide('slow');
-					$('#editBookmark').hide('slow');
-					$('.bookmarkEditButton').show('slow');
-					$('.bookmarkDeleteButton').show('slow');
-					$("#bookmarkRow"+currentBookmark).css('background-color','#FFFFFF');
-				},1000);
-				$('#bookmarkTitle,#bookmarkText,#bookmarkTime,#bookmarkTimeNow,#bookmarkEndEdit_save,bookmarkEndEdit_cancel').attr("disabled", false);
-				loadBookmarks();
-			}
-		});
-		if (error !== false) {
-			$('#bookmarkMessageBox').html('Klarte ikke å sende avgårde bokmerket:<br/>'+error);
-			$('#bookmarkTitle,#bookmarkText,#bookmarkTime,#bookmarkTimeNow,#bookmarkEndEdit_save,bookmarkEndEdit_cancel').attr("disabled", false);
-		}
-	});
-	$("#bookmarkEndEdit_cancel").button().click(function() {
-		$('#bookmarkMessageBox').hide('slow');
-		$('#editBookmark').hide('slow');
-		$('.bookmarkEditButton').show('slow');
-		$('.bookmarkDeleteButton').show('slow');
-		$("#bookmarkRow"+currentBookmark).css('background-color','#FFFFFF');
-	});
-});
-$(function() {
-	$('#back').button({
-		text: false,
-		icons: {
-			primary: 'ui-icon-seek-start'
-		}
-	}).click(function(){
-		player.skipToTime(player.getCurrentTime()-30);
-		scrollToHighlightedText();
-		if (typeof Bookmark === 'function') {
-			Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
-				function(success, error) {
-					if (typeof log=='object') log.info('success:'+success+',error:'+error);
-				}
-			);
-		}
-	});
-	$('#smallBack').button({
-		text: false,
-		icons: {
-			primary: 'ui-icon-seek-prev'
-		}
-	});
-	$('#play').button({
-		text: false,
-		icons: {
-			primary: 'ui-icon-play'
-		}
-	})
-	.click(function() {
-		var options;
-		if ($(this).text() === 'spill av') {
-			options = {
-				label: 'stopp',
-				icons: {
-					primary: 'ui-icon-stop'
-				}
-			};
-			if (player !== null && !player.isPlaying()) {
-				player.play();
-			}
-		} else {
-			options = {
-				label: 'spill av',
-				icons: {
-					primary: 'ui-icon-play'
-				}
-			};
-			if (player !== null && player.isPlaying()) {
-				player.pause();
-			}
-		}
-		$(this).button('option', options);
-	});
-	$('#smallForward').button({
-		text: false,
-		icons: {
-			primary: 'ui-icon-seek-next'
-		}
-	});
-	$('#forward').button({
-		text: false,
-		icons: {
-			primary: 'ui-icon-seek-end'
-		}
-	}).click(function(){
-		player.skipToTime(player.getCurrentTime()+30);
-		scrollToHighlightedText();
-		if (typeof Bookmark === 'function') {
-			Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
-				function(success, error) {
-					if (typeof log=='object') log.info('success:'+success+',error:'+error);
-				}
-			);
-		}
-	});
-	/*$('#bookmark').button({
-		text: false,
-		icons: {
-			primary: 'ui-icon-pin-s'
-		}
-	}).click(function(){
-		$('#menuOpenButton').click();
-		$('#menuTab-bookmarks-button').click();
-		
-		currentBookmark = 0; */
-//		var title = $(player.getHighlightedTextElement()).text().replace(/^\s*/, "").replace(/\s*$/, "");
-/*		var time = player.getCurrentTime();
-		if (title.length > 50)
-			title = title.substring(0,50);
-		title = niceTime(time)+' '+title;
-		$('#bookmarkTitle').val(title);
-		$('#bookmarkText').val('');
-		$('#bookmarkTime').val(player.getCurrentTime());
-		$('#bookmarkTitle,#bookmarkText,#bookmarkTime,#bookmarkTimeNow,#bookmarkEndEdit_save,bookmarkEndEdit_cancel').attr("disabled", false);
-		$('#editBookmark').show('slow');
-		$('.bookmarkEditButton').hide('slow');
-		$('.bookmarkDeleteButton').hide('slow');
 	});*/
-	$('#mute').button({
-		text: false,
-		icons: {
-			primary: 'ui-icon-volume-on'
-		}
-	})
-	.click(function() {
-		var options;
-		if ($(this).text() === 'demp') {
-			options = {
-				label: 'ikke demp',
-				icons: {
-					primary: 'ui-icon-volume-off'
-				}
-			};
-			player.setVolume(0);
+});
+function backward() {
+	player.skipToTime(player.getCurrentTime()-30);
+	//scrollToHighlightedText(); TODO
+	/*if (typeof Bookmark === 'function') {
+		Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
+			function(success, error) {
+				//if (console) console.log('success:'+success+',error:'+error);
+			}
+		);
+	}*/
+}
+function togglePlay() {
+	var button = $('#play-pause');
+	if (button.hasClass('paused')) {
+		if (player === null) {
+			if (typeof log=='object') log.warn('GUI togglePlay from paused: player not initialized');
+		} else if (player.isPlaying()) {
+			button.removeClass('paused');
+			button.addClass('playing');
+			if (typeof log=='object') log.warn('GUI togglePlay from paused: player is already playing');
 		} else {
-			options = {
-				label: 'demp',
-				icons: {
-					primary: 'ui-icon-volume-on'
-				}
-			};
-			player.setVolume(100);
+			button.removeClass('paused');
+			button.addClass('playing');
+			player.play();
 		}
-		$(this).button('option', options);
-	});
-	$('#menuCloseButton').button({
-		text: 'Tilbake',
-		icons: {
-			primary: 'ui-icon-arrowreturnthick-1-w'
+	} else {
+		if (player === null) {
+			if (typeof log=='object') log.warn('GUI togglePlay from playing: player not initialized');
+		} else if (!player.isPlaying()) {
+			button.removeClass('playing');
+			button.addClass('paused');
+			if (typeof log=='object') log.warn('GUI togglePlay from playing: player is already paused');
+		} else {
+			button.removeClass('playing');
+			button.addClass('paused');
+			player.pause();
 		}
-	})
-	.click(function() {
-		$('#menu').slideUp('fast');
-		$('#menuOpenButton').focus();
-	});
-	$('#menuOpenButton').button({
-		text: false,
-		icons: {
-			primary: 'ui-icon-plus'
-		}
-	})
-	.click(function() {
-		$('#menu').slideDown('fast');
-		$('#menuCloseButton').focus();
-	});
-	$(function() {
-		$("#menuTabs").tabs();
-	});
-	$(function() {
-		$("#controlButtons").buttonset();
-	});
-	$(function () {
-		var tabContainers = $('div.menuTabs > div');
-
-		$('div.menuTabs ul.menuTab-navigation a').click(function () {
-			tabContainers.hide().filter(this.hash).show();
-
-			$('div.menuTabs ul.menuTab-navigation a').removeClass('selected');
-			$(this).addClass('selected');
-
-			return false;
-		}).filter(':first').click();
-	});
-});
-$(document).ready(function() {
-	$('#mute').change();
-	$('#menu').hide('fast');
-	$('#editBookmark').hide();
-	$('#deleteBookmarkConfirmation').hide();
-});
-
+	}
+}
+function forward() {
+	player.skipToTime(player.getCurrentTime()+30);
+	//scrollToHighlightedText(); TODO
+	/*if (typeof Bookmark === 'function') {
+		Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
+			function(success, error) {
+				//if (console) console.log('success:'+success+',error:'+error);
+			}
+		);
+	}*/
+}
+function toggleMute() {
+	var button = $('#mute-unmute');
+	if (button.hasClass('muted')) {
+		button.removeClass('muted');
+		button.addClass('unmuted');
+		player.setVolume(100);
+	} else {
+		button.removeClass('unmuted');
+		button.addClass('muted');
+		player.setVolume(0);
+	}
+}
 var backend = null;
 window.setInterval(function(){
-	// fix mute click color problem
-	if ($('#mute').is(':checked') && !$('#muteLabel').hasClass('ui-state-active')) {
-		mute(false);
-		$('#mute').change();
-	} else if (!$('#mute').is(':checked') && $('#muteLabel').hasClass('ui-state-active')) {
-		mute(true);
-		$('#mute').change();
-	}
-	
 	if (player === null || server === null || loader === null)
 		return;
 	
 	// make sure play/stop button is up to date on wether the player is playing
-	if (	$('#play').text() === 'spill av' && player.isPlaying()
-		||	$('#play').text() === 'stopp' && !player.isPlaying()) {
-		$('#play').click();
+	var playButton = $('#play-pause');
+	if (player.isPlaying() && playButton.hasClass('paused')) {
+			playButton.removeClass('paused');
+			playButton.addClass('playing');
+	} else if (!player.isPlaying() && playButton.hasClass('playing')) {
+			playButton.removeClass('playing');
+			playButton.addClass('paused');
 	}
 	
 	if (player.doneLoading) {
 		var currentTime = player.getCurrentTime();
 		var totalTime = player.getTotalTime();
-		$('#time').text(niceTime(currentTime)+' / '+niceTime(totalTime));
+		//$('#time').text(niceTime(currentTime)+' / '+niceTime(totalTime));
 		//$('#progressbar').value((100*currentTime/totalTime));
 		
-		
+		/* TODO: detect backend in SmilPlayer.js and log the result
 		switch (player.getAudioBackend()) {
 			case 'html':
 				if (backend !== 'html') {
@@ -675,16 +342,17 @@ window.setInterval(function(){
 					$('#backend').attr('src','img/noaudio.png');
 					$('#backend').attr('alt','Denne nettleseren støtter ikke avspilling av lyd');
 				}
-		}
+		}*/
 		
 		if (autoScroll && player.isPlaying()) {
-			keepHighlightedTextOnScreen();
+			//keepHighlightedTextOnScreen();
 		}
 	}
-	// update progress bar and volume
-	// hvis feil volum; $('#volume').progressbar('value', player.getVolume() );
+	// TODO: update progress bar and volume
+	// if wrong volume; $('#volume').progressbar('value', player.getVolume() );
 },100);
 window.setInterval(function(){
+	return;//TODO
 	if (player === null || server === null || loader === null)
 		return;
 	
@@ -693,10 +361,10 @@ window.setInterval(function(){
 			// it seems we have bookmark support
 			Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
 				function(success, error) {
-					if (typeof log=='object') log.info('success:'+success+',error:'+error);
+					//if (console) console.log('success:'+success+',error:'+error);
 				}
 			);
-		} else if (typeof log=='object') log.trace('typeof Bookmark: '+typeof Bookmark+', isPlaying: '+player.isPlaying());
+		}// else if (console) console.log('typeof Bookmark: '+typeof Bookmark+', isPlaying: '+player.isPlaying());
 	}
 	
 },5000);
@@ -706,7 +374,7 @@ function s(id) {
 	if (typeof Bookmark === 'function') {
 		Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
 			function(success, error) {
-				if (typeof log=='object') log.info('success:'+success+',error:'+error);
+				//if (console) console.log('success:'+success+',error:'+error);
 			}
 		);
 	}
@@ -805,11 +473,11 @@ function init() {
 	document.body.focus();
 }
 if (typeof window.onload != "function") {
-	window.onload = init;
+        window.onload = init;
 } else {
-	var oldonload = window.onload;
-	window.onload = function(evt) {
-		if (oldonload) oldonload(evt);
-		init(evt);
-	};
+        var oldonload = window.onload;
+        window.onload = function(evt) {
+                if (oldonload) oldonload(evt);
+                init(evt);
+        };
 }

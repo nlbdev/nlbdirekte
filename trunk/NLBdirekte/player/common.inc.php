@@ -1,7 +1,7 @@
 <?php
 
 # version of NLBdirekte
-$version = '0.13';
+$version = '0.14';
 
 include('config/config.inc.php'); // import users config-file
 
@@ -23,9 +23,6 @@ if (!isset($calabashExec)) $calabashExec = "calabash";
 
 # debugging
 if (!isset($debug)) $debug = false;
-
-# DamnIT application key (damnit.jupiterit.com)
-if (!isset($damnit)) $damnit = NULL;
 
 # ---- end of default configuration variables ----
 

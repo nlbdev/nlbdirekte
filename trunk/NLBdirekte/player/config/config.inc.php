@@ -20,7 +20,4 @@ $calabashExec = "calabash"; // full path example: "C:\\xmlcalabash-0.9.29\\calab
 # debugging
 $debug = isset($debug)?$debug:true;
 
-# DamnIT application key
-$damnit = 'f4beb70f446e2e2ff2f26681e39a3bb5c533df1b';
-
 ?>

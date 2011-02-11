@@ -47,3 +47,7 @@ Changelog for major- and minor-version releases
 		through config.js and logs to both Firebug-style
 		browser-logs as well as server-side log files
 		through JSON XMLHttpRequests.
+0.14: Moved from jQuery UI to jQuery Mobile. Moved controls
+		from top to bottom. Bigger buttons. Fixed positioning
+		should now work on mobile devices, however jQuery Mobile
+		is still in alpha so it may have bugs.

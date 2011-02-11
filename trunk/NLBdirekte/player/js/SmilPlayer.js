@@ -226,7 +226,7 @@ function SmilPlayer() {
 			}
 			else if (getAttr(smilNode,'s','').indexOf('#') >= 0) {
 				// highlight content of element pointed to by fragment identifier
-				if (paused || getAttr(smilNode,'e',-1) - currentTime > inaccurateTimeMeasurement) { // compensate for audio time-inaccuracy when skipping
+				if (paused || parseFloat(getAttr(smilNode,'e',-1)) - currentTime > inaccurateTimeMeasurement) { // compensate for audio time-inaccuracy when skipping
 					var fragment = split[1];
 					if (prevHighlightId !== fragment) {
 						if (prevHighlightId) {
@@ -253,9 +253,10 @@ function SmilPlayer() {
 	
 	var skipTo = -1; // hold the time to skip to while sound is loading
 	function updateAudio(smilNode) {
-		//if (typeof log=='object') log.trace('updateAudio('+typeof smilNode+')');
+		//if (typeof log=='object') log.debug('updateAudio('+typeof smilNode+')');
 		if (audioObject === null && smilNode === null) {
 			// nothing playing and nothing to play
+			if (typeof log=='object') log.debug('nothing playing and nothing to play');
 			return;
 		}
 		if (audioObject === null) {
@@ -270,10 +271,10 @@ function SmilPlayer() {
 			if (audioObject !== null) {
 				audioObject.setVolume(Math.round(volume*100.));
 				if (audioObject.readyState >= 3) {
-					audioObject.setPosition(Math.round((getAttr(smilNode,'B',-1) + (currentTime - getAttr(smilNode,'b',-1)))*1000.));
+					audioObject.setPosition(Math.round((parseFloat(getAttr(smilNode,'B',-1)) + (currentTime - parseFloat(getAttr(smilNode,'b',-1))))*1000.));
 					if (typeof log=='object') log.trace('#1B audioObject.position/1000. = '+audioObject.position/1000.);
 				}
-				audioObjectBegin = getAttr(smilNode,'b',-1) - getAttr(smilNode,'B',-1);
+				audioObjectBegin = parseFloat(getAttr(smilNode,'b',-1)) - parseFloat(getAttr(smilNode,'B',-1));
 				audioObject.load();
 				audioObject.play();
 				if (paused) {
@@ -301,33 +302,43 @@ function SmilPlayer() {
 							// currentTime is not close to the time indicated by the audioObject
 							if (typeof log=='object') log.trace('(Math.abs('+audioObjectBegin+'+'+(audioObject.position/1000.)+' - '+currentTime+' = '+Math.abs(audioObjectBegin+audioObject.position/1000.-currentTime)+') > '+inaccurateTimeMeasurement+')');
 							audioObject.setPosition(Math.round((currentTime - audioObjectBegin)*1000.));
+							if (paused) {
+								audioObject.pause();
+							}
 							if (typeof log=='object') log.trace('#2B audioObject.currentTime = '+currentTime+' - '+audioObjectBegin+' = '+audioObject.position/1000.);
-							audioObject.play(); // update position
+							if (typeof log=='object') log.info('adjusting time to '+currentTime+'-'+audioObjectBegin+' = '+(currentTime-audioObjectBegin));
+							/*audioObject.play(); // update position
 							if (paused) {
 								window.setTimeout(delegate(that,function(){audioObject.pause()}),0);
 								if (typeof log=='object') log.info('adjusting time to '+currentTime+'-'+audioObjectBegin+' = '+(currentTime-audioObjectBegin));
-							}
+							}*/
 						}
-						if (audioObject.position/1000. < getAttr(smilNode,'B',-1)-inaccurateTimeMeasurement ||
-							audioObject.position/1000. > getAttr(smilNode,'E',-1)+inaccurateTimeMeasurement) {
+						if (audioObject.position/1000. < parseFloat(getAttr(smilNode,'B',-1))-inaccurateTimeMeasurement ||
+							audioObject.position/1000. > parseFloat(getAttr(smilNode,'E',-1))+inaccurateTimeMeasurement) {
 								// correct file, but too far off. we probably skipped to another place in the file...
 								if (typeof log=='object') log.info('correct file, but too far off. we probably skipped to another place in the file...');
 								if (typeof log=='object') log.debug('if ('+(audioObject.position/1000.)+' < '+(getAttr(smilNode,'B',-1)-inaccurateTimeMeasurement)+' || '+(audioObject.position/1000.)+' > '+(getAttr(smilNode,'E',-1)+inaccurateTimeMeasurement)+')');
-								audioObject.setPosition(Math.round(getAttr(smilNode,'B',-1)*1000.) + 100);
+								if (typeof log=='object') log.debug(parseFloat(getAttr(smilNode,'E',-1)));
+								audioObject.setPosition(Math.round(parseFloat(getAttr(smilNode,'B',-1))*1000.) + 100);
+								if (paused) {
+									audioObject.pause();
+								}
 								//audioObject.setPosition(Math.round((currentTime-audioObjectBegin)*1000.));
 								//if (typeof log=='object') log.trace('#3B audioObject.position/1000. = '+(audioObject.position/1000.));
 								//if (typeof log=='object') log.trace('audioObject.position/1000. = '+getAttr(smilNode,'B',-1)+' = '+(audioObject.position/1000.));
-								audioObject.play(); // update position
-								if (paused)
-									window.setTimeout(delegate(that,function(){audioObject.pause()}),0);
+								//audioObject.play(); // update position
+								//if (paused)
+								//	window.setTimeout(delegate(that,function(){audioObject.pause()}),0);
 								if (typeof log=='object') log.trace('audioObject.position/1000. = '+audioObject.position/1000.);
 						} else {
 							// everything playing as it should. pause/resume as needed
+							if (typeof log=='object') log.trace('everything playing as it should. pause/resume as needed');
 							
 							// if (should be playing && is not playing)
-							if (!paused && audioObject.paused) {
-								if (typeof log=='object') log.info('should be playing and is not playing; playing');
-								audioObject.play();
+							//if (!paused && audioObject.paused) {
+							if (!paused) {
+								if (typeof log=='object') log.debug('should be playing and is not playing; playing');
+								audioObject.resume();
 							}
 							// if (should not be playing && is playing)
 							if (paused && !audioObject.paused && audioObject.playState !== 1) {
@@ -335,6 +346,8 @@ function SmilPlayer() {
 								audioObject.pause();
 							}
 						}
+					} else if (typeof log=='object') {
+						log.debug('the audioObject is not loaded');
 					}
 				} else {
 					// playing the wrong file
@@ -355,15 +368,15 @@ function SmilPlayer() {
 						});
 						audioObject.setVolume(Math.round(volume*100.));
 						if (audioObject.readyState >= 3) {
-							audioObject.setPosition(Math.round((getAttr(smilNode,'B',-1) + (currentTime - getAttr(smilNode,'b',-1)))*1000.));
+							audioObject.setPosition(Math.round((parseFloat(getAttr(smilNode,'B',-1)) + (currentTime - parseFloat(getAttr(smilNode,'b',-1))))*1000.));
 							if (typeof log=='object') log.trace('#A1 audioObject.position/1000. = '+audioObject.position/1000.);
 						}
 						audioObject.play(); // update position
 						if (paused)
 							window.setTimeout(delegate(that,function(){audioObject.pause()}),0);
-						audioObjectBegin = getAttr(smilNode,'b',-1) - getAttr(smilNode,'B',-1);
+						audioObjectBegin = parseFloat(getAttr(smilNode,'b',-1)) - parseFloat(getAttr(smilNode,'B',-1));
 					} else if (!paused) {
-						if (typeof log=='object') log.trace("if ("+Math.abs(audioObject.duration/1000. - audioObject.position/1000.)+" > "+inaccurateTimeMeasurement+" &&\n"+
+						if (typeof log=='object') log.debug("if ("+Math.abs(audioObject.duration/1000. - audioObject.position/1000.)+" > "+inaccurateTimeMeasurement+" &&\n"+
 															"    "+Math.abs(audioObject.position/1000.+audioObjectBegin - currentTime)+" > "+inaccurateTimeMeasurement+")");
 					}
 				}
@@ -387,7 +400,7 @@ function SmilPlayer() {
 				video.setAttribute('height',this.extraElement.clientHeight);
 				video.setAttribute('autoplay',false);
 				video.setAttribute('controls',true);
-				video.currentTime = getAttr(smilNode,'B',-1) + (currentTime - getAttr(smilNode,'b',-1));
+				video.currentTime = parseFloat(getAttr(smilNode,'B',-1)) + (currentTime - parseFloat(getAttr(smilNode,'b',-1)));
 				this.extraElement.appendChild(video);
 			}
 			else if (getAttr(smilNode,'t','').split('/')[0] === 'image') {
@@ -416,8 +429,8 @@ function SmilPlayer() {
 		var stack = [];
 		for (var i = 0; i < numberOfChildren(this.smil); i++) {
 			var child = getChild(this.smil,i);
-			if ((getAttr(child,'b',-1) < 0 || getAttr(child,'b',-1) <= ms) &&
-				(getAttr(child,'e',-1) < 0 ||                        ms <= getAttr(child,'e',-1))) {
+			if ((parseFloat(getAttr(child,'b',-1)) < 0 || parseFloat(getAttr(child,'b',-1)) <= ms) &&
+				(parseFloat(getAttr(child,'e',-1)) < 0 ||                                      ms <= parseFloat(getAttr(child,'e',-1)))) {
 				
 				if (child[0] === 's' || child[0] === 'p') {
 					stack.push(child);
@@ -432,15 +445,15 @@ function SmilPlayer() {
 			
 			for (var i = 0; i < numberOfChildren(current); i++) {
 				var child = getChild(current,i);
-				if ((getAttr(child,'b') < 0 || getAttr(child,'b') <= ms) &&
-					(getAttr(child,'e') < 0 ||                 ms <= getAttr(child,'e'))) {
+				if ((parseFloat(getAttr(child,'b')) < 0 || parseFloat(getAttr(child,'b')) <= ms) &&
+					(parseFloat(getAttr(child,'e')) < 0 ||                                   ms <= parseFloat(getAttr(child,'e')))) {
 					
 					if (child[0] === 's' || child[0] === 'p')
 						stack.push(child);
 					else {
 						// sort ascending by 'begin'
 						var j = 0;
-						while (j < elements.length && getAttr(elements[j],'b',-1) < getAttr(child,'b'))
+						while (j < elements.length && parseFloat(getAttr(elements[j],'b',-1)) < parseFloat(getAttr(child,'b')))
 							j++;
 						elements.splice(j,0,child);
 					}
@@ -511,7 +524,7 @@ function SmilPlayer() {
 		
 		// if found, go to that smil element 
 		if (element !== null) {
-			return this.skipToTime(getAttr(element,'b',-1));
+			return this.skipToTime(parseFloat(getAttr(element,'b',-1)));
 		}
 		return false;
 	}
@@ -553,7 +566,7 @@ function SmilPlayer() {
 			}
 		}
 		if (text)
-			skipToTime(getAttr(text,'b',-1));
+			skipToTime(parseFloat(getAttr(text,'b',-1)));
 	}
 	this.setVolume = function(vol) {
 		if (vol < 0.0) vol = 0.0;
@@ -689,7 +702,7 @@ function SmilPlayer() {
 	
 	run(0);
 	
-	this.test = function(){return audioObject;}
+	this.test = function(){return audioObject;}//TODO
 }
 
 // Date.now for old browsers

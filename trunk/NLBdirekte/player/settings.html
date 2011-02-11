@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+	<title>Innstillinger</title>
+	<link rel="stylesheet" href="css/jQuery/jquery.mobile-1.0a3pre.min.css" />
+	<script type="text/javascript" src="js/jQuery/jquery-1.5.min.js"></script>
+	<script type="text/javascript" src="js/jQuery/jquery.mobile-1.0a2.min.js"></script>
+</head>
+<body>
+
+<div data-role="page" id="settings-page">
+
+	<div data-role="content">
+		Innstillinger
+		<!--div style="min-width: 750px; max-width: 800px; margin:0 auto; border-width: 1px; border-style: dotted;">
+			<div style="text-align: center; margins: 0 auto;"><button id="menuCloseButton" class="flip">Tilbake</button></div>
+			<div class="ui-tabs ui-widget ui-widget-content" id="menuTabs">
+				<div style="text-align: right;" class="centered">
+				<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" id="menuTab-navigation" style="text-align: center;">
+					<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#menuTab-bookinfo">Om boken</a></li>
+					<li class="ui-state-default ui-corner-top"><a href="#menuTab-settings" id="menuTab-settings-button">Alternativer</a></li>
+					<li class="ui-state-default ui-corner-top"><a href="#menuTab-contents" id="menuTab-contents-button">Innholdsfortegnelse</a></li>
+					<li class="ui-state-default ui-corner-top"><a href="#menuTab-pages" id="menuTab-pages-button">Sidetall</a></li>
+				</ul>
+				</div>
+				<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-bookinfo">
+					<img id="backend" src="#" width="40" height="40" style="vertical-align: top;"/><br/>
+					<div id="bookTitle"></div>
+					<div id="bookCreator"></div>
+					<div id="bookSubject"></div>
+					<div id="bookDescription"></div>
+					<div id="bookPublisher"></div>
+					<div id="bookContributor"></div>
+					<div id="bookDate"></div>
+					<div id="bookType"></div>
+					<div id="bookFormat"></div>
+					<div id="bookIdentifier"></div>
+					<div id="bookSource"></div>
+					<div id="bookLanguage"></div>
+					<div id="bookRelation"></div>
+					<div id="bookCoverage"></div>
+					<div id="bookRights"></div>
+				</div>
+				<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-settings">
+					Volum:
+					<div id="volume"></div>
+					<br/>
+					
+					Automatisk rulling:
+					<span id="autoscroll_buttons">
+						<input type="radio" id="autoscroll_on" name="autoscroll" value="on" checked="checked" /><label for="autoscroll_on">På</label>
+						<input type="radio" id="autoscroll_off" name="autoscroll" value="off" /><label for="autoscroll_off">Av</label>
+					</span>
+					
+					Posisjon i boken:
+					&lt;span id="progressbar"&gt;&lt;/span&gt;
+				</div>
+				<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-contents">
+					<div id="toc"></div>
+				</div>
+				<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-pages">
+					<div id="pages"></div>
+				</div>
+			</div>
+		</div-->
+	</div>
+	
+	<div data-role="footer" data-position="fixed" data-theme="d">
+		<div data-role="navbar" class="nav-nlbdirekte">
+			<a href="#" data-role="button" class="settingsQ" data-icon="custom" data-iconpos="notext" data-transition="fade" data-theme="b"></a>
+			<a href="#metadata-page" data-role="button" class="metadata" data-icon="custom" data-iconpos="notext" data-transition="fade"></a>
+			<a href="#toc-page" data-role="button" class="toc" data-icon="custom" data-iconpos="notext" data-transition="fade"></a>
+			<a href="#pages-page" data-role="button" class="pages" data-icon="custom" data-iconpos="notext" data-transition="fade"></a>
+			<a href="#content-page" data-role="button" class="menu-exit" data-icon="custom" data-iconpos="notext" data-transition="slideup"></a>
+		</div>
+	</div>
+	
+</div><!-- /page (#settings-page) -->
+
+</body>
+</html>
