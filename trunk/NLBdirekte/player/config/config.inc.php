@@ -11,7 +11,7 @@ $profiles = getcwd().'/../profiles';
 $logdir = getcwd().'/logs';
 
 # all PHP-errors, warnings and notices are appended to this file
-$logfile = $logdir.'/log.txt';
+$logfile = $logdir.'/log_'.date("Y-m-d").'.log';
 
 # If Calabash is not in PATH, then the full path can be specified here
 # Note that spaces in the path probably won't work.

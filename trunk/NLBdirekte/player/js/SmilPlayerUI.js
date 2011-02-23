@@ -448,9 +448,9 @@ function typeOf(value) {
 }
 
 function init() {
-	server = new NLBServer(ticket);	// authorization, downloading of files
-	player = new SmilPlayer();		// playback of SMIL filesets
-	loader = new Daisy202Loader();	// loading and parsing SMIL-files from the server into the player
+	server = new NLBServer('ticket='+ticket+'&launchTime='+launchTime);	// authorization, downloading of files
+	player = new SmilPlayer();											// playback of SMIL filesets
+	loader = new Daisy202Loader();										// loading and parsing SMIL-files from the server into the player
 	
 	if (typeof serverUrl !== 'undefined')
 		server.url = serverUrl;

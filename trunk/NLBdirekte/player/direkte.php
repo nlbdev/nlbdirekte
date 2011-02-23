@@ -3,13 +3,41 @@ header('Content-Type: text/html; charset=utf-8');
 
 include('common.inc.php');
 
-session_start();
+list($user, $book) = decodeTicket($_REQUEST['ticket']);
+
+/*session_start();
 if (!empty($_REQUEST['username'])) {
 	$_SESSION['patronId'] = '';
 	for ($i = 0; $i < strlen($_REQUEST['username']) && $i < 4; $i++) {
 		$_SESSION['patronId'] .= str_pad((string)(ord($_REQUEST['username'][$i])-32), 2, "0", STR_PAD_LEFT);
 	}
-}
+}*/
+
+# Create a launchTime that can be used to identify this instance of NLBdirekte
+$launchTime = microtime(true);
+$logfile = microtimeAndUsername2logfile($launchTime,$user);
+
+include('lib/browscap/Browscap.php');
+$browscap = new Browscap('lib/browscap/');
+$browser = $browscap->getBrowser(NULL, true);
+logMessage(array(
+	"eventTime" => microtime2isostring(microtime(true)),
+	"language" => "php",
+	"type" => E_NOTICE,
+	"message" => $browser,
+	"file" => __FILE__,
+	"line" => __LINE__
+));
+logMessage(array(
+	"eventTime" => microtime2isostring(microtime(true)),
+	"language" => "php",
+	"type" => E_NOTICE,
+	"message" => "bookId=$book",
+	"file" => __FILE__,
+	"line" => __LINE__
+));
+
+$iconpos = $browser['isMobileDevice']?'notext':'top';
 
 ?><!doctype html>
 <html class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
@@ -36,6 +64,7 @@ if (!empty($_REQUEST['username'])) {
 		<script type="text/javascript" charset="utf-8">
 		/* <![CDATA[ */
 			var ticket = '<?php echo $_REQUEST['ticket']; ?>';
+			var launchTime = '<?php echo $launchTime; ?>';
 		/* ]]> */
 		</script>
 		
@@ -61,6 +90,7 @@ if (!empty($_REQUEST['username'])) {
 			var ajaxAppender = new log4javascript.AjaxAppender(serverUrl+"log.php");
 			var jsonLayout = new log4javascript.JsonLayout();
 			jsonLayout.setCustomField('ticket',ticket);
+			jsonLayout.setCustomField('launchTime',launchTime);
 			ajaxAppender.setLayout(jsonLayout);
 			//ajaxAppender.setBatchSize(20);
 			//ajaxAppender.setTimerInterval(5000);
@@ -137,11 +167,11 @@ if (!empty($_REQUEST['username'])) {
                 role="contentinfo">
 				<div data-role="navbar" class="nav-nlbdirekte">
 					<ul>
-						<li><a href="javascript:backward();" data-role="button" id="backward" data-icon="custom" data-iconpos="notext" accesskey="1"></a></li>
-						<li><a href="javascript:togglePlay();" data-role="button" id="play-pause" data-icon="custom" data-iconpos="notext" class="paused" accesskey="2"></a></li>
-						<li><a href="javascript:forward();" data-role="button" id="forward" data-icon="custom" data-iconpos="notext" accesskey="3"></a></li>
-						<li><a href="javascript:toggleMute();" data-role="button" id="mute-unmute" data-icon="custom" data-iconpos="notext" class="unmuted" accesskey="4"></a></li>
-						<li><a href="javascript:toggleMenu();" data-role="button" id="menu" data-icon="custom" data-iconpos="notext" data-transition="slideup" accesskey="5"></a></li>
+						<li><a href="javascript:backward();" alt="Bakover" data-role="button" id="backward" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="1"><?php if (!($browser['isMobileDevice'])) echo "Bakover";?></a></li>
+						<li><a href="javascript:togglePlay();" alt="Start/stopp" data-role="button" id="play-pause" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" class="paused" accesskey="2"><?php if (!($browser['isMobileDevice'])) echo "Start / Stopp";?></a></li>
+						<li><a href="javascript:forward();" alt="Fremover" data-role="button" id="forward" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="3"><?php if (!($browser['isMobileDevice'])) echo "Fremover";?></a></li>
+						<li><a href="javascript:toggleMute();" alt="Lyd av/på" data-role="button" id="mute-unmute" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" class="unmuted" accesskey="4"><?php if (!($browser['isMobileDevice'])) echo "Lyd av / p&aring;";?></a></li>
+						<li><a href="javascript:toggleMenu();" alt="Meny" data-role="button" id="menu" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slideup" accesskey="5"><?php if (!($browser['isMobileDevice'])) echo "Meny";?></a></li>
 					</ul>
 				</div>
             </div>
@@ -150,6 +180,7 @@ if (!empty($_REQUEST['username'])) {
         <div data-role="page" id="settings-page" data-url="settings-page" class="ui-page ui-body-c">
             <div data-role="content" class="ui-content" role="menu">
             <h2>Innstillinger</h2>
+			<p>kommer snart...</p>
 			<!--div style="min-width: 750px; max-width: 800px; margin:0 auto; border-width: 1px; border-style: dotted;">
 				<div style="text-align: center; margins: 0 auto;"><button id="menuCloseButton" class="flip">Tilbake</button></div>
 				<div class="ui-tabs ui-widget ui-widget-content" id="menuTabs">
@@ -186,7 +217,7 @@ if (!empty($_REQUEST['username'])) {
 						
 						Automatisk rulling:
 						<span id="autoscroll_buttons">
-							<input type="radio" id="autoscroll_on" name="autoscroll" value="on" checked="checked" /><label for="autoscroll_on">P�</label>
+							<input type="radio" id="autoscroll_on" name="autoscroll" value="on" checked="checked" /><label for="autoscroll_on">På</label>
 							<input type="radio" id="autoscroll_off" name="autoscroll" value="off" /><label for="autoscroll_off">Av</label>
 						</span>
 						
@@ -205,11 +236,11 @@ if (!empty($_REQUEST['username'])) {
             <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
            		<div data-role="navbar" class="nav-nlbdirekte">
 					<ul>
-						<li><a href="javascript:toggleMenu();" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="slidedown"></a></li>
-						<li><a href="#settings-page" class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade"></a></li>
-						<li><a href="#metadata-page" class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade" class="paused"></a></li>
-						<li><a href="#toc-page" class="toc-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade"></a></li>
-						<li><a href="#pages-page" class="pages-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade" class="unmuted"></a></li>
+						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>
+						<li><a href="#settings-page" alt="Innstillinger" class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"><?php if (!($browser['isMobileDevice'])) echo "Innstillinger";?></a></li>
+						<li><a href="#metadata-page" alt="Om boken" class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="paused"><?php if (!($browser['isMobileDevice'])) echo "Om boken";?></a></li>
+						<li><a href="#toc-page" alt="Innholdsfortegnelse" class="toc-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"><?php if (!($browser['isMobileDevice'])) echo "Innholdsfortegnelse";?></a></li>
+						<li><a href="#pages-page" alt="Sideliste" class="pages-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="unmuted"><?php if (!($browser['isMobileDevice'])) echo "Sideliste";?></a></li>
 					</ul>
 				</div>
             </div>
@@ -217,16 +248,17 @@ if (!empty($_REQUEST['username'])) {
 		
         <div data-role="page" id="metadata-page" data-url="metadata-page" class="ui-page ui-body-c">
             <div data-role="content" class="ui-content" role="menu">
-                <h2>Metadata</h2>
+                <h2>Om boken</h2>
+				<p>kommer snart...</p>
             </div>
             <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
            		<div data-role="navbar" class="nav-nlbdirekte">
 					<ul>
-						<li><a href="javascript:toggleMenu();" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="slidedown"></a></li>
-						<li><a href="#settings-page" class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade"></a></li>
-						<li><a href="#metadata-page" class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade" class="paused"></a></li>
-						<li><a href="#toc-page" class="toc-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade"></a></li>
-						<li><a href="#pages-page" class="pages-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade" class="unmuted"></a></li>
+						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>
+						<li><a href="#settings-page" alt="Innstillinger" class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"><?php if (!($browser['isMobileDevice'])) echo "Innstillinger";?></a></li>
+						<li><a href="#metadata-page" alt="Om boken" class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="paused"><?php if (!($browser['isMobileDevice'])) echo "Om boken";?></a></li>
+						<li><a href="#toc-page" alt="Innholdsfortegnelse" class="toc-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"><?php if (!($browser['isMobileDevice'])) echo "Innholdsfortegnelse";?></a></li>
+						<li><a href="#pages-page" alt="Sideliste" class="pages-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="unmuted"><?php if (!($browser['isMobileDevice'])) echo "Sideliste";?></a></li>
 					</ul>
 				</div>
             </div>
@@ -234,16 +266,17 @@ if (!empty($_REQUEST['username'])) {
 		
         <div data-role="page" id="toc-page" data-url="toc-page" class="ui-page ui-body-c">
             <div data-role="content" class="ui-content" role="menu">
-                <h2>Table of Contents</h2>
+                <h2>Innholdsfortegnelse</h2>
+				<p>kommer snart...</p>
             </div>
             <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
            		<div data-role="navbar" class="nav-nlbdirekte">
 					<ul>
-						<li><a href="javascript:toggleMenu();" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="slidedown"></a></li>
-						<li><a href="#settings-page" class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade"></a></li>
-						<li><a href="#metadata-page" class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade" class="paused"></a></li>
-						<li><a href="#toc-page" class="toc-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade"></a></li>
-						<li><a href="#pages-page" class="pages-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade" class="unmuted"></a></li>
+						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>
+						<li><a href="#settings-page" alt="Innstillinger" class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"><?php if (!($browser['isMobileDevice'])) echo "Innstillinger";?></a></li>
+						<li><a href="#metadata-page" alt="Om boken" class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="paused"><?php if (!($browser['isMobileDevice'])) echo "Om boken";?></a></li>
+						<li><a href="#toc-page" alt="Innholdsfortegnelse" class="toc-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"><?php if (!($browser['isMobileDevice'])) echo "Innholdsfortegnelse";?></a></li>
+						<li><a href="#pages-page" alt="Sideliste" class="pages-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="unmuted"><?php if (!($browser['isMobileDevice'])) echo "Sideliste";?></a></li>
 					</ul>
 				</div>
             </div>
@@ -251,16 +284,17 @@ if (!empty($_REQUEST['username'])) {
 		
         <div data-role="page" id="pages-page" data-url="pages-page" class="ui-page ui-body-c">
             <div data-role="content" class="ui-content" role="menu">
-                <h2>Jump to page</h2>
+                <h2>Sideliste</h2>
+				<p>kommer snart...</p>
             </div>
             <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
            		<div data-role="navbar" class="nav-nlbdirekte">
 					<ul>
-						<li><a href="javascript:toggleMenu();" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="slidedown"></a></li>
-						<li><a href="#settings-page" class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade"></a></li>
-						<li><a href="#metadata-page" class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade" class="paused"></a></li>
-						<li><a href="#toc-page" class="toc-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade"></a></li>
-						<li><a href="#pages-page" class="pages-page-link" data-role="button" data-icon="custom" data-iconpos="notext" data-transition="fade" class="unmuted"></a></li>
+						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>
+						<li><a href="#settings-page" alt="Innstillinger" class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"><?php if (!($browser['isMobileDevice'])) echo "Innstillinger";?></a></li>
+						<li><a href="#metadata-page" alt="Om boken" class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="paused"><?php if (!($browser['isMobileDevice'])) echo "Om boken";?></a></li>
+						<li><a href="#toc-page" alt="Innholdsfortegnelse" class="toc-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"><?php if (!($browser['isMobileDevice'])) echo "Innholdsfortegnelse";?></a></li>
+						<li><a href="#pages-page" alt="Sideliste" class="pages-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="unmuted"><?php if (!($browser['isMobileDevice'])) echo "Sideliste";?></a></li>
 					</ul>
 				</div>
             </div>

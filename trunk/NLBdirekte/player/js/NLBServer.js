@@ -1,17 +1,17 @@
-function NLBServer(ticket_) {
+function NLBServer(get_params_) {
 	var that = this;
 	
-	this.ticket = ticket_;
+	this.get_params = get_params_;
 	this.url = '';
 	this.state = "";
 	
 	this.getUrl = function(filename) {
 		// Note: SmilPlayer.js depends on NLBServer.getUrl returning the
 		// same URL each time for the same filename.
-		return this.url+'getfile.php?ticket='+this.ticket+'&file='+filename;
+		return this.url+'getfile.php?'+this.get_params+'&file='+filename;
 	};
 	this.readyUrl = function() {
-		return this.url+'isprepared.php?ticket='+this.ticket;
+		return this.url+'isprepared.php?'+this.get_params;
 	}
 	
 	// Retrieves an XML or HTML document

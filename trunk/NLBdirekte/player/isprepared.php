@@ -15,6 +15,10 @@ list($user, $book) = decodeTicket($_REQUEST['ticket']);
 	return "you are not logged in";
 }*/
 
+# if launchTime is set, use that to put log entries in its own log
+if (isset($_REQUEST['launchTime']))
+	$logfile = microtimeAndUsername2logfile($_REQUEST['launchTime'],$user);
+
 // Make sure that the patron has a profile directory
 if (!is_dir("$profiles/$user"))
 	mkdir("$profiles/$user");

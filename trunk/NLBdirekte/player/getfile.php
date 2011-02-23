@@ -8,13 +8,18 @@ include('common.inc.php');
 
 # decode ticket here
 list($user, $book) = decodeTicket($_REQUEST['ticket']);
-$file = $_REQUEST['file'];
-if ($debug) trigger_error("requested file $file");
 
 // Not valid request?
 /*if (!(valid request)) {
   return "you are not logged in";
 }*/
+
+# if launchTime is set, use that to put log entries in its own log
+if (isset($_REQUEST['launchTime']))
+	$logfile = microtimeAndUsername2logfile($_REQUEST['launchTime'],$user);
+
+$file = $_REQUEST['file'];
+if ($debug) trigger_error("requested file $file");
 
 // Book not ready for playback?
 if (!file_exists(fix_directory_separators("$profiles/$user/books/$book/metadata.json"))
