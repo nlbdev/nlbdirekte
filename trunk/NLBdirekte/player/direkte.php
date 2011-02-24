@@ -164,7 +164,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
                 <div id="book" style="background-color: white; padding: 10px;"></div>
             </div>
             <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer"
-                role="contentinfo">
+                role="navigation">
 				<div data-role="navbar" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:backward();" alt="Bakover" data-role="button" id="backward" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="1"><?php if (!($browser['isMobileDevice'])) echo "Bakover";?></a></li>
