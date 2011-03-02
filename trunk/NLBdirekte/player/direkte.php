@@ -19,6 +19,7 @@ $logfile = microtimeAndUsername2logfile($launchTime,$user);
 
 include('lib/browscap/Browscap.php');
 $browscap = new Browscap('lib/browscap/');
+$browscap->doAutoUpdate = false;
 $browser = $browscap->getBrowser(NULL, true);
 logMessage(array(
 	"eventTime" => microtime2isostring(microtime(true)),
