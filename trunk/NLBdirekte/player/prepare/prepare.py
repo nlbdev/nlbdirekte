@@ -1,7 +1,35 @@
 import json
 import sys
+import inspect
+from time import time, gmtime, strftime
+import time
+from math import floor
 
 tempDir = sys.argv[1]
+logFile = sys.argv[2]
+
+def lineno():
+    #Returns the current line number in our program.
+	#(http://code.activestate.com/recipes/145297-grabbing-the-current-line-number-easily/)
+    return inspect.currentframe().f_back.f_lineno
+
+def log(type, message):
+	log = open(logFile,'a');
+	logTime = time.time()
+	logTime = strftime("%Y-%m-%dT%H:%M:%S", gmtime(logTime))+str(logTime-floor(logTime)).replace('0','',1)+"+00:00"
+	json.dump({"language":"python","type":type,"message":message,"eventTime":logTime,"logTime":logTime,"file":sys.argv[0],"line":str(inspect.currentframe().f_back.f_lineno)}, log, indent=None, separators=(',',':'))
+	log.write("\n");
+	log.close()
+
+def progress(percent):
+	log = open(logFile,'a');
+	logTime = time.time()
+	logTime = strftime("%Y-%m-%dT%H:%M:%S", gmtime(logTime))+str(logTime-floor(logTime)).replace('0','',1)+"+00:00"
+	json.dump({"language":"python","type":"PROGRESS","message":"prepare.py:"+str(percent)+"%","eventTime":logTime,"logTime":logTime,"file":sys.argv[0],"line":str(inspect.currentframe().f_back.f_lineno)}, log, indent=None, separators=(',',':'))
+	log.write("\n");
+	log.close()
+
+progress(0)
 
 def hasAttribute(elem, attr):
 	if (not isinstance(attr, str) and not isinstance(attr, unicode)):
@@ -297,6 +325,7 @@ def determineMimeType(elem):
 nccFile = open(tempDir+"/ncc.json")
 ncc = json.load(nccFile)
 nccFile.close()
+progress(1)
 
 # this is what we hope to get from ncc.json
 metadata = ["metadata", dict()]	# <metadata name=value name=value /> => ["metadata", { name:value , name:value}]
@@ -314,11 +343,27 @@ else:
 	body = ncc[2]
 
 # get metadata
+totalTime = 1
 for meta in head:
 	if (not isinstance(meta, list)):
 		continue
 	if (hasAttribute(meta, 'name') and hasAttribute(meta, 'content')):
+		if (getAttribute(meta, 'name', 'undefined') == 'ncc:totalTime' or getAttribute(meta, 'name', 'undefined') == 'ncc:totaltime'):
+			fraction = getAttribute(meta, 'content', str(totalTime)).split('.')
+			hms = fraction[0].split(':')
+			if (len(hms)==3):
+				totalTime = (float(hms[0])*24*60) + (float(hms[1])*60) + (float(hms[2])*1)
+			elif (len(hms)==2):
+				totalTime = (float(hms[0])*60) + (float(hms[1])*1)
+			else:
+				totalTime = float(hms[0])
+			if (len(fraction)>1):
+				fraction = fraction[1]
+			else:
+				fraction = '0'
+			totalTime = float(str(totalTime).split('.')[0]+'.'+fraction)
 		setAttribute(metadata,getAttribute(meta, 'name', 'undefined'),getAttribute(meta, 'content', 'undefined'))
+progress(2)
 
 # get toc, pagelist and theFlow
 for child in body:
@@ -371,13 +416,19 @@ for child in body:
 	
 	if (alreadyThere < 0):
 		theFlow.append(dict({'nodeName': child[0], 'clazz': clazz, 'smil': smil[0], 'smilFragment': smil[2], 'text': text}))
-	
+progress(4)
 
 smil = ["s" , {'b':0}] # <s b= e= B= E= d= >...</s>
 for currentFlow in range(len(theFlow)):
 	smilFile = open(tempDir+"/"+theFlow[currentFlow]['smil'].rpartition('/')[2]+".json")
 	smil.append(json.load(smilFile))
 	smilFile.close()
+progress(6)
+
+fixTimesStart = 6
+fixTimesEnd = 90
+fixTimesIteration = 0
+fixTimesCurrentIteration = 0.0
 
 ftDebug = False
 if (sys.getrecursionlimit() < 100):
@@ -557,6 +608,20 @@ def fixTimes(parent, current, siblingNr):
 							if (ftDebug): print('clipEnd '+unicode(clipEnd)+' #19')
 						break
 		
+		# Update progress
+		global totalTime
+		global fixTimesStart
+		global fixTimesEnd
+		global fixTimesIteration
+		global fixTimesCurrentIteration
+		if (end > totalTime):
+			totalTime = end
+		if (begin > totalTime):
+			totalTime = begin
+		if (begin/totalTime - fixTimesCurrentIteration/totalTime > 0.25):
+			fixTimesCurrentIteration = begin
+			progress(str(100*((1-0.6**(fixTimesIteration+fixTimesCurrentIteration/totalTime))*(fixTimesEnd-fixTimesStart)/100. + fixTimesStart/100.)))
+		
 		# Finally; recursively process elements (could be optimized further, but this should do for now)
 		if (not determinedSomething):
 			for child in range(0,numberOfChildren(current)):
@@ -575,7 +640,10 @@ def fixTimes(parent, current, siblingNr):
 	return currentUpdated
 
 while (fixTimes(None, smil, 0)):
+	fixTimesIteration = fixTimesIteration + 1
+	fixTimesCurrentIteration = 0
 	continue
+progress(fixTimesEnd)
 
 def prependId(current, text):
 	if (hasAttribute(current,'i')):
@@ -584,6 +652,7 @@ def prependId(current, text):
 		prependId(getChild(current,c), text)
 for i in range(0,numberOfChildren(smil)):
 	prependId(getChild(smil,i),'smil'+unicode(i)+'_')
+
 
 def postProcess(current):
 	# check pagelist
@@ -630,6 +699,7 @@ def postProcess(current):
 			postProcess(current[child])
 
 postProcess(smil)
+progress(99)
 
 smilFile = open(tempDir+"/smil.json", 'w')
 json.dump(smil, smilFile, indent=0, separators=(',',':')) # indent=0 so that linebreaks are added. JavaScript likes linebreaks.
@@ -646,3 +716,5 @@ pagelistFile.close()
 metadataFile = open(tempDir+"/metadata.json", 'w')
 json.dump(metadata, metadataFile, indent=0)
 metadataFile.close()
+
+progress(100)

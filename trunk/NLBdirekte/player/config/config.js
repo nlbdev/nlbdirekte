@@ -10,5 +10,5 @@ var debug = true;
 
 // Logging (levels: 'ALL' = 'TRACE' < 'DEBUG' < 'INFO' < 'WARN' < 'ERROR' < 'FATAL' < 'OFF')
 var log4javascript_disabled = false;
-var logging_client_level = 'INFO';
+var logging_client_level = 'DEBUG';
 var logging_server_level = 'DEBUG';

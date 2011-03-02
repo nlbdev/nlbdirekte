@@ -28,7 +28,11 @@ function prettyTimeToMinute($microtime) {
 function prettyTimeToMillisecond($microtime) {
 	$time = prettyTimeToMinute($microtime);
 	$time .= date(":s",(floor($microtime)+intval(date("Z",floor($microtime)))));
-	$time .= preg_replace('/^0.(...).*$/','.$1',($microtime - floor($microtime)));
+	$ms = preg_replace('/^0.(...).*$/','$1',($microtime - floor($microtime)));
+	if ($ms == 0)
+		$time .= '.000';
+	else
+		$time .= ".$ms";
 	return $time;
 }
 
@@ -76,6 +80,11 @@ header('Content-Type: text/html; charset=utf-8');
 			background-color: #EEE;
 		}
 		
+		#log {
+			font-family: "Courier New",
+			Courier,
+			monospace;
+		}
 		#log table {
 			margin-left: auto;
 			margin-right: auto;
@@ -90,7 +99,7 @@ header('Content-Type: text/html; charset=utf-8');
 		#log table
 		{
 			border-color: #DDD;
-			border-width: 0 0 1px 1px;
+			/*border-width: 0 0 1px 1px;*/
 			border-style: solid;
 			width: 100%;
 			text-align: left;
@@ -98,9 +107,9 @@ header('Content-Type: text/html; charset=utf-8');
 		#log td
 		{
 			border-color: #DDD;
-			border-width: 1px 1px 0 0;
+			/*border-width: 1px 1px 0 0;*/
 			border-style: solid;
-			padding: 4px;
+			/*padding: 4px;*/
 			background-color: #EEE;
 		}
 		#log td.requestDivider {
@@ -108,7 +117,20 @@ header('Content-Type: text/html; charset=utf-8');
 			font-size: 0.75em;
 			font-style: italic;
 			text-align: center;
-			padding: 0;
+			/*padding: 0;*/
+		}
+		#log table td {
+			border-left:solid 5px transparent;
+			border-right:solid 5px transparent;
+		}
+		#log table th {
+			border-left:solid 5px transparent;
+		}
+		#log table td:first-child {
+			border-left:0;
+		}
+		#log table td:last-child {
+			border-right:0;
 		}
 	</style>
 </head>
@@ -121,6 +143,8 @@ $formatted_time_split = explode('.',$logname);
 $date = $formatted_time_split[0];
 
 $bookId = 'unknown';
+$calabashlogs = array();
+$pythonlogs = array();
 $browser = array();
 
 $log = array(); // all relevant log entries
@@ -132,16 +156,23 @@ if ($logFile = file(fix_directory_separators("$logdir/log_$logname.log"))) {
 		$json['requestTime'] = isostring2microtime($json['requestTime']);
 		$json['logTime'] = isostring2microtime($json['logTime']);
 		$json['eventTime'] = isostring2microtime($json['eventTime']);
-		$log[] = $json;
 		if (preg_match('/^bookId=(\d*)$/',$json['message'],$matches)) {
 			$bookId = $matches[1];
 		}
+		if (preg_match('/^calabashlog=(.*)$/',$json['message'],$matches)) {
+			$calabashlogs[$matches[1]] = $json['requestTime'];
+		}
+		if (preg_match('/^pythonlog=(.*)$/',$json['message'],$matches)) {
+			$pythonlogs[$matches[1]] = $json['requestTime'];
+		}
 		if (is_array($json['message']) and array_key_exists("browser_name", $json['message'])) {
 			$browser = $json['message'];
+			$json['message'] = '[browser info]';
 		}
 		if (!in_array($json['requestTime'], $requestTimes, true)) {
 			$requestTimes[] = $json['requestTime'];
 		}
+		$log[] = $json;
 	}
 }
 // load common log
@@ -155,11 +186,89 @@ if ($logFile = file(fix_directory_separators("$logdir/log_$date.log"))) {
 			if (preg_match('/^bookId=(\d*)$/',$json['message'],$matches)) {
 				$bookId = $matches[1];
 			}
+			if (preg_match('/^calabashlog=(.*)$/',$json['message'],$matches)) {
+				$calabashlogs[$matches[1]] = $json['requestTime'];
+			}
+			if (preg_match('/^pythonlog=(.*)$/',$json['message'],$matches)) {
+			$pythonlogs[$matches[1]] = $json['requestTime'];
+		}
+		$log[] = $json;
+		}
+	}
+}
+// load python log
+foreach ($pythonlogs as $pythonlog => $requestTime) {
+	if ($logFile = file(fix_directory_separators("$pythonlog"))) {
+		foreach ($logFile as $logEntry) {
+			$json = json_decode($logEntry, true);
+			$json['requestTime'] = $requestTime;
+			$json['logTime'] = isostring2microtime($json['logTime']);
+			$json['eventTime'] = isostring2microtime($json['eventTime']);
 			$log[] = $json;
 		}
 	}
 }
-// sorter logg på requestTime, så logTime
+// load calabash log
+foreach ($calabashlogs as $calabashlog => $requestTime) {
+	if ($logFile = file(fix_directory_separators("$calabashlog"))) {
+		for ($i = 0; $i < count($logFile); $i++) {
+			$logLine = $logFile[$i];
+			if (!(preg_match('/^\d+\.\w+\.\d+\s+\d+:\d+:\d+.*$/',$logLine)))
+				continue;
+			preg_match('/^(\d+)\.(\w+)\.(\d+)\s+(\d+):(\d+):(\d+)\s+([^\s]+)\s+(.+)$/',$logLine,$matches);
+			$isostringUTC = $matches[3]."-";
+			switch ($matches[2]) {
+			case 'jan': $isostringUTC .= '01'; break;
+			case 'feb': $isostringUTC .= '02'; break;
+			case 'mar': $isostringUTC .= '03'; break;
+			case 'apr': $isostringUTC .= '04'; break;
+			case 'may': $isostringUTC .= '05'; break;
+			case 'jun': $isostringUTC .= '06'; break;
+			case 'jul': $isostringUTC .= '07'; break;
+			case 'aug': $isostringUTC .= '08'; break;
+			case 'sep': $isostringUTC .= '09'; break;
+			case 'oct': $isostringUTC .= '10'; break;
+			case 'nov': $isostringUTC .= '11'; break;
+			case 'dec': $isostringUTC .= '12'; break;
+			default: $isostringUTC .= '00';
+			}
+			$isostringUTC .= "-".$matches[1]."T".$matches[4].":".$matches[5].":".$matches[6]."+00:00";
+			
+			$logTime = isostring2microtime($isostringUTC)-date("Z");
+			$eventTime = isostring2microtime($isostringUTC)-date("Z");
+			$file = preg_replace('/^.*\.(.*)$/','$1',$matches[7]);
+			$type = $matches[8];
+			
+			$message = "";
+			for ($i++; $i < count($logFile); $i++) {
+				if (preg_match('/^([A-Z]+):\s+(.*)$/',$logFile[$i],$messageMatches)) {
+					$type = $messageMatches[1];
+					$message .= $messageMatches[2];
+				} else {
+					$message .= $logFile[$i];
+				}
+				if ($i < count($logFile)-1 and (preg_match('/^\d+\.\w+\.\d+\s+\d+:\d+:\d+.*$/',$logFile[$i+1]) or !preg_match('/\w/',$logFile[$i+1]))) {
+					break;
+				}
+			}
+			
+			$language = "xproc";
+			$line = -1;
+			
+			$log[] = array(
+				"eventTime" => $eventTime,
+				"requestTime" => $requestTime,
+				"logTime" => $logTime,
+				"language" => "xproc",
+				"type" => $type,
+				"message" => $message,
+				"file" => $file,
+				"line" => -1
+			);
+		}
+	}
+}
+// sort logs by requestTime, then logTime
 function logCmp($a, $b) {
     if ($a['requestTime'] == $b['requestTime']) {
 		if ($a['logTime'] == $b['logTime']) {
@@ -211,7 +320,7 @@ usort($log, "logCmp");
 				if (!empty($dcType)) echo "Type: $dcType<br/>";
 				if (!empty($dcLanguage)) echo "Språk: $dcLanguage";
 				?></div></td>
-			<td><?php echo prettyTimeToMinute($log[0]['requestTime']);?><br/>
+			<td><nobr><?php echo prettyTimeToMinute($log[0]['requestTime']);?></nobr><br/>
 			<span style="font-size: 0.5em;">varighet: <?php
 				$logSpan = floor($log[count($log)-1]['requestTime']-$log[0]['requestTime']);
 				$logSpanString = '';
@@ -337,7 +446,7 @@ usort($log, "logCmp");
 <section id="log">
 	<table>
 		<tr>
-			<th>logTime</th>
+			<!--th>logTime</th-->
 			<th>eventTime</th>
 			<th>language</th>
 			<th>severity</th>
@@ -347,39 +456,54 @@ usort($log, "logCmp");
 		</tr>
 		<?php
 		$newLogGroup = true;
-		// for hver gruppe med lik requestTime eller tilstøtende javascript-oppføringer
+		// for each group with equal requestTime or adjacent javascript-entries
+		$requestFile = "";
 		for ($i = 0; $i < count($log); $i++) {
 			$logEntry = $log[$i];
+			if (preg_match('/^requestFile=(.*)$/',$logEntry['message'],$matches)) {
+				$requestFile = $matches[1];
+				continue;
+			}
 			if ($newLogGroup) {
-				// skriv ut tynn grå overskriftsrad med requestTime fra første oppføring
+				// write out thin grey divider with requestTime from first entry
 				?>
 				<tr>
-					<td colspan="2" class="requestDivider"><?php echo prettyTimeToMillisecond($logEntry['requestTime']);?></th>
-					<td colspan="5" class="requestDivider"></th>
+					<td colspan="1" class="requestDivider"><b><nobr><?php echo prettyTimeToMillisecond($logEntry['requestTime']);?></nobr></b></th>
+					<td colspan="2" class="requestDivider"></td>
+					<td colspan="1" class="requestDivider"><b><nobr><?php echo $requestFile;?></nobr></b></th>
+					<td colspan="2" class="requestDivider"></td>
 				</tr>
 				<?php
 			}
-			// skriv ut logTime, eventTime, language, type, line, message
+			// write out logTime, eventTime, language, type, line and message
 			?>
 			<tr>
-				<th><?php echo prettyTimeToMillisecond($logEntry['logTime']);?></th>
-				<th><?php echo prettyTimeToMillisecond($logEntry['eventTime']);?></th>
-				<th><?php echo $logEntry['language'];?></th>
-				<th><?php echo $logEntry['type'];?></th>
-				<th><?php echo preg_replace('/^.*[\\/\\\\]([^\\/\\\\]*)$/','$1',$logEntry['file']);?></th>
-				<th><?php echo $logEntry['line'];?></th>
-				<th><?php echo $logEntry['message'];?></th>
+				<!--td><nobr><?php echo prettyTimeToMillisecond($logEntry['logTime']);?></nobr></td-->
+				<td><nobr><?php echo prettyTimeToMillisecond($logEntry['eventTime']);?></nobr></td>
+				<td><?php echo $logEntry['language'];?></td>
+				<td><?php echo $logEntry['type'];?></td>
+				<td><?php echo preg_replace('/^.*[\\/\\\\]([^\\/\\\\]*)$/','$1',$logEntry['file']);?></td>
+				<td><?php echo $logEntry['line'];?></td>
+				<td><pre><?php
+					if (is_string($logEntry['message']))
+						echo $logEntry['message'];
+					else
+						var_dump($logEntry['message']);
+				?></td>
 			</tr>
 			<?php
 			
-			if ($i < count($log)-1) {
+			if ($i+1 < count($log)) {
 				if ($log[$i+1]['requestTime'] == $logEntry['requestTime']) {
 					$newLogGroup = false;
-				} else if ($log[$i+1]['language'] == 'javascript' and $logEntry['language'] = 'javascript') {
-					if ($i == 0 or $log[$i-1]['language'] != 'javascript')
-						$newLogGroup = true;
-					else
+				} else if ($logEntry['language'] == 'javascript') {
+					if ($log[$i+1]['language'] == 'javascript') {
 						$newLogGroup = false;
+					} else if (preg_match('/^requestFile=.*$/',$log[$i+1]['message']) and $i+2 < count($log) and $log[$i+2]['language'] == 'javascript') {
+						$newLogGroup = false;
+					} else {
+						$newLogGroup = true;
+					}
 				} else {
 					$newLogGroup = true;
 				}

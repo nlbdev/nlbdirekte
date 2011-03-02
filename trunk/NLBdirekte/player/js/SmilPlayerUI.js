@@ -17,6 +17,32 @@ function niceTime(s) {
 	if (m > 0) return m+':'+s;
 	return '0:'+s;
 }
+function resizeImage(img,maxWidth,maxHeight) {
+	console.log('resizing: '+$(img).attr('src'));
+	console.log('maxWidth: '+maxWidth);
+	console.log('maxHeight: '+maxHeight);
+	console.log('original width: '+$(img).attr('data-original-width'));
+	console.log('original height: '+$(img).attr('data-original-height'));
+	var width = Math.min($(img).attr('data-original-width'),maxWidth);
+	var height = Math.min($(img).attr('data-original-height'),maxHeight);
+	var originalRatio = $(img).attr('data-original-height')/$(img).attr('data-original-width');
+	var newRatio = height/width;
+	if (newRatio > originalRatio + 0.01) {
+		// cut down on the height
+		height = width*originalRatio;
+	} else if (newRatio < originalRatio - 0.01) {
+		// cut down on the width
+		width = height/originalRatio;
+	}
+	console.log('new (width,height): ('+width+","+height+")");
+	$(img).css('max-width',width);
+	$(img).css('max-height',height);
+}
+$(window).resize(function() {
+	var maxWidth = Math.floor($('#book').width()*0.95);
+	var maxHeight = Math.floor($(window).height()*0.6);
+	$('img.book-image').each(function(){resizeImage($(this),maxWidth,maxHeight);});
+});
 function postProcessText() {
 	// Add links for skipping to paragraphs
 	var stack = [];
@@ -45,8 +71,15 @@ function postProcessText() {
 		}
 	}
 	
-	// default stylesheet
-	//CSS.load('css/Daisy202Book.css','screen',document); TODO
+	var images = player.textDocument.getElementsByTagName('img');
+	for (var i = 0; i < images.length; i++) $(images[i]).load(function(){
+		$(this).addClass('book-image');
+		$(this).attr('data-original-width',$(this).width());
+		$(this).attr('data-original-height',$(this).height());
+		var maxWidth = Math.floor($('#book').width()*0.95);
+		var maxHeight = Math.floor($(window).height()*0.6);
+		resizeImage($(this),maxWidth,maxHeight);
+	});
 	
 	//loadBookmarks();
 }
@@ -55,30 +88,28 @@ var totalTime = Infinity;
 //var currentBookmark = -1;
 function playerIsLoaded() {
 	if (player !== null && player.doneLoading) {
+		if (typeof log=='object') log.debug('player is loaded');
 
 		// create table of contents
 		var txt = "";
 		if (typeof player.toc !== 'undefined' && player.toc !== null &&
-			(player.toc.length>2||player.toc.length===2&&typeof player.toc[1]!=='object')) {
+			(player.toc.length>2||player.toc.length===2&&$.isArray(player.toc[1]))) {
 			var toc = player.toc;
 			txt = "";
 			var previousLevel = 0;
-			for (var i = (toc.length>1&&typeof toc[1]==='object')?2:1; i < toc.length; i++) {
+			for (var i = $.isArray(toc[1])?1:2; i < toc.length; i++) {
 				// {title,level,id,begin,end}
-				//var level = "";
-				//for (var l = 1; l < toc[i][1]['level']; l++) { level += "&nbsp;&nbsp;&nbsp;&nbsp;"; }
-				//txt += level+'<nobr><a onclick="player.skipToTime('+toc[i][1]['b']+');$(\'#menuCloseButton\').click();scrollToHighlightedText();return false;" href="">'+toc[i][1]['title']+" ("+niceTime(toc[i][1]['b'])+' - '+niceTime(toc[i][1]['e'])+')</a></nobr><br/>';
 				for (var l = previousLevel; l < toc[i][1]['level']; l++) {
-					txt += '<ul>';
+					txt += "<ul>\n";
 				}
 				for (var l = previousLevel; l > toc[i][1]['level']; l--) {
-					txt += '</ul>';
+					txt += "</ul>\n";
 				}
-				txt += '<li class="toc-level toc-level-'+toc[i][1]['level']+'"><a onclick="player.skipToTime('+toc[i][1]['b']+');$(\'#menuCloseButton\').click();scrollToHighlightedText();return false;" href="">'+toc[i][1]['title']+" <span class='timerange'>("+niceTime(toc[i][1]['b'])+' - '+niceTime(toc[i][1]['e'])+')</span></a></li>';
+				txt += '<li class="toc-level toc-level-'+toc[i][1]['level']+'"><a href="javascript:player.skipToTime('+toc[i][1]['b']+');scrollToHighlightedText();" data-role="button">'+toc[i][1]['title']+" <small class='timerange'>("+niceTime(toc[i][1]['b'])+' - '+niceTime(toc[i][1]['e'])+')</small></a></li>'+"\n";
 				previousLevel = toc[i][1]['level'];
 			}
 			for (var l = previousLevel; l > 0; l--) {
-				txt += '</ul>';
+				txt += "</ul>\n";
 			}
 		} else {
 			txt = "<p>Boken har ingen innholdsfortegnelse</p>";
@@ -87,21 +118,22 @@ function playerIsLoaded() {
 		
 		// show list of pages
 		if (typeof player.pagelist !== 'undefined' && player.pagelist !== null &&
-			(player.pagelist.length>2||player.pagelist.length===2&&typeof player.pagelist[1]!=='object')) {
+			(player.pagelist.length>2||player.pagelist.length===2&&$.isArray(player.pagelist[1]))) {
 			var pagelist = player.pagelist;
 			txt = "";
-			for (var i = (pagelist.length>1&&typeof pagelist[1]==='object')?2:1; i < pagelist.length; i++) {
+			for (var i = $.isArray(pagelist[1])?1:2; i < pagelist.length; i++) {
 				// {page,id,begin,end}
-				txt += '<span class="pagelist-entry"><a onclick="player.skipToTime('+pagelist[i][1]['b']+');$(\'#menuCloseButton\').click();scrollToHighlightedText();return false;" href="">side '+pagelist[i][1]['page']+
-					" <span class='timerange'>("+niceTime(i===0?0:pagelist[i][1]['b'])+' - '+niceTime((i+1===pagelist.length)?player.getTotalTime():pagelist[i+1][1]['b'])+
-					')</span></a></span><br/>';
+				txt += "<a href='javascript:player.skipToTime("+pagelist[i][1]['b']+");scrollToHighlightedText();' data-role='button' data-inline='true' class='pagelist-entry'>"+
+						pagelist[i][1]['page']+" <small class='timerange'>("+niceTime(i===0?0:pagelist[i][1]['b'])+" - "+
+						niceTime((i+1===pagelist.length)?player.getTotalTime():pagelist[i+1][1]['b'])+")</small></a>\n";
 			}
 		} else {
+			if (typeof log=='object') log.info('no page information in book');
 			txt = "<p>Boken har ikke sideinformasjon</p>";
 		}
 		$('#pages').html(txt);
 		
-		totalTime = Math.max(player.getTotalTime(),1);
+		/*totalTime = Math.max(player.getTotalTime(),1);
 		if (typeof Bookmark === 'function') {
 			Bookmark.loadLastmark(player.metadata[1]['dc:identifier'], function(lastmark, error) {
 				if (lastmark && lastmark.startTime) {
@@ -111,95 +143,90 @@ function playerIsLoaded() {
 			});
 			
 			loadBookmarks();
-		}
+		}*/
 		
 	} else {
 		window.setTimeout(playerIsLoaded,100);
 	}
 }
-//playerIsLoaded(); TODO
+playerIsLoaded();
 
 function playerHasMetadata() {
 	var hasMetadata = false;
 	if (player !== null && player.metadata !== null && player.metadata) {
-		
 		// show book information
-		if (typeof player.metadata[1]['dc:title'] !== 'undefined')
-			$('#bookTitle').text('Tittel: '+player.metadata[1]['dc:title']);
+		var m = player.metadata[1];
+		var txt = "<table>";
+		
+		if (typeof m['dc:title'] !== 'undefined')
+			txt += "<tr><td>Tittel:</td><td>"+m['dc:title']+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:creator'] !== 'undefined')
-			$('#bookCreator').text('Forfatter: '+player.metadata[1]['dc:creator']);
+			txt += "<tr><td>Forfatter:</td><td>"+m['dc:creator']+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:subject'] !== 'undefined')
-			$('#bookSubject').text('Emne: '+player.metadata[1]['dc:subject']);
+			txt += "<tr><td>Emne:</td><td>"+m['dc:subject']+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:description'] !== 'undefined')
-			$('#bookDescription').text('Beskrivelse: '+player.metadata[1]['dc:description']);
+			txt += "<tr><td>Beskrivelse:</td><td>"+m['dc:description']+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:publisher'] !== 'undefined')
-			$('#bookPublisher').text('Utgiver: '+player.metadata[1]['dc:publisher']);
+			txt += "<tr><td>Utgiver:</td><td>"+m['dc:publisher']+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:date'] !== 'undefined')
-			$('#bookDate').text('Dato: '+player.metadata[1]['dc:date']);
+			txt += "<tr><td>Dato:</td><td>"+m['dc:date']+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:contributor'] !== 'undefined')
-			$('#bookContributor').text('Bidragsytere: '+player.metadata[1]['dc:contributor']);
+			txt += "<tr><td>Bidragsytere:</td><td>"+m['dc:contributor']+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:type'] !== 'undefined')
-			$('#bookType').text('Type: '+player.metadata[1]['dc:type']);
+			txt += "<tr><td>Type:</td><td>"+m['dc:type']+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:format'] !== 'undefined')
-			$('#bookFormat').text('Format: '+player.metadata[1]['dc:format']);
+			txt += "<tr><td>Format:</td><td>"+m['dc:format']+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:identifier'] !== 'undefined')
-			$('#bookIdentifier').text('Identifikator: '+player.metadata[1]['dc:identifier']);
+			txt += "<tr><td>Identifikator:</td><td>"+m['dc:identifier']+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:source'] !== 'undefined')
-			$('#bookSource').text('Kilde: '+player.metadata[1]['dc:source']);
+			txt += "<tr><td>Kilde:</td><td>"+m['dc:source']+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:language'] !== 'undefined')
-			$('#bookLanguage').text('Språk: '+player.metadata[1]['dc:language']);
+			txt += "<tr><td>Spr&aring;k:</td><td>"+m['dc:language']+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:relation'] !== 'undefined')
-			$('#bookRelation').text('Relasjon: '+player.metadata[1]['dc:relation']);
+			txt += "<tr><td>Relasjon:</td><td>"+m['dc:relation']+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:coverage'] !== 'undefined')
-			$('#bookCoverage').text('Dekning: '+player.metadata[1]['dc:coverage']);
+			txt += "<tr><td>Dekning:</td><td>"+m['dc:coverage']+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:rights'] !== 'undefined')
-			$('#bookRights').text('Rettigheter: '+player.metadata[1]['dc:rights']);
+			txt += "<tr><td>Rettigheter:</td><td>"+m['dc:rights']+"</td></tr>\n";
+		
+		txt += "</table>\n";
+		$('#metadata').html(txt);
 		
 	} else {
 		window.setTimeout(playerHasMetadata,100);
 	}
 }
-//playerHasMetadata(); TODO
-var isAnimatingScroll = false;
+playerHasMetadata();
+
+var isAnimatingScroll = true;
 function scrollToHighlightedText() {
-	return;//TODO
-	if (isAnimatingScroll) {
-		return;
-	}
-	
 	var element = player.getHighlightedTextElement();
 	if (element === null)
 		return;
 	
-	var position = $(element).offset();
-	if (position === null)
-		return;
-	
 	isAnimatingScroll = true;
 	$("html, body").animate({
-		scrollTop: (position.top-100) + "px"
+		scrollTop: Math.max(0,$(element).position().top-100)+"px"
 	}, 500, "swing", function() {
 		isAnimatingScroll = false;
 	});
-	//scrollTo(position.left,position.top-100);
 }
 var autoScroll = false;
 function keepHighlightedTextOnScreen() {
-	return;//TODO
 	var element = player.getHighlightedTextElement();
 	if (element === null)
 		return;
@@ -211,32 +238,24 @@ function keepHighlightedTextOnScreen() {
 	if (position !== null && (position.top < scrollTop || position.top > scrollBottom-100))
 		scrollToHighlightedText();
 }
-$(function() {
-	/*$("#volume").slider({ TODO
-		min: 0,
-		max: 100,
-		animate: true,
-		value: 75,
-		change: function(){
-			// set player volume here
-			player.setVolume( $('#volume').slider('value')/100 );
-		}
-	});*/
-	/*$("#autoscroll_buttons").buttonset(
-	).change(function() {
-		switch ($('input[name="autoscroll"]:checked').val()) {
-		case 'on':
-			autoScroll = true;
-			break;
-		case 'off':
-			autoScroll = false;
-			break;
-		}
-	});*/
+$("input#volume").live("change", function() {
+	// set player volume here
+	player.setVolume( $(this).val()/100 );
+});
+$("select#autoscroll").live("change", function() {
+	// toggle autoScroll variable here
+	switch ($(this).val()) {
+	case 'on':
+		autoScroll = true;
+		break;
+	case 'off':
+		autoScroll = false;
+		break;
+	}
 });
 function backward() {
 	player.skipToTime(player.getCurrentTime()-30);
-	//scrollToHighlightedText(); TODO
+	scrollToHighlightedText();
 	/*if (typeof Bookmark === 'function') {
 		Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
 			function(success, error) {
@@ -275,7 +294,7 @@ function togglePlay() {
 }
 function forward() {
 	player.skipToTime(player.getCurrentTime()+30);
-	//scrollToHighlightedText(); TODO
+	scrollToHighlightedText();
 	/*if (typeof Bookmark === 'function') {
 		Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
 			function(success, error) {
@@ -296,6 +315,7 @@ function toggleMute() {
 		player.setVolume(0);
 	}
 }
+$.fixedToolbars.setTouchToggleEnabled(false); // always show buttons
 var backend = null;
 window.setInterval(function(){
 	if (player === null || server === null || loader === null)
@@ -310,6 +330,17 @@ window.setInterval(function(){
 			playButton.removeClass('playing');
 			playButton.addClass('paused');
 	}
+	
+	// make sure autoScroll toggle switch is up to date (hopefully not too slow)
+	if (!($('select#autoscroll').val() == 'off' && !autoScroll || $('select#autoscroll').val() == 'on' && autoScroll)) {
+		if (typeof log=='object') log.debug("$('select#autoscroll').val():"+$('select#autoscroll').val()+" , autoScroll:"+autoScroll+"="+(autoScroll?'true':'false'));
+		$('select#autoscroll').click();
+	}
+	
+	// make sure buttons are always showing (hopefully not too slow)
+	$('div.ui-footer-fixed').each(function(index){
+		$.fixedToolbars.show(true); // always show buttons
+	});
 	
 	if (player.doneLoading) {
 		var currentTime = player.getCurrentTime();
@@ -345,9 +376,11 @@ window.setInterval(function(){
 		}*/
 		
 		if (autoScroll && player.isPlaying()) {
-			//keepHighlightedTextOnScreen();
+			keepHighlightedTextOnScreen();
 		}
-	}
+	} /*else {
+		$('#book')TODO
+	}*/
 	// TODO: update progress bar and volume
 	// if wrong volume; $('#volume').progressbar('value', player.getVolume() );
 },100);

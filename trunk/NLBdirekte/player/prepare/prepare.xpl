@@ -8,6 +8,7 @@
 
     <p:option name="shared-book" required="true"/>
     <p:option name="personal-book" required="true"/>
+    <p:option name="python-log" required="true"/>
     
     <p:import href="library-1.0.xpl"/> <!-- cached http://xmlcalabash.com/extension/steps/library-1.0.xpl -->
     <p:import href="JsonML.xpl"/>
@@ -188,7 +189,7 @@
         <p:with-option name="command" select="'python'">
             <p:pipe port="result" step="ncc-json"/>
         </p:with-option>
-        <p:with-option name="args" select="concat('prepare.py ',$tempDir)">
+        <p:with-option name="args" select="concat('prepare.py ',$tempDir,' ',$python-log)">
             <p:pipe port="result" step="smil-json"/>
         </p:with-option>
         <p:with-option name="result-is-xml" select="'false'"/>

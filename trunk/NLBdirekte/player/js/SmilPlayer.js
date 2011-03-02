@@ -176,14 +176,8 @@ function SmilPlayer() {
 					filename,
 					delegate(that,function(xmlDoc) {
 						// success
-						if (typeof log=='object') log.debug('xmlDoc == '+typeof xmlDoc);
-						if (typeof log=='object') log.debug('xmlDoc == '+xmlDoc);
-						if (typeof log=='object') log.debug('xmlDoc == '+typeof xmlDoc.innerHTML);
-						if (typeof log=='object') log.debug('xmlDoc == '+typeof xmlDoc.getElementsByTagNames);
 						textObject = this.loader.xmlToHtml(xmlDoc); // TODO: make async in case of time-consuming transformations
 						// TODO: handle textObject === null ?
-						if (typeof log=='object') log.debug('textObject == '+textObject);
-						if (typeof log=='object') log.debug('textObject.innerHTML == '+textObject.innerHTML);
 						this.textElement.innerHTML = textObject.innerHTML;
 						
 						// Resolve urls (i.e. images)
@@ -337,7 +331,7 @@ function SmilPlayer() {
 							// if (should be playing && is not playing)
 							//if (!paused && audioObject.paused) {
 							if (!paused) {
-								if (typeof log=='object') log.debug('should be playing and is not playing; playing');
+								//if (typeof log=='object') log.debug('should be playing and is not playing; playing');
 								audioObject.resume();
 							}
 							// if (should not be playing && is playing)

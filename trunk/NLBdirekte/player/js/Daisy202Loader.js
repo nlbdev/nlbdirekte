@@ -44,20 +44,25 @@ function Daisy202Loader() {
 			JSONRequest.get(this.server.readyUrl(), delegate(that,function(sn, response, exception){
 				if (exception) {
 					//alert("Får ikke kontakt med NLB ("+exception+")");
-					window.setTimeout(this.load,10000);
+					window.setTimeout(this.load,1000);
 				}
-				else if (response.ready !== '1') {
+				else if (response.ready !== true) {
 					//alert(response.state);
 					this.state = response.state;
-					window.setTimeout(this.load,10000);
+					this.prepareStartTime = response.startTime;
+					this.prepareEstimatedRemainingTime = response.estimatedRemainingTime;
+					this.prepareProgress = response.progress;
+					window.setTimeout(this.load,1000);
 				}
 				else {
 					//alert("is ready! ("+response.state+")");
+					this.prepareEstimatedRemainingTime = 0;
+					this.prepareProgress = 100;
 					this.loadReady();
 				}
 			}));
 		} catch(e) {
-			window.setTimeout(this.load,10000);
+			window.setTimeout(this.load,1000);
 			if (typeof log=='object') log.warn("caught exception: "+e);
 		}
 	}

@@ -180,37 +180,21 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
         <div data-role="page" id="settings-page" data-url="settings-page" class="ui-page ui-body-c">
             <div data-role="content" class="ui-content" role="menu">
             <h2>Innstillinger</h2>
-			<p>kommer snart...</p>
+			<div id="settings">
+				<div data-role="fieldcontain">
+					<label for="volume">Volum:</label>
+					<input type="range" name="volume" id="volume" value="100" min="0" max="100"/>
+				</div>
+				<div data-role="fieldcontain">
+					<label for="autoscroll">Automatisk rulling:</label>
+					<select name="autoscroll" id="autoscroll" data-role="slider">
+						<option value="off">Av</option>
+						<option value="on">P&aring;</option>
+					</select>
+				</div>
+			</div>
 			<!--div style="min-width: 750px; max-width: 800px; margin:0 auto; border-width: 1px; border-style: dotted;">
 				<div style="text-align: center; margins: 0 auto;"><button id="menuCloseButton" class="flip">Tilbake</button></div>
-				<div class="ui-tabs ui-widget ui-widget-content" id="menuTabs">
-					<div style="text-align: right;" class="centered">
-					<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" id="menuTab-navigation" style="text-align: center;">
-						<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#menuTab-bookinfo">Om boken</a></li>
-						<li class="ui-state-default ui-corner-top"><a href="#menuTab-settings" id="menuTab-settings-button">Alternativer</a></li>
-						<li class="ui-state-default ui-corner-top"><a href="#menuTab-contents" id="menuTab-contents-button">Innholdsfortegnelse</a></li>
-						<li class="ui-state-default ui-corner-top"><a href="#menuTab-pages" id="menuTab-pages-button">Sidetall</a></li>
-					</ul>
-					</div>
-					<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-bookinfo">
-						<img id="backend" src="#" width="40" height="40" style="vertical-align: top;"/><br/>
-						<div id="bookTitle"></div>
-						<div id="bookCreator"></div>
-						<div id="bookSubject"></div>
-						<div id="bookDescription"></div>
-						<div id="bookPublisher"></div>
-						<div id="bookContributor"></div>
-						<div id="bookDate"></div>
-						<div id="bookType"></div>
-						<div id="bookFormat"></div>
-						<div id="bookIdentifier"></div>
-						<div id="bookSource"></div>
-						<div id="bookLanguage"></div>
-						<div id="bookRelation"></div>
-						<div id="bookCoverage"></div>
-						<div id="bookRights"></div>
-					</div>
-					<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-settings">
 						Volum:
 						<div id="volume"></div>
 						<br/>
@@ -223,14 +207,6 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 						
 						Posisjon i boken:
 						&lt;span id="progressbar"&gt;&lt;/span&gt;
-					</div>
-					<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-contents">
-						<div id="toc"></div>
-					</div>
-					<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="menuTab-pages">
-						<div id="pages"></div>
-					</div>
-				</div>
 			</div-->
             </div>
             <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
@@ -249,7 +225,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
         <div data-role="page" id="metadata-page" data-url="metadata-page" class="ui-page ui-body-c">
             <div data-role="content" class="ui-content" role="menu">
                 <h2>Om boken</h2>
-				<p>kommer snart...</p>
+				<div id="metadata"></div>
             </div>
             <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
            		<div data-role="navbar" class="nav-nlbdirekte">
@@ -267,7 +243,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
         <div data-role="page" id="toc-page" data-url="toc-page" class="ui-page ui-body-c">
             <div data-role="content" class="ui-content" role="menu">
                 <h2>Innholdsfortegnelse</h2>
-				<p>kommer snart...</p>
+				<div id="toc"></div>
             </div>
             <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
            		<div data-role="navbar" class="nav-nlbdirekte">
@@ -285,7 +261,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
         <div data-role="page" id="pages-page" data-url="pages-page" class="ui-page ui-body-c">
             <div data-role="content" class="ui-content" role="menu">
                 <h2>Sideliste</h2>
-				<p>kommer snart...</p>
+				<div id="pages"></div>
             </div>
             <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
            		<div data-role="navbar" class="nav-nlbdirekte">

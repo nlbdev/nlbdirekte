@@ -1,7 +1,7 @@
 <?php
 
 # version of NLBdirekte
-$version = '0.15.1';
+$version = '0.16';
 
 include('config/config.inc.php'); // import users config-file
 
@@ -86,7 +86,7 @@ if ($debug) {
 		"eventTime" => microtime2isostring(microtime(true)),
 		"language" => "php",
 		"type" => E_NOTICE,
-		"message" => "Running ".$_SERVER['SCRIPT_NAME'],
+		"message" => "requestFile=".$_SERVER['SCRIPT_NAME'],
 		"file" => __FILE__,
 		"line" => __LINE__
 	));

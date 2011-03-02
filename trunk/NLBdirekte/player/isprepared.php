@@ -45,7 +45,7 @@ else if (!$userHasRunningProcess and (
 	$pid = execCalabashInBackground('prepare.xpl'.
 									' shared-book="'.path_as_url("$shared/$book").'"'.
 									' personal-book="'.path_as_url("$profiles/$user/books/$book").'"',
-									NULL, 'catalog'.DIRECTORY_SEPARATOR.'prepare-catalog.xml');
+									'catalog'.DIRECTORY_SEPARATOR.'prepare-catalog.xml');
 	if ($pid > 0) {
 		$processesFilename = str_replace("\\","/","$profiles/$user/processes.csv");
 		$processesFile = fopen($processesFilename, "ab");
@@ -56,30 +56,49 @@ else if (!$userHasRunningProcess and (
 	else {
 		if ($debug) trigger_error("calabash process PID not determined. will be unable to determine whether it's running or not at next run.");
 	}
-	echo '{"ready":"0", "state":"a book is being prepared"}';
+	$progress = array(
+		"ready" => false,
+		"state" => "a book is being prepared",
+		"progress" => 0,
+		"startedTime" => time(),
+		"estimatedRemainingTime" => 60
+	);
+	echo json_encode($progress);
+	#echo '{"ready":"0", "state":"a book is being prepared", "progress":"0", "startedTime":"'+time()+'", "estimatedRemainingTime":"60"}';
 }
 
 // Book being prepared?
 else if ($userHasRunningProcess) {
 	if ($debug) trigger_error("a book is already being prepared; will not start a new process.");
-	echo '{"ready":"0", "state":"a book is being prepared"}';
+	$progress = getProgress($user);
+	$progress['ready'] = false;
+	$progress['state'] = "a book is being prepared";
+	echo json_encode($progress);
+	#echo '{"ready":"0", "state":"a book is being prepared", "progress":"'+$progress['progress']+'", "startedTime":"'+$progress['startedTime']+'", "estimatedRemainingTime":"'+$progress['estimatedRemainingTime']+'"}';
 }
 
 // Book is ready
 else {
 	trigger_error("book $book is ready for user $user");
-	echo '{"ready":"1", "state":"book is ready for playback"}';
+	$progress = array(
+		"ready" => true,
+		"state" => "a book is ready for playback"
+	);
+	echo json_encode($progress);
+	#echo '{"ready":"1", "state":"book is ready for playback"}';
 }
 
 // Based on http://www.php.net/manual/en/function.exec.php#86329
 // Returns the PID of the newly created Calabash process
-function execCalabashInBackground($args, $logfile = NULL, $catalog = NULL) {
+function execCalabashInBackground($args, $catalog = NULL) {
 	global $debug;
 	global $logdir;
 	global $calabashExec;
-	if (!isset($logfile)) {
-		$logfile = fix_directory_separators($logdir.'/calabash-'.date('Ymd_His').'.'.((microtime(true)*1000000)%1000000).'.txt');
-	}
+	$logfile = fix_directory_separators($logdir.'/calabash-'.date('Ymd_His').'.'.((microtime(true)*1000000)%1000000).'.txt');
+	$pythonLogfile = fix_directory_separators($logdir.'/python-'.date('Ymd_His').'.'.((microtime(true)*1000000)%1000000).'.txt');
+	$pythonLogArg = "python-log=\"$pythonLogfile\"";
+	trigger_error("calabashlog=$logfile");
+	trigger_error("pythonlog=$pythonLogfile");
 	$before = array();
 	$after = array();
 	
@@ -91,10 +110,10 @@ function execCalabashInBackground($args, $logfile = NULL, $catalog = NULL) {
 		$catalog = empty($catalog)?"":"set _JAVA_OPTIONS=-Dcom.xmlcalabash.phonehome=false -Dxml.catalog.files=$catalog -Dxml.catalog.staticCatalog=1 -Dxml.catalog.verbosity=".($debug?10:0)." &&";
 		exec("tasklist /V /FO CSV", $before);
 		if ($debug) {
-			trigger_error("forking Windows process: '$catalog start /B $cmd $args 1>$logfile 2>&1'");
-			pclose(popen("$catalog start /B $cmd $args 1>$logfile 2>&1","rb"));
+			trigger_error("forking Windows process: '$catalog start /B $cmd $args $pythonLogArg 1>$logfile 2>&1'");
+			pclose(popen("$catalog start /B $cmd $args $pythonLogArg 1>$logfile 2>&1","rb"));
 		} else {
-			pclose(popen("$catalog start /B $cmd $args", "rb"));
+			pclose(popen("$catalog start /B $cmd $args $pythonLogArg", "rb"));
 		}
 		exec("tasklist /V /FO CSV", $after);
 	}
@@ -102,10 +121,10 @@ function execCalabashInBackground($args, $logfile = NULL, $catalog = NULL) {
 		$catalog = empty($catalog)?"":"export _JAVA_OPTIONS='-Dcom.xmlcalabash.phonehome=false -Dxml.catalog.files=$catalog -Dxml.catalog.staticCatalog=1 -Dxml.catalog.verbosity=".($debug?10:0)."' &&";
 		exec("ps axo pid,args", $before);
 		if ($debug) {
-			trigger_error("forking Linux process: '$catalog $cmd $args 1>$logfile 2>&1 &'");
-			exec("$catalog $cmd $args >$logfile 2>&1 &");
+			trigger_error("forking Linux process: '$catalog $cmd $args $pythonLogArg 1>$logfile 2>&1 &'");
+			exec("$catalog $cmd $args $pythonLogArg >$logfile 2>&1 &");
 		} else {
-			exec("$catalog $cmd $args >/dev/null &");
+			exec("$catalog $cmd $args $pythonLogArg >/dev/null &");
 		}
 		exec("ps axo pid,args", $after);
 	}
@@ -113,7 +132,7 @@ function execCalabashInBackground($args, $logfile = NULL, $catalog = NULL) {
 	// determine PID
 	$pid = -1;
 	if (!$isWindows)
-		$args = exec("echo $args"); // perform expansions like "file://..." to file://... etc.
+		$args = exec("echo $args $pythonLogArg"); // perform expansions like "file://..." to file://... etc.
 	foreach ($after as $procAfter) {
 		$nameAfter = '';
 		$pidAfter = 0;
@@ -129,7 +148,7 @@ function execCalabashInBackground($args, $logfile = NULL, $catalog = NULL) {
 			preg_match('/^\s*([0-9]*)\s*(.*)$/', $procAfter, $line);
 			$nameAfter = $line[2];
 			$pidAfter = $line[1];
-			if (strpos($nameAfter, "$cmd $args") === false) // note the === to distinguish 0 from false!
+			if (strpos($nameAfter, "$cmd $args $pythonLogArg") === false) // note the === to distinguish 0 from false!
 				continue;
 		}
 
@@ -265,4 +284,66 @@ function isProcessing($user) {
 	}
 }
 
+function getProgress($user) {
+	global $debug;
+	global $profiles;
+	global $logfile;
+	$progressLogs = array();
+	$pythonLogs = array();
+	if ($file = file(fix_directory_separators("$logfile"))) {
+		foreach ($file as $logEntry) {
+			$json = json_decode($logEntry, true);
+			$json['requestTime'] = isostring2microtime($json['requestTime']);
+			$json['logTime'] = isostring2microtime($json['logTime']);
+			$json['eventTime'] = isostring2microtime($json['eventTime']);
+			if (is_string($json['message']) and preg_match('/^pythonlog=(.*)$/',$json['message'],$matches)) {
+				$pythonLogs[$matches[1]] = $json['requestTime'];
+			}
+			
+		}
+	}
+	if (count($pythonLogs)==0) return array("progress"=>0, "startedTime"=>time(), "estimatedRemainingTime"=>60);
+	foreach ($pythonLogs as $pythonlog => $requestTime) {
+		if ($file = file(fix_directory_separators("$pythonlog"))) {
+			foreach ($file as $logEntry) {
+				$json = json_decode($logEntry, true);
+				if ($json['type'] == 'PROGRESS') {
+					$json['requestTime'] = $requestTime;
+					$json['logTime'] = isostring2microtime($json['logTime']);
+					$json['eventTime'] = isostring2microtime($json['eventTime']);
+					$progressLogs[] = $json;
+				}
+			}
+		}
+	}
+	if (count($progressLogs)==0) return array("progress"=>0, "startedTime"=>time(), "estimatedRemainingTime"=>60);
+	// sort logs by requestTime, then logTime
+	function logCmp($a, $b) {
+		if ($a['requestTime'] == $b['requestTime']) {
+			if ($a['logTime'] == $b['logTime']) {
+				if ($a['eventTime'] == $b['eventTime']) {
+					return 0;
+				} else {
+					return ($a['eventTime'] < $b['eventTime']) ? -1 : 1;
+				}
+			} else {
+				return ($a['logTime'] < $b['logTime']) ? -1 : 1;
+			}
+		}
+		return ($a['requestTime'] < $b['requestTime']) ? -1 : 1;
+	}
+	usort($progressLogs, "logCmp");
+	if (preg_match('/^.*:(.*)%$/', $progressLogs[count($progressLogs)-1]['message'], $matches)) {
+		$progress = array(
+			"progress" => $matches[1],
+			"startedTime" => $progressLogs[count($progressLogs)-1]['requestTime'],
+			"estimatedRemainingTime" => ($progressLogs[count($progressLogs)-1]['logTime']-$progressLogs[count($progressLogs)-1]['requestTime'])*(100./$matches[1]-1.)
+		);
+		if ($debug) trigger_error(json_encode($progress));
+		return $progress;
+	} else {
+		trigger_error("Unable to parse progress: ".$progressLogs[count($progressLogs)-1]['message']);
+		return array("progress"=>0, "startedTime"=>time(), "estimatedRemainingTime"=>60);
+	}
+}
 ?>

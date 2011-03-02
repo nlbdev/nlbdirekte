@@ -139,3 +139,14 @@ div, ul, li {
 .toc-page-link .ui-icon { background:  url(../img/icons/png/32x32/nlb-toc.png) 50% 50% no-repeat; background-size: 32px 32px; }
 .pages-page-link .ui-icon { background:  url(../img/icons/png/32x32/documents.png) 50% 50% no-repeat; background-size: 32px 32px; }
 .exit-menu-link .ui-icon { background:  url(../img/icons/png/32x32/undo.png) 50% 50% no-repeat; background-size: 32px 32px; }
+
+.pagelist-entry { width: 275px; }
+.toc-level span { text-align: left; }
+.toc-level-1 { margin-left: 0px; }
+.toc-level-2 { margin-left: 50px; }
+.toc-level-3 { margin-left: 100px; }
+.toc-level-4 { margin-left: 150px; }
+.toc-level-5 { margin-left: 200px; }
+.toc-level-6 { margin-left: 250px; }
+
+.book-image { }

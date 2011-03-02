@@ -51,3 +51,20 @@ Changelog for major- and minor-version releases
 		from top to bottom. Bigger buttons. Fixed positioning
 		should now work on mobile devices, however jQuery Mobile
 		is still in alpha so it may have bugs.
+0.15: added a proper way to display logs through browselogs.php and
+		viewlog.php. Also added detection of browser capabilities through "browscap", and
+		desktop browsers (but not mobile) will now show text as well as icons on the
+		buttons.
+0.16: - Percentage complete, time started and estimated time remaining
+			has been added to the JSON-response from isprepared.php.
+		- Replaced jQuery Mobile alpha 3 with a newer version
+			compiled from source on 2010-03-01, which has better fixed
+			positioning support than in alpha 3. The menu are now
+			always present as well. No need to toggle it on and off by
+			tapping the page.
+		- Python logging has been introduced, which was needed to report
+			percentage complete and estimated time
+			remaining for the preparation process.
+		- The pages displaying settings, metadata, table of contents and list
+			of pages are now working with jQuery Mobile.
+		- Images will resize to fit browser windows smaller than themselves.
