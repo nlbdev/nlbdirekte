@@ -14,6 +14,11 @@ function Daisy202Loader() {
 	var theFlow = [];
 	var currentFlow = -1;
 	
+	this.prepareEstimatedRemainingTime = -1;
+	this.prepareProgress = 0;
+	this.prepareStartTime = 0;
+	this.errorCode = 0;
+	
 	this.xmlToHtml = function(documentElement) {
 		// Daisy 2.02 documents is already HTML, so there is little to do here
 		
@@ -41,24 +46,28 @@ function Daisy202Loader() {
 	var loadCount = 0;
 	this.load = function() {
 		try {
-			JSONRequest.get(this.server.readyUrl(), delegate(that,function(sn, response, exception){
-				if (exception) {
-					//alert("Får ikke kontakt med NLB ("+exception+")");
-					window.setTimeout(this.load,1000);
-				}
-				else if (response.ready !== true) {
-					//alert(response.state);
+			$.getJSON(this.server.readyUrl(), delegate(that,function(response, textStatus, jqXHR){
+				if (response.ready == 0) {
 					this.state = response.state;
 					this.prepareStartTime = response.startTime;
 					this.prepareEstimatedRemainingTime = response.estimatedRemainingTime;
 					this.prepareProgress = response.progress;
 					window.setTimeout(this.load,1000);
 				}
-				else {
-					//alert("is ready! ("+response.state+")");
+				else if (response.ready == 1) {
 					this.prepareEstimatedRemainingTime = 0;
 					this.prepareProgress = 100;
 					this.loadReady();
+				}
+				else if (response.ready == -1) {
+					this.state = response.state;
+					this.prepareEstimatedRemainingTime = 0;
+					this.prepareProgress = 0;
+					this.errorCode = response.ready;
+					window.setTimeout(this.load,10000);
+				} else {
+					if (typeof log=='object') log.warning('Unknown response from readyUrl');
+					if (typeof log=='object') log.warning(response);
 				}
 			}));
 		} catch(e) {
@@ -68,58 +77,42 @@ function Daisy202Loader() {
 	}
 	this.loadReady = function() {
 		this.state = 'loading metadata';
-		try {
-			JSONRequest.get(this.server.getUrl("metadata.json"), delegate(that,function(sn, response, exception){
-				this.player.metadata = response;
-				if (++loadCount === 4) this.player.doneLoading = true;
-			}));
-		} catch(e1) {
-			if (typeof log=='object') log.warn("caught exception: "+e1);
-		}
+		$.getJSON(this.server.getUrl("metadata.json"), delegate(that,function(response, textStatus, jqXHR) {
+			this.player.metadata = response;
+			if (++loadCount === 4) this.player.doneLoading = true;
+		}));
 		this.state = 'loading smil';
-		try {
-			JSONRequest.get(this.server.getUrl("smil.json"), delegate(that,function(sn, response, exception){
-				this.player.smil = response;
-				var test = response;
-				var txt;
-				if (typeof test === 'undefined')
-					txt = 'undefined';
-				else if (test === null)
-					txt = 'null';
-				else {
-					txt = '[ '+test[0];
-					for (var i = 1; i < test.length; i++) {
-						txt += ', ';
-						if (test[i] instanceof Array)
-							txt += 'array';
-						else
-							txt += typeof test[i];
-					}
-					txt += ' ]';
+		$.getJSON(this.server.getUrl("smil.json"), delegate(that,function(response, textStatus, jqXHR) {
+			this.player.smil = response;
+			var test = response;
+			var txt;
+			if (typeof test === 'undefined')
+				txt = 'undefined';
+			else if (test === null)
+				txt = 'null';
+			else {
+				txt = '[ '+test[0];
+				for (var i = 1; i < test.length; i++) {
+					txt += ', ';
+					if (test[i] instanceof Array)
+						txt += 'array';
+					else
+						txt += typeof test[i];
 				}
-				if (++loadCount === 4) this.player.doneLoading = true;
-			}));
-		} catch(e2) {
-			alert("caught exception: "+e2);
-		}
+				txt += ' ]';
+			}
+			if (++loadCount === 4) this.player.doneLoading = true;
+		}));
 		this.state = 'loading toc';
-		try {
-			JSONRequest.get(this.server.getUrl("toc.json"), delegate(that,function(sn, response, exception){
-				this.player.toc = response;
-				if (++loadCount === 4) this.player.doneLoading = true;
-			}));
-		} catch(e3) {
-			alert("caught exception: "+e3);
-		}
+		$.getJSON(this.server.getUrl("toc.json"), delegate(that,function(response, textStatus, jqXHR) {
+			this.player.toc = response;
+			if (++loadCount === 4) this.player.doneLoading = true;
+		}));
 		this.state = 'loading pagelist';
-		try {
-			JSONRequest.get(this.server.getUrl("pagelist.json"), delegate(that,function(sn, response, exception){
-				this.player.pagelist = response;
-				if (++loadCount === 4) this.player.doneLoading = true;
-			}));
-		} catch(e4) {
-			alert("caught exception: "+e4);
-		}
+		$.getJSON(this.server.getUrl("pagelist.json"), delegate(that,function(response, textStatus, jqXHR) {
+			this.player.pagelist = response;
+			if (++loadCount === 4) this.player.doneLoading = true;
+		}));
 	};
 	
 	function stripFragment(src) {

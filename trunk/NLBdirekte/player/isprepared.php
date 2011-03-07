@@ -30,7 +30,7 @@ $userHasRunningProcess = isProcessing($user);
 if (!$book or !file_exists(fix_directory_separators("$shared/$book"))) {
 	global $debug;
 	if ($debug) trigger_error("book with bookId $book does not exist in the location ".fix_directory_separators("$shared/$book"));
-	echo '{"ready":"0", "state":"book does not exist"}';
+	echo '{"ready":"-1", "state":"book does not exist"}';
 }
 
 // Book not being prepared or not ready for playback at all?
@@ -299,10 +299,9 @@ function getProgress($user) {
 			if (is_string($json['message']) and preg_match('/^pythonlog=(.*)$/',$json['message'],$matches)) {
 				$pythonLogs[$matches[1]] = $json['requestTime'];
 			}
-			
 		}
 	}
-	if (count($pythonLogs)==0) return array("progress"=>0, "startedTime"=>time(), "estimatedRemainingTime"=>60);
+	if (count($pythonLogs)==0) return array("progress"=>(time()-$_REQUEST['launchTime'])/(time()-$_REQUEST['launchTime']+60), "startedTime"=>floor($_REQUEST['launchTime']), "estimatedRemainingTime"=>60);
 	foreach ($pythonLogs as $pythonlog => $requestTime) {
 		if ($file = file(fix_directory_separators("$pythonlog"))) {
 			foreach ($file as $logEntry) {
@@ -316,7 +315,7 @@ function getProgress($user) {
 			}
 		}
 	}
-	if (count($progressLogs)==0) return array("progress"=>0, "startedTime"=>time(), "estimatedRemainingTime"=>60);
+	if (count($progressLogs)==0) return array("progress"=>(time()-$_REQUEST['launchTime'])/(time()-$_REQUEST['launchTime']+60), "startedTime"=>floor($_REQUEST['launchTime']), "estimatedRemainingTime"=>60);
 	// sort logs by requestTime, then logTime
 	function logCmp($a, $b) {
 		if ($a['requestTime'] == $b['requestTime']) {
@@ -334,16 +333,25 @@ function getProgress($user) {
 	}
 	usort($progressLogs, "logCmp");
 	if (preg_match('/^.*:(.*)%$/', $progressLogs[count($progressLogs)-1]['message'], $matches)) {
+		$lastProgress = floatval($matches[1])/100;
+		$lastTime = floatval($progressLogs[count($progressLogs)-1]['logTime']);
+		$startTime = floatval($progressLogs[count($progressLogs)-1]['requestTime']);
+		$nowTime = date("U");
+		$nowProgress = $lastProgress;
+		try {
+			$nowProgress = 1 - (1-$lastProgress)*exp($lastProgress*(1 - ($nowTime-$startTime)/($lastTime-$startTime)));
+		} catch (Exception $e) {}
 		$progress = array(
-			"progress" => $matches[1],
+			"progress" => $nowProgress*100,
 			"startedTime" => $progressLogs[count($progressLogs)-1]['requestTime'],
-			"estimatedRemainingTime" => ($progressLogs[count($progressLogs)-1]['logTime']-$progressLogs[count($progressLogs)-1]['requestTime'])*(100./$matches[1]-1.)
+			"estimatedRemainingTime" => ($nowProgress<0.001?60:( ($nowTime-$startTime)/$nowProgress ))
+			/*"estimatedRemainingTime" => ($progressLogs[count($progressLogs)-1]['logTime']-$progressLogs[count($progressLogs)-1]['requestTime'])*(100./$matches[1]-1.)*/
 		);
 		if ($debug) trigger_error(json_encode($progress));
 		return $progress;
 	} else {
 		trigger_error("Unable to parse progress: ".$progressLogs[count($progressLogs)-1]['message']);
-		return array("progress"=>0, "startedTime"=>time(), "estimatedRemainingTime"=>60);
+		return array("progress"=>(time()-$_REQUEST['launchTime'])/(time()-$_REQUEST['launchTime']+60), "startedTime"=>floor($_REQUEST['launchTime']), "estimatedRemainingTime"=>60);
 	}
 }
 ?>

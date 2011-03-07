@@ -1,7 +1,7 @@
 <?php
 
 # version of NLBdirekte
-$version = '0.16';
+$version = '0.17';
 
 include('config/config.inc.php'); // import users config-file
 
@@ -60,17 +60,17 @@ function microtimeAndUsername2logfile($time,$user) {
 	return $logdir.'/log_'.date("Y-m-d.H-i-s.",floor($time)).preg_replace('/^0.(...).*$/','$1',strval($time-floor($time))).'_'.$user.'.log';
 }
 
-function microtime2isostring($time) {
+function microtime2isostring($time,$utc=false) {
 	if (!is_numeric($time))
 		$time = 0;
-	return date("Y-m-d",floor($time)).'T'.date("H:i:s",floor($time)).preg_replace('/0\.(...).*$/','.$1',strval($time-floor($time))).date("P",$time);
+	return date("Y-m-d",floor($time)).'T'.date("H:i:s",floor($time)).preg_replace('/0\.(...).*$/','.$1',strval($time-floor($time))).($utc?'+00:00':date('P'));
 }
 
-function isostring2microtime($iso) {
+function isostring2microtime($iso,$utc=false) {
 	// inverse of microtime2isostring
 	preg_match('/^(\d+)-(\d+)-(\d+)T(\d+):(\d+):([\d\.]+)([+-])(\d+):(\d+)$/',$iso,$matches);
 	list($pattern,$year,$month,$day,$hour,$minute,$seconds,$timezoneSign,$timezoneHours,$timezoneMinutes) = $matches;
-	$time = mktime($hour,$minute,floor($seconds),$month,$day,$year)
+	$time = mktime($hour,$minute,floor($seconds),$month,$day,$year)+date('Z')
 			- intval($timezoneSign.'1')*($timezoneHours*3600+$timezoneMinutes*60)
 			+ ($seconds-floor($seconds));
 	return $time;

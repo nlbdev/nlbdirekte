@@ -53,7 +53,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		
 		<!-- jQuery Mobile -->
 		<link rel="stylesheet" href="css/jQuery/jquery.mobile-1.0a3.css" />
-		<script type="text/javascript" src="js/jQuery/jquery-1.5.min.js"></script>
+		<script type="text/javascript" src="js/jQuery/jquery-1.5.1.js"></script>
 		<script type="text/javascript" src="js/jQuery/jquery.mobile-1.0a3.js"></script>
 		
 		<!-- NLBdirekte; stylesheets and configuration -->
@@ -70,6 +70,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		</script>
 		
 		<!-- Logging framework -->
+		<script type="text/javascript" src="js/javascript-stacktrace/stacktrace.js"></script>
 		<script type="text/javascript" src="js/log4javascript/log4javascript.js"></script>
 		<script type="text/javascript">
 			//<![CDATA[
@@ -106,16 +107,15 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 				case 'OFF':		ajaxAppender.setThreshold(log4javascript.Level.OFF);   break;
 			}
 			log.addAppender(ajaxAppender);
+			/*window.onerror = function(errorMsg, url, lineNumber) {
+				log.fatal(printStackTrace().join("\n"));
+				return true;
+			};*/
 			//]]>
 		</script>
 		
-		<!-- Easy fetching (and sending if needed) of JSON data structures -->
-		<script type='text/javascript' src='js/JSON/json2.js'></script>
-		<script type='text/javascript' src='js/JSON/JSONRequest.js'></script>
-		<script type='text/javascript' src='js/JSON/JSONRequestError.js'></script>
-		
 		<!-- SoundManager 2 -->
-		<script type="text/javascript" src="js/soundmanager/script/soundmanager2-jsmin.js"></script>
+		<script type="text/javascript" src="js/soundmanager/script/soundmanager2.js"></script>
 		<script type="text/javascript">
 			$(function(){
 				if (!soundManager)
@@ -124,10 +124,13 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 				soundManager.flashVersion = 8;
 				soundManager.allowFullScreen = false;
 				soundManager.wmode = 'transparent';
-				soundManager.debugMode = false;
+				soundManager.debugMode = true;
 				soundManager.debugFlash = false;
 				soundManager.useHighPerformance = true;
-				//soundManager.onready(function(){});
+				soundManager._wD = soundManager._writeDebug = function(sText, sType, bTimestamp) {
+					log.debug('soundManager: '+sText);
+					return true;
+				};
 				soundManager.useHTML5Audio = false;
 			});
 		</script>
@@ -151,9 +154,11 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 			function toggleMenu() {
 				if ($.mobile.activePage[0].id==='content-page') {
 					$.mobile.changePage(lastMenuPage,"slide");
+					log.debug('toggled page from content-page to '+lastMenuPage);
 				} else {
 					lastMenuPage = $.mobile.activePage[0].id;
 					$.mobile.changePage('content-page',"slide",true);
+					log.debug('toggled page from '+lastMenuPage+' to content-page');
 				}
 			}
 		</script>
@@ -162,11 +167,10 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		
         <div data-role="page" id="content-page" data-url="content-page" class="ui-page ui-body-c ui-page-active">
             <div data-role="content" data-theme="c" class="ui-content" role="main">
-                <div id="book" style="background-color: white; padding: 10px;"></div>
+                <div id="book" role="article" aria-live="off" style="background-color: white; padding: 10px;"></div>
             </div>
-            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer"
-                role="navigation">
-				<div data-role="navbar" class="nav-nlbdirekte">
+            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
+				<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:backward();" alt="Bakover" data-role="button" id="backward" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="1"><?php if (!($browser['isMobileDevice'])) echo "Bakover";?></a></li>
 						<li><a href="javascript:togglePlay();" alt="Start/stopp" data-role="button" id="play-pause" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" class="paused" accesskey="2"><?php if (!($browser['isMobileDevice'])) echo "Start / Stopp";?></a></li>
@@ -181,37 +185,26 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
         <div data-role="page" id="settings-page" data-url="settings-page" class="ui-page ui-body-c">
             <div data-role="content" class="ui-content" role="menu">
             <h2>Innstillinger</h2>
-			<div id="settings">
-				<div data-role="fieldcontain">
-					<label for="volume">Volum:</label>
-					<input type="range" name="volume" id="volume" value="100" min="0" max="100"/>
-				</div>
-				<div data-role="fieldcontain">
-					<label for="autoscroll">Automatisk rulling:</label>
-					<select name="autoscroll" id="autoscroll" data-role="slider">
-						<option value="off">Av</option>
-						<option value="on">P&aring;</option>
-					</select>
-				</div>
-			</div>
-			<!--div style="min-width: 750px; max-width: 800px; margin:0 auto; border-width: 1px; border-style: dotted;">
-				<div style="text-align: center; margins: 0 auto;"><button id="menuCloseButton" class="flip">Tilbake</button></div>
-						Volum:
-						<div id="volume"></div>
-						<br/>
-						
-						Automatisk rulling:
-						<span id="autoscroll_buttons">
-							<input type="radio" id="autoscroll_on" name="autoscroll" value="on" checked="checked" /><label for="autoscroll_on">På</label>
-							<input type="radio" id="autoscroll_off" name="autoscroll" value="off" /><label for="autoscroll_off">Av</label>
-						</span>
-						
+				<div id="settings">
+					<div data-role="fieldcontain">
+						<label for="volume">Volum:</label>
+						<input type="range" name="volume" id="volume" value="100" min="0" max="100"/>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="autoscroll">Automatisk rulling:</label>
+						<select name="autoscroll" id="autoscroll" data-role="slider">
+							<option value="off">Av</option>
+							<option value="on">P&aring;</option>
+						</select>
+					</div>
+					<!--
 						Posisjon i boken:
 						&lt;span id="progressbar"&gt;&lt;/span&gt;
-			</div-->
+					-->
+				</div>
             </div>
             <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
-           		<div data-role="navbar" class="nav-nlbdirekte">
+           		<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>
 						<li><a href="#settings-page" alt="Innstillinger" class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"><?php if (!($browser['isMobileDevice'])) echo "Innstillinger";?></a></li>
@@ -229,7 +222,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 				<div id="metadata"></div>
             </div>
             <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
-           		<div data-role="navbar" class="nav-nlbdirekte">
+           		<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>
 						<li><a href="#settings-page" alt="Innstillinger" class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"><?php if (!($browser['isMobileDevice'])) echo "Innstillinger";?></a></li>
@@ -247,7 +240,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 				<div id="toc"></div>
             </div>
             <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
-           		<div data-role="navbar" class="nav-nlbdirekte">
+           		<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>
 						<li><a href="#settings-page" alt="Innstillinger" class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"><?php if (!($browser['isMobileDevice'])) echo "Innstillinger";?></a></li>
@@ -265,7 +258,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 				<div id="pages"></div>
             </div>
             <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
-           		<div data-role="navbar" class="nav-nlbdirekte">
+           		<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>
 						<li><a href="#settings-page" alt="Innstillinger" class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"><?php if (!($browser['isMobileDevice'])) echo "Innstillinger";?></a></li>
@@ -277,7 +270,6 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
             </div>
         </div>
 		
-        <div class="ui-loader ui-body-a ui-corner-all" style="top: 533.5px; "><span
-                class="ui-icon ui-icon-loading spin"></span><h1>loading</h1></div>
+		<div id="soundmanager-debug" style="display: none;"></div>
     </body>
 </html>

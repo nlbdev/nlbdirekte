@@ -620,7 +620,7 @@ def fixTimes(parent, current, siblingNr):
 			totalTime = begin
 		if (begin/totalTime - fixTimesCurrentIteration/totalTime > 0.25):
 			fixTimesCurrentIteration = begin
-			progress(str(100*((1-0.6**(fixTimesIteration+fixTimesCurrentIteration/totalTime))*(fixTimesEnd-fixTimesStart)/100. + fixTimesStart/100.)))
+			progress(str(100*((1-0.3**(fixTimesIteration+fixTimesCurrentIteration/totalTime))*(fixTimesEnd-fixTimesStart)/100. + fixTimesStart/100.)))
 		
 		# Finally; recursively process elements (could be optimized further, but this should do for now)
 		if (not determinedSomething):

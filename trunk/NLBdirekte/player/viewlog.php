@@ -172,6 +172,8 @@ if ($logFile = file(fix_directory_separators("$logdir/log_$logname.log"))) {
 		if (!in_array($json['requestTime'], $requestTimes, true)) {
 			$requestTimes[] = $json['requestTime'];
 		}
+		if ($json['language']==='javascript')
+			$json = parseJavascript($json);
 		$log[] = $json;
 	}
 }
@@ -515,3 +517,23 @@ usort($log, "logCmp");
 
 </body>
 </html>
+<?php
+function parseJavascript($json) {
+	$messagelines = explode("<br/>",$json['message']);
+	foreach ($messagelines as $line) {
+		preg_match('/onerror\(["\'].*["\'],["\'](.*)["\'],(.*)\)/',$line,$matches);
+		if (count($matches)>1) {
+			$json['line'] = $matches[2];
+			$json['file'] = $matches[1];
+			break;
+		} else {
+			if (preg_match('/^.*@(http[^?#]*).*:(.*)$/',$line,$matches)) {
+				$json['line'] = $matches[2];
+				$json['file'] = $matches[1];
+			}
+		}
+	}
+	
+	return $json;
+}
+?>

@@ -128,14 +128,14 @@ function SmilPlayer() {
 		
 		if (skipTo >= 0) {
 			if (!paused && audioObject !== null)
-				if (typeof log=='object') log.debug('isSameSrc #1: audioObject.src:'+audioObject.src);
+				if (typeof log=='object') log.debug('isSameSrc #1: audioObject.url:'+audioObject.url);
 			
 			if (   (audioObject === null || isSameSrc(audioObject.url,this.server.getUrl(getAttr(audio,'s',''))) &&
 											Math.abs(audioObjectBegin+audioObject.position/1000. - currentTime) < inaccurateTimeMeasurement)
 				/*|| (this.textElement === null || textObject === null ||
 							!isSameSrc(textObjectSrc,this.server.getUrl(getAttr(text,'s',''))) || isLoadingText)*/
 				/*|| (this.extraElement === null || extraObject === null ||
-						extraObject.src === this.server.getUrl(getAttr(extra,'s','')))*/) {
+						extraObject.url === this.server.getUrl(getAttr(extra,'s','')))*/) {
 					// skipping done
 					skipTo = -1;
 			} else {
@@ -256,12 +256,15 @@ function SmilPlayer() {
 		if (audioObject === null) {
 			// nothing playing; start playing
 			if (typeof log=='object') log.info('nothing playing; load sound and start playing');
-			audioObject = soundManager.createSound({
-				id: "audio"+(new Date()).getTime(),
-				url: this.server.getUrl(getAttr(smilNode,'s','')),
-				volume: Math.round(volume*100.),
-				autoPlay: false
-			});
+			if (soundManager.ok()) {
+				audioObject = soundManager.createSound({
+					id: "audio"+(new Date()).getTime(),
+					url: this.server.getUrl(getAttr(smilNode,'s','')),
+					volume: Math.round(volume*100.),
+					autoPlay: false
+				});
+			}
+			else if (typeof log=='object') log.info('soundManager not ok yet, audioObject not created');
 			if (audioObject !== null) {
 				audioObject.setVolume(Math.round(volume*100.));
 				if (audioObject.readyState >= 3) {

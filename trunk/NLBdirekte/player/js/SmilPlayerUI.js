@@ -18,11 +18,6 @@ function niceTime(s) {
 	return '0:'+s;
 }
 function resizeImage(img,maxWidth,maxHeight) {
-	console.log('resizing: '+$(img).attr('src'));
-	console.log('maxWidth: '+maxWidth);
-	console.log('maxHeight: '+maxHeight);
-	console.log('original width: '+$(img).attr('data-original-width'));
-	console.log('original height: '+$(img).attr('data-original-height'));
 	var width = Math.min($(img).attr('data-original-width'),maxWidth);
 	var height = Math.min($(img).attr('data-original-height'),maxHeight);
 	var originalRatio = $(img).attr('data-original-height')/$(img).attr('data-original-width');
@@ -34,7 +29,6 @@ function resizeImage(img,maxWidth,maxHeight) {
 		// cut down on the width
 		width = height/originalRatio;
 	}
-	console.log('new (width,height): ('+width+","+height+")");
 	$(img).css('max-width',width);
 	$(img).css('max-height',height);
 }
@@ -254,6 +248,7 @@ $("select#autoscroll").live("change", function() {
 	}
 });
 function backward() {
+	log.debug('clicked "backward"');
 	player.skipToTime(player.getCurrentTime()-30);
 	scrollToHighlightedText();
 	/*if (typeof Bookmark === 'function') {
@@ -277,6 +272,7 @@ function togglePlay() {
 			button.removeClass('paused');
 			button.addClass('playing');
 			player.play();
+			log.debug('toggled from paused to playing');
 		}
 	} else {
 		if (player === null) {
@@ -289,10 +285,12 @@ function togglePlay() {
 			button.removeClass('playing');
 			button.addClass('paused');
 			player.pause();
+			log.debug('toggled from playing to paused');
 		}
 	}
 }
 function forward() {
+	log.debug('clicked "forward"');
 	player.skipToTime(player.getCurrentTime()+30);
 	scrollToHighlightedText();
 	/*if (typeof Bookmark === 'function') {
@@ -309,10 +307,12 @@ function toggleMute() {
 		button.removeClass('muted');
 		button.addClass('unmuted');
 		player.setVolume(100);
+		log.debug('toggled from muted to unmuted');
 	} else {
 		button.removeClass('unmuted');
 		button.addClass('muted');
 		player.setVolume(0);
+		log.debug('toggled from unmuted to muted');
 	}
 }
 $.fixedToolbars.setTouchToggleEnabled(false); // always show buttons
@@ -384,6 +384,44 @@ window.setInterval(function(){
 	// TODO: update progress bar and volume
 	// if wrong volume; $('#volume').progressbar('value', player.getVolume() );
 },100);
+window.setInterval(function(){
+	if (player === null || server === null || loader === null)
+		return;
+		
+	// Show loading message if the player is either preparing the book or an audio file is buffering
+	if (loader.errorCode < 0) {
+		switch (loader.errorCode) {
+			case "-1": $('div.ui-loader h1').html('Boken finnes ikke'); break;
+			default: $('div.ui-loader h1').html('Ukjent feil');
+		}
+		if (!$('html').hasClass("ui-loading")) {
+			$.mobile.pageLoading(false);
+		}
+	}
+	else if (!player.doneLoading) {
+		if (loader.prepareEstimatedRemainingTime < 0) {
+			$('div.ui-loader h1').html('Kontakter NLB...');
+		} else {
+			var estimatedRemaining = loader.prepareEstimatedRemainingTime;
+			if (estimatedRemaining > 3600)
+				estimatedRemaining = Math.floor(estimatedRemaining/3600)+' timer';
+			else if (estimatedRemaining > 60)
+				estimatedRemaining = Math.floor(estimatedRemaining/60)+' minutter';
+			else
+				estimatedRemaining = Math.floor(estimatedRemaining)+' sekunder';
+			$('div.ui-loader h1').html('Boken klargjøres ('+Math.floor(loader.prepareProgress)+'%)<br/><small>Gjenstående tid: '+estimatedRemaining+'</small>');
+		}
+		if (!$('html').hasClass("ui-loading")) {
+			$.mobile.pageLoading(false);
+			log.info('player is loading');
+		}
+	} else {
+		if ($('html').hasClass("ui-loading")) {
+			$.mobile.pageLoading(true);
+			log.info('nothing is loading');
+		}
+	}
+},500);
 window.setInterval(function(){
 	return;//TODO
 	if (player === null || server === null || loader === null)
