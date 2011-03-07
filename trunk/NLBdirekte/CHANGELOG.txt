@@ -79,8 +79,12 @@ Changelog for major- and minor-version releases
 			- use jQuery for AJAX-calls (XML, HTML and JSON)
 				- Which means removing all dependencies on the JSON-libraries used so far
 		Hook soundManager2 debugging into log4javascript
-			- alternatively at least have SmilPlayerUI.js trigger a logging event at some point to log support for flash, mp3, ogg, wav etc.
-				- implementation: all logging output from SoundManager? are forwarded to the logging framework
+			- alternatively at least have SmilPlayerUI.js trigger a logging event at some
+			  point to log support for flash, mp3, ogg, wav etc.
+				- implementation: all logging output from SoundManager? are forwarded to
+				  the logging framework
 		support for line number and filename for javascript log entries
-			- partly implemented now. fatal errors in browsers that support window.onerror will now contain filename and linenumber as well as a stacktrace
-		Updated Soundmanager to newest version ("V2.97a.20110306 - HTML5 audio updates, Flash/HTML5 mode detection, IE flash init tweaks, reuse and instance options fixes")
+			- partly implemented now. fatal errors in browsers that support window.onerror
+			  will now contain filename and linenumber as well as a stacktrace
+		Updated Soundmanager to newest version ("V2.97a.20110306 - HTML5 audio updates,
+		    Flash/HTML5 mode detection, IE flash init tweaks, reuse and instance options fixes")
