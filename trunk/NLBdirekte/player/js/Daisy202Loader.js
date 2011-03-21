@@ -22,23 +22,10 @@ function Daisy202Loader() {
 	this.xmlToHtml = function(documentElement) {
 		// Daisy 2.02 documents is already HTML, so there is little to do here
 		
-		// Extract the body element
-		var textObject = documentElement.getElementsByTagName('body');
-		if (textObject !== null && textObject.length > 0)
-			textObject = textObject[0];
-		else if (textObject.length === 0)
-			return null;
-		
-		// Remove all links from the documents (we'll probably be
-		// adding proper ones ourselves afterwards)
-		var a = textObject.getElementsByTagName('a');
-		for (var i = a.length-1; i >= 0; i--) {
-			var textNode = this.player.textDocument.createTextNode(a[i].innerHTML);
-			var parentNode = a[i].parentNode;
-			parentNode.insertBefore(textNode, a[i]);
-			parentNode.removeChild(a[i]);
-			a[i] = null;
-		}
+		var textObject = $(documentElement).find('body').get(0);
+		$(textObject).find('a').each(function(index, element) {
+			$(this).parent().html($(this).html());
+		});
 		
 		return textObject;
 	};

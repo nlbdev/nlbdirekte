@@ -33,6 +33,14 @@ logMessage(array(
 	"eventTime" => microtime2isostring(microtime(true)),
 	"language" => "php",
 	"type" => E_NOTICE,
+	"message" => "NLBdirekte v$version",
+	"file" => __FILE__,
+	"line" => __LINE__
+));
+logMessage(array(
+	"eventTime" => microtime2isostring(microtime(true)),
+	"language" => "php",
+	"type" => E_NOTICE,
 	"message" => "bookId=$book",
 	"file" => __FILE__,
 	"line" => __LINE__
@@ -52,13 +60,14 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 		
 		<!-- jQuery Mobile -->
-		<link rel="stylesheet" href="css/jQuery/jquery.mobile-1.0a3.css" />
+		<link rel="stylesheet" href="css/jQuery/jquery.mobile-1.0a4pre.css" />
 		<script type="text/javascript" src="js/jQuery/jquery-1.5.1.js"></script>
-		<script type="text/javascript" src="js/jQuery/jquery.mobile-1.0a3.js"></script>
+		<script type="text/javascript" src="js/jQuery/jquery.mobile-1.0a4pre.js"></script>
 		
 		<!-- NLBdirekte; stylesheets and configuration -->
 		<link type="text/css" href="css/NLBdirekte.css" rel="stylesheet" />
 		<link type="text/css" href="css/Daisy202Book.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript" src="config/config.js"></script>
 		
 		<!-- The code recieved from the library system, used to validate the session -->
@@ -74,6 +83,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		<script type="text/javascript" src="js/log4javascript/log4javascript.js"></script>
 		<script type="text/javascript">
 			//<![CDATA[
+			log4javascript.logLog.setQuietMode(true);
 			var log = log4javascript.getLogger();
 			var browserConsoleAppender = new log4javascript.BrowserConsoleAppender();
 			//var browserConsoleLayout = new log4javascript.PatternLayout("%d{HH:mm:ss} %-5p - %m%n");
@@ -117,6 +127,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		<!-- SoundManager 2 -->
 		<script type="text/javascript" src="js/soundmanager/script/soundmanager2.js"></script>
 		<script type="text/javascript">
+			var soundManagerError = false;
 			$(function(){
 				if (!soundManager)
 						soundManager = new SoundManager();
@@ -132,6 +143,14 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 					return true;
 				};
 				soundManager.useHTML5Audio = false;
+				soundManager.onerror = function() {
+					log.debug('soundManager failed to initialize.');
+					log.info('audio backend:noaudio');
+					soundManagerError = true;
+				};
+				soundManager.onload = function() {
+					log.info('audio backend:'+(soundManager.html5.usingFlash?'flash':'html5'));
+				}
 			});
 		</script>
 		
@@ -144,7 +163,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		<script src='js/SmilPlayer.js'></script>
 		
 		<!-- Bookmarks synchronization -->
-		<!--script type="text/javascript" src="js/Bookmarks.js" ></script-->
+		<script type="text/javascript" src="js/Bookmarks.js"></script>
 		
 		<!-- (loads the player, updates the graphics etc.) -->
 		<script type="text/javascript" src="js/SmilPlayerUI.js"></script>

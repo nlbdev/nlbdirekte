@@ -152,18 +152,24 @@ $requestTimes = array();
 // load log
 if ($logFile = file(fix_directory_separators("$logdir/log_$logname.log"))) {
 	foreach ($logFile as $logEntry) {
+		if (empty($logEntry)) continue;
 		$json = json_decode($logEntry, true);
-		$json['requestTime'] = isostring2microtime($json['requestTime']);
-		$json['logTime'] = isostring2microtime($json['logTime']);
-		$json['eventTime'] = isostring2microtime($json['eventTime']);
-		if (preg_match('/^bookId=(\d*)$/',$json['message'],$matches)) {
-			$bookId = $matches[1];
-		}
-		if (preg_match('/^calabashlog=(.*)$/',$json['message'],$matches)) {
-			$calabashlogs[$matches[1]] = $json['requestTime'];
-		}
-		if (preg_match('/^pythonlog=(.*)$/',$json['message'],$matches)) {
-			$pythonlogs[$matches[1]] = $json['requestTime'];
+		if (empty($json)) continue;
+		$json['requestTime'] = empty($json['requestTime'])?0:isostring2microtime($json['requestTime']);
+		$json['logTime'] = empty($json['logTime'])?0:isostring2microtime($json['logTime']);
+		$json['eventTime'] = empty($json['eventTime'])?0:isostring2microtime($json['eventTime']);
+		if (empty($json['message'])) $json['message'] = '';
+		if (empty($json['language'])) $json['language'] = '';
+		if (is_string($json['message'])) {
+			if (preg_match('/^bookId=(\d*)$/',$json['message'],$matches)) {
+				$bookId = $matches[1];
+			}
+			if (preg_match('/^calabashlog=(.*)$/',$json['message'],$matches)) {
+				$calabashlogs[$matches[1]] = $json['requestTime'];
+			}
+			if (preg_match('/^pythonlog=(.*)$/',$json['message'],$matches)) {
+				$pythonlogs[$matches[1]] = $json['requestTime'];
+			}
 		}
 		if (is_array($json['message']) and array_key_exists("browser_name", $json['message'])) {
 			$browser = $json['message'];
@@ -180,21 +186,27 @@ if ($logFile = file(fix_directory_separators("$logdir/log_$logname.log"))) {
 // load common log
 if ($logFile = file(fix_directory_separators("$logdir/log_$date.log"))) {
 	foreach ($logFile as $logEntry) {
+		if (empty($logEntry)) continue;
 		$json = json_decode($logEntry, true);
-		$json['requestTime'] = isostring2microtime($json['requestTime']);
-		$json['logTime'] = isostring2microtime($json['logTime']);
-		$json['eventTime'] = isostring2microtime($json['eventTime']);
+		if (count($json)) continue;
+		$json['requestTime'] = empty($json['requestTime'])?0:isostring2microtime($json['requestTime']);
+		$json['logTime'] = empty($json['logTime'])?0:isostring2microtime($json['logTime']);
+		$json['eventTime'] = empty($json['eventTime'])?0:isostring2microtime($json['eventTime']);
+		if (empty($json['message'])) $json['message'] = '';
+		if (empty($json['language'])) $json['language'] = '';
 		if (in_array($json['requestTime'], $requestTimes, true)) {
-			if (preg_match('/^bookId=(\d*)$/',$json['message'],$matches)) {
-				$bookId = $matches[1];
+			if (is_string($json['message'])) {
+				if (preg_match('/^bookId=(\d*)$/',$json['message'],$matches)) {
+					$bookId = $matches[1];
+				}
+				if (preg_match('/^calabashlog=(.*)$/',$json['message'],$matches)) {
+					$calabashlogs[$matches[1]] = $json['requestTime'];
+				}
+				if (preg_match('/^pythonlog=(.*)$/',$json['message'],$matches)) {
+					$pythonlogs[$matches[1]] = $json['requestTime'];
+				}
 			}
-			if (preg_match('/^calabashlog=(.*)$/',$json['message'],$matches)) {
-				$calabashlogs[$matches[1]] = $json['requestTime'];
-			}
-			if (preg_match('/^pythonlog=(.*)$/',$json['message'],$matches)) {
-			$pythonlogs[$matches[1]] = $json['requestTime'];
-		}
-		$log[] = $json;
+			$log[] = $json;
 		}
 	}
 }
@@ -342,11 +354,11 @@ usort($log, "logCmp");
 	<table>
 	<tr class="general">
 		<td>Browser</td>
-		<td><img href="img/browserlogos/<?php echo $browser['Browser'];?>.png"/> <?php echo $browser["Parent"];?></td>
+		<td><img src="img/browserlogos/<?php echo $browser['Browser'];?>.png"/> <?php echo $browser["Parent"];?></td>
 	</tr>
 	<tr class="general">
 		<td>Platform</td>
-		<td><img href="img/browserlogos/<?php echo $browser['Platform'];?>.png"/> <?php echo $browser["Platform"];?></td>
+		<td><img src="img/browserlogos/<?php echo $browser['Platform'];?>.png"/> <?php echo $browser["Platform"];?></td>
 	</tr>
 	<tr class="general">
 		<td>Architecture</td>

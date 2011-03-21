@@ -5,6 +5,8 @@
 $debug = false;
 include('common.inc.php');
 
+$includeBrowserInfo = true;
+
 function prettyTimeToMinute($microtime) {
 	$time = date("j.",floor($microtime));
 	switch (date("n",floor($microtime))) {
@@ -129,6 +131,42 @@ header('Content-Type: text/html; charset=utf-8');
 			<td><?php echo prettyTimeToMillisecond($logFile['time']);?></td>
 			<td><?php echo $logFile['user'];?></td>
 			<td><a href="viewlog.php?logname=<?php echo preg_replace('/.*log_(\d\d\d\d-\d\d-\d\d.\d\d-\d\d-\d\d.\d\d\d_.*).log$/','$1',$logFile['filename']);?>">Vis logg</a></td>
+			<?php
+			if ($thisLogFile = file(fix_directory_separators("$logdir/".$logFile['filename']))) {
+				$b = null;
+				$backend = 'unknown';
+				$maxLines = 500;
+				foreach ($thisLogFile as $logEntry) {
+					if (empty($logEntry)) continue;
+					$json = json_decode($logEntry, true);
+					if (is_array($json['message']) and array_key_exists("browser_name", $json['message'])) {
+						$b = $json['message'];
+						if ($backend !== 'unknown') break;
+					}
+					if (is_string($json['message']) and preg_match('/^audio backend:(.*)$/', $json['message'], $matches)) {
+						$backend = $matches[1];
+						if ($b !== null) break;
+					}
+					
+					if (--$maxLines <= 0) break;
+				}
+				$html = "<td><img src='img/browserlogos/unknown.png'/></td><td><img src='img/browserlogos/unknown.png'/></td><td><img src='img/browserlogos/unknown.png'/></td>";
+				if (!empty($b)) {
+					$html = "<td><img src='img/browserlogos/".$backend.".png'/>".($backend==='html5'?'HTML5 Audio':($backend==='flash'?'Flash Audio':($backend==='noaudio'?'Audio not supported':'Unknown audio support')))."</td>";
+					$html .= "<td><img src='img/browserlogos/".$b['Browser'].".png'/>";
+					$html .= $b['Parent']."</td>";
+					$html .= "<td><img src='img/browserlogos/".$b['Platform'].".png'/>";
+					$html .= ', '.$b['Platform'];
+					$html .= ($b['Win64']?', 64-bit':($b['Win32']?', 32-bit':($b['Win16']?', 16-bit':'')));
+					if ($b['isMobileDevice']) $html .= ', is mobile device';
+					if (!$b['JavaScript']) $html .= ', no javascript';
+					if ($b['CssVersion'] < 3) $html .= ', CSS version '.$b['CssVersion'];
+					if (!$b['Cookies']) $html .= ', no cookie support';
+					$html .= "</td>";
+				}
+				echo $html;
+			}
+			?>
 		</tr><?php
 	}
 	?>

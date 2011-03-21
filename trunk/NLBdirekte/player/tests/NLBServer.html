@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<title>QUnit tests for NLBdirekte.js</title>
+<!-- todo include scripts -->
+</head>
+	<link rel="stylesheet" href="http://github.com/jquery/qunit/raw/master/qunit/qunit.css" type="text/css" media="screen">
+	<script type="text/javascript" src="http://github.com/jquery/qunit/raw/master/qunit/qunit.js"></script>
+	<script type="text/javascript" src="../js/NLBServer.js"></script>
+	<script type="text/javascript">
+	function test_NLBServer() {
+		var serverA = new NLBServer();
+		same(serverA.state,"initialized","new server objects should have initialized as state");
+		same(serverA.url,"","default server url is empty");
+		same(serverA.getUrl(),"getfile.php?&file=","server with empty base url and empty argument url")
+		serverA.url = 'http://example.org/';
+		same(serverA.getUrl(),"http://example.org/getfile.php?&file=","server with base url, empty argument url and no parameters");
+		same(serverA.getUrl("file.txt"),"http://example.org/getfile.php?&file=file.txt","server with base url, argument url and no parameters");
+		
+		var serverB = new NLBServer("param1&param2");
+		same(serverB.getUrl(),"getfile.php?param1&param2&file=","server with empty base url, two parameters and no argument url");
+		serverB.url = "http://example.org/";
+		same(serverB.getUrl(),"http://example.org/getfile.php?param1&param2&file=","server with base url, two parameters and no argument url");
+		same(serverB.getUrl("file.txt"),"http://example.org/getfile.php?param1&param2&file=file.txt","server with base url, two parameters and argument url");
+		
+		var serverC = new NLBServer();
+		same(serverC.readyUrl(),"isprepared.php?","empty base url and no parameters");
+		same(serverA.readyUrl(),"http://example.org/isprepared.php?","base url and no parameters");
+		same(serverB.readyUrl(),"http://example.org/isprepared.php?param1&param2","base url and two parameters");
+	}
+	
+	test('NLBServer()', test_NLBServer);
+	</script>
+</head>
+<body>
+	<h1 id="qunit-header">QUnit Tests for NLBServer.js</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+</body>
+</html>

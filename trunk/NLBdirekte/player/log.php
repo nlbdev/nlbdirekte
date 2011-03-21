@@ -1,9 +1,8 @@
 <?php
 /*
- *	isprepared.php?ticket=...
+ *	log.php?data=...
  *	Jostein Austvik Jacobsen, NLB, 2010
  */
-
 include('common.inc.php');
 
 header('Content-Type: application/json; charset=utf-8');
@@ -20,7 +19,6 @@ switch (json_last_error()) {
 }
 
 # decode ticket here
-//list($user, $book) = decodeTicket($log[0]['ticket']);
 list($user, $book) = decodeTicket($log[0]['ticket']);
 
 // Not valid request?

@@ -50,12 +50,13 @@ function postProcessText() {
 			var id = smil[1]['s'].split('#',2);
 			if (id.length === 2) {
 				id = id[1];
-				var element = player.textDocument.getElementById(id);
-				if (element !== null) {
-					element.innerHTML =
+				var element = $(player.textDocument).find('#'+id);
+				if (element.length > 0) {
+					$(element).html(
 						"<a href=\"javascript:s('"+id+"');\">"+
-						element.innerHTML+
-						"</a>";
+						$(element).html()+
+						"</a>"
+					);
 				}
 			}
 		} else {
@@ -65,15 +66,14 @@ function postProcessText() {
 		}
 	}
 	
-	var images = player.textDocument.getElementsByTagName('img');
-	for (var i = 0; i < images.length; i++) $(images[i]).load(function(){
+	$(player.textDocument).find('img').each(function(){$(this).load(function() {
 		$(this).addClass('book-image');
 		$(this).attr('data-original-width',$(this).width());
 		$(this).attr('data-original-height',$(this).height());
 		var maxWidth = Math.floor($('#book').width()*0.95);
 		var maxHeight = Math.floor($(window).height()*0.6);
 		resizeImage($(this),maxWidth,maxHeight);
-	});
+	});});
 	
 	//loadBookmarks();
 }
@@ -127,17 +127,20 @@ function playerIsLoaded() {
 		}
 		$('#pages').html(txt);
 		
-		/*totalTime = Math.max(player.getTotalTime(),1);
+		totalTime = Math.max(player.getTotalTime(),1);
 		if (typeof Bookmark === 'function') {
-			Bookmark.loadLastmark(player.metadata[1]['dc:identifier'], function(lastmark, error) {
-				if (lastmark && lastmark.startTime) {
-					player.skipToTime(lastmark.startTime);
-					setTimeout(scrollToHighlightedText,1000); // TODO: this only works if text is loaded within one second
+			var that = this;
+			log.debug('getting lastmark...');
+			Bookmark.getLastmark(function(lastmark) {
+				log.debug('running callback for getLastmark...');
+				log.debug(lastmark);
+				if (lastmark && lastmark.position) {
+					player.skipToTime(lastmark.position);
+					setTimeout(scrollToHighlightedText,1000);
 				}
 			});
-			
-			loadBookmarks();
-		}*/
+			//loadBookmarks();
+		}
 		
 	} else {
 		window.setTimeout(playerIsLoaded,100);
@@ -209,10 +212,14 @@ playerHasMetadata();
 var isAnimatingScroll = true;
 function scrollToHighlightedText() {
 	var element = player.getHighlightedTextElement();
-	if (element === null)
+	if ($(element).length === 0)
 		return;
 	
 	isAnimatingScroll = true;
+	log.debug(element);
+	log.debug($(element).html());
+	log.debug($(element).position());
+	log.debug($(element).position().top);
 	$("html, body").animate({
 		scrollTop: Math.max(0,$(element).position().top-100)+"px"
 	}, 500, "swing", function() {
@@ -251,13 +258,9 @@ function backward() {
 	log.debug('clicked "backward"');
 	player.skipToTime(player.getCurrentTime()-30);
 	scrollToHighlightedText();
-	/*if (typeof Bookmark === 'function') {
-		Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
-			function(success, error) {
-				//if (console) console.log('success:'+success+',error:'+error);
-			}
-		);
-	}*/
+	if (typeof Bookmark === 'function') {
+		Bookmark.setLastmark(player.getCurrentTime());
+	}
 }
 function togglePlay() {
 	var button = $('#play-pause');
@@ -293,13 +296,9 @@ function forward() {
 	log.debug('clicked "forward"');
 	player.skipToTime(player.getCurrentTime()+30);
 	scrollToHighlightedText();
-	/*if (typeof Bookmark === 'function') {
-		Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
-			function(success, error) {
-				//if (console) console.log('success:'+success+',error:'+error);
-			}
-		);
-	}*/
+	if (typeof Bookmark === 'function') {
+		Bookmark.setLastmark(player.getCurrentTime());
+	}
 }
 function toggleMute() {
 	var button = $('#mute-unmute');
@@ -423,19 +422,14 @@ window.setInterval(function(){
 	}
 },500);
 window.setInterval(function(){
-	return;//TODO
 	if (player === null || server === null || loader === null)
 		return;
 	
 	if (player.doneLoading) {
 		if (typeof Bookmark === 'function' && player.isPlaying()) {
 			// it seems we have bookmark support
-			Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
-				function(success, error) {
-					//if (console) console.log('success:'+success+',error:'+error);
-				}
-			);
-		}// else if (console) console.log('typeof Bookmark: '+typeof Bookmark+', isPlaying: '+player.isPlaying());
+			Bookmark.setLastmark(player.getCurrentTime());
+		}
 	}
 	
 },5000);
@@ -443,11 +437,7 @@ function s(id) {
 	player.skipToId(id);
 	player.play();
 	if (typeof Bookmark === 'function') {
-		Bookmark.saveLastmark(player.metadata[1]['dc:identifier'], player.getCurrentTime(), 0,
-			function(success, error) {
-				//if (console) console.log('success:'+success+',error:'+error);
-			}
-		);
+		Bookmark.setLastmark(player.getCurrentTime());
 	}
 }
 
@@ -518,17 +508,12 @@ function typeOf(value) {
 	return s;
 }
 
-function init() {
+$(function(){
 	server = new NLBServer('ticket='+ticket+'&launchTime='+launchTime);	// authorization, downloading of files
 	player = new SmilPlayer();											// playback of SMIL filesets
 	loader = new Daisy202Loader();										// loading and parsing SMIL-files from the server into the player
 	
-	if (typeof serverUrl !== 'undefined')
-		server.url = serverUrl;
-	else
-		server.url = 'http://'+window.location.host+'/NLBdirekte/player/'; // default location of NLBdirekte
-	
-	//Bookmark.scriptUrl = 'http://'+window.location.host+'/NLBdirekte/patrondata/bookmarks.php';
+	server.url = serverUrl;
 	
 	loader.player = player;
 	loader.server = server;
@@ -538,17 +523,8 @@ function init() {
 	
 	loader.load();
 	player.textDocument = document;
-	player.textElement = document.getElementById('book');
+	player.textElement = $(document).find('#book').get(0);
 	player.postProcessText = postProcessText;
 	
 	document.body.focus();
-}
-if (typeof window.onload != "function") {
-        window.onload = init;
-} else {
-        var oldonload = window.onload;
-        window.onload = function(evt) {
-                if (oldonload) oldonload(evt);
-                init(evt);
-        };
-}
+});

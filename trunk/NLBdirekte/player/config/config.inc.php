@@ -3,6 +3,13 @@
  *	Configuration file for server-side of NLBdirekte.
  */
 
+# bookmarks
+$bookmarks_enabled = true;
+$bookmarks_db_username = 'root';
+$bookmarks_db_password = '';
+$bookmarks_db_hostname = 'localhost';
+$bookmarks_db_database = 'bookmarks';
+
 # relative paths to general DMZ and profile storage
 $shared = getcwd().'/../books';
 $profiles = getcwd().'/../profiles';

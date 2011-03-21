@@ -88,3 +88,23 @@ Changelog for major- and minor-version releases
 			  will now contain filename and linenumber as well as a stacktrace
 		Updated Soundmanager to newest version ("V2.97a.20110306 - HTML5 audio updates,
 		    Flash/HTML5 mode detection, IE flash init tweaks, reuse and instance options fixes")
+0.18: Improved accessibility
+			Conduct user testing
+				Player didn't work in IE, so there was little useful feedback
+		Bookmarks
+			store last playback position
+		Bugs
+			HTML in links are escaped when unwrapped
+			Python is unable to infer total time in some cases (see for instance book #614182)
+			On some computers using Firefox 3.6: audioObject.setVolume() not defined and audioObject.duration NaN
+				I think it's fixed now. Was not Firefox-specific. Happened when soundManager failed to initialize
+			Firefox' audio playback does not work correctly
+				won't change playing/pausing state unless clicking 'forward' or 'backward'
+					added hack that constantly resumes or pauses depending on play state
+			Does IE9 support getElementsByTagName as of 2011-03-03?
+				I think it did. However, I removed all dependencies on getElementsByTagName and replaced them with jQuery queries
+		Introduce jQuery as a dependency ("don't reinvent the wheel!")
+			in general, use jQuery to simplify where possible
+		Hook soundManager2 debugging into log4javascript
+			should give the ability to detect whether flash is supported
+				audio backend is now logged

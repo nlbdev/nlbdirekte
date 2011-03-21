@@ -5,6 +5,8 @@ from time import time, gmtime, strftime
 import time
 from math import floor
 
+debug = False
+
 tempDir = sys.argv[1]
 logFile = sys.argv[2]
 
@@ -50,6 +52,7 @@ def getAttribute(elem, attr, default):
 		return default
 
 def setAttribute(elem, attr, value):
+	global debug
 	if ((isinstance(attr, str) or isinstance(attr, unicode)) and isinstance(elem, list) and len(elem) >= 1):
 		if (len(elem) == 1):
 			elem.append(dict({attr:value}))
@@ -430,10 +433,15 @@ fixTimesEnd = 90
 fixTimesIteration = 0
 fixTimesCurrentIteration = 0.0
 
-ftDebug = False
 if (sys.getrecursionlimit() < 100):
 	sys.setrecursionlimit(100)
-def fixTimes(parent, current, siblingNr):
+def fixTimes(parent, current, siblingNr, depth):
+	global debug
+	
+	dbg_indent = ""
+	for i in range(0,depth):
+		dbg_indent = dbg_indent+'  '
+	
 	begin = float(getAttribute(current, 'b', -1))
 	end = float(getAttribute(current, 'e', -1))
 	clipBegin = float(getAttribute(current, 'B', -1))
@@ -446,90 +454,102 @@ def fixTimes(parent, current, siblingNr):
 	while (determinedSomething):
 		determinedSomething = False
 		
-		# First try fixing the element by itself
+		# 1a. First try fixing the element by itself
 		if (dur < 0):
 			if (begin >= 0 and end >= 0):
 				if (end - begin >= 0):
 					dur = end - begin
 					determinedSomething = True
-					if (ftDebug): print('dur '+unicode(dur)+' #2')
+					if (debug): print(dbg_indent+'1a1. dur='+unicode(dur))
 			elif (clipBegin >= 0 and clipEnd >= 0):
 				if (clipEnd - clipBegin >= 0):
 					dur = clipEnd - clipBegin
 					determinedSomething = True
-					if (ftDebug): print('dur='+unicode(dur)+' #3')
+					if (debug): print(dbg_indent+'1a2. dur='+unicode(dur))
 		
+		# 1b
 		if (begin < 0 and dur >= 0 and end >= 0):
 			if (end - dur >= 0):
 				begin = end - dur
 				determinedSomething = True
-				if (ftDebug): print('begin '+unicode(begin)+' #4')
+				if (debug): print(dbg_indent+'1b. begin='+unicode(begin))
 		
+		# 1c
 		if (end < 0 and dur >= 0 and begin >= 0):
 			if (begin + dur >= 0):
 				end = begin + dur
 				determinedSomething = True
-				if (ftDebug): print('end '+unicode(end)+' #5')
+				if (debug): print(dbg_indent+'1c. end='+unicode(end))
 		
+		# 1d
 		if (clipBegin < 0 and dur >= 0 and clipEnd >= 0):
 			if (clipEnd - dur >= 0):
 				clipBegin = clipEnd - dur
 				determinedSomething = True
-				if (ftDebug): print('clipBegin '+unicode(clipBegin)+' #6')
+				if (debug): print(dbg_indent+'1d. clipBegin='+unicode(clipBegin))
 		
+		# 1e
 		if (clipEnd < 0 and dur >= 0 and clipBegin >= 0):
 			if (clipBegin + dur >= 0):
 				clipEnd = clipBegin + dur
 				determinedSomething = True
-				if (ftDebug): print('clipEnd '+unicode(clipEnd)+' #7')
+				if (debug): print(dbg_indent+'1e. clipEnd='+unicode(clipEnd))
 		
 		
 		if (not determinedSomething):
 			# Second, use the elements children, siblings and parent to infer missing values.
 			
 			# __'b'__
-			# 1. if parent is par or is first sibling try using the parent
+			# 2a. if parent is par or is first sibling try using the parent
 			if (begin < 0 and parent != None and (siblingNr == 0 or parent[0] == 'p')):
 				if (getAttribute(parent,'b',-1) >= 0):
 					begin = getAttribute(parent,'b',-1)
 					determinedSomething = True
-					if (ftDebug): print('begin '+unicode(begin)+' #8')
+					if (debug): print(dbg_indent+'2a. begin='+unicode(begin))
 			
-			# 2. if parent is seq and is not first sibling try using previous sibling
+			# 2b. if parent is seq and is not first sibling try using previous sibling
 			if (begin < 0 and siblingNr > 0 and parent != None and parent[0] == 's'):
 				if (getAttribute(getChild(parent,siblingNr-1),'e',-1) >= 0):
 					begin = getAttribute(getChild(parent,siblingNr-1),'e',-1)
 					determinedSomething = True
-					if (ftDebug): print('begin '+unicode(begin)+' #9')
+					if (debug): print(dbg_indent+'2b. begin='+unicode(begin))
 			
-			# 3. If parent is par try using any sibling
-			if (begin < 0 and parent != None and parent[0] == 'p'):
+			# 2c. If parent is par try using any sibling
+			if (parent != None and parent[0] == 'p'):
 				for s in range(0,numberOfChildren(parent)):
 					sib = getChild(parent,s)
-					if (getAttribute(getChild(parent,s),'b',-1) >= 0):
+					if (begin < 0 and getAttribute(getChild(parent,s),'b',-1) >= 0):
 						begin = getAttribute(getChild(parent,s),'b',-1)
 						determinedSomething = True
-						if (ftDebug): print('begin '+unicode(begin)+' #10')
-						break
+						if (debug): print(dbg_indent+'2c1. begin='+unicode(begin))
+					if (end < 0 and getAttribute(getChild(parent,s),'e',-1) >= 0):
+						end = getAttribute(getChild(parent,s),'e',-1)
+						determinedSomething = True
+						if (debug): print(dbg_indent+'2c2. end='+unicode(end))
 			
-			# 4. if has children, try using any of the children pars
-			if (begin < 0 and current[0] == 'p'):
+			# 2d. if has children, try using any of the children pars
+			if (current[0] == 'p'):
 				for c in range(0,numberOfChildren(current)):
-					if (getAttribute(getChild(current,c),'b',-1) >= 0):
+					if (begin < 0 and getAttribute(getChild(current,c),'b',-1) >= 0):
 						begin = getAttribute(getChild(current,c),'b',-1)
 						determinedSomething = True
-						if (ftDebug): print('begin '+unicode(begin)+' #11')
+						if (debug): print(dbg_indent+'2d. begin='+unicode(begin))
+						break
+					if (end < 0 and getAttribute(getChild(current,c),'e',-1) >= 0):
+						end = getAttribute(getChild(current,c),'e',-1)
+						determinedSomething = True
+						if (debug): print(dbg_indent+'2d. end='+unicode(end))
 						break
 			
-			# 5. if has children, try using the first children seq
+			# 2e. if has children, try using the first children seq
 			if (begin < 0 and current[0] == 's'):
 				if (numberOfChildren(current) > 0 and getAttribute(getChild(current,0),'b',-1) >= 0):
 					begin = getAttribute(getChild(current,0),'b',-1)
 					determinedSomething = True
-					if (ftDebug): print('begin '+unicode(begin)+' #12')
+					if (debug): print(dbg_indent+'2e. begin='+unicode(begin))
 			
 			# __'e'__
-			# 1. if is par and all children of type a/v/par/seq has an end, use max(getChild(current,'e')).
+			# 3a. if is par and all children of type a/v/par/seq has an end, use max(getChild(current,'e')).
 			if (end < 0 and current[0] == 'p'):
 				newEnd = -1
 				for c in range(0,numberOfChildren(current)):
@@ -545,30 +565,30 @@ def fixTimes(parent, current, siblingNr):
 				if (newEnd >= 0):
 					end = newEnd
 					determinedSomething = True
-					if (ftDebug): print('end '+unicode(end)+' #13')
+					if (debug): print(dbg_indent+'3a. end='+unicode(end))
 			
-			# 2. if is seq, try using getAttribute(getChild(current,last),'e',-1)
+			# 3b. if is seq, try using getAttribute(getChild(current,last),'e',-1)
 			if (end < 0 and current[0] == 's'):
 				if (numberOfChildren(current) > 0 and getAttribute(getChild(current,numberOfChildren(current)-1),'e',-1) >= 0):
 					end = getAttribute(getChild(current,numberOfChildren(current)-1),'e',-1)
 					determinedSomething = True
-					if (ftDebug): print('end '+unicode(end)+' #14')
+					if (debug): print(dbg_indent+'3b. end='+unicode(end))
 			
-			# 3. if parent is seq and is last child of parent, try using parent
+			# 3c. if parent is seq and is last child of parent, try using parent
 			if (end < 0 and parent != None and parent[0] == 's' and siblingNr == numberOfChildren(parent)-1):
 				if (getAttribute(parent,'e',-1) >= 0):
 					end = getAttribute(parent,'e')
 					determinedSomething = True
-					if (ftDebug): print('end '+unicode(end)+' #15')
+					if (debug): print(dbg_indent+'3c. end='+unicode(end))
 			
-			# 4. if parent is seq and is not last child of parent, try using next sibling
+			# 3d. if parent is seq and is not last child of parent, try using next sibling
 			if (end < 0 and parent != None and parent[0] == 's' and siblingNr < numberOfChildren(parent)-1):
 				if (getAttribute(getChild(parent,siblingNr+1),'b',-1) >= 0):
 					end = getAttribute(getChild(parent,siblingNr+1),'b',-1)
 					determinedSomething = True
-					if (ftDebug): print('end '+unicode(end)+' #16')
+					if (debug): print(dbg_indent+'3d. end='+unicode(end))
 			
-			# 5. if parent is par and all siblings of type a/v/par/seq has an end use max(getChild(parent,'e'))
+			# 3e. if parent is par and all siblings of type a/v/par/seq has an end use max(getChild(parent,'e'))
 			if (end < 0 and parent != None and parent[0] == 'p'):
 				newEnd = -1
 				for c in range(0,numberOfChildren(parent)):
@@ -584,28 +604,28 @@ def fixTimes(parent, current, siblingNr):
 				if (newEnd >= 0):
 					end = newEnd
 					determinedSomething = True
-					if (ftDebug): print('end '+unicode(end)+' #17')
+					if (debug): print(dbg_indent+'3e. end='+unicode(end))
 			
 			# __'B'__
-			# 1. if parent is seq and is not first sibling, try using previous sibling with same src
+			# 4a. if parent is seq and is not first sibling, try using previous sibling with same src
 			if (clipBegin < 0 and siblingNr > 0 and parent != None and parent[0] == 's'):
 				for s in range(siblingNr-1,-1,-1):
 					if (getAttribute(current,'s','').partition('#')[0] == getAttribute(getChild(parent,s),'s','').partition('#')[0]):
 						if (getAttribute(getChild(parent,s),'E',-1) >= 0):
 							clipBegin = getAttribute(getChild(parent,s),'E',-1)
 							determinedSomething = True
-							if (ftDebug): print('clipBegin '+unicode(clipBegin)+' #18')
+							if (debug): print(dbg_indent+'4a. clipBegin='+unicode(clipBegin))
 						break
 			
 			# __'E'__
-			# 1. if parent is seq and is not last sibling, try using next sibling with same src
+			# 5a. if parent is seq and is not last sibling, try using next sibling with same src
 			if (clipEnd < 0 and parent != None and siblingNr < numberOfChildren(parent)-1 and parent[0] == 's'):
 				for s in range(siblingNr+1,numberOfChildren(parent)):
 					if (getAttribute(current,'s','').partition('#')[0] == getAttribute(getChild(parent,s),'s','').partition('#')[0]):
 						if (getAttribute(getChild(parent,s),'B',-1) >= 0):
 							clipEnd = getAttribute(getChild(parent,s),'B',-1)
 							determinedSomething = True
-							if (ftDebug): print('clipEnd '+unicode(clipEnd)+' #19')
+							if (debug): print(dbg_indent+'5a. clipEnd='+unicode(clipEnd))
 						break
 		
 		# Update progress
@@ -625,9 +645,9 @@ def fixTimes(parent, current, siblingNr):
 		# Finally; recursively process elements (could be optimized further, but this should do for now)
 		if (not determinedSomething):
 			for child in range(0,numberOfChildren(current)):
-				if (fixTimes(current, getChild(current,child), child)):
+				if (fixTimes(current, getChild(current,child), child, depth+1)):
 					determinedSomething = True
-					if (ftDebug): print('recursive '+unicode(getChild(current,child)[0])+' #20')
+					if (debug): print(dbg_indent+'recursed '+unicode(getChild(current,child)[0]))
 		
 		if (determinedSomething):
 			currentUpdated = True
@@ -639,9 +659,11 @@ def fixTimes(parent, current, siblingNr):
 	setAttribute(current,'d',dur)
 	return currentUpdated
 
-while (fixTimes(None, smil, 0)):
+#while (fixTimes(None, smil, 0) or getAttribute(smil[0],'b',-1) == -1):
+while (fixTimes(None, smil, 0, 0)):
 	fixTimesIteration = fixTimesIteration + 1
 	fixTimesCurrentIteration = 0
+	if (debug): print "iteration ", fixTimesIteration
 	continue
 progress(fixTimesEnd)
 

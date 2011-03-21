@@ -1,6 +1,10 @@
 syntax: glob
 
-Backup files left behind by the Emacs editor.
+# Scripts used for backing up stuff like the database etc (would be specific for each computer)
+backup.bat
+backup.sh
+
+# Backup files left behind by the Emacs editor.
 *~
 
 # Lock files used by the Emacs editor.

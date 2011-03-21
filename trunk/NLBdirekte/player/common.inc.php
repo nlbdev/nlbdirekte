@@ -1,11 +1,18 @@
 <?php
 
 # version of NLBdirekte
-$version = '0.17';
+$version = '0.18';
 
 include('config/config.inc.php'); // import users config-file
 
 # ---- default configuration variables ----
+
+# bookmarks
+if (!isset($bookmarks_enabled)) $bookmarks_enabled = false;
+if (!isset($bookmarks_db_username)) $bookmarks_db_username = 'root';
+if (!isset($bookmarks_db_password)) $bookmarks_db_password = '';
+if (!isset($bookmarks_db_hostname)) $bookmarks_db_hostname = 'localhost';
+if (!isset($bookmarks_db_database)) $bookmarks_db_database = 'bookmarks';
 
 # relative paths to general DMZ and profile storage
 if (!isset($shared)) $shared = getcwd().'/../books';
@@ -68,7 +75,8 @@ function microtime2isostring($time,$utc=false) {
 
 function isostring2microtime($iso,$utc=false) {
 	// inverse of microtime2isostring
-	preg_match('/^(\d+)-(\d+)-(\d+)T(\d+):(\d+):([\d\.]+)([+-])(\d+):(\d+)$/',$iso,$matches);
+	preg_match('/^(\d+)-(\d+)-(\d+)T(\d+):(\d+):([\d\.E+-]+)([+-])(\d+):(\d+)$/',$iso,$matches);
+	if (count($matches) < 10) trigger_error("Problem parsing ISO time: '$iso'".json_encode(debug_backtrace()));
 	list($pattern,$year,$month,$day,$hour,$minute,$seconds,$timezoneSign,$timezoneHours,$timezoneMinutes) = $matches;
 	$time = mktime($hour,$minute,floor($seconds),$month,$day,$year)+date('Z')
 			- intval($timezoneSign.'1')*($timezoneHours*3600+$timezoneMinutes*60)

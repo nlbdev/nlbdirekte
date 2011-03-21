@@ -1,12 +1,12 @@
 /*
- *	Configuration file for client-side of NLBdirekte.
+ *	Default configuration for client-side of NLBdirekte.
  */
 
 // URL to NLBdirekte
 var serverUrl = 'http://'+window.location.host+'/NLBdirekte/player/';
 
 // Bookmarks
-var bookmarksEnabled = true;
+var bookmarksEnabled = false;
 var bookmarksUrl = 'bookmarks.php';
 
 // Debug

@@ -148,75 +148,89 @@ function SmilPlayer() {
 	var prevHighlightColor = null;
 	var HIGHLIGHT_COLOR = '#FFFF00';
 	this.getHighlightedTextElement = function() {
-		return this.textDocument.getElementById(prevHighlightId);
+		return $(this.textDocument).find('#'+prevHighlightId).get(0);
 	}
 	function updateText(smilNode) {
 		if (this.textElement === null || isLoadingText) return;
 		if (smilNode === null) {
 			if (this.textElement.innerHTML.length > 0) {
 				this.textElement.innerHTML = '';
-				//while (this.textElement.childNodes.length >= 1)
-				//	this.textElement.removeChild(this.textElement.firstChild);
 			}
 		} else {
 			var split = getAttr(smilNode,'s','').split('#');
 			var filename = split[0];
 			if (textObjectSrc !== filename) {
 				// un-highlight text, just to be sure
-				var prevHighlightElement = this.textDocument.getElementById(prevHighlightId);
-				if (prevHighlightElement !== null)
-					prevHighlightElement.style.backgroundColor = prevHighlightColor;
+				var prevHighlightElement = $(this.textDocument).find('#'+prevHighlightId);
+				if (prevHighlightElement.length > 0)
+					prevHighlightElement.css('background-color',prevHighlightColor);
 				prevHighlightId = null;
 				prevHighlightColor = null;
 				
 				// get the new text
 				isLoadingText = true;
 				textObjectSrc = filename;
-				this.server.loadXmlFile(
-					filename,
-					delegate(that,function(xmlDoc) {
-						// success
-						textObject = this.loader.xmlToHtml(xmlDoc); // TODO: make async in case of time-consuming transformations
-						// TODO: handle textObject === null ?
-						this.textElement.innerHTML = textObject.innerHTML;
-						
-						// Resolve urls (i.e. images)
-						// elements with the 'src'-attribute:
-						// script img iframe embed source input frameset
-						// img, and possibly embed and source are the only ones
-						// that may occur in a book, so we ignore the rest.
-						var img = this.textElement.getElementsByTagName('img');
-						var embed = this.textElement.getElementsByTagName('embed');
-						var source = this.textElement.getElementsByTagName('source');
-						for (var i = 0; i < img.length; i++) {
-							if (img[i].hasAttribute('src'))
-								img[i].src = this.server.getUrl(img[i].getAttribute('src'));
-							if (typeof mobile === 'boolean' && mobile && img[i].width > 240) {
-								var scale = 240./img[i].width;
-								img[i].height = parseInt(img[i].height*scale);
-								img[i].width = 240;
-							}
-						}
-						for (var i = 0; i < embed.length; i++)
-							if (embed[i].hasAttribute('src'))
-								embed[i].setAttribute('src',this.server.getUrl(embed[i].getAttribute('src')));
-						for (var i = 0; i < source.length; i++)
-							if (source[i].hasAttribute('src'))
-								source[i].setAttribute('src',this.server.getUrl(source[i].getAttribute('src')));
-						
-						if (typeof this.postProcessText === 'function')
-							this.postProcessText();
-						
-						isLoadingText = false;
-					}),
-					delegate(that,function() {
-						// failure
-						textObjectSrc = '';
-						textObject = null;
-						isLoadingText = false;
-						if (typeof log=='object') log.warn('failed to load text object with src: "'+textObjectSrc+'"');
-					})
-				);
+				/*$.ajax({
+				   dataType: ($.browser.msie) ? "text" : "xml",
+				   success: function(data){
+					 var xml;
+					 if (typeof data == "string") {
+					   xml = new ActiveXObject("Microsoft.XMLDOM");
+					   xml.async = false;
+					   xml.loadXML(data);
+					 } else {
+					   xml = data;
+					 }
+					 // Returned data available in object "xml"
+				   }
+				 });*/
+				$.ajax({
+					url: this.server.getUrl(filename),
+					mimeType: 'text/xml',
+					dataType: ($.browser.msie) ? "text" : "xml",
+					success: delegate(that,function(data, textStatus, jqXHR) {
+								var xml;
+								if (typeof data == "string") {
+									xml = new ActiveXObject("Microsoft.XMLDOM");
+									xml.async = false;
+									xml.loadXML(data);
+									log.debug("from string to "+typeof xml);
+									log.debug($($(xml).find('title').get(0)).html());
+								} else {
+									xml = data;
+									log.debug("already xml");
+								}
+								
+								textObject = this.loader.xmlToHtml(xml);
+								this.textElement.innerHTML = textObject.innerHTML;
+								
+								// Resolve urls (i.e. images)
+								// elements with the 'src'-attribute:
+								// script img iframe embed source input frameset
+								// img, and possibly embed and source are the only ones
+								// that may occur in a book, so we ignore the rest.
+								
+								$(this.textElement).find('img[src],embed[src],source[src]').each(delegate(that,function(index,element) {
+									$(element).attr('src', this.server.getUrl($(element).attr('src')));
+								}));
+								
+								if (typeof this.postProcessText === 'function')
+									this.postProcessText();
+								
+								isLoadingText = false;
+							}),
+					error:	delegate(that,function(data, textStatus, jqXHR) {
+								textObjectSrc = '';
+								textObject = null;
+								isLoadingText = false;
+								if (typeof log=='object') log.warn('failed to load text object with src: "'+textObjectSrc+'"');
+							}),
+					complete: function(xhr, status) {
+						log.debug('----complete----');
+						log.debug(xhr.responseXML);
+						log.debug(xhr.responseXML.childNodes.length);
+					}
+				});
 			}
 			else if (getAttr(smilNode,'s','').indexOf('#') >= 0) {
 				// highlight content of element pointed to by fragment identifier
@@ -224,13 +238,13 @@ function SmilPlayer() {
 					var fragment = split[1];
 					if (prevHighlightId !== fragment) {
 						if (prevHighlightId) {
-							this.textDocument.getElementById(prevHighlightId).style.backgroundColor = prevHighlightColor;
+							$(this.textDocument).find('#'+prevHighlightId).css('background-color',prevHighlightColor);
 						}
-						var element = this.textDocument.getElementById(fragment);
-						if (element !== null) {
+						var element = $(this.textDocument).find('#'+fragment);
+						if (element.length > 0) {
 							prevHighlightId = fragment;
-							prevHighlightColor = element.style.backgroundColor;
-							element.style.backgroundColor = HIGHLIGHT_COLOR;
+							prevHighlightColor = $(element).css('background-color');
+							$(element).css('background-color',HIGHLIGHT_COLOR);
 						}
 					}
 				}
@@ -238,7 +252,7 @@ function SmilPlayer() {
 			else {
 				// no paragraph pointed at, don't highlight anything
 				if (prevHighlightId) {
-					this.textDocument.getElementById(prevHighlightId).style.backgroundColor = prevHighlightColor;
+					$(this.textDocument).find('#'+prevHighlightId).css('background-color',prevHighlightColor);
 					prevHighlightId = null;
 				}
 			}
@@ -247,6 +261,9 @@ function SmilPlayer() {
 	
 	var skipTo = -1; // hold the time to skip to while sound is loading
 	function updateAudio(smilNode) {
+		if (typeof soundManagerError === 'boolean' && soundManagerError) { return; }
+		if (!soundManager.ok()) { log.debug('soundManager is not ready to play audio.'); return; }
+		
 		//if (typeof log=='object') log.debug('updateAudio('+typeof smilNode+')');
 		if (audioObject === null && smilNode === null) {
 			// nothing playing and nothing to play
@@ -255,16 +272,13 @@ function SmilPlayer() {
 		}
 		if (audioObject === null) {
 			// nothing playing; start playing
-			if (typeof log=='object') log.info('nothing playing; load sound and start playing');
-			if (soundManager.ok()) {
-				audioObject = soundManager.createSound({
-					id: "audio"+(new Date()).getTime(),
-					url: this.server.getUrl(getAttr(smilNode,'s','')),
-					volume: Math.round(volume*100.),
-					autoPlay: false
-				});
-			}
-			else if (typeof log=='object') log.info('soundManager not ok yet, audioObject not created');
+			if (typeof log=='object') log.debug('nothing playing; load sound and start playing');
+			audioObject = soundManager.createSound({
+				id: "audio"+(new Date()).getTime(),
+				url: this.server.getUrl(getAttr(smilNode,'s','')),
+				volume: Math.round(volume*100.),
+				autoPlay: false
+			});
 			if (audioObject !== null) {
 				audioObject.setVolume(Math.round(volume*100.));
 				if (audioObject.readyState >= 3) {
@@ -280,6 +294,10 @@ function SmilPlayer() {
 			}
 		} else if (audioObject.readyState >= 3) {
 			// something playing (might be paused though)
+			
+			// make sure audioObjectBegin is accurate
+			audioObjectBegin = parseFloat(getAttr(smilNode,'b',-1)) - parseFloat(getAttr(smilNode,'B',-1));
+			
 			if (smilNode === null) {
 				// stop playing
 				if (typeof log=='object') log.info('stop playing and unload sound');
@@ -334,12 +352,14 @@ function SmilPlayer() {
 							// if (should be playing && is not playing)
 							//if (!paused && audioObject.paused) {
 							if (!paused) {
-								//if (typeof log=='object') log.debug('should be playing and is not playing; playing');
+								//if (typeof log=='object') log.debug('resume playing just to be sure...');
 								audioObject.resume();
 							}
 							// if (should not be playing && is playing)
-							if (paused && !audioObject.paused && audioObject.playState !== 1) {
-								if (typeof log=='object') log.info('should not be playing but is playing; pause');
+							//if (paused && !audioObject.paused && audioObject.playState !== 1) {
+							if (paused) {
+								//if (typeof log=='object') log.info('should not be playing but is playing; pause');
+								//if (typeof log=='object') log.info('pausing playback just to be sure...');
 								audioObject.pause();
 							}
 						}
