@@ -153,8 +153,8 @@ function SmilPlayer() {
 	function updateText(smilNode) {
 		if (this.textElement === null || isLoadingText) return;
 		if (smilNode === null) {
-			if (this.textElement.innerHTML.length > 0) {
-				this.textElement.innerHTML = '';
+			if ($(this.textElement).html().length > 0) {
+				$(this.textElement).html('');
 			}
 		} else {
 			var split = getAttr(smilNode,'s','').split('#');
@@ -187,22 +187,31 @@ function SmilPlayer() {
 				$.ajax({
 					url: this.server.getUrl(filename),
 					mimeType: 'text/xml',
-					dataType: ($.browser.msie) ? "text" : "xml",
+					dataType: "xml", /*($.browser.msie) ? "text" : "xml",*/
 					success: delegate(that,function(data, textStatus, jqXHR) {
 								var xml;
-								if (typeof data == "string") {
-									xml = new ActiveXObject("Microsoft.XMLDOM");
-									xml.async = false;
-									xml.loadXML(data);
-									log.debug("from string to "+typeof xml);
-									log.debug($($(xml).find('title').get(0)).html());
+								
+								if ($.browser.msie) {
+									var xmlstr = data.xml ? data.xml : (new XMLSerializer()).serializeToString(data);
+									var htmlstr, htmlhead, htmlbody;
+									var htmlregex = /<head[^>]*>([\s\S]*)<\/head[\s\S]*<body[^>]*>([\s\S]*)<\/body[^>]*>/gm;
+									matches = htmlregex.exec(xmlstr);
+									htmlstr = matches[0];
+									htmlhead = matches[1];
+									htmlbody = matches[2];
+									var htmldoc = $('<html></html>');
+									htmldoc.append($('<head></head>'));
+									htmldoc.append($('<body></body>'));
+									htmldoc.find('head').html(htmlhead);
+									htmldoc.find('body').html(htmlbody);
+									
+									textObject = this.loader.xmlToHtml(htmldoc);
 								} else {
-									xml = data;
-									log.debug("already xml");
+									// non-IE-browsers recognize XHTML
+									textObject = this.loader.xmlToHtml(data);
 								}
 								
-								textObject = this.loader.xmlToHtml(xml);
-								this.textElement.innerHTML = textObject.innerHTML;
+								$(this.textElement).html($(textObject).html());
 								
 								// Resolve urls (i.e. images)
 								// elements with the 'src'-attribute:
@@ -226,9 +235,6 @@ function SmilPlayer() {
 								if (typeof log=='object') log.warn('failed to load text object with src: "'+textObjectSrc+'"');
 							}),
 					complete: function(xhr, status) {
-						log.debug('----complete----');
-						log.debug(xhr.responseXML);
-						log.debug(xhr.responseXML.childNodes.length);
 					}
 				});
 			}

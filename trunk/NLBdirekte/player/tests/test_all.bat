@@ -1,0 +1,11 @@
+java -jar %JSTESTDRIVER_HOME%\JsTestDriver-1.3.1.jar --config Bookmarks.conf --tests all
+java -jar %JSTESTDRIVER_HOME%\JsTestDriver-1.3.1.jar --config bugs.conf --tests all
+java -jar %JSTESTDRIVER_HOME%\JsTestDriver-1.3.1.jar --config common.conf --tests all
+java -jar %JSTESTDRIVER_HOME%\JsTestDriver-1.3.1.jar --config Daisy202Loader.conf --tests all
+java -jar %JSTESTDRIVER_HOME%\JsTestDriver-1.3.1.jar --config javascript-stacktrace.conf --tests all
+java -jar %JSTESTDRIVER_HOME%\JsTestDriver-1.3.1.jar --config jQueryMobile.conf --tests all
+java -jar %JSTESTDRIVER_HOME%\JsTestDriver-1.3.1.jar --config log4javascript.conf --tests all
+java -jar %JSTESTDRIVER_HOME%\JsTestDriver-1.3.1.jar --config NLBServer.conf --tests all
+java -jar %JSTESTDRIVER_HOME%\JsTestDriver-1.3.1.jar --config SmilPlayer.conf --tests all
+java -jar %JSTESTDRIVER_HOME%\JsTestDriver-1.3.1.jar --config SmilPlayerUI.conf --tests all
+java -jar %JSTESTDRIVER_HOME%\JsTestDriver-1.3.1.jar --config soundmanager2.conf --tests all

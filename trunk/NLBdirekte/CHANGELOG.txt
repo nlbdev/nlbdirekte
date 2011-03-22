@@ -108,3 +108,6 @@ Changelog for major- and minor-version releases
 		Hook soundManager2 debugging into log4javascript
 			should give the ability to detect whether flash is supported
 				audio backend is now logged
+0.19: Internet Explorer 9 is working. IE8 and IE7 not tested.
+			- Fixed missing text bug in IE9
+			- Fixed "innerHTML is null"-bug in IE8 (replaced with jQuery code)
