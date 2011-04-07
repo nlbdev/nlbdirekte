@@ -61,8 +61,7 @@ function SmilPlayer() {
 		
 		if (this.doneLoading) {
 			if (!paused) {
-				//if (audioObject !== null && audioObject.readyState >= 3 && !audioObject.ended) {
-				if (audioObject !== null && audioObject.readyState >= 3 && audioObject.playState === 1) {
+				if (audioObject !== null && (audioObject.readyState == 1 || audioObject.readyState == 3) && audioObject.playState === 1) {
 					// wait until we're done loading the audio file
 					// (don't bother checking the text file anywhere, it loads quickly anyway)
 					// use audio object to calculate currentTime
@@ -268,7 +267,10 @@ function SmilPlayer() {
 	var skipTo = -1; // hold the time to skip to while sound is loading
 	function updateAudio(smilNode) {
 		if (typeof soundManagerError === 'boolean' && soundManagerError) { return; }
-		if (!soundManager.ok()) { log.debug('soundManager is not ready to play audio.'); return; }
+		if (!soundManager.ok()) {
+			if (typeof log=='object') log.debug('soundManager is not ready to play audio.');
+			return;
+		}
 		
 		//if (typeof log=='object') log.debug('updateAudio('+typeof smilNode+')');
 		if (audioObject === null && smilNode === null) {
@@ -287,18 +289,17 @@ function SmilPlayer() {
 			});
 			if (audioObject !== null) {
 				audioObject.setVolume(Math.round(volume*100.));
-				if (audioObject.readyState >= 3) {
+				if (audioObject.readyState == 1 || audioObject.readyState == 3) {
 					audioObject.setPosition(Math.round((parseFloat(getAttr(smilNode,'B',-1)) + (currentTime - parseFloat(getAttr(smilNode,'b',-1))))*1000.));
 					if (typeof log=='object') log.trace('#1B audioObject.position/1000. = '+audioObject.position/1000.);
 				}
 				audioObjectBegin = parseFloat(getAttr(smilNode,'b',-1)) - parseFloat(getAttr(smilNode,'B',-1));
 				audioObject.load();
 				audioObject.play();
-				if (paused) {
-					audioObject.pause();
-				}
-			}
-		} else if (audioObject.readyState >= 3) {
+				if (paused)
+					window.setTimeout(delegate(that,function(){audioObject.pause()}),0);
+            }
+		} else if (audioObject.readyState == 1 || audioObject.readyState == 3) {
 			// something playing (might be paused though)
 			
 			// make sure audioObjectBegin is accurate
@@ -317,8 +318,8 @@ function SmilPlayer() {
 				
 				if (isSameSrc(audioObject.url,this.server.getUrl(getAttr(smilNode,'s','')))) {
 					// the right audioObject is selected
-					if (audioObject.readyState >= 3) {
-						// the audioObject is loaded
+					if (audioObject.readyState == 1 || audioObject.readyState == 3) {
+						// the audioObject is loaded or loading
 						if (Math.abs(audioObjectBegin+(audioObject.playState!==1?(audioObject.duration/1000.):(audioObject.position/1000.)) - currentTime) > inaccurateTimeMeasurement) {
 							// currentTime is not close to the time indicated by the audioObject
 							if (typeof log=='object') log.trace('(Math.abs('+audioObjectBegin+'+'+(audioObject.position/1000.)+' - '+currentTime+' = '+Math.abs(audioObjectBegin+audioObject.position/1000.-currentTime)+') > '+inaccurateTimeMeasurement+')');
@@ -355,28 +356,22 @@ function SmilPlayer() {
 							// everything playing as it should. pause/resume as needed
 							if (typeof log=='object') log.trace('everything playing as it should. pause/resume as needed');
 							
-							// if (should be playing && is not playing)
-							//if (!paused && audioObject.paused) {
-							if (!paused) {
-								//if (typeof log=='object') log.debug('resume playing just to be sure...');
+							if (paused) {
+								audioObject.pause();
+							} else {
 								audioObject.resume();
 							}
-							// if (should not be playing && is playing)
-							//if (paused && !audioObject.paused && audioObject.playState !== 1) {
-							if (paused) {
-								//if (typeof log=='object') log.info('should not be playing but is playing; pause');
-								//if (typeof log=='object') log.info('pausing playback just to be sure...');
-								audioObject.pause();
-							}
+							
 						}
 					} else if (typeof log=='object') {
-						log.debug('the audioObject is not loaded');
+						log.debug('the audioObject has not started loading or failed to load; trying to start loading');
+						audioObject.load();
 					}
 				} else {
 					// playing the wrong file
 					// if (not near end of file && not near currentTime || ended)
-					if (Math.abs(audioObject.duration/1000. - audioObject.position/1000.) > inaccurateTimeMeasurement &&
-						Math.abs(audioObject.position/1000.+audioObjectBegin - currentTime) > inaccurateTimeMeasurement
+					if (Math.abs((typeof audioObject.duration!='number'?0:audioObject.duration)/1000. - (typeof audioObject.position!='number'?(currentTime-audioObjectBegin):audioObject.position)/1000.) > inaccurateTimeMeasurement &&
+						Math.abs((typeof audioObject.position!='number'?(currentTime-audioObjectBegin):audioObject.position)/1000. + audioObjectBegin - currentTime) > inaccurateTimeMeasurement
 						|| audioObject.playState !== 1) {
 						// switch file
 						if (typeof log=='object') log.info('playing the wrong file, switch file');
@@ -390,7 +385,7 @@ function SmilPlayer() {
 							autoPlay: false
 						});
 						audioObject.setVolume(Math.round(volume*100.));
-						if (audioObject.readyState >= 3) {
+						if (audioObject.readyState == 1 || audioObject.readyState == 3) {
 							audioObject.setPosition(Math.round((parseFloat(getAttr(smilNode,'B',-1)) + (currentTime - parseFloat(getAttr(smilNode,'b',-1))))*1000.));
 							if (typeof log=='object') log.trace('#A1 audioObject.position/1000. = '+audioObject.position/1000.);
 						}
@@ -399,8 +394,11 @@ function SmilPlayer() {
 							window.setTimeout(delegate(that,function(){audioObject.pause()}),0);
 						audioObjectBegin = parseFloat(getAttr(smilNode,'b',-1)) - parseFloat(getAttr(smilNode,'B',-1));
 					} else if (!paused) {
-						if (typeof log=='object') log.debug("if ("+Math.abs(audioObject.duration/1000. - audioObject.position/1000.)+" > "+inaccurateTimeMeasurement+" &&\n"+
+						if (typeof log=='object') log.debug("if (Math.abs(("+typeof audioObject.duration+"!='number'?0:"+audioObject.duration+")/1000. - "+audioObject.position+"/1000.) > "+inaccurateTimeMeasurement+" &&\n"+
+															"    Math.abs("+audioObject.position+"/1000.+"+audioObjectBegin+" - "+currentTime+") > "+inaccurateTimeMeasurement+")");
+						if (typeof log=='object') log.debug("if ("+Math.abs((typeof audioObject.duration!='number'?0:audioObject.duration)/1000. - audioObject.position/1000.)+" > "+inaccurateTimeMeasurement+" &&\n"+
 															"    "+Math.abs(audioObject.position/1000.+audioObjectBegin - currentTime)+" > "+inaccurateTimeMeasurement+")");
+                        audioObject.resume();
 					}
 				}
 			}
@@ -632,6 +630,15 @@ function SmilPlayer() {
 			return '';
 		return 'soundmanager'; // TODO: should return 'html' when HTML5 is used
 	}
+	this.buffering = function() {
+		if (audioObject === null) {
+			return 1.;
+		} if (currentTime-audioObjectBegin - (typeof audioObject.bufferTime=='number'?Math.max(0,Math.min(60,audioObject.bufferTime)):3) > (typeof audioObject.duration!='number'?0:audioObject.duration)/1000. && audioObject.bytesLoaded < audioObject.bytesTotal) {
+			return Math.max(0.,Math.min(1., (typeof audioObject.duration!='number'?0:audioObject.duration/1000./(currentTime-audioObjectBegin - (typeof audioObject.bufferTime=='number'?Math.max(0,Math.min(60,audioObject.bufferTime)):3)) ) ));
+		} else {
+			return 1.;
+		}
+	}
 	
 	// Functions for easier use of JsonML elements
 	function isJsonML(elem) {
@@ -724,8 +731,6 @@ function SmilPlayer() {
 	};
 	
 	run(0);
-	
-	this.test = function(){return audioObject;}//TODO
 }
 
 // Date.now for old browsers

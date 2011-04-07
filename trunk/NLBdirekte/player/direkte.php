@@ -13,6 +13,8 @@ if (!empty($_REQUEST['username'])) {
 	}
 }*/
 
+authorize($user,$book,$_REQUEST['session']);
+
 # Create a launchTime that can be used to identify this instance of NLBdirekte
 $launchTime = microtime(true);
 $logfile = microtimeAndUsername2logfile($launchTime,$user);
@@ -60,9 +62,9 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 		
 		<!-- jQuery Mobile -->
-		<link rel="stylesheet" href="css/jQuery/jquery.mobile-1.0a4pre.css" />
-		<script type="text/javascript" src="js/jQuery/jquery-1.5.1.js"></script>
-		<script type="text/javascript" src="js/jQuery/jquery.mobile-1.0a4pre.js"></script>
+		<link rel="stylesheet" href="css/jQuery/jquery.mobile-1.0a4.css" />
+		<script type="text/javascript" src="js/jQuery/jquery-1.5.2.js"></script>
+		<script type="text/javascript" src="js/jQuery/jquery.mobile-1.0a4.js"></script>
 		
 		<!-- NLBdirekte; stylesheets and configuration -->
 		<link type="text/css" href="css/NLBdirekte.css" rel="stylesheet" />
@@ -127,7 +129,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		<!-- SoundManager 2 -->
 		<script type="text/javascript" src="js/soundmanager/script/soundmanager2.js"></script>
 		<script type="text/javascript">
-			var soundManagerError = false;
+			var soundManagerBackend = 'unknown';
 			$(function(){
 				if (!soundManager)
 						soundManager = new SoundManager();
@@ -135,7 +137,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 				soundManager.flashVersion = 8;
 				soundManager.allowFullScreen = false;
 				soundManager.wmode = 'transparent';
-				soundManager.debugMode = true;
+				soundManager.debugMode = debug;
 				soundManager.debugFlash = false;
 				soundManager.useHighPerformance = true;
 				soundManager._wD = soundManager._writeDebug = function(sText, sType, bTimestamp) {
@@ -144,12 +146,13 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 				};
 				soundManager.useHTML5Audio = false;
 				soundManager.onerror = function() {
+					soundManagerBackend = 'noaudio';
+					soundManagerBackendChanged(soundManagerBackend);
 					log.debug('soundManager failed to initialize.');
-					log.info('audio backend:noaudio');
-					soundManagerError = true;
 				};
 				soundManager.onload = function() {
-					log.info('audio backend:'+(soundManager.html5.usingFlash?'flash':'html5'));
+					soundManagerBackend = soundManager.html5.usingFlash?'flash':'html5';
+					log.info('audio backend:'+soundManagerBackend);
 				}
 			});
 		</script>
@@ -185,8 +188,8 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
     <body class="ui-mobile-viewport">
 		
         <div data-role="page" id="content-page" data-url="content-page" class="ui-page ui-body-c ui-page-active">
-            <div data-role="content" data-theme="c" class="ui-content" role="main">
-                <div id="book" role="article" aria-live="off" style="background-color: white; padding: 10px;"></div>
+            <div data-role="content" data-theme="c" class="ui-content" style="padding: 0px;">
+                <div id="book" aria-live="off" style="background-color: white; padding: 10px;"></div>
             </div>
             <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
 				<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
@@ -202,7 +205,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
         </div>
 		
         <div data-role="page" id="settings-page" data-url="settings-page" class="ui-page ui-body-c">
-            <div data-role="content" class="ui-content" role="menu">
+            <div data-role="content" class="ui-content">
             <h2>Innstillinger</h2>
 				<div id="settings">
 					<div data-role="fieldcontain">
@@ -222,7 +225,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 					-->
 				</div>
             </div>
-            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
+            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
            		<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>
@@ -236,11 +239,11 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
         </div>
 		
         <div data-role="page" id="metadata-page" data-url="metadata-page" class="ui-page ui-body-c">
-            <div data-role="content" class="ui-content" role="menu">
+            <div data-role="content" class="ui-content">
                 <h2>Om boken</h2>
 				<div id="metadata"></div>
             </div>
-            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
+            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
            		<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>
@@ -254,11 +257,11 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
         </div>
 		
         <div data-role="page" id="toc-page" data-url="toc-page" class="ui-page ui-body-c">
-            <div data-role="content" class="ui-content" role="menu">
+            <div data-role="content" class="ui-content">
                 <h2>Innholdsfortegnelse</h2>
 				<div id="toc"></div>
             </div>
-            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
+            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
            		<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>
@@ -272,11 +275,11 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
         </div>
 		
         <div data-role="page" id="pages-page" data-url="pages-page" class="ui-page ui-body-c">
-            <div data-role="content" class="ui-content" role="menu">
+            <div data-role="content" class="ui-content">
                 <h2>Sideliste</h2>
 				<div id="pages"></div>
             </div>
-            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer" role="contentinfo">
+            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
            		<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>

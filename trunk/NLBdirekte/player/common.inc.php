@@ -1,7 +1,7 @@
 <?php
 
 # version of NLBdirekte
-$version = '0.19';
+$version = '0.20';
 
 include('config/config.inc.php'); // import users config-file
 
@@ -30,6 +30,11 @@ if (!isset($calabashExec)) $calabashExec = "calabash";
 
 # debugging
 if (!isset($debug)) $debug = false;
+
+# default authorization function
+if (!function_exists('authorize')) {
+	function authorize($user, $book, $session) { return true; }
+}
 
 # ---- end of default configuration variables ----
 

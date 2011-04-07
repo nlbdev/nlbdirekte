@@ -1,1 +1,1 @@
-java -jar %JSTESTDRIVER_HOME%\JsTestDriver-1.3.1.jar --config log4javascript.conf --tests all
+jstestdriver --config log4javascript.conf --tests all --captureConsole --testOutput %~dp0\results

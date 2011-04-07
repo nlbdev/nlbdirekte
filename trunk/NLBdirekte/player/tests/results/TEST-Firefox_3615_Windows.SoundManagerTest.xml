@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Firefox_3615_Windows.SoundManagerTest" errors="0" failures="1" tests="1" time="30.014">
+<testcase classname="Firefox_3615_Windows.SoundManagerTest" name="testSoundManager" time="30.014">
+<failure type="failed" message="[{&quot;fileName&quot;:&quot;http://localhost:4224/static/runner.js&quot;,&quot;lineNumber&quot;:462,&quot;message&quot;:&quot;expired.&quot;,&quot;name&quot;:&quot;Error&quot;,&quot;stack&quot;:&quot;Error(\&quot;expired.\&quot;)@:0\n(0)@http://localhost:4224/static/runner.js:462\n(0)@http://localhost:4224/static/runner.js:611\n&quot;}]">Error: expired.&#13;
+&#13;
+Error("expired.")@:0&#13;
+</failure>
+</testcase>
+<system-out><![CDATA[[LOG] ----
+[LOG] initialize soundmanager]]></system-out>
+</testsuite>

@@ -3,7 +3,8 @@
 
 
 /* --- GENERAL STYLING --- */
-div#book {font-family: arial, helvetica, verdana, sans-serif; margin-left: 10%; margin-right: 10%;}
+/*div#book {font-family: arial, helvetica, verdana, sans-serif; margin-left: 10%; margin-right: 10%;}*/
+div#book {font-family: arial, helvetica, verdana, sans-serif; }
 
 div#book * a {color: #000000; text-decoration: none;}
 div#book a:hover, div#book  a:active, div#book  a:focus {text-decoration : none; color : #CC3333; background-color: #FFFFCC;}

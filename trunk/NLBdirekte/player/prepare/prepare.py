@@ -577,7 +577,7 @@ def fixTimes(parent, current, siblingNr, depth):
 			# 3c. if parent is seq and is last child of parent, try using parent
 			if (end < 0 and parent != None and parent[0] == 's' and siblingNr == numberOfChildren(parent)-1):
 				if (getAttribute(parent,'e',-1) >= 0):
-					end = getAttribute(parent,'e')
+					end = getAttribute(parent,'e',-1)
 					determinedSomething = True
 					if (debug): print(dbg_indent+'3c. end='+unicode(end))
 			

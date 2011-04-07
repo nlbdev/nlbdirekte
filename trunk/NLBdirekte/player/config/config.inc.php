@@ -27,4 +27,14 @@ $calabashExec = "calabash"; // full path example: "C:\\xmlcalabash-0.9.29\\calab
 # debugging
 $debug = isset($debug)?$debug:true;
 
+# default authorization function
+function authorize($user, $book, $session) {
+	if (!empty($user) and !empty($book)) {
+		return true;
+	} else {
+		header("Location: http://128.39.10.81/cgi-bin/mappami");
+		exit;
+	}
+}
+
 ?>

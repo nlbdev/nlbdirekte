@@ -6,6 +6,7 @@ $debug = false;
 include('common.inc.php');
 
 $includeBrowserInfo = true;
+$logsPerPage = 50;
 
 function prettyTimeToMinute($microtime) {
 	$time = date("j.",floor($microtime));
@@ -87,6 +88,9 @@ header('Content-Type: text/html; charset=utf-8');
 			text-align: center;
 			padding: 0;
 		}
+		th.breadcrumb {
+			text-align: right;
+		}
 	</style>
 </head>
 <body style="font-family: helvetica, arial, sans-serif;">
@@ -96,15 +100,11 @@ header('Content-Type: text/html; charset=utf-8');
 </header>
 
 <table id="logs">
-	<tr>
-		<th>Tid</th>
-		<th>Lånernummer</th>
-		<th></th>
-	</tr>
 	<?php
 	// open this directory 
 	$logDirectoryHandle = opendir(fix_directory_separators($logdir));
 	$logFiles = array();
+	$files = 0;
 	while ($logFilename = readdir($logDirectoryHandle)) {
 		if (preg_match('/log_(\d\d\d\d)-(\d\d)-(\d\d).(\d\d)-(\d\d)-(\d\d.\d\d\d)_(.*).log$/',$logFilename,$matches)) {
 			$logFiles[] = array(
@@ -112,6 +112,7 @@ header('Content-Type: text/html; charset=utf-8');
 				"time" => isostring2microtime($matches[1]."-".$matches[2]."-".$matches[3]."T".$matches[4].":".$matches[5].":".$matches[6]."+00:00")-date("Z"),
 				"user" => $matches[7]
 			);
+			$files++;
 		}
 	}
 	closedir($logDirectoryHandle);
@@ -126,6 +127,28 @@ header('Content-Type: text/html; charset=utf-8');
 	}
 	usort($logFiles, "logCmp");
 	
+	$pages = ceil(count($logFiles)/$logsPerPage);
+	$page = max(0,min((isset($_REQUEST['page'])?$_REQUEST['page']:0),$pages));
+	$logFiles = array_splice($logFiles, $logsPerPage*$page, ($page<$pages?$logsPerPage:(count($logFiles)%$logsPerPage)));
+	?>
+	<tr>
+		<th>Tid</th>
+		<th>Lånernummer</th>
+		<th colspan="4" class="breadcrumb">Side: <?php
+			if ($page < $pages-10)
+				echo "<a href='browselogs.php?page=".($pages-1)."'>&lt;&lt;</a> ";
+			for ($p = max(0,$page-9); $p < $pages and $p <= $page+9; $p++) {
+				if ($p == $page) {
+					echo " <span class='current-page'><big>".($pages-$p)."</big></span> ";
+				} else if (abs($p-$page)<10) {
+					echo " <a href='browselogs.php?page=$p'>".($pages-$p)."</a> ";
+				}
+			}
+			if ($page > 10)
+				echo " <a href='browselogs.php?page=0'>&gt;&gt;</a>";
+		?></th>
+	</tr>
+	<?php
 	foreach ($logFiles as $logFile) {
 		?><tr>
 			<td><?php echo prettyTimeToMillisecond($logFile['time']);?></td>

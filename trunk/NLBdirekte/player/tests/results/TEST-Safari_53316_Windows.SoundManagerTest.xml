@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Safari_53316_Windows.SoundManagerTest" errors="0" failures="0" tests="1" time="11.892">
+<testcase classname="Safari_53316_Windows.SoundManagerTest" name="testSoundManager" time="11.892"/>
+<system-out><![CDATA[[LOG] ----
+[LOG] initialize soundmanager]]></system-out>
+</testsuite>

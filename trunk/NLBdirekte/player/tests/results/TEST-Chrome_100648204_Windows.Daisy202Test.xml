@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Chrome_100648204_Windows.Daisy202Test" errors="0" failures="0" tests="1" time="6.328">
+<testcase classname="Chrome_100648204_Windows.Daisy202Test" name="testDaisy202" time="6.328"/>
+<system-out><![CDATA[[LOG] 1 - xmlToHtml
+[LOG] 2 - initialize
+[LOG] 3 - first request: return error
+[LOG] 4 - second request: return not ready
+[LOG] 5 - third request: return ready
+[LOG] 6 - metadata request
+[LOG] 7 - smil request
+[LOG] 8 - toc request
+[LOG] 9 - pagelist request
+[LOG] 10 - finished loading]]></system-out>
+</testsuite>

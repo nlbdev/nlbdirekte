@@ -54,7 +54,7 @@ function postProcessText() {
 				if (element.length > 0) {
 					$(element).html(
 						"<a href=\"javascript:s('"+id+"');\">"+
-						$(element).html()+
+							$(element).html()+
 						"</a>"
 					);
 				}
@@ -414,6 +414,17 @@ window.setInterval(function(){
 			$.mobile.pageLoading(false);
 			log.info('player is loading');
 		}
+	} else if (player.buffering() < 1.) {
+		$('div.ui-loader h1').html('Laster lyd... ('+Math.round(player.buffering()*100.)+'%)');
+		if (!$('html').hasClass("ui-loading")) {
+			$.mobile.pageLoading(false);
+			log.info('audio is loading');
+		}
+	} else if (soundManagerBackend == 'noaudio') {
+		$('div.ui-loader h1').html('Nettleseren din støtter ikke avspilling av lyd');
+		if (!$('html').hasClass("ui-loading")) {
+			$.mobile.pageLoading(false);
+		}
 	} else {
 		if ($('html').hasClass("ui-loading")) {
 			$.mobile.pageLoading(true);
@@ -526,5 +537,5 @@ $(function(){
 	player.textElement = $(document).find('#book').get(0);
 	player.postProcessText = postProcessText;
 	
-	document.body.focus();
+	document.body.focus(); // TODO: is this needed or is it a remnant from some old code?
 });

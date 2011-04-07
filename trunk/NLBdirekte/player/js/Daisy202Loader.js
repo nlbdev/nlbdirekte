@@ -31,42 +31,52 @@ function Daisy202Loader() {
 	};
 	
 	var loadCount = 0;
+	readyThread = null;
 	this.load = function() {
-		try {
-			$.getJSON(this.server.readyUrl(), delegate(that,function(response, textStatus, jqXHR){
-				if (response.ready == 0) {
-					this.state = response.state;
-					this.prepareStartTime = response.startTime;
-					this.prepareEstimatedRemainingTime = response.estimatedRemainingTime;
-					this.prepareProgress = response.progress;
-					window.setTimeout(this.load,1000);
-				}
-				else if (response.ready == 1) {
-					this.prepareEstimatedRemainingTime = 0;
-					this.prepareProgress = 100;
-					this.loadReady();
-				}
-				else if (response.ready == -1) {
-					this.state = response.state;
-					this.prepareEstimatedRemainingTime = 0;
-					this.prepareProgress = 0;
-					this.errorCode = response.ready;
-					window.setTimeout(this.load,10000);
-				} else {
-					if (typeof log=='object') log.warning('Unknown response from readyUrl');
-					if (typeof log=='object') log.warning(response);
-				}
-			}));
-		} catch(e) {
-			window.setTimeout(this.load,1000);
-			if (typeof log=='object') log.warn("caught exception: "+e);
-		}
+		readyThread = setInterval(delegate(that,loadThread),1000);
 	}
-	this.loadReady = function() {
+	function loadThread() {
+		$.ajax({
+			'url':		server.readyUrl(),
+			'dataType':	'jsonp',
+			'success':	delegate(that,function(response, textStatus, jqXHR){
+							if (typeof readyThread == 'null')
+								return;
+							if (response.ready == 0) {
+								this.state = response.state;
+								this.prepareStartTime = parseFloat(response.startedTime);
+								this.prepareEstimatedRemainingTime = parseFloat(response.estimatedRemainingTime);
+								this.prepareProgress = parseFloat(response.progress);
+								this.errorCode = parseInt(response.ready);
+							}
+							else if (response.ready == -1) {
+								this.state = response.state;
+								this.prepareEstimatedRemainingTime = 0;
+								this.prepareProgress = 0;
+								this.errorCode = parseInt(response.ready);
+							}
+							else if (response.ready == 1) {
+								this.prepareEstimatedRemainingTime = 0;
+								this.prepareProgress = 100;
+								this.errorCode = parseInt(response.ready);
+								clearInterval(readyThread);
+								readyThread = null;
+								loadReady();
+							} else {
+								if (typeof log=='object') log.warning('Unknown response from readyUrl');
+								if (typeof log=='object') log.warning(response);
+							}
+						})
+		});
+	}
+	loadReady = function() {
 		this.state = 'loading metadata';
 		$.getJSON(this.server.getUrl("metadata.json"), delegate(that,function(response, textStatus, jqXHR) {
 			this.player.metadata = response;
-			if (++loadCount === 4) this.player.doneLoading = true;
+			if (++loadCount === 4) {
+				this.state = "finished";
+				this.player.doneLoading = true;
+			}
 		}));
 		this.state = 'loading smil';
 		$.getJSON(this.server.getUrl("smil.json"), delegate(that,function(response, textStatus, jqXHR) {
@@ -88,17 +98,26 @@ function Daisy202Loader() {
 				}
 				txt += ' ]';
 			}
-			if (++loadCount === 4) this.player.doneLoading = true;
+			if (++loadCount === 4) {
+				this.state = "finished";
+				this.player.doneLoading = true;
+			}
 		}));
 		this.state = 'loading toc';
 		$.getJSON(this.server.getUrl("toc.json"), delegate(that,function(response, textStatus, jqXHR) {
 			this.player.toc = response;
-			if (++loadCount === 4) this.player.doneLoading = true;
+			if (++loadCount === 4) {
+				this.state = "finished";
+				this.player.doneLoading = true;
+			}
 		}));
 		this.state = 'loading pagelist';
 		$.getJSON(this.server.getUrl("pagelist.json"), delegate(that,function(response, textStatus, jqXHR) {
 			this.player.pagelist = response;
-			if (++loadCount === 4) this.player.doneLoading = true;
+			if (++loadCount === 4) {
+				this.state = "finished";
+				this.player.doneLoading = true;
+			}
 		}));
 	};
 	

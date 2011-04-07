@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Safari_6533185_Mac_OS.SoundManagerTest" errors="0" failures="1" tests="1" time="30.004">
+<testcase classname="Safari_6533185_Mac_OS.SoundManagerTest" name="testSoundManager" time="30.004">
+<failure type="failed" message="[{&quot;message&quot;:&quot;expired.&quot;}]">: expired.&#13;
+&#13;
+&#13;
+</failure>
+</testcase>
+<system-out><![CDATA[[LOG] initialize soundmanager]]></system-out>
+</testsuite>

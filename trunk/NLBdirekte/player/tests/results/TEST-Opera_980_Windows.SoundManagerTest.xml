@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Opera_980_Windows.SoundManagerTest" errors="0" failures="0" tests="1" time="15.599">
+<testcase classname="Opera_980_Windows.SoundManagerTest" name="testSoundManager" time="15.599"/>
+<system-out><![CDATA[[LOG] ----
+[LOG] initialize soundmanager]]></system-out>
+</testsuite>

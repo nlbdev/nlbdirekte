@@ -1,1 +1,1 @@
-java -jar %JSTESTDRIVER_HOME%\JsTestDriver-1.3.1.jar --config SmilPlayerUI.conf --tests all
+jstestdriver --config SmilPlayerUI.conf --tests all --captureConsole --testOutput %~dp0\results

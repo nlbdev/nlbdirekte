@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Chrome_100648204_Windows.NLBServer_params" errors="0" failures="0" tests="1" time="0.0">
+<testcase classname="Chrome_100648204_Windows.NLBServer_params" name="test this.server with empty base url, two parameters and no argument url" time="0.0"/>
+</testsuite>

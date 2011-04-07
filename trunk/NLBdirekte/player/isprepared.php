@@ -5,7 +5,10 @@
  */
 include('common.inc.php');
 
-header('Content-Type: application/json; charset=utf-8');
+if (isset($_REQUEST['callback']) and !empty($_REQUEST['callback']))
+	header('Content-Type: application/javascript; charset=utf-8');
+else
+	header('Content-Type: application/json; charset=utf-8');
 
 # decode ticket here
 list($user, $book) = decodeTicket($_REQUEST['ticket']);
@@ -30,7 +33,10 @@ $userHasRunningProcess = isProcessing($user);
 if (!$book or !file_exists(fix_directory_separators("$shared/$book"))) {
 	global $debug;
 	if ($debug) trigger_error("book with bookId $book does not exist in the location ".fix_directory_separators("$shared/$book"));
-	echo '{"ready":"-1", "state":"book does not exist"}';
+	echo json_or_jsonp(array(
+		"ready" => false,
+		"state" => "book does not exist"
+	));
 }
 
 // Book not being prepared or not ready for playback at all?
@@ -50,7 +56,7 @@ else if (!$userHasRunningProcess and (
 		$processesFilename = str_replace("\\","/","$profiles/$user/processes.csv");
 		$processesFile = fopen($processesFilename, "ab");
 		if ($debug) trigger_error("appending calabash process with PID '$pid' to the processes.csv-file belonging to the user '$user'.");
-		fputcsv($processesFile, array(time(), $pid));
+		fputcsv($processesFile, array(time(), $pid, isset($_REQUEST['launchTime'])?$_REQUEST['launchTime']:0));
 		fclose($processesFile);
 	}
 	else {
@@ -63,8 +69,7 @@ else if (!$userHasRunningProcess and (
 		"startedTime" => time(),
 		"estimatedRemainingTime" => 60
 	);
-	echo json_encode($progress);
-	#echo '{"ready":"0", "state":"a book is being prepared", "progress":"0", "startedTime":"'+time()+'", "estimatedRemainingTime":"60"}';
+	echo json_or_jsonp($progress);
 }
 
 // Book being prepared?
@@ -73,8 +78,7 @@ else if ($userHasRunningProcess) {
 	$progress = getProgress($user);
 	$progress['ready'] = false;
 	$progress['state'] = "a book is being prepared";
-	echo json_encode($progress);
-	#echo '{"ready":"0", "state":"a book is being prepared", "progress":"'+$progress['progress']+'", "startedTime":"'+$progress['startedTime']+'", "estimatedRemainingTime":"'+$progress['estimatedRemainingTime']+'"}';
+	echo json_or_jsonp($progress);
 }
 
 // Book is ready
@@ -84,8 +88,7 @@ else {
 		"ready" => true,
 		"state" => "a book is ready for playback"
 	);
-	echo json_encode($progress);
-	#echo '{"ready":"1", "state":"book is ready for playback"}';
+	echo json_or_jsonp($progress);
 }
 
 // Based on http://www.php.net/manual/en/function.exec.php#86329
@@ -253,6 +256,7 @@ function isProcessing($user) {
 		while (($csvLine = fgetcsv($processesFile, 1000)) !== false) {
 			$time = $csvLine[0];
 			$pid = $csvLine[1];
+			$launchTime = $csvLine[2];
 			// Processes older than six hours are ignored, since PIDs can be reused.
 			// Six hours is chosen as something greater than the assumed time it
 			// takes to process the biggest books.
@@ -262,7 +266,7 @@ function isProcessing($user) {
 			}
 			if (processIsRunning($pid)) {
 				if ($debug) trigger_error("isProcessing(): Found a running process for user '$user' with PID = '$pid'.");
-				$stillRunning["$time"] = "$pid";
+				$stillRunning["$time"] = array("$pid","$launchTime");
 			}
 			else if ($debug) trigger_error("isProcessing(): Found a process that was not running for user '$user' with PID = '$pid'.");
 		}
@@ -270,9 +274,9 @@ function isProcessing($user) {
 	}
 	$processesFile = fopen($processesFilename, "wb");
 	fwrite($processesFile,'');
-	foreach ($stillRunning as $time => $pid) {
-		if ($debug) trigger_error("isProcessing(): process with PID '$pid' is still running for user '$user'; saving it back to the processing.csv-file.");
-		fputcsv($processesFile, array($time, $pid));
+	foreach ($stillRunning as $time => $pidLaunchTime) {
+		if ($debug) trigger_error("isProcessing(): process with PID '".$pidLaunchTime[0]."' is still running for user '$user'; saving it back to the processing.csv-file.");
+		fputcsv($processesFile, array($time, $pidLaunchTime[0], $pidLaunchTime[1]));
 	}
 	fclose($processesFile);
 	if (count($stillRunning) === 0) {
@@ -288,22 +292,33 @@ function getProgress($user) {
 	global $debug;
 	global $profiles;
 	global $logfile;
+	$logfiles = array($logfile);
+	$processesFilename = str_replace("\\","/","$profiles/$user/processes.csv");
+	if (file_exists($processesFilename)) {
+		$processesFile = fopen($processesFilename, "rb");
+		while (($csvLine = fgetcsv($processesFile, 1000)) !== false) {
+			$logfiles[] = microtimeAndUsername2logfile($csvLine[2],$user);
+		}
+		fclose($processesFile);
+	}
 	$progressLogs = array();
 	$pythonLogs = array();
-	if ($file = file(fix_directory_separators("$logfile"))) {
-		foreach ($file as $logEntry) {
-			$json = json_decode($logEntry, true);
-			$json['requestTime'] = isostring2microtime($json['requestTime']);
-			$json['logTime'] = isostring2microtime($json['logTime']);
-			$json['eventTime'] = isostring2microtime($json['eventTime']);
-			if (is_string($json['message']) and preg_match('/^pythonlog=(.*)$/',$json['message'],$matches)) {
-				$pythonLogs[$matches[1]] = $json['requestTime'];
+	foreach ($logfiles as $logfilename) {
+		if ($file = file(fix_directory_separators($logfilename))) {
+			foreach ($file as $logEntry) {
+				$json = json_decode($logEntry, true);
+				$json['requestTime'] = isostring2microtime($json['requestTime']);
+				$json['logTime'] = isostring2microtime($json['logTime']);
+				$json['eventTime'] = isostring2microtime($json['eventTime']);
+				if (is_string($json['message']) and preg_match('/^pythonlog=(.*)$/',$json['message'],$matches)) {
+					$pythonLogs[$matches[1]] = $json['requestTime'];
+				}
 			}
 		}
 	}
 	if (count($pythonLogs)==0) return array("progress"=>(time()-$_REQUEST['launchTime'])/(time()-$_REQUEST['launchTime']+60), "startedTime"=>floor($_REQUEST['launchTime']), "estimatedRemainingTime"=>60);
 	foreach ($pythonLogs as $pythonlog => $requestTime) {
-		if ($file = file(fix_directory_separators("$pythonlog"))) {
+		if (file_exists(fix_directory_separators("$pythonlog")) and $file = file(fix_directory_separators("$pythonlog"))) {
 			foreach ($file as $logEntry) {
 				$json = json_decode($logEntry, true);
 				if ($json['type'] == 'PROGRESS') {
@@ -347,11 +362,18 @@ function getProgress($user) {
 			"estimatedRemainingTime" => ($nowProgress<0.001?60:( ($nowTime-$startTime)/$nowProgress ))
 			/*"estimatedRemainingTime" => ($progressLogs[count($progressLogs)-1]['logTime']-$progressLogs[count($progressLogs)-1]['requestTime'])*(100./$matches[1]-1.)*/
 		);
-		if ($debug) trigger_error(json_encode($progress));
+		if ($debug) trigger_error(json_or_jsonp($progress));
 		return $progress;
 	} else {
 		trigger_error("Unable to parse progress: ".$progressLogs[count($progressLogs)-1]['message']);
 		return array("progress"=>(time()-$_REQUEST['launchTime'])/(time()-$_REQUEST['launchTime']+60), "startedTime"=>floor($_REQUEST['launchTime']), "estimatedRemainingTime"=>60);
 	}
+}
+
+function json_or_jsonp($structure) {
+	if (isset($_REQUEST['callback']) and !empty($_REQUEST['callback']))
+		echo $_REQUEST['callback'].'('.json_encode($structure).')';
+	else
+		echo json_encode($structure);
 }
 ?>
