@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Chrome_100648204_Windows.SoundManagerTest" errors="0" failures="0" tests="1" time="11.906">
-<testcase classname="Chrome_100648204_Windows.SoundManagerTest" name="testSoundManager" time="11.906"/>
+<testsuite name="Chrome_100648204_Windows.SoundManagerTest" errors="0" failures="0" tests="1" time="11.934">
+<testcase classname="Chrome_100648204_Windows.SoundManagerTest" name="testSoundManager" time="11.934"/>
 <system-out><![CDATA[[LOG] initialize soundmanager
 [LOG] soundManager: -- SoundManager 2 V2.97a.20110306 (AS2/Flash 8), high performance mode, normal polling, wmode: transparent --
 [LOG] soundManager: soundManager::createMovie(): Trying to load http://localhost/NLBdirekte/player/js/soundmanager/swf/soundmanager2_debug.swf
 [LOG] soundManager: soundManager::initMovie(): Got EMBED element (created via JS)
 [LOG] soundManager: soundManager::initMovie(): Waiting for ExternalInterface call from Flash..
-[LOG] soundManager: soundManager::externalInterfaceOK() (~0 ms)
+[LOG] soundManager: soundManager::externalInterfaceOK() (~1 ms)
 [LOG] soundManager: -- soundManager::init() --
 [LOG] soundManager: soundManager: Attempting to call Flash from JS..
 [LOG] soundManager: (Flash): SM2 SWF V2.97a.20110306 (AS2/Flash 8)
@@ -17,10 +17,10 @@
 [LOG] soundManager: soundManager::initComplete(): calling soundManager.onload()
 [LOG] soundManager: soundManager.onload() complete
 [LOG] create sound
-[LOG] soundManager: soundManager.createSound(): audioId (http://localhost/NLBdirekte/player/tests/test/office_lobby.mp3)
+[LOG] soundManager: soundManager.createSound(): audioId (http://localhost/NLBdirekte/player/tests/test/minimal/dtb_0002.mp3)
 [LOG] soundManager: SMSound() merged options: {
  id: audioId, 
- url: http://localhost/NLBdirekte/player/tests/test/office_lobby.mp3, 
+ url: http://localhost/NLBdirekte/player/tests/test/minimal/dtb_0002.mp3, 
  volume: 100, 
  autoLoad: false, 
  stream: true, 
@@ -35,7 +35,7 @@
 }
 [LOG] created sound...
 [LOG] Load and play sound
-[LOG] soundManager: SMSound.load(): http://localhost/NLBdirekte/player/tests/test/office_lobby.mp3
+[LOG] soundManager: SMSound.load(): http://localhost/NLBdirekte/player/tests/test/minimal/dtb_0002.mp3
 [LOG] soundManager: SMSound._onid3(): "audioId" ID3 data received.
 [LOG] soundManager: SMSound._onload(): "audioId" loaded.
 [LOG]           audio was loaded
@@ -49,7 +49,7 @@
 [LOG] soundManager: SMSound.pause()
 [LOG]           audio was paused
 [LOG] [object Object]
-[LOG] 1019
+[LOG] 967
 [LOG] 9770
 [LOG] 1
 [LOG] soundManager: SMSound.resume()

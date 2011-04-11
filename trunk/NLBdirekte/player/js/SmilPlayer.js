@@ -130,15 +130,9 @@ function SmilPlayer() {
 				if (typeof log=='object') log.debug('isSameSrc #1: audioObject.url:'+audioObject.url);
 			
 			if (   (audioObject === null || isSameSrc(audioObject.url,this.server.getUrl(getAttr(audio,'s',''))) &&
-											Math.abs(audioObjectBegin+audioObject.position/1000. - currentTime) < inaccurateTimeMeasurement)
-				/*|| (this.textElement === null || textObject === null ||
-							!isSameSrc(textObjectSrc,this.server.getUrl(getAttr(text,'s',''))) || isLoadingText)*/
-				/*|| (this.extraElement === null || extraObject === null ||
-						extraObject.url === this.server.getUrl(getAttr(extra,'s','')))*/) {
+											Math.abs(audioObjectBegin+audioObject.position/1000. - currentTime) < inaccurateTimeMeasurement)) {
 					// skipping done
 					skipTo = -1;
-			} else {
-				window.setTimeout(delegate(that,function(){audioObject.pause();}),0);
 			}
 		}
 	}
@@ -660,9 +654,9 @@ function SmilPlayer() {
 		return true;
 	}
 	function numberOfChildren(elem) {
-		if (!isJsonML(elem)) { return 0; }
+		if (!isJsonML(elem)) return 0;
 		if (elem.length === 1) return 0;
-		else return typeof elem[1] === 'object' ? elem.length-2 : elem.length-1;
+		else return typeOf(elem[1]) === 'object' ? elem.length-2 : elem.length-1;
 	}
 	function lastChild(elem) { // shorthand and easier-to-read code
 		return numberOfChildren(elem)-1;
@@ -670,7 +664,7 @@ function SmilPlayer() {
 	function getChild(elem, nr) {
 		if (!isJsonML(elem)) { return null; }
 		if (elem.length === 1) return null;
-		if (typeof elem[1] === 'object') {
+		if (typeOf(elem[1]) === 'object') {
 			if (elem.length === 2) return null;
 			return elem[nr+2];
 		}
@@ -678,12 +672,12 @@ function SmilPlayer() {
 	}
 	function getAttr(elem, attr, def) {
 		if (!isJsonML(elem)) { return def; }
-		if (elem.length === 1 || typeof elem[1] !== 'object' || typeof elem[1][attr] === 'undefined') return def;
+		if (elem.length === 1 || typeOf(elem[1]) !== 'object' || typeOf(elem[1][attr]) === 'undefined') return def;
 		return elem[1][attr];
 	}
 	function setAttr(elem, attr, val) {
 		if (!isJsonML(elem)) { return false; }
-		if (elem.length === 1 || typeof elem[1] !== 'object') {
+		if (elem.length === 1 || typeOf(elem[1]) !== 'object') {
 			elem.splice(1,0,{attr:val});
 		} else {
 			elem[attr] = val;
@@ -692,7 +686,7 @@ function SmilPlayer() {
 	}
 	function deleteAttr(elem, attr) {
 		if (!isJsonML(elem)) { return false; }
-		if (elem.length === 1 || typeof elem[1] !== 'object') return false;
+		if (elem.length === 1 || typeOf(elem[1]) !== 'object') return false;
 		delete elem[1][attr];
 		return true;
 	}

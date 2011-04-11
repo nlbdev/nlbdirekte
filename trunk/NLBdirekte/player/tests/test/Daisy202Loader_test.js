@@ -3,7 +3,7 @@ var Daisy202Test = AsyncTestCase("Daisy202Test");
 Daisy202Test.prototype.testDaisy202 = function(queue) {
 	loader = new Daisy202Loader();
 	server = new function() {
-		this.getUrl = function(filename) {return '/NLBdirekte/player/tests/test/'+filename;};
+		this.getUrl = function(filename) {return '/NLBdirekte/player/tests/test/minimal/'+filename;};
 		this.readyUrl = function() {return '/NLBdirekte/player/tests/test/'+'isprepared.php';};
 	}
 	player = new function() {
@@ -121,7 +121,7 @@ Daisy202Test.prototype.testDaisy202 = function(queue) {
 		// (most code copied from SmilPlayer.js:updateText(). Should probably be kept in sync if possible)
 		jstestdriver.console.log('1 - xmlToHtml');
 		$.ajax({
-			url: server.getUrl('content.html'),
+			url: server.getUrl('content1.html'),
 			mimeType: 'text/xml',
 			dataType: "xml",
 			success: callbacks.add(function(data, textStatus, jqXHR) {
@@ -157,7 +157,7 @@ Daisy202Test.prototype.testDaisy202 = function(queue) {
 						
 						assertNumber("number of links initially is a number",aBefore);
 						assertNotNaN("number of links initially is not NaN",aBefore);
-						assertEquals("there are 7 links in content.html",7,aBefore);
+						assertEquals("there are 3 links in content.html",3,aBefore);
 						assertNumber("number of links remaining is a number",aAfter);
 						assertNotNaN("number of links remaining is not NaN",aAfter);
 						assertEquals("all links are removed by xmlToHtml",0,aAfter);
@@ -207,7 +207,7 @@ Daisy202Test.prototype.testDaisy202 = function(queue) {
 		assertEquals("error code is 0",0,loader.errorCode);
 		assertFunction("loader has a public 'xmlToHtml'-function",loader.xmlToHtml);
 		
-		$.getJSON = callbacks.add(function(url, callback) {
+		$.ajax = callabacks.add(function(params) {
 			
 			jstestdriver.console.log('3 - first request: return error');
 			assertEquals("state of loader states that the loader is initialized","initialized",loader.state);
@@ -230,7 +230,7 @@ Daisy202Test.prototype.testDaisy202 = function(queue) {
 			assertEquals("prepare start time is 0",0,loader.prepareStartTime);
 			assertEquals("error code is 0",0,loader.errorCode);
 			
-			$.getJSON = callbacks.add(function(url, callback) {
+			$.ajax = callabacks.add(function(params) {
 				
 				jstestdriver.console.log('4 - second request: return not ready');
 				assertEquals("state of loader signals non-existent book","book does not exist",loader.state);
@@ -253,7 +253,7 @@ Daisy202Test.prototype.testDaisy202 = function(queue) {
 				assertEquals("prepare start time is 0",0,loader.prepareStartTime);
 				assertEquals("error code is -1",-1,loader.errorCode);
 				
-				$.getJSON = callbacks.add(function(url, callback) {
+				$.ajax = callabacks.add(function(params) {
 					
 					jstestdriver.console.log('5 - third request: return ready');
 					assertEquals("state of loader signals preparation underway","a book is being prepared",loader.state);
@@ -353,10 +353,7 @@ Daisy202Test.prototype.testDaisy202 = function(queue) {
 									"ready":"1",
 									"state":"book is ready for playback"
 									};
-					setTimeout(
-						callbacks.add(function(){callback(response, null, null);}),
-						100
-					);
+					params.callback(response, null, null);
 				});
 				
 				// Step 4. return not ready
@@ -367,20 +364,14 @@ Daisy202Test.prototype.testDaisy202 = function(queue) {
 								"startedTime":"1300980368785",
 								"estimatedRemainingTime":"60"
 								};
-				setTimeout(
-					callbacks.add(function(){callback(response, null, null);}),
-					100
-				);
-				
+				params.callback(response, null, null);
 			});
 			
 			// Step 3. return error
-			setTimeout(
-				callback({
-					"ready":"-1",
-					"state":"book does not exist"
-					}, null, null),
-				100
+			params.callback(
+				{"ready":"-1", "state":"book does not exist"},
+				null,
+				null
 			);
 		});
 		

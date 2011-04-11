@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Chrome_100648204_Windows.NLBServer_init" errors="0" failures="0" tests="4" time="0.0">
+<testsuite name="Chrome_100648204_Windows.NLBServer_init" errors="0" failures="0" tests="4" time="0.0010">
 <testcase classname="Chrome_100648204_Windows.NLBServer_init" name="test new this.server objects should have initialized as state" time="0.0"/>
-<testcase classname="Chrome_100648204_Windows.NLBServer_init" name="test default this.server url is empty" time="0.0"/>
+<testcase classname="Chrome_100648204_Windows.NLBServer_init" name="test default this.server url is empty" time="0.0010"/>
 <testcase classname="Chrome_100648204_Windows.NLBServer_init" name="test this.server with empty base url and empty argument url" time="0.0"/>
 <testcase classname="Chrome_100648204_Windows.NLBServer_init" name="test empty base url and no parameters" time="0.0"/>
 </testsuite>

@@ -27,7 +27,7 @@ if (!is_dir("$profiles/$user"))
 	mkdir("$profiles/$user");
 
 // So we don't have to run this twice...
-$userHasRunningProcess = isProcessing($user);
+$userHasRunningProcess = isProcessing($user, $book);
 
 // Book exists?
 if (!$book or !file_exists(fix_directory_separators("$shared/$book"))) {
@@ -56,7 +56,7 @@ else if (!$userHasRunningProcess and (
 		$processesFilename = str_replace("\\","/","$profiles/$user/processes.csv");
 		$processesFile = fopen($processesFilename, "ab");
 		if ($debug) trigger_error("appending calabash process with PID '$pid' to the processes.csv-file belonging to the user '$user'.");
-		fputcsv($processesFile, array(time(), $pid, isset($_REQUEST['launchTime'])?$_REQUEST['launchTime']:0));
+		fputcsv($processesFile, array(time(), $pid, isset($_REQUEST['launchTime'])?$_REQUEST['launchTime']:0, $book));
 		fclose($processesFile);
 	}
 	else {
@@ -85,6 +85,7 @@ else if ($userHasRunningProcess) {
 else {
 	trigger_error("book $book is ready for user $user");
 	$progress = array(
+		"progress" => 100,
 		"ready" => true,
 		"state" => "a book is ready for playback"
 	);
@@ -203,6 +204,8 @@ function execCalabashInBackground($args, $catalog = NULL) {
 
 function processIsRunning($pid) {
 	global $debug;
+	global $processIsRunning_processes;
+	
 	if (!isset($pid)) {
 		if ($debug) trigger_error("processIsRunning(): Missing PID-argument.");
 		return false;
@@ -210,13 +213,17 @@ function processIsRunning($pid) {
 	
 	// get list of all processes and their PIDs
 	$processes = array();
-	if (substr(php_uname(), 0, 7) == "Windows") {
-		if ($debug) trigger_error("processIsRunning(): Fetching list of running Windows processes: 'tasklist /V /FO CSV'");
-		exec("tasklist /V /FO CSV", $processes);
-	}
-	else {
-		if ($debug) trigger_error("processIsRunning(): Fetching list of running Linux processes: 'ps axo pid,args'");
-		exec("ps axo pid,args", $processes);
+	if (isset($processIsRunning_processes)) {
+		$processes = $processIsRunning_processes;
+	} else {
+		if (substr(php_uname(), 0, 7) == "Windows") {
+			if ($debug) trigger_error("processIsRunning(): Fetching list of running Windows processes: 'tasklist /V /FO CSV'");
+			exec("tasklist /V /FO CSV", $processes);
+		}
+		else {
+			if ($debug) trigger_error("processIsRunning(): Fetching list of running Linux processes: 'ps axo pid,args'");
+			exec("ps axo pid,args", $processes);
+		}
 	}
 	
 	// Inspect the list of processes and look for $pid among the PIDs
@@ -224,7 +231,6 @@ function processIsRunning($pid) {
 		$processName = '';
 		$processPID = -1;
 		if (substr(php_uname(), 0, 7) == "Windows") {
-			// Example line: "python.exe","2072","Console","1","6540 K","Running","NLB\jostein","0:00:00","123456"
 			$line = str_getcsv($process);
 			$processName = $line[0];
 			$processPID = $line[1];
@@ -242,7 +248,7 @@ function processIsRunning($pid) {
 	return false; // process not found
 }
 
-function isProcessing($user) {
+function isProcessing($user, $book) {
 	global $debug;
 	global $profiles;
 	if (!isset($user)) {
@@ -257,16 +263,17 @@ function isProcessing($user) {
 			$time = $csvLine[0];
 			$pid = $csvLine[1];
 			$launchTime = $csvLine[2];
+			$bookNr = $csvLine[3];
 			// Processes older than six hours are ignored, since PIDs can be reused.
-			// Six hours is chosen as something greater than the assumed time it
-			// takes to process the biggest books.
+			// Six hours is chosen as something that is definately greater than the
+			// assumed time it takes to process the biggest books.
 			if ($time < time() - 60*60*6) {
 				if ($debug) trigger_error("isProcessing(): There's over six hours since user '$user' was running the process with PID '$pid'; ignoring it.");
 				continue;
 			}
 			if (processIsRunning($pid)) {
 				if ($debug) trigger_error("isProcessing(): Found a running process for user '$user' with PID = '$pid'.");
-				$stillRunning["$time"] = array("$pid","$launchTime");
+				$stillRunning["$time"] = array("$pid","$launchTime","$bookNr");
 			}
 			else if ($debug) trigger_error("isProcessing(): Found a process that was not running for user '$user' with PID = '$pid'.");
 		}
@@ -274,16 +281,19 @@ function isProcessing($user) {
 	}
 	$processesFile = fopen($processesFilename, "wb");
 	fwrite($processesFile,'');
-	foreach ($stillRunning as $time => $pidLaunchTime) {
-		if ($debug) trigger_error("isProcessing(): process with PID '".$pidLaunchTime[0]."' is still running for user '$user'; saving it back to the processing.csv-file.");
-		fputcsv($processesFile, array($time, $pidLaunchTime[0], $pidLaunchTime[1]));
+	$thisBookCount = 0;
+	foreach ($stillRunning as $time => $procData) {
+		if ($debug) trigger_error("isProcessing(): process with PID '".$procData[0]."' is still running for user '$user'; saving it back to the processing.csv-file.");
+		fputcsv($processesFile, array($time, $procData[0], $procData[1], $procData[2]));
+		if (!isset($book) or $procData[2] == $book or $procData[2] == 0)
+			$thisBookCount++;
 	}
 	fclose($processesFile);
-	if (count($stillRunning) === 0) {
-		if ($debug) trigger_error("isProcessing(): No process is running.");
+	if ($thisBookCount === 0) {
+		if ($debug) trigger_error("isProcessing(): No process for book $book is running. ".count($stillRunning)." processes running in total.");
 		return false;
 	} else {
-		if ($debug) trigger_error("isProcessing(): ".count($stillRunning)." process".((count($stillRunning)<=1)?"":"es")." are running.");
+		if ($debug) trigger_error("isProcessing(): $thisBookCount out of a total of ".count($stillRunning)." running process".((count($stillRunning)<=1)?"":"es")." are processing the book $book.");
 		return true;
 	}
 }
@@ -292,6 +302,7 @@ function getProgress($user) {
 	global $debug;
 	global $profiles;
 	global $logfile;
+	$launchTime = isset($_REQUEST['launchTime'])?$_REQUEST['launchTime']:time();
 	$logfiles = array($logfile);
 	$processesFilename = str_replace("\\","/","$profiles/$user/processes.csv");
 	if (file_exists($processesFilename)) {
@@ -347,33 +358,50 @@ function getProgress($user) {
 		return ($a['requestTime'] < $b['requestTime']) ? -1 : 1;
 	}
 	usort($progressLogs, "logCmp");
-	if (preg_match('/^.*:(.*)%$/', $progressLogs[count($progressLogs)-1]['message'], $matches)) {
+	$firstProgressAboveZero;
+	$progressLogCount = count($progressLogs);
+	foreach ($progressLogs as $progressLog) {
+		if ($progressLog['startTime'] != $progressLogs[$progressLogCount-1]['startTime'])
+			continue;
+		if (preg_match('/^.*:(.*)%$/', $progressLog['message'], $matches)) {
+			if (floatval($matches[1]) >= 0.001) {
+				$firstProgressAboveZero = $progressLog['logTime'];
+				break;
+			}
+		}
+	}
+	if (preg_match('/^.*:(.*)%$/', $progressLogs[$progressLogCount-1]['message'], $matches)) {
 		$lastProgress = floatval($matches[1])/100;
-		$lastTime = floatval($progressLogs[count($progressLogs)-1]['logTime']);
-		$startTime = floatval($progressLogs[count($progressLogs)-1]['requestTime']);
+		$lastTime = floatval($progressLogs[$progressLogCount-1]['logTime']);
+		$startTime = floatval($progressLogs[$progressLogCount-1]['requestTime']);
 		$nowTime = date("U");
 		$nowProgress = $lastProgress;
+		$estimatedRemainingTime = 60;
 		try {
-			$nowProgress = 1 - (1-$lastProgress)*exp($lastProgress*(1 - ($nowTime-$startTime)/($lastTime-$startTime)));
+			$damping = 0.6;
+			$nowProgress = 1 - (1-$lastProgress)*exp($damping*$lastProgress*(1 - ($nowTime-$startTime)/($lastTime-$startTime)));
+			if ($lastTime - $firstProgressAboveZero > 1)
+				$estimatedRemainingTime = ($nowTime-$startTime)/$nowProgress*(1.-$nowProgress)*(1.-$nowProgress)*2.;
 		} catch (Exception $e) {}
 		$progress = array(
 			"progress" => $nowProgress*100,
-			"startedTime" => $progressLogs[count($progressLogs)-1]['requestTime'],
-			"estimatedRemainingTime" => ($nowProgress<0.001?60:( ($nowTime-$startTime)/$nowProgress ))
-			/*"estimatedRemainingTime" => ($progressLogs[count($progressLogs)-1]['logTime']-$progressLogs[count($progressLogs)-1]['requestTime'])*(100./$matches[1]-1.)*/
+			"startedTime" => $progressLogs[$progressLogCount-1]['requestTime'],
+			"estimatedRemainingTime" => $estimatedRemainingTime,
+			"est" => ($lastTime-$startTime)/$nowProgress-($nowTime-$lastTime)
+			/*"estimatedRemainingTime" => ($nowProgress<0.001?60:( ($nowTime-$startTime)/$nowProgress )),*/
 		);
 		if ($debug) trigger_error(json_or_jsonp($progress));
 		return $progress;
 	} else {
-		trigger_error("Unable to parse progress: ".$progressLogs[count($progressLogs)-1]['message']);
-		return array("progress"=>(time()-$_REQUEST['launchTime'])/(time()-$_REQUEST['launchTime']+60), "startedTime"=>floor($_REQUEST['launchTime']), "estimatedRemainingTime"=>60);
+		trigger_error("Unable to parse progress: ".$progressLogs[$progressLogCount-1]['message']);
+		return array("progress"=>(time()-$startTime)/(time()-$startTime+60), "startedTime"=>floor($startTime), "estimatedRemainingTime"=>60);
 	}
 }
 
 function json_or_jsonp($structure) {
 	if (isset($_REQUEST['callback']) and !empty($_REQUEST['callback']))
-		echo $_REQUEST['callback'].'('.json_encode($structure).')';
+		return $_REQUEST['callback'].'('.json_encode($structure).')';
 	else
-		echo json_encode($structure);
+		return json_encode($structure);
 }
 ?>

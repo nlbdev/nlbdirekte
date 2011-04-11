@@ -34,7 +34,7 @@ SoundManagerTest.prototype.testSoundManager = function(queue) {
 	queue.call("Create sound", function(callbacks) {
 		jstestdriver.console.log('create sound');
 		var audioId = "audioId";
-		var url = 'http://'+window.location.hostname+'/NLBdirekte/player/tests/test/office_lobby.mp3';
+		var url = 'http://'+window.location.hostname+'/NLBdirekte/player/tests/test/minimal/dtb_0002.mp3';
 		this.soundObject = soundManager.createSound({
 			'id': audioId,
 			'url': url,
