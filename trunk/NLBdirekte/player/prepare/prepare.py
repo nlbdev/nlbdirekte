@@ -4,6 +4,7 @@ import inspect
 from time import time, gmtime, strftime
 import time
 from math import floor
+import re
 
 debug = False
 
@@ -413,7 +414,9 @@ for child in body:
 		toc.append(["h",dict({'title': text, 'level':6 , 'i': id, 'b':-1 , 'e':-1})])
 	if (child[0] == 'span'):
 		if (clazz.startswith("page-")):
-			pagelist.append(["p",dict({'page':int(float(textContent(a))) , 'i':id , 'b':-1 , 'e':-1})])
+			m = re.match(".*?(\d+).*?", textContent(a)) # TODO: handle roman numerals
+			if m is not None:
+				pagelist.append(["p",dict({'page':int(m.group(1)) , 'i':id , 'b':-1 , 'e':-1})])
 			
 	#if (child[0] == 'div'):
 	
