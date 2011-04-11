@@ -386,9 +386,7 @@ function getProgress($user) {
 		$progress = array(
 			"progress" => $nowProgress*100,
 			"startedTime" => $progressLogs[$progressLogCount-1]['requestTime'],
-			"estimatedRemainingTime" => $estimatedRemainingTime,
-			"est" => ($lastTime-$startTime)/$nowProgress-($nowTime-$lastTime)
-			/*"estimatedRemainingTime" => ($nowProgress<0.001?60:( ($nowTime-$startTime)/$nowProgress )),*/
+			"estimatedRemainingTime" => $estimatedRemainingTime
 		);
 		if ($debug) trigger_error(json_or_jsonp($progress));
 		return $progress;
