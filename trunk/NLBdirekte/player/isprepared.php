@@ -35,7 +35,8 @@ if (!$book or !file_exists(fix_directory_separators("$shared/$book"))) {
 	if ($debug) trigger_error("book with bookId $book does not exist in the location ".fix_directory_separators("$shared/$book"));
 	echo json_or_jsonp(array(
 		"ready" => false,
-		"state" => "book does not exist"
+		"state" => "book does not exist",
+		"progress" => 0
 	));
 }
 
