@@ -4,16 +4,7 @@ header('Content-Type: text/html; charset=utf-8');
 include('common.inc.php');
 
 list($user, $book) = decodeTicket($_REQUEST['ticket']);
-
-/*session_start();
-if (!empty($_REQUEST['username'])) {
-	$_SESSION['patronId'] = '';
-	for ($i = 0; $i < strlen($_REQUEST['username']) && $i < 4; $i++) {
-		$_SESSION['patronId'] .= str_pad((string)(ord($_REQUEST['username'][$i])-32), 2, "0", STR_PAD_LEFT);
-	}
-}*/
-
-authorize($user,$book,$_REQUEST['session']);
+authorize($user,$book,isset($_REQUEST['session'])?$_REQUEST['session']:'');
 
 # Create a launchTime that can be used to identify this instance of NLBdirekte
 $launchTime = microtime(true);

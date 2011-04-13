@@ -18,13 +18,8 @@ switch (json_last_error()) {
 	case JSON_ERROR_SYNTAX:			trigger_error('json_decode - Syntax error'); break;
 }
 
-# decode ticket here
 list($user, $book) = decodeTicket($log[0]['ticket']);
-
-// Not valid request?
-/*if (!(valid request)) {
-	return "you are not logged in";
-}*/
+authorize($user,$book,isset($_REQUEST['session'])?$_REQUEST['session']:'');
 
 # if launchTime is set, use that to put log entries in its own log
 if (isset($log[0]['launchTime']))

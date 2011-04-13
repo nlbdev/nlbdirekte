@@ -10,17 +10,11 @@ if (isset($_REQUEST['callback']) and !empty($_REQUEST['callback']))
 else
 	header('Content-Type: application/json; charset=utf-8');
 
-# decode ticket here
 list($user, $book) = decodeTicket($_REQUEST['ticket']);
+authorize($user,$book,isset($_REQUEST['session'])?$_REQUEST['session']:'');
 
-// Not valid request?
-/*if (!(valid request)) {
-	return "you are not logged in";
-}*/
-
-# if launchTime is set, use that to put log entries in its own log
-if (isset($_REQUEST['launchTime']))
-	$logfile = microtimeAndUsername2logfile($_REQUEST['launchTime'],$user);
+# use launchTime to put log entries in its own log
+$logfile = microtimeAndUsername2logfile(isset($_REQUEST['launchTime'])?$_REQUEST['launchTime']:0,$user);
 
 // Make sure that the patron has a profile directory
 if (!is_dir("$profiles/$user"))
@@ -31,6 +25,8 @@ $userHasRunningProcess = isProcessing($user, $book);
 
 // Book exists?
 if (!$book or !file_exists(fix_directory_separators("$shared/$book"))) {
+	// does not check whether the whole book exists, just whether the folder exists!
+	// (process will fail and start over if isprepared.php is called before the entire book is copied)
 	global $debug;
 	if ($debug) trigger_error("book with bookId $book does not exist in the location ".fix_directory_separators("$shared/$book"));
 	echo json_or_jsonp(array(
@@ -76,7 +72,7 @@ else if (!$userHasRunningProcess and (
 // Book being prepared?
 else if ($userHasRunningProcess) {
 	if ($debug) trigger_error("a book is already being prepared; will not start a new process.");
-	$progress = getProgress($user);
+	$progress = getProgress($user, $book);
 	$progress['ready'] = false;
 	$progress['state'] = "a book is being prepared";
 	echo json_or_jsonp($progress);
@@ -120,7 +116,6 @@ function execCalabashInBackground($args, $catalog = NULL) {
 		} else {
 			pclose(popen("$catalog start /B $cmd $args $pythonLogArg", "rb"));
 		}
-		exec("tasklist /V /FO CSV", $after);
 	}
 	else { // Linux
 		$catalog = empty($catalog)?"":"export _JAVA_OPTIONS='-Dcom.xmlcalabash.phonehome=false -Dxml.catalog.files=$catalog -Dxml.catalog.staticCatalog=1 -Dxml.catalog.verbosity=".($debug?10:0)."' &&";
@@ -153,8 +148,10 @@ function execCalabashInBackground($args, $catalog = NULL) {
 			preg_match('/^\s*([0-9]*)\s*(.*)$/', $procAfter, $line);
 			$nameAfter = $line[2];
 			$pidAfter = $line[1];
-			if (strpos($nameAfter, "$cmd $args $pythonLogArg") === false) // note the === to distinguish 0 from false!
+			if (strpos($nameAfter, $args) === false or strpos($nameAfter, "calabash") === false) { // note the === to distinguish 0 from false!
+				trigger_error("isprepareddebug: $nameAfter is not what we're looking for; we're looking for $args");
 				continue;
+			}
 		}
 
 		$isNew = true;
@@ -268,7 +265,7 @@ function isProcessing($user, $book) {
 			// Processes older than six hours are ignored, since PIDs can be reused.
 			// Six hours is chosen as something that is definately greater than the
 			// assumed time it takes to process the biggest books.
-			if ($time < time() - 60*60*6) {
+			if ($launchTime > 0 and $launchTime < time() - 60*60*6) {
 				if ($debug) trigger_error("isProcessing(): There's over six hours since user '$user' was running the process with PID '$pid'; ignoring it.");
 				continue;
 			}
@@ -299,20 +296,25 @@ function isProcessing($user, $book) {
 	}
 }
 
-function getProgress($user) {
+function getProgress($user, $book) {
 	global $debug;
 	global $profiles;
 	global $logfile;
 	$launchTime = isset($_REQUEST['launchTime'])?$_REQUEST['launchTime']:time();
-	$logfiles = array($logfile);
+	$logfiles = array();
 	$processesFilename = str_replace("\\","/","$profiles/$user/processes.csv");
 	if (file_exists($processesFilename)) {
 		$processesFile = fopen($processesFilename, "rb");
 		while (($csvLine = fgetcsv($processesFile, 1000)) !== false) {
-			$logfiles[] = microtimeAndUsername2logfile($csvLine[2],$user);
+			if ($csvLine[3] == $book) {
+				$logfiles[] = microtimeAndUsername2logfile($csvLine[2],$user);
+				if ($csvLine[2] < $launchTime)
+					$launchTime = $csvLine[2];
+			}
 		}
 		fclose($processesFile);
 	}
+	if (count($logfiles)==0) return array("progress"=>0, "startedTime"=>floor($launchTime), "estimatedRemainingTime"=>60);
 	$progressLogs = array();
 	$pythonLogs = array();
 	foreach ($logfiles as $logfilename) {
@@ -328,7 +330,7 @@ function getProgress($user) {
 			}
 		}
 	}
-	if (count($pythonLogs)==0) return array("progress"=>(time()-$_REQUEST['launchTime'])/(time()-$_REQUEST['launchTime']+60), "startedTime"=>floor($_REQUEST['launchTime']), "estimatedRemainingTime"=>60);
+	if (count($pythonLogs)==0) return array("progress"=>0, "startedTime"=>floor($launchTime), "estimatedRemainingTime"=>60);
 	foreach ($pythonLogs as $pythonlog => $requestTime) {
 		if (file_exists(fix_directory_separators("$pythonlog")) and $file = file(fix_directory_separators("$pythonlog"))) {
 			foreach ($file as $logEntry) {
@@ -342,7 +344,7 @@ function getProgress($user) {
 			}
 		}
 	}
-	if (count($progressLogs)==0) return array("progress"=>(time()-$_REQUEST['launchTime'])/(time()-$_REQUEST['launchTime']+60), "startedTime"=>floor($_REQUEST['launchTime']), "estimatedRemainingTime"=>60);
+	if (count($progressLogs)==0) return array("progress"=>0, "startedTime"=>floor($launchTime), "estimatedRemainingTime"=>60);
 	// sort logs by requestTime, then logTime
 	function logCmp($a, $b) {
 		if ($a['requestTime'] == $b['requestTime']) {

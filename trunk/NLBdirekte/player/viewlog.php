@@ -354,11 +354,11 @@ usort($log, "logCmp");
 	<table>
 	<tr class="general">
 		<td>Browser</td>
-		<td><img src="img/browserlogos/<?php echo $browser['Browser'];?>.png"/> <?php echo $browser["Parent"];?></td>
+		<td><img src="img/browserlogos/<?php echo $browser['Browser'];?>.png"/> <?php echo isset($browser["Parent"])?$browser["Parent"]:'';?></td>
 	</tr>
 	<tr class="general">
 		<td>Platform</td>
-		<td><img src="img/browserlogos/<?php echo $browser['Platform'];?>.png"/> <?php echo $browser["Platform"];?></td>
+		<td><img src="img/browserlogos/<?php echo $browser['Platform'];?>.png"/> <?php echo isset($browser["Platform"])?$browser["Platform"]:'';?></td>
 	</tr>
 	<tr class="general">
 		<td>Architecture</td>
