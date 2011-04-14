@@ -53,9 +53,9 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 		
 		<!-- jQuery Mobile -->
-		<link rel="stylesheet" href="css/jQuery/jquery.mobile-1.0a4.css" />
+		<link rel="stylesheet" href="css/jQuery/jquery.mobile-1.0a4.1.css" />
 		<script type="text/javascript" src="js/jQuery/jquery-1.5.2.js"></script>
-		<script type="text/javascript" src="js/jQuery/jquery.mobile-1.0a4.js"></script>
+		<script type="text/javascript" src="js/jQuery/jquery.mobile-1.0a4.1.js"></script>
 		
 		<!-- NLBdirekte; stylesheets and configuration -->
 		<link type="text/css" href="css/NLBdirekte.css" rel="stylesheet" />
