@@ -154,8 +154,7 @@ function execCalabashInBackground($args, $catalog = NULL) {
 			preg_match('/^\s*([0-9]*)\s*(.*)$/', $procAfter, $line);
 			$nameAfter = $line[2];
 			$pidAfter = $line[1];
-			if (strpos($nameAfter, $args) === false or strpos($nameAfter, "calabash") === false) { // note the === to distinguish 0 from false!
-				trigger_error("isprepareddebug: $nameAfter is not what we're looking for; we're looking for $args");
+			if (strpos($nameAfter, "$cmd $args") === false) { // note the === to distinguish 0 from false!
 				continue;
 			}
 		}
