@@ -75,6 +75,8 @@ function postProcessText() {
 		resizeImage($(this),maxWidth,maxHeight);
 	});});
 	
+	$.fixedToolbars.show(true); // make sure buttons are showing after loading new text
+	
 	//loadBookmarks();
 }
 var totalTime = Infinity;
@@ -314,6 +316,7 @@ function toggleMute() {
 		log.debug('toggled from unmuted to muted');
 	}
 }
+touchToggleEnabled = false;
 $.fixedToolbars.setTouchToggleEnabled(false); // always show buttons
 var backend = null;
 window.setInterval(function(){
@@ -335,11 +338,6 @@ window.setInterval(function(){
 		if (typeof log=='object') log.debug("$('select#autoscroll').val():"+$('select#autoscroll').val()+" , autoScroll:"+autoScroll+"="+(autoScroll?'true':'false'));
 		$('select#autoscroll').click();
 	}
-	
-	// make sure buttons are always showing (hopefully not too slow)
-	$('div.ui-footer-fixed').each(function(index){
-		$.fixedToolbars.show(true); // always show buttons
-	});
 	
 	if (player.doneLoading) {
 		var currentTime = player.getCurrentTime();
