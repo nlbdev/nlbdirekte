@@ -382,6 +382,8 @@ window.setInterval(function(){
 	// if wrong volume; $('#volume').progressbar('value', player.getVolume() );
 },100);
 window.setInterval(function(){
+	$.fixedToolbars.show(true); // make sure buttons are showing
+	
 	if (player === null || server === null || loader === null)
 		return;
 		
