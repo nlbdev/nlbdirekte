@@ -5,7 +5,7 @@
 $debug = false;
 include('common.inc.php');
 
-function prettyTimeToMinute($microtime) {
+function prettyTimeToDate($microtime) {
 	$time = date("j.",floor($microtime));
 	switch (date("n",floor($microtime))) {
 	case 1: $time .= "januar"; break;
@@ -22,7 +22,12 @@ function prettyTimeToMinute($microtime) {
 	case 12: $time .= "desember"; break;
 	default: $time .= "ukjent-måned";
 	}
-	$time .= date(" Y, G:i",(floor($microtime)+intval(date("Z",floor($microtime)))));
+	$time .= date(" Y",(floor($microtime)+intval(date("Z",floor($microtime)))));
+	return $time;
+}
+function prettyTimeToMinute($microtime) {
+	$time = prettyTimeToDate($microtime);
+	$time .= date(", G:i",(floor($microtime)+intval(date("Z",floor($microtime)))));
 	return $time;
 }
 function prettyTimeToMillisecond($microtime) {
@@ -132,25 +137,165 @@ header('Content-Type: text/html; charset=utf-8');
 		#log table td:last-child {
 			border-right:0;
 		}
+		#progress {
+			text-align: center;
+		}
 	</style>
 </head>
 <body style="font-family: helvetica, arial, sans-serif;">
 <?php
 
-$logname = $_REQUEST['logname'];
-list($formatted_time, $userId) = explode('_',$logname);
-$formatted_time_split = explode('.',$logname);
-$date = $formatted_time_split[0];
+if (isset($_REQUEST['type'])) {
+	switch ($_REQUEST['type']) {
+		case 'session': echoSessionLog(); break;
+		case 'day': echoDayLog(); break;
+		case 'calabash': echoCalabashLog(); break;
+		case 'python': echoPythonLog(); break;
+		default: echo '<p><em>Unknown log type: '.$_REQUEST['type'].'.</em></p>';
+	}
+} else {
+	echo '<p><em>Log type not defined.</em></p>';
+}
 
-$bookId = 'unknown';
-$calabashlogs = array();
-$pythonlogs = array();
-$browser = array();
+function echoSessionLog() {
+	global $logdir;
+	
+	$logname = $_REQUEST['logname'];
+	list($formatted_time, $userId) = explode('_',$logname);
+	$formatted_time_split = explode('.',$logname);
+	$date = $formatted_time_split[0];
 
-$log = array(); // all relevant log entries
-$requestTimes = array(); 
-// load log
-if ($logFile = file(fix_directory_separators("$logdir/log_$logname.log"))) {
+	$pythonlogs = array();
+	$calabashlogs = array();
+	$bookId = 'unknown';
+	$browser = array();
+	
+	$log = array(); // all relevant log entries
+	$requestTimes = array();
+	
+	// load session log
+	if ($logFile = file(fix_directory_separators("$logdir/log_$logname.log"))) {
+		appendJsonLog($logFile, $log, $requestTimes, true, $pythonlogs, $calabashlogs, $bookId, $browser);
+	}
+	
+	// load common log entries belonging to the session log entries (only checks the current day)
+	if ($logFile = file(fix_directory_separators("$logdir/log_$date.log"))) {
+		appendJsonLog($logFile, $log, $requestTimes, false, $pythonlogs, $calabashlogs, $bookId, $browser);
+	}
+	
+	// load python logs
+	foreach ($pythonlogs as $pythonlog => $requestTime) {
+		$beforeCount = count($log);
+		if ($logFile = file(fix_directory_separators("$pythonlog"))) {
+			appendJsonLog($logFile, $log);
+		}
+		for ($i = $beforeCount; $i < count($log); $i++) {
+			$log[$i]['requestTime'] = $requestTime;
+		}
+	}
+	
+	// load calabash logs
+	foreach ($calabashlogs as $calabashlog => $requestTime) {
+		$beforeCount = count($log);
+		if ($logFile = file(fix_directory_separators("$calabashlog"))) {
+			appendCalabashLog($logFile, $log);
+		}
+		for ($i = $beforeCount; $i < count($log); $i++) {
+			$log[$i]['requestTime'] = $requestTime;
+		}
+	}
+	
+	usort($log, "logCmp");
+	
+	?><header class="page-header">
+		<h1>Logg for NLBdirekte</h1>
+	</header>
+	<hr/><?php
+	echoSessionHeader($userId, $bookId, $log);
+	echo '<hr/>';
+	echo '<table><tr><td>';
+	echoBrowserInfo($browser);
+	echo '</td><td>';
+	$progress = progressList($log);
+	echoProgress($progress);
+	echo '</td></tr></table>';
+	echo '<hr/>';
+	echoLog($log);
+}
+
+function echoDayLog() {
+	global $logdir;
+	
+	$logname = "log_".$_REQUEST['logname'].".log";
+	$log = array();
+	
+	// load log
+	if ($logFile = file(fix_directory_separators("$logdir/$logname"))) {
+		appendJsonLog($logFile, $log);
+	}
+	
+	usort($log, "logCmp");
+	
+	?><header class="page-header">
+		<h1>Logg for NLBdirekte</h1>
+	</header>
+	<hr/><?php
+	echo '<hr/>';
+	echoLog($log);
+}
+
+function echoCalabashLog() {
+	global $logdir;
+	
+	$logname = $_REQUEST['logname'];
+	$calabashlog = array();
+	
+	// load calabash log
+	if ($logFile = file(fix_directory_separators("$logdir/$logname"))) {
+		appendCalabashLog($logFile, $calabashlog);
+	}
+	
+	usort($log, "logCmp");
+	
+	?><header class="page-header">
+		<h1>Logg for NLBdirekte</h1>
+	</header>
+	<hr/><?php
+	echo '<hr/>';
+	echoLog($calabashlog);
+}
+
+function echoPythonLog() {
+	global $logdir;
+	
+	$logname = $_REQUEST['logname'];
+	$pythonlog = array();
+	
+	// load python log
+	if ($logFile = file(fix_directory_separators("$logdir/$logname"))) {
+		appendJsonLog($logFile, $pythonlog);
+	}
+	
+	usort($log, "logCmp");
+	
+	?><header class="page-header">
+		<h1>Logg for NLBdirekte</h1>
+	</header>
+	<hr/><?php
+	echo '<hr/>';
+	echoLog($pythonlog);
+}
+
+// logFile: filehandle
+// log: array to append log entries to
+// requestTimes: array to append unique requestTimes to
+// newRequestTimes: if true; append all logs and new requestTimes.
+//					if false; only append logs with matching requestTime.
+// pythonlogs: references to python logs are appended here
+// calabashlogs: references to calabash logs are appended here
+// bookId: if set, the book id (if found) are assigned to this parameter
+// browser: browserinfo are put into this array if set
+function appendJsonLog($logFile, &$log, &$requestTimes, $newRequestTimes, &$pythonlogs, &$calabashlogs, &$bookId, &$browser) {
 	foreach ($logFile as $logEntry) {
 		if (empty($logEntry)) continue;
 		$json = json_decode($logEntry, true);
@@ -160,129 +305,90 @@ if ($logFile = file(fix_directory_separators("$logdir/log_$logname.log"))) {
 		$json['eventTime'] = empty($json['eventTime'])?0:isostring2microtime($json['eventTime']);
 		if (empty($json['message'])) $json['message'] = '';
 		if (empty($json['language'])) $json['language'] = '';
-		if (is_string($json['message'])) {
-			if (preg_match('/^bookId=(\d*)$/',$json['message'],$matches)) {
-				$bookId = $matches[1];
-			}
-			if (preg_match('/^calabashlog=(.*)$/',$json['message'],$matches)) {
-				$calabashlogs[$matches[1]] = $json['requestTime'];
-			}
-			if (preg_match('/^pythonlog=(.*)$/',$json['message'],$matches)) {
-				$pythonlogs[$matches[1]] = $json['requestTime'];
-			}
-		}
-		if (is_array($json['message']) and array_key_exists("browser_name", $json['message'])) {
-			$browser = $json['message'];
-			$json['message'] = '[browser info]';
-		}
-		if (!in_array($json['requestTime'], $requestTimes, true)) {
-			$requestTimes[] = $json['requestTime'];
-		}
-		if ($json['language']==='javascript')
-			$json = parseJavascript($json);
-		$log[] = $json;
-	}
-}
-// load common log
-if ($logFile = file(fix_directory_separators("$logdir/log_$date.log"))) {
-	foreach ($logFile as $logEntry) {
-		if (empty($logEntry)) continue;
-		$json = json_decode($logEntry, true);
-		if (count($json)) continue;
-		$json['requestTime'] = empty($json['requestTime'])?0:isostring2microtime($json['requestTime']);
-		$json['logTime'] = empty($json['logTime'])?0:isostring2microtime($json['logTime']);
-		$json['eventTime'] = empty($json['eventTime'])?0:isostring2microtime($json['eventTime']);
-		if (empty($json['message'])) $json['message'] = '';
-		if (empty($json['language'])) $json['language'] = '';
-		if (in_array($json['requestTime'], $requestTimes, true)) {
+		if (!isset($newRequestTimes) or $newRequestTimes or in_array($json['requestTime'], $requestTimes, true)) {
 			if (is_string($json['message'])) {
-				if (preg_match('/^bookId=(\d*)$/',$json['message'],$matches)) {
+				if (isset($bookId) and preg_match('/^bookId=(\d*)$/',$json['message'],$matches)) {
 					$bookId = $matches[1];
 				}
-				if (preg_match('/^calabashlog=(.*)$/',$json['message'],$matches)) {
+				if (is_array($calabashlogs) and preg_match('/^calabashlog=(.*)$/',$json['message'],$matches)) {
 					$calabashlogs[$matches[1]] = $json['requestTime'];
 				}
-				if (preg_match('/^pythonlog=(.*)$/',$json['message'],$matches)) {
+				if (is_array($pythonlogs) and preg_match('/^pythonlog=(.*)$/',$json['message'],$matches)) {
 					$pythonlogs[$matches[1]] = $json['requestTime'];
 				}
 			}
+			if (isset($browser) and is_array($json['message']) and array_key_exists("browser_name", $json['message'])) {
+				$browser = $json['message'];
+				$json['message'] = '[browser info]';
+			}
+			if (isset($requestTimes) and (!isset($newRequestTimes) or $newRequestTimes) and !in_array($json['requestTime'], $requestTimes, true)) {
+				$requestTimes[] = $json['requestTime'];
+			}
+			if ($json['language']==='javascript')
+				$json = parseJavascript($json);
 			$log[] = $json;
 		}
 	}
 }
-// load python log
-foreach ($pythonlogs as $pythonlog => $requestTime) {
-	if ($logFile = file(fix_directory_separators("$pythonlog"))) {
-		foreach ($logFile as $logEntry) {
-			$json = json_decode($logEntry, true);
-			$json['requestTime'] = $requestTime;
-			$json['logTime'] = isostring2microtime($json['logTime']);
-			$json['eventTime'] = isostring2microtime($json['eventTime']);
-			$log[] = $json;
+
+// logFile: filehandle
+// log: array to append log entries to
+function appendCalabashLog($logFile, &$log) {
+	for ($i = 0; $i < count($logFile); $i++) {
+		$logLine = $logFile[$i];
+		if (!(preg_match('/^\d+\.\w+\.\d+\s+\d+:\d+:\d+.*$/',$logLine)))
+			continue;
+		preg_match('/^(\d+)\.(\w+)\.(\d+)\s+(\d+):(\d+):(\d+)\s+([^\s]+)\s+(.+)$/',$logLine,$matches);
+		$isostringUTC = $matches[3]."-";
+		switch ($matches[2]) {
+		case 'jan': $isostringUTC .= '01'; break;
+		case 'feb': $isostringUTC .= '02'; break;
+		case 'mar': $isostringUTC .= '03'; break;
+		case 'apr': $isostringUTC .= '04'; break;
+		case 'may': $isostringUTC .= '05'; break;
+		case 'jun': $isostringUTC .= '06'; break;
+		case 'jul': $isostringUTC .= '07'; break;
+		case 'aug': $isostringUTC .= '08'; break;
+		case 'sep': $isostringUTC .= '09'; break;
+		case 'oct': $isostringUTC .= '10'; break;
+		case 'nov': $isostringUTC .= '11'; break;
+		case 'dec': $isostringUTC .= '12'; break;
+		default: $isostringUTC .= '00';
 		}
+		$isostringUTC .= "-".$matches[1]."T".$matches[4].":".$matches[5].":".$matches[6]."+00:00";
+		
+		$logTime = isostring2microtime($isostringUTC)-date("Z");
+		$eventTime = isostring2microtime($isostringUTC)-date("Z");
+		$file = preg_replace('/^.*\.(.*)$/','$1',$matches[7]);
+		$type = $matches[8];
+		
+		$message = "";
+		for ($i++; $i < count($logFile); $i++) {
+			if (preg_match('/^([A-Z]+):\s+(.*)$/',$logFile[$i],$messageMatches)) {
+				$type = $messageMatches[1];
+				$message .= $messageMatches[2];
+			} else {
+				$message .= $logFile[$i];
+			}
+			if ($i < count($logFile)-1 and (preg_match('/^\d+\.\w+\.\d+\s+\d+:\d+:\d+.*$/',$logFile[$i+1]) or !preg_match('/\w/',$logFile[$i+1]))) {
+				break;
+			}
+		}
+		
+		$log[] = array(
+			"eventTime" => $eventTime,
+			"requestTime" => $requestTime,
+			"logTime" => $logTime,
+			"language" => "xproc",
+			"type" => $type,
+			"message" => $message,
+			"file" => $file,
+			"line" => $line
+		);
 	}
 }
-// load calabash log
-foreach ($calabashlogs as $calabashlog => $requestTime) {
-	if ($logFile = file(fix_directory_separators("$calabashlog"))) {
-		for ($i = 0; $i < count($logFile); $i++) {
-			$logLine = $logFile[$i];
-			if (!(preg_match('/^\d+\.\w+\.\d+\s+\d+:\d+:\d+.*$/',$logLine)))
-				continue;
-			preg_match('/^(\d+)\.(\w+)\.(\d+)\s+(\d+):(\d+):(\d+)\s+([^\s]+)\s+(.+)$/',$logLine,$matches);
-			$isostringUTC = $matches[3]."-";
-			switch ($matches[2]) {
-			case 'jan': $isostringUTC .= '01'; break;
-			case 'feb': $isostringUTC .= '02'; break;
-			case 'mar': $isostringUTC .= '03'; break;
-			case 'apr': $isostringUTC .= '04'; break;
-			case 'may': $isostringUTC .= '05'; break;
-			case 'jun': $isostringUTC .= '06'; break;
-			case 'jul': $isostringUTC .= '07'; break;
-			case 'aug': $isostringUTC .= '08'; break;
-			case 'sep': $isostringUTC .= '09'; break;
-			case 'oct': $isostringUTC .= '10'; break;
-			case 'nov': $isostringUTC .= '11'; break;
-			case 'dec': $isostringUTC .= '12'; break;
-			default: $isostringUTC .= '00';
-			}
-			$isostringUTC .= "-".$matches[1]."T".$matches[4].":".$matches[5].":".$matches[6]."+00:00";
-			
-			$logTime = isostring2microtime($isostringUTC)-date("Z");
-			$eventTime = isostring2microtime($isostringUTC)-date("Z");
-			$file = preg_replace('/^.*\.(.*)$/','$1',$matches[7]);
-			$type = $matches[8];
-			
-			$message = "";
-			for ($i++; $i < count($logFile); $i++) {
-				if (preg_match('/^([A-Z]+):\s+(.*)$/',$logFile[$i],$messageMatches)) {
-					$type = $messageMatches[1];
-					$message .= $messageMatches[2];
-				} else {
-					$message .= $logFile[$i];
-				}
-				if ($i < count($logFile)-1 and (preg_match('/^\d+\.\w+\.\d+\s+\d+:\d+:\d+.*$/',$logFile[$i+1]) or !preg_match('/\w/',$logFile[$i+1]))) {
-					break;
-				}
-			}
-			
-			$language = "xproc";
-			$line = -1;
-			
-			$log[] = array(
-				"eventTime" => $eventTime,
-				"requestTime" => $requestTime,
-				"logTime" => $logTime,
-				"language" => "xproc",
-				"type" => $type,
-				"message" => $message,
-				"file" => $file,
-				"line" => -1
-			);
-		}
-	}
-}
-// sort logs by requestTime, then logTime
+
+// sort logs by requestTime, then logTime, then eventTime
 function logCmp($a, $b) {
     if ($a['requestTime'] == $b['requestTime']) {
 		if ($a['logTime'] == $b['logTime']) {
@@ -297,239 +403,244 @@ function logCmp($a, $b) {
     }
 	return ($a['requestTime'] < $b['requestTime']) ? -1 : 1;
 }
-usort($log, "logCmp");
 
-?>
-<header class="page-header">
-	<h1>Logg for NLBdirekte</small></h1>
-	<table width="100%">
-		<tr>
-			<th>Tilvekstnummer</th>
-			<th>Tid</th>
-			<th>Lånernummer</th>
-		</tr>
-		<tr style="text-align: center; font-size: 1.5em; font-weight: bold;">
-			<td><?php echo $bookId;?><br/><div style="font-size: 0.5em; margin-left: auto; margin-right: auto; text-align: center;"><?php
-				$dcLanguage = '';
-				$dcTitle = '';
-				$dcPublisher = '';
-				$dcFormat = '';
-				$dcType = '';
-				if ($dcFile = file("http://128.39.10.81/cgi-bin/hentdynamisk.htmc?mode=dc&tnr=$bookId")) {
-					foreach ($dcFile as $dcLine) {
-						if (preg_match('/meta\s+name="(.*)"\s+content="(.*)"/',$dcLine,$matches)) {
-							switch ($matches[1]) {
-							case "dc:language": $dcLanguage = $matches[2]; break;
-							case "dc:title": $dcTitle = $matches[2]; break;
-							case "dc:publisher": $dcPublisher = $matches[2]; break;
-							case "dc:format": $dcFormat = $matches[2]; break;
-							case "dc:type": $dcType = $matches[2]; break;
+function echoSessionHeader($userId, $bookId, $log) {
+	?>
+	<header>
+		<table width="100%">
+			<tr>
+				<th>Tilvekstnummer</th>
+				<th>Tid</th>
+				<th>Lånernummer</th>
+			</tr>
+			<tr style="text-align: center; font-size: 1.5em; font-weight: bold;">
+				<td><?php echo $bookId;?><br/><div style="font-size: 0.5em; margin-left: auto; margin-right: auto; text-align: center;"><?php
+					$dcLanguage = '';
+					$dcTitle = '';
+					$dcPublisher = '';
+					$dcFormat = '';
+					$dcType = '';
+					if ($dcFile = file("http://128.39.10.81/cgi-bin/hentdynamisk.htmc?mode=dc&tnr=$bookId")) {
+						foreach ($dcFile as $dcLine) {
+							if (preg_match('/meta\s+name="(.*)"\s+content="(.*)"/',$dcLine,$matches)) {
+								switch ($matches[1]) {
+								case "dc:language": $dcLanguage = $matches[2]; break;
+								case "dc:title": $dcTitle = $matches[2]; break;
+								case "dc:publisher": $dcPublisher = $matches[2]; break;
+								case "dc:format": $dcFormat = $matches[2]; break;
+								case "dc:type": $dcType = $matches[2]; break;
+								}
 							}
 						}
 					}
-				}
-				if (!empty($dcTitle)) echo "Tittel: $dcTitle<br/>";
-				if (!empty($dcPublisher)) echo "Utgiver: $dcPublisher<br/>";
-				if (!empty($dcFormat)) echo "Format: $dcFormat<br/>";
-				if (!empty($dcType)) echo "Type: $dcType<br/>";
-				if (!empty($dcLanguage)) echo "Språk: $dcLanguage";
-				?></div></td>
-			<td><nobr><?php echo prettyTimeToMinute($log[0]['requestTime']);?></nobr><br/>
-			<span style="font-size: 0.5em;">varighet: <?php
-				$logSpan = floor($log[count($log)-1]['requestTime']-$log[0]['requestTime']);
-				$logSpanString = '';
-				if ($logSpan > 3600) $logSpanString .= floor($logSpan/3600)." timer, ";
-				$logSpan = $logSpan%3600;
-				if ($logSpan > 60 or strlen($logSpanString)>0) echo floor($logSpan/60)." minutter og ";
-				$logSpan = $logSpan%60;
-				$logSpanString .= $logSpan." sekunder";
-				echo $logSpanString;
-			?></span></td>
-			<td><?php echo $userId;?></td>
+					if (!empty($dcTitle)) echo "Tittel: $dcTitle<br/>";
+					if (!empty($dcPublisher)) echo "Utgiver: $dcPublisher<br/>";
+					if (!empty($dcFormat)) echo "Format: $dcFormat<br/>";
+					if (!empty($dcType)) echo "Type: $dcType<br/>";
+					if (!empty($dcLanguage)) echo "Språk: $dcLanguage";
+					?></div></td>
+				<td><nobr><?php echo prettyTimeToMinute($log[0]['requestTime']);?></nobr><br/>
+				<span style="font-size: 0.5em;">varighet: <?php
+					$logSpan = floor($log[count($log)-1]['requestTime']-$log[0]['requestTime']);
+					$logSpanString = '';
+					if ($logSpan > 3600) $logSpanString .= floor($logSpan/3600)." timer, ";
+					$logSpan = $logSpan%3600;
+					if ($logSpan > 60 or strlen($logSpanString)>0) echo floor($logSpan/60)." minutter og ";
+					$logSpan = $logSpan%60;
+					$logSpanString .= $logSpan." sekunder";
+					echo $logSpanString;
+				?></span></td>
+				<td><?php echo $userId;?></td>
+			</tr>
+		</table>
+	</header>
+	<?php
+}
+
+function echoBrowserInfo($browser) {
+	?><section id="browser_info">
+		<table>
+		<tr class="general">
+			<td>Browser</td>
+			<td><img src="img/logsymbols/<?php echo $browser['Browser'];?>.png"/> <?php echo isset($browser["Parent"])?$browser["Parent"]:'';?></td>
 		</tr>
-	</table>
-</header>
-<hr/>
-<section id="browser_info">
-	<table>
-	<tr class="general">
-		<td>Browser</td>
-		<td><img src="img/browserlogos/<?php echo $browser['Browser'];?>.png"/> <?php echo isset($browser["Parent"])?$browser["Parent"]:'';?></td>
-	</tr>
-	<tr class="general">
-		<td>Platform</td>
-		<td><img src="img/browserlogos/<?php echo $browser['Platform'];?>.png"/> <?php echo isset($browser["Platform"])?$browser["Platform"]:'';?></td>
-	</tr>
-	<tr class="general">
-		<td>Architecture</td>
-		<td><?php echo $browser["Win64"]?'64-bit':($browser["Win32"]?'32-bit':($browser["Win16"]?'16-bit':'unknown'));?></td>
-	</tr>
-	<tr class="general">
-		<td>Supports JavaScript</td>
-		<td><?php echo $browser["JavaScript"]?'yes':'no';?></td>
-	</tr>
-	<tr class="general">
-		<td>CSS Version</td>
-		<td><?php echo $browser["CssVersion"];?></td>
-	</tr>
-	<tr class="general">
-		<td>Supports background sounds</td>
-		<td><?php echo $browser["BackgroundSounds"]?'yes':'no';?></td>
-	</tr>
-	<tr class="general">
-		<td>Is mobile device</td>
-		<td><?php echo $browser["isMobileDevice"]?'yes':'no';?></td>
-	</tr>
-	<!--
-	<tr class="technical">
-		<td>User Agent</td>
-		<td><?php echo $browser["browser_name"];?></td>
-	</tr>
-	<tr class="technical">
-		<td>Browser is alpha version</td>
-		<td><?php echo $browser["Alpha"]?'yes':'no';?></td>
-	</tr>
-	<tr class="technical">
-		<td>Browser is beta version</td>
-		<td><?php echo $browser["Beta"]?'yes':'no';?></td>
-	</tr>
-	<tr class="technical">
-		<td>Supports frames</td>
-		<td><?php echo $browser["Frames"]?'yes':'no';?></td>
-	</tr>
-	<tr class="technical">
-		<td>Supports iframes</td>
-		<td><?php echo $browser["IFrames"]?'yes':'no';?></td>
-	</tr>
-	<tr class="technical">
-		<td>Supports tables</td>
-		<td><?php echo $browser["Tables"]?'yes':'no';?></td>
-	</tr>
-	<tr class="technical">
-		<td>Supports cookies</td>
-		<td><?php echo $browser["Cookies"]?'yes':'no';?></td>
-	</tr>
-	<tr class="technical">
-		<td>Supports JavaApplets</td>
-		<td><?php echo $browser["JavaApplets"]?'yes':'no';?></td>
-	</tr>
-	<tr class="technical">
-		<td>Supports CSS</td>
-		<td><?php echo $browser["supportsCSS"]?'yes':'no';?></td>
-	</tr>
-	<tr class="technical">
-		<td>Supports CDF</td>
-		<td><?php echo $browser["CDF"]?'yes':'no';?></td>
-	</tr>
-	<tr class="technical">
-		<td>Supports VBScript</td>
-		<td><?php echo $browser["VBScript"]?'yes':'no';?></td>
-	</tr>
-	<tr class="technical">
-		<td>Supports ActiveXControls</td>
-		<td><?php echo $browser["ActiveXControls"]?'yes':'no';?></td>
-	</tr>
-<?php if ($browser["isBanned"]) { ?>
-	<tr class="technical">
-		<td>Banned by Craig Keith</td>
-		<td><?php echo $browser['isBanned']?'yes':'no';?></td>
-	</tr>
-<?php } ?>
-	<tr class="technical">
-		<td>Is syndication reader</td>
-		<td><?php echo $browser["isSyndicationReader"]?'yes':'no';?></td>
-	</tr>
-	<tr class="technical">
-		<td>Is crawler</td>
-		<td><?php echo $browser["Crawler"]?'yes':'no';?></td>
-	</tr>
-<?php if ($browser["AOL"]) { ?>
-	<tr class="technical">
-		<td>AOL branded browser</td>
-		<td><?php echo $browser['AOL']?'yes':'no';?></td>
-	</tr>
-	<tr class="technical">
-		<td>AOL version</td>
-		<td><?php echo $browser['aolVersion'];?></td>
-	</tr>
-<?php } ?>
-	-->
-	</table>
-</section>
-<hr/>
-<section id="log">
-	<table>
-		<tr>
-			<!--th>logTime</th-->
-			<th>eventTime</th>
-			<th>language</th>
-			<th>severity</th>
-			<th>file</th>
-			<th>line</th>
-			<th>message</th>
+		<tr class="general">
+			<td>Platform</td>
+			<td><img src="img/logsymbols/<?php echo $browser['Platform'];?>.png"/> <?php echo isset($browser["Platform"])?$browser["Platform"]:'';?></td>
 		</tr>
-		<?php
-		$newLogGroup = true;
-		// for each group with equal requestTime or adjacent javascript-entries
-		$requestFile = "";
-		for ($i = 0; $i < count($log); $i++) {
-			$logEntry = $log[$i];
-			if (preg_match('/^requestFile=(.*)$/',$logEntry['message'],$matches)) {
-				$requestFile = $matches[1];
-				continue;
-			}
-			if ($newLogGroup) {
-				// write out thin grey divider with requestTime from first entry
-				?>
-				<tr>
-					<td colspan="1" class="requestDivider"><b><nobr><?php echo prettyTimeToMillisecond($logEntry['requestTime']);?></nobr></b></th>
-					<td colspan="2" class="requestDivider"></td>
-					<td colspan="1" class="requestDivider"><b><nobr><?php echo $requestFile;?></nobr></b></th>
-					<td colspan="2" class="requestDivider"></td>
-				</tr>
-				<?php
-			}
-			// write out logTime, eventTime, language, type, line and message
-			?>
+		<tr class="general">
+			<td>Architecture</td>
+			<td><?php echo $browser["Win64"]?'64-bit':($browser["Win32"]?'32-bit':($browser["Win16"]?'16-bit':'unknown'));?></td>
+		</tr>
+		<tr class="general">
+			<td>Supports JavaScript</td>
+			<td><?php echo $browser["JavaScript"]?'yes':'no';?></td>
+		</tr>
+		<tr class="general">
+			<td>CSS Version</td>
+			<td><?php echo $browser["CssVersion"];?></td>
+		</tr>
+		<tr class="general">
+			<td>Supports background sounds</td>
+			<td><?php echo $browser["BackgroundSounds"]?'yes':'no';?></td>
+		</tr>
+		<tr class="general">
+			<td>Is mobile device</td>
+			<td><?php echo $browser["isMobileDevice"]?'yes':'no';?></td>
+		</tr>
+		<!--
+		<tr class="technical">
+			<td>User Agent</td>
+			<td><?php echo $browser["browser_name"];?></td>
+		</tr>
+		<tr class="technical">
+			<td>Browser is alpha version</td>
+			<td><?php echo $browser["Alpha"]?'yes':'no';?></td>
+		</tr>
+		<tr class="technical">
+			<td>Browser is beta version</td>
+			<td><?php echo $browser["Beta"]?'yes':'no';?></td>
+		</tr>
+		<tr class="technical">
+			<td>Supports frames</td>
+			<td><?php echo $browser["Frames"]?'yes':'no';?></td>
+		</tr>
+		<tr class="technical">
+			<td>Supports iframes</td>
+			<td><?php echo $browser["IFrames"]?'yes':'no';?></td>
+		</tr>
+		<tr class="technical">
+			<td>Supports tables</td>
+			<td><?php echo $browser["Tables"]?'yes':'no';?></td>
+		</tr>
+		<tr class="technical">
+			<td>Supports cookies</td>
+			<td><?php echo $browser["Cookies"]?'yes':'no';?></td>
+		</tr>
+		<tr class="technical">
+			<td>Supports JavaApplets</td>
+			<td><?php echo $browser["JavaApplets"]?'yes':'no';?></td>
+		</tr>
+		<tr class="technical">
+			<td>Supports CSS</td>
+			<td><?php echo $browser["supportsCSS"]?'yes':'no';?></td>
+		</tr>
+		<tr class="technical">
+			<td>Supports CDF</td>
+			<td><?php echo $browser["CDF"]?'yes':'no';?></td>
+		</tr>
+		<tr class="technical">
+			<td>Supports VBScript</td>
+			<td><?php echo $browser["VBScript"]?'yes':'no';?></td>
+		</tr>
+		<tr class="technical">
+			<td>Supports ActiveXControls</td>
+			<td><?php echo $browser["ActiveXControls"]?'yes':'no';?></td>
+		</tr>
+	<?php if ($browser["isBanned"]) { ?>
+		<tr class="technical">
+			<td>Banned by Craig Keith</td>
+			<td><?php echo $browser['isBanned']?'yes':'no';?></td>
+		</tr>
+	<?php } ?>
+		<tr class="technical">
+			<td>Is syndication reader</td>
+			<td><?php echo $browser["isSyndicationReader"]?'yes':'no';?></td>
+		</tr>
+		<tr class="technical">
+			<td>Is crawler</td>
+			<td><?php echo $browser["Crawler"]?'yes':'no';?></td>
+		</tr>
+	<?php if ($browser["AOL"]) { ?>
+		<tr class="technical">
+			<td>AOL branded browser</td>
+			<td><?php echo $browser['AOL']?'yes':'no';?></td>
+		</tr>
+		<tr class="technical">
+			<td>AOL version</td>
+			<td><?php echo $browser['aolVersion'];?></td>
+		</tr>
+	<?php } ?>
+		-->
+		</table>
+	</section>
+	<?php
+}
+
+function echoLog($log) {
+	?>
+	<section id="log">
+		<table>
 			<tr>
-				<!--td><nobr><?php echo prettyTimeToMillisecond($logEntry['logTime']);?></nobr></td-->
-				<td><nobr><?php echo prettyTimeToMillisecond($logEntry['eventTime']);?></nobr></td>
-				<td><?php echo $logEntry['language'];?></td>
-				<td><?php echo $logEntry['type'];?></td>
-				<td><?php echo preg_replace('/^.*[\\/\\\\]([^\\/\\\\]*)$/','$1',$logEntry['file']);?></td>
-				<td><?php echo $logEntry['line'];?></td>
-				<td><pre><?php
-					if (is_string($logEntry['message']))
-						echo $logEntry['message'];
-					else
-						var_dump($logEntry['message']);
-				?></td>
+				<!--th>logTime</th-->
+				<th>eventTime</th>
+				<th>language</th>
+				<th>severity</th>
+				<th>file</th>
+				<th>line</th>
+				<th>message</th>
 			</tr>
 			<?php
-			
-			if ($i+1 < count($log)) {
-				if ($log[$i+1]['requestTime'] == $logEntry['requestTime']) {
-					$newLogGroup = false;
-				} else if ($logEntry['language'] == 'javascript') {
-					if ($log[$i+1]['language'] == 'javascript') {
+			$newLogGroup = true;
+			// for each group with equal requestTime or adjacent javascript-entries
+			$requestFile = "";
+			for ($i = 0; $i < count($log); $i++) {
+				$logEntry = $log[$i];
+				if (preg_match('/^requestFile=(.*)$/',$logEntry['message'],$matches)) {
+					$requestFile = $matches[1];
+					continue;
+				}
+				if ($newLogGroup) {
+					// write out thin grey divider with requestTime from first entry
+					?>
+					<tr>
+						<td colspan="1" class="requestDivider"><b><nobr><?php echo prettyTimeToMillisecond($logEntry['requestTime']);?></nobr></b></th>
+						<td colspan="2" class="requestDivider"></td>
+						<td colspan="1" class="requestDivider"><b><nobr><?php echo $requestFile;?></nobr></b></th>
+						<td colspan="2" class="requestDivider"></td>
+					</tr>
+					<?php
+				}
+				// write out logTime, eventTime, language, type, line and message
+				?>
+				<tr>
+					<!--td><nobr><?php echo prettyTimeToMillisecond($logEntry['logTime']);?></nobr></td-->
+					<td><nobr><?php echo prettyTimeToMillisecond($logEntry['eventTime']);?></nobr></td>
+					<td><?php echo $logEntry['language'];?></td>
+					<td><?php echo $logEntry['type'];?></td>
+					<td><?php echo preg_replace('/^.*[\\/\\\\]([^\\/\\\\]*)$/','$1',$logEntry['file']);?></td>
+					<td><?php echo $logEntry['line'];?></td>
+					<td><pre><?php
+						if (is_string($logEntry['message']))
+							echo $logEntry['message'];
+						else
+							var_dump($logEntry['message']);
+					?></td>
+				</tr>
+				<?php
+				
+				if ($i+1 < count($log)) {
+					if ($log[$i+1]['requestTime'] == $logEntry['requestTime']) {
 						$newLogGroup = false;
-					} else if (preg_match('/^requestFile=.*$/',$log[$i+1]['message']) and $i+2 < count($log) and $log[$i+2]['language'] == 'javascript') {
-						$newLogGroup = false;
+					} else if ($logEntry['language'] == 'javascript') {
+						if ($log[$i+1]['language'] == 'javascript') {
+							$newLogGroup = false;
+						} else if (preg_match('/^requestFile=.*$/',$log[$i+1]['message']) and $i+2 < count($log) and $log[$i+2]['language'] == 'javascript') {
+							$newLogGroup = false;
+						} else {
+							$newLogGroup = true;
+						}
 					} else {
 						$newLogGroup = true;
 					}
-				} else {
-					$newLogGroup = true;
 				}
 			}
-		}
-		?>
-	</table>
-</section>
+			?>
+		</table>
+	</section>
+	<?php
+}
 
-</body>
-</html>
-<?php
 function parseJavascript($json) {
 	$messagelines = explode("<br/>",$json['message']);
 	foreach ($messagelines as $line) {
@@ -548,4 +659,35 @@ function parseJavascript($json) {
 	
 	return $json;
 }
+
+function progressList($log) {
+	$progress = array();
+	foreach ($log as $entry) {
+		preg_match('/^JSON-PROGRESS:(.*)$/',$entry['message'],$matches);
+		if (count($matches)>1) {
+			$progress[] = json_decode($matches[1]);
+			$progress[count($progress)-1]->requestTime = $entry['requestTime'];
+		}
+	}
+	return $progress;
+}
+
+function echoProgress($progress) {
+	echo '<table id="progress">';
+	echo '<tr><th>Tid</th><th>Fremdrift</th><th>Gjenstående</th></tr>';
+	foreach ($progress as $p) {
+		echo '<tr><td>';
+		echo round($p->requestTime-$progress[0]->requestTime,3);
+		echo '</td><td>';
+		echo round($p->progress,3);
+		echo '</td><td>';
+		echo round($p->estimatedRemainingTime,3);
+		echo '</td></tr>';
+	}
+	echo '</table>';
+}
+
 ?>
+
+</body>
+</html>

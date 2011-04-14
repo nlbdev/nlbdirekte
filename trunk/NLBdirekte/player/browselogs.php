@@ -8,7 +8,7 @@ include('common.inc.php');
 $includeBrowserInfo = true;
 $logsPerPage = 50;
 
-function prettyTimeToMinute($microtime) {
+function prettyTimeToDate($microtime) {
 	$time = date("j.",floor($microtime));
 	switch (date("n",floor($microtime))) {
 	case 1: $time .= "januar"; break;
@@ -25,7 +25,12 @@ function prettyTimeToMinute($microtime) {
 	case 12: $time .= "desember"; break;
 	default: $time .= "ukjent-måned";
 	}
-	$time .= date(" Y, G:i",(floor($microtime)+intval(date("Z",floor($microtime)))));
+	$time .= date(" Y",(floor($microtime)+intval(date("Z",floor($microtime)))));
+	return $time;
+}
+function prettyTimeToMinute($microtime) {
+	$time = prettyTimeToDate($microtime);
+	$time .= date(", G:i",(floor($microtime)+intval(date("Z",floor($microtime)))));
 	return $time;
 }
 function prettyTimeToMillisecond($microtime) {
@@ -110,14 +115,39 @@ header('Content-Type: text/html; charset=utf-8');
 			$logFiles[] = array(
 				"filename" => $logFilename,
 				"time" => isostring2microtime($matches[1]."-".$matches[2]."-".$matches[3]."T".$matches[4].":".$matches[5].":".$matches[6]."+00:00")-date("Z"),
-				"user" => $matches[7]
+				"user" => $matches[7],
+				"type" => "session"
+			);
+			$files++;
+		}
+		else if (preg_match('/log_(\d\d\d\d)-(\d\d)-(\d\d).log$/',$logFilename,$matches)) {
+			$logFiles[] = array(
+				"filename" => $logFilename,
+				"time" => isostring2microtime($matches[1]."-".$matches[2]."-".$matches[3]."T00:00:00+00:00")-date("Z"),
+				"type" => "day"
+			);
+			$files++;
+		}
+		else if (preg_match('/python-(\d\d\d\d)(\d\d)(\d\d)_(\d\d)(\d\d)(\d\d).*.txt$/',$logFilename,$matches)) {
+			$logFiles[] = array(
+				"filename" => $logFilename,
+				"time" => isostring2microtime($matches[1]."-".$matches[2]."-".$matches[3]."T".$matches[4].":".$matches[5].":".$matches[6]."+00:00")-date("Z"),
+				"type" => "python"
+			);
+			$files++;
+		}
+		else if (preg_match('/calabash-(\d\d\d\d)(\d\d)(\d\d)_(\d\d)(\d\d)(\d\d).*.txt$/',$logFilename,$matches)) {
+			$logFiles[] = array(
+				"filename" => $logFilename,
+				"time" => isostring2microtime($matches[1]."-".$matches[2]."-".$matches[3]."T".$matches[4].":".$matches[5].":".$matches[6]."+00:00")-date("Z"),
+				"type" => "calabash"
 			);
 			$files++;
 		}
 	}
 	closedir($logDirectoryHandle);
 	
-	// sorter logg på requestTime, så logTime
+	// sort log on time
 	function logCmp($a, $b) {
 		if ($a['time'] == $b['time']) {
 			return 0;
@@ -132,6 +162,7 @@ header('Content-Type: text/html; charset=utf-8');
 	$logFiles = array_splice($logFiles, $logsPerPage*$page, ($page<$pages?$logsPerPage:(count($logFiles)%$logsPerPage)));
 	?>
 	<tr>
+		<th>Type</th>
 		<th>Tid</th>
 		<th>Lånernummer</th>
 		<th colspan="4" class="breadcrumb">Side: <?php
@@ -151,43 +182,83 @@ header('Content-Type: text/html; charset=utf-8');
 	<?php
 	foreach ($logFiles as $logFile) {
 		?><tr>
-			<td><?php echo prettyTimeToMillisecond($logFile['time']);?></td>
-			<td><?php echo $logFile['user'];?></td>
-			<td><a href="viewlog.php?logname=<?php echo preg_replace('/.*log_(\d\d\d\d-\d\d-\d\d.\d\d-\d\d-\d\d.\d\d\d_.*).log$/','$1',$logFile['filename']);?>">Vis logg</a></td>
+			<td><?php
+				switch ($logFile['type']) {
+					case 'session': echo '<img src="img/logsymbols/session.png" alt="User session"/>'; break;
+					case 'day': echo '<img src="img/logsymbols/day.png" alt="Non-session logs for a specific day"/>'; break;
+					case 'python': echo '<img src="img/logsymbols/Python.png" alt="Python"/>'; break;
+					case 'calabash': echo '<img src="img/logsymbols/XProc.png" alt="XProc"/>'; break;
+					default: echo '&nbsp;';
+				}
+			?></td>
+			<td><?php
+				switch ($logFile['type']) {
+					case 'session': echo prettyTimeToMillisecond($logFile['time']); break;
+					case 'day': echo prettyTimeToDate($logFile['time']); break;
+					case 'python': echo prettyTimeToMinute($logFile['time']); break;
+					case 'calabash': echo prettyTimeToMinute($logFile['time']); break;
+					defalt: echo prettyTimeToMinute($logFile['time']);
+				}
+			?></td>
+			<td><?php echo isset($logFile['user'])?$logFile['user']:'';?></td>
+			<td><?php
+				switch ($logFile['type']) {
+					case 'session': echo '<a href="viewlog.php?type=session&logname='.preg_replace('/.*log_(\d\d\d\d-\d\d-\d\d.\d\d-\d\d-\d\d.\d\d\d_.*).log$/','$1',$logFile['filename']).'">Vis logg</a>'; break;
+					case 'day': echo '<a href="viewlog.php?type=day&logname='.preg_replace('/.*log_(\d\d\d\d-\d\d-\d\d).log$/','$1',$logFile['filename']).'">Vis logg</a>'; break;
+					case 'python': echo '<a href="viewlog.php?type=python&logname='.$logFile['filename'].'">Vis logg</a>'; break;
+					case 'calabash': echo '<a href="viewlog.php?type=calabash&logname='.$logFile['filename'].'">Vis logg</a>'; break;
+					default: echo '&nbsp;';
+				}
+			?></td>
 			<?php
-			if ($thisLogFile = file(fix_directory_separators("$logdir/".$logFile['filename']))) {
-				$b = null;
-				$backend = 'unknown';
-				$maxLines = 500;
-				foreach ($thisLogFile as $logEntry) {
-					if (empty($logEntry)) continue;
-					$json = json_decode($logEntry, true);
-					if (is_array($json['message']) and array_key_exists("browser_name", $json['message'])) {
-						$b = $json['message'];
-						if ($backend !== 'unknown') break;
+			switch ($logFile['type']) {
+			case 'session':
+				if ($thisLogFile = file(fix_directory_separators("$logdir/".$logFile['filename']))) {
+					$b = null;
+					$backend = 'unknown';
+					$maxLines = 500;
+					foreach ($thisLogFile as $logEntry) {
+						if (empty($logEntry)) continue;
+						$json = json_decode($logEntry, true);
+						if (is_array($json['message']) and array_key_exists("browser_name", $json['message'])) {
+							$b = $json['message'];
+							if ($backend !== 'unknown') break;
+						}
+						if (is_string($json['message']) and preg_match('/^audio backend:(.*)$/', $json['message'], $matches)) {
+							$backend = $matches[1];
+							if ($b !== null) break;
+						}
+						
+						if (--$maxLines <= 0) break;
 					}
-					if (is_string($json['message']) and preg_match('/^audio backend:(.*)$/', $json['message'], $matches)) {
-						$backend = $matches[1];
-						if ($b !== null) break;
+					$html = "<td><img src='img/logsymbols/unknown.png'/></td><td><img src='img/logsymbols/unknown.png'/></td><td><img src='img/logsymbols/unknown.png'/></td>";
+					if (!empty($b)) {
+						$html = "<td><img src='img/logsymbols/".$backend.".png'/>".($backend==='html5'?'HTML5 Audio':($backend==='flash'?'Flash Audio':($backend==='noaudio'?'Audio not supported':'Unknown audio support')))."</td>";
+						$html .= "<td><img src='img/logsymbols/".$b['Browser'].".png'/>";
+						$html .= $b['Parent']."</td>";
+						$html .= "<td><img src='img/logsymbols/".$b['Platform'].".png'/>";
+						$html .= ', '.$b['Platform'];
+						$html .= ($b['Win64']?', 64-bit':($b['Win32']?', 32-bit':($b['Win16']?', 16-bit':'')));
+						if ($b['isMobileDevice']) $html .= ', is mobile device';
+						if (!$b['JavaScript']) $html .= ', no javascript';
+						if ($b['CssVersion'] < 3) $html .= ', CSS version '.$b['CssVersion'];
+						if (!$b['Cookies']) $html .= ', no cookie support';
+						$html .= "</td>";
 					}
-					
-					if (--$maxLines <= 0) break;
+					echo $html;
 				}
-				$html = "<td><img src='img/browserlogos/unknown.png'/></td><td><img src='img/browserlogos/unknown.png'/></td><td><img src='img/browserlogos/unknown.png'/></td>";
-				if (!empty($b)) {
-					$html = "<td><img src='img/browserlogos/".$backend.".png'/>".($backend==='html5'?'HTML5 Audio':($backend==='flash'?'Flash Audio':($backend==='noaudio'?'Audio not supported':'Unknown audio support')))."</td>";
-					$html .= "<td><img src='img/browserlogos/".$b['Browser'].".png'/>";
-					$html .= $b['Parent']."</td>";
-					$html .= "<td><img src='img/browserlogos/".$b['Platform'].".png'/>";
-					$html .= ', '.$b['Platform'];
-					$html .= ($b['Win64']?', 64-bit':($b['Win32']?', 32-bit':($b['Win16']?', 16-bit':'')));
-					if ($b['isMobileDevice']) $html .= ', is mobile device';
-					if (!$b['JavaScript']) $html .= ', no javascript';
-					if ($b['CssVersion'] < 3) $html .= ', CSS version '.$b['CssVersion'];
-					if (!$b['Cookies']) $html .= ', no cookie support';
-					$html .= "</td>";
-				}
-				echo $html;
+				break;
+			case 'day':
+				echo '<td colspan="3">Logg uten session-tilhørighet</td>';
+				break;
+			case 'calabash':
+				echo '<td colspan="3">Calabash-logg</td>';
+				break;
+			case 'python':
+				echo '<td colspan="3">Python-logg</td>';
+				break;
+			default:
+				echo '<td colspan="3">Ukjent loggtype</td>';
 			}
 			?>
 		</tr><?php

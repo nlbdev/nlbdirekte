@@ -33,7 +33,7 @@ function Daisy202Loader() {
 	var loadCount = 0;
 	readyThread = null;
 	this.load = function() {
-		readyThread = setInterval(delegate(that,loadThread),1000);
+		readyThread = setInterval(delegate(that,loadThread),5000);
 	}
 	function loadThread() {
 		$.ajax({

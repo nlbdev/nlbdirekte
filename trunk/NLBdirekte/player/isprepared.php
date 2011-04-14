@@ -29,11 +29,13 @@ if (!$book or !file_exists(fix_directory_separators("$shared/$book"))) {
 	// (process will fail and start over if isprepared.php is called before the entire book is copied)
 	global $debug;
 	if ($debug) trigger_error("book with bookId $book does not exist in the location ".fix_directory_separators("$shared/$book"));
-	echo json_or_jsonp(array(
+	$result = array(
 		"ready" => false,
 		"state" => "book does not exist",
 		"progress" => 0
-	));
+	);
+	echo json_or_jsonp($result);
+	trigger_error("JSON-PROGRESS:".json_encode($result));
 }
 
 // Book not being prepared or not ready for playback at all?
@@ -64,9 +66,10 @@ else if (!$userHasRunningProcess and (
 		"state" => "a book is being prepared",
 		"progress" => 0,
 		"startedTime" => time(),
-		"estimatedRemainingTime" => 60
+		"estimatedRemainingTime" => 120
 	);
 	echo json_or_jsonp($progress);
+	trigger_error("JSON-PROGRESS:".json_encode($progress));
 }
 
 // Book being prepared?
@@ -76,6 +79,7 @@ else if ($userHasRunningProcess) {
 	$progress['ready'] = false;
 	$progress['state'] = "a book is being prepared";
 	echo json_or_jsonp($progress);
+	trigger_error("JSON-PROGRESS:".json_encode($progress));
 }
 
 // Book is ready
@@ -87,6 +91,7 @@ else {
 		"state" => "a book is ready for playback"
 	);
 	echo json_or_jsonp($progress);
+	trigger_error("JSON-PROGRESS:".json_encode($progress));
 }
 
 // Based on http://www.php.net/manual/en/function.exec.php#86329
@@ -116,6 +121,7 @@ function execCalabashInBackground($args, $catalog = NULL) {
 		} else {
 			pclose(popen("$catalog start /B $cmd $args $pythonLogArg", "rb"));
 		}
+		exec("tasklist /V /FO CSV", $after);
 	}
 	else { // Linux
 		$catalog = empty($catalog)?"":"export _JAVA_OPTIONS='-Dcom.xmlcalabash.phonehome=false -Dxml.catalog.files=$catalog -Dxml.catalog.staticCatalog=1 -Dxml.catalog.verbosity=".($debug?10:0)."' &&";
@@ -314,7 +320,7 @@ function getProgress($user, $book) {
 		}
 		fclose($processesFile);
 	}
-	if (count($logfiles)==0) return array("progress"=>0, "startedTime"=>floor($launchTime), "estimatedRemainingTime"=>60);
+	if (count($logfiles)==0) return array("progress"=>0, "startedTime"=>floor($launchTime), "estimatedRemainingTime"=>120);
 	$progressLogs = array();
 	$pythonLogs = array();
 	foreach ($logfiles as $logfilename) {
@@ -330,7 +336,7 @@ function getProgress($user, $book) {
 			}
 		}
 	}
-	if (count($pythonLogs)==0) return array("progress"=>0, "startedTime"=>floor($launchTime), "estimatedRemainingTime"=>60);
+	if (count($pythonLogs)==0) return array("progress"=>0, "startedTime"=>floor($launchTime), "estimatedRemainingTime"=>120);
 	foreach ($pythonLogs as $pythonlog => $requestTime) {
 		if (file_exists(fix_directory_separators("$pythonlog")) and $file = file(fix_directory_separators("$pythonlog"))) {
 			foreach ($file as $logEntry) {
@@ -344,7 +350,7 @@ function getProgress($user, $book) {
 			}
 		}
 	}
-	if (count($progressLogs)==0) return array("progress"=>0, "startedTime"=>floor($launchTime), "estimatedRemainingTime"=>60);
+	if (count($progressLogs)==0) return array("progress"=>0, "startedTime"=>floor($launchTime), "estimatedRemainingTime"=>120);
 	// sort logs by requestTime, then logTime
 	function logCmp($a, $b) {
 		if ($a['requestTime'] == $b['requestTime']) {
@@ -379,7 +385,7 @@ function getProgress($user, $book) {
 		$startTime = floatval($progressLogs[$progressLogCount-1]['requestTime']);
 		$nowTime = date("U");
 		$nowProgress = $lastProgress;
-		$estimatedRemainingTime = 60;
+		$estimatedRemainingTime = 120;
 		try {
 			$damping = 0.6;
 			$nowProgress = 1 - (1-$lastProgress)*exp($damping*$lastProgress*(1 - ($nowTime-$startTime)/($lastTime-$startTime)));
@@ -395,7 +401,7 @@ function getProgress($user, $book) {
 		return $progress;
 	} else {
 		trigger_error("Unable to parse progress: ".$progressLogs[$progressLogCount-1]['message']);
-		return array("progress"=>(time()-$startTime)/(time()-$startTime+60), "startedTime"=>floor($startTime), "estimatedRemainingTime"=>60);
+		return array("progress"=>0, "startedTime"=>floor($startTime), "estimatedRemainingTime"=>120);
 	}
 }
 
