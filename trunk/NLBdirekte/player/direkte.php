@@ -7,7 +7,11 @@ list($user, $book) = decodeTicket($_REQUEST['ticket']);
 authorize($user,$book,isset($_REQUEST['session'])?$_REQUEST['session']:'');
 
 # Create a launchTime that can be used to identify this instance of NLBdirekte
-$launchTime = microtime(true);
+# if launchTime is already set, use that one instead
+if (isset($_REQUEST['launchTime']))
+	$launchTime = $_REQUEST['launchTime'];
+else
+	$launchTime = microtime(true);
 $logfile = microtimeAndUsername2logfile($launchTime,$user);
 
 include('lib/browscap/Browscap.php');
@@ -52,17 +56,6 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		<title>NLBdirekte v<?php echo $version;?></title>
 		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 		
-		<!-- jQuery Mobile -->
-		<link rel="stylesheet" href="css/jQuery/jquery.mobile-1.0a4.1.css" />
-		<script type="text/javascript" src="js/jQuery/jquery-1.5.2.js"></script>
-		<script type="text/javascript" src="js/jQuery/jquery.mobile-1.0a4.1.js"></script>
-		
-		<!-- NLBdirekte; stylesheets and configuration -->
-		<link type="text/css" href="css/NLBdirekte.css" rel="stylesheet" />
-		<link type="text/css" href="css/Daisy202Book.css" rel="stylesheet" />
-		<script type="text/javascript" src="js/common.js"></script>
-		<script type="text/javascript" src="config/config.js"></script>
-		
 		<!-- The code recieved from the library system, used to validate the session -->
 		<script type="text/javascript" charset="utf-8">
 		/* <![CDATA[ */
@@ -70,6 +63,30 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 			var launchTime = '<?php echo $launchTime; ?>';
 		/* ]]> */
 		</script>
+		
+		<script type="text/javascript">
+		<!-- strip eventual fragment identifier through redirection -->
+		if (window.location.toString().indexOf('#') >= 0) {
+			var newLocation = window.location.toString().substring(0,window.location.toString().indexOf('#'));
+			if (newLocation.indexOf('?') >= 0)
+				newLocation += '&';
+			else
+				newLocation += '?';
+			newLocation += 'launchTime='+launchTime;
+			window.location = newLocation;
+		}
+		</script>
+		
+		<!-- jQuery Mobile -->
+		<link rel="stylesheet" href="css/jQuery/jquery.mobile-1.0a4.1<?php echo $debug?'':'min.';?>.css" />
+		<script type="text/javascript" src="js/jQuery/jquery-1.5.2<?php echo $debug?'':'min.';?>.js"></script>
+		<script type="text/javascript" src="js/jQuery/jquery.mobile-1.0a4.1<?php echo $debug?'':'min.';?>.js"></script>
+		
+		<!-- NLBdirekte; stylesheets and configuration -->
+		<link type="text/css" href="css/NLBdirekte.css" rel="stylesheet" />
+		<link type="text/css" href="css/Daisy202Book.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="config/config.js"></script>
 		
 		<!-- Logging framework -->
 		<script type="text/javascript" src="js/javascript-stacktrace/stacktrace.js"></script>
@@ -181,8 +198,13 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
         <div data-role="page" id="content-page" data-url="content-page" class="ui-page ui-body-c ui-page-active">
             <div data-role="content" data-theme="c" class="ui-content" style="padding: 0px;">
                 <div id="book" aria-live="off" style="background-color: white; padding: 10px;"></div>
+				<div style="height:64px;"></div>
             </div>
-            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
+			<?php if ($browser['isMobileDevice']) { ?>
+			<div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
+			<?php } else { ?>
+			<div data-role="footer" class="ui-bar-c ui-footer" id="footer">
+			<?php } ?>
 				<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:backward();" alt="Bakover" data-role="button" id="backward" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="1"><?php if (!($browser['isMobileDevice'])) echo "Bakover";?></a></li>
@@ -215,8 +237,13 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 						&lt;span id="progressbar"&gt;&lt;/span&gt;
 					-->
 				</div>
+				<div style="height:64px;"></div>
             </div>
-            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
+            <?php if ($browser['isMobileDevice']) { ?>
+			<div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
+			<?php } else { ?>
+			<div data-role="footer" class="ui-bar-c ui-footer" id="footerSettings">
+			<?php } ?>
            		<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>
@@ -233,8 +260,13 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
             <div data-role="content" class="ui-content">
                 <h2>Om boken</h2>
 				<div id="metadata"></div>
+				<div style="height:64px;"></div>
             </div>
-            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
+            <?php if ($browser['isMobileDevice']) { ?>
+			<div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
+			<?php } else { ?>
+			<div data-role="footer" class="ui-bar-c ui-footer" id="footerMetadata">
+			<?php } ?>
            		<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>
@@ -251,8 +283,13 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
             <div data-role="content" class="ui-content">
                 <h2>Innholdsfortegnelse</h2>
 				<div id="toc"></div>
+				<div style="height:64px;"></div>
             </div>
-            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
+            <?php if ($browser['isMobileDevice']) { ?>
+			<div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
+			<?php } else { ?>
+			<div data-role="footer" class="ui-bar-c ui-footer" id="footerTOC">
+			<?php } ?>
            		<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>
@@ -269,8 +306,13 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
             <div data-role="content" class="ui-content">
                 <h2>Sideliste</h2>
 				<div id="pages"></div>
+				<div style="height:64px;"></div>
             </div>
-            <div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
+            <?php if ($browser['isMobileDevice']) { ?>
+			<div data-role="footer" data-position="fixed" class="ui-bar-c ui-footer">
+			<?php } else { ?>
+			<div data-role="footer" class="ui-bar-c ui-footer" id="footerPages">
+			<?php } ?>
            		<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 					<ul>
 						<li><a href="javascript:toggleMenu();" alt="Lukk meny" class="exit-menu-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="slidedown"><?php if (!($browser['isMobileDevice'])) echo "Tilbake";?></a></li>

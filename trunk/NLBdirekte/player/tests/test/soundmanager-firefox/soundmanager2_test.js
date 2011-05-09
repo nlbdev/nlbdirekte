@@ -1,9 +1,15 @@
-var SoundManagerTest = AsyncTestCase("SoundManagerTest");
-
-SoundManagerTest.prototype.testSoundManager = function(queue) {
-	this.error = false;
+function SoundManagerTest = function() {
+	var tests = new Array();
+	var callbacks = new Array();
+	function appendTest(t) {
+		test.push(t);
+	}
+	function addCallback(c) {
+		callbacks.push(c);
+	}
 	
-	queue.call("Initialize soundManager", function(callbacks) {
+	// Initialize soundManager
+	appendTest(function(callbacks) {
 		jstestdriver.console.log('initialize soundmanager');
 		var fnComplete = callbacks.add(function(success) {
 			assertTrue("soundmanager loaded successfully", success);
@@ -34,7 +40,8 @@ SoundManagerTest.prototype.testSoundManager = function(queue) {
 		jstestdriver.console.log(soundManager);
 	});
 	
-	queue.call("Create sound", function(callbacks) {
+	// Create sound
+	appendTest(function(callbacks) {
 		jstestdriver.console.log('create sound');
 		var audioId = "audioId";
 		var url = 'http://'+window.location.hostname+'/NLBdirekte/player/tests/test/minimal/dtb_0002.mp3';
@@ -51,7 +58,8 @@ SoundManagerTest.prototype.testSoundManager = function(queue) {
 		jstestdriver.console.log('created sound...');
 	});
 	
-	queue.call("Load and play sound", function(callbacks) {
+	// Load and play sound
+	appendTest(function(callbacks) {
 		jstestdriver.console.log("Load and play sound");
 		this.soundObject.options.onload = callbacks.add(function(success) {
 			assertTrue('audio was loaded', success);
@@ -91,7 +99,8 @@ SoundManagerTest.prototype.testSoundManager = function(queue) {
 		this.soundObject.load();
 	});
 	
-	queue.call("shutdown soundmanager",function(callbacks){
+	// shutdown soundmanager
+	appendTest(function(callbacks){
 		soundManager.disable();
 	});
 };

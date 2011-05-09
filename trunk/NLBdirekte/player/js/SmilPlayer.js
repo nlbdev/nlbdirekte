@@ -371,7 +371,6 @@ function SmilPlayer() {
 						if (typeof log=='object') log.info('playing the wrong file, switch file');
 						audioObject.pause();
 						audioObject.destruct(); // preserve memory
-						//audioObject = HTML5AudioNow(this.server.getUrl(getAttr(smilNode,'s','')));
 						audioObject = soundManager.createSound({
 							id: "audio"+(new Date()).getTime(),
 							url: this.server.getUrl(getAttr(smilNode,'s','')),
@@ -388,10 +387,6 @@ function SmilPlayer() {
 							window.setTimeout(delegate(that,function(){audioObject.pause()}),0);
 						audioObjectBegin = parseFloat(getAttr(smilNode,'b',-1)) - parseFloat(getAttr(smilNode,'B',-1));
 					} else if (!paused) {
-						if (typeof log=='object') log.debug("if (Math.abs(("+typeof audioObject.duration+"!='number'?0:"+audioObject.duration+")/1000. - "+audioObject.position+"/1000.) > "+inaccurateTimeMeasurement+" &&\n"+
-															"    Math.abs("+audioObject.position+"/1000.+"+audioObjectBegin+" - "+currentTime+") > "+inaccurateTimeMeasurement+")");
-						if (typeof log=='object') log.debug("if ("+Math.abs((typeof audioObject.duration!='number'?0:audioObject.duration)/1000. - audioObject.position/1000.)+" > "+inaccurateTimeMeasurement+" &&\n"+
-															"    "+Math.abs(audioObject.position/1000.+audioObjectBegin - currentTime)+" > "+inaccurateTimeMeasurement+")");
                         audioObject.resume();
 					}
 				}

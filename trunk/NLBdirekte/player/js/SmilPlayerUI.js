@@ -412,23 +412,24 @@ window.setInterval(function(){
 		}
 		if (!$('html').hasClass("ui-loading")) {
 			$.mobile.pageLoading(false);
-			log.info('player is loading');
+			log.debug('player is loading');
 		}
 	} else if (player.buffering() < 1.) {
 		$('div.ui-loader h1').html('Laster lyd... ('+Math.round(player.buffering()*100.)+'%)');
 		if (!$('html').hasClass("ui-loading")) {
 			$.mobile.pageLoading(false);
-			log.info('audio is loading');
+			log.debug('audio is buffering');
 		}
 	} else if (soundManagerBackend == 'noaudio') {
 		$('div.ui-loader h1').html('Nettleseren din støtter ikke avspilling av lyd');
 		if (!$('html').hasClass("ui-loading")) {
 			$.mobile.pageLoading(false);
+			log.debug('no audio support: showing message');
 		}
 	} else {
 		if ($('html').hasClass("ui-loading")) {
 			$.mobile.pageLoading(true);
-			log.info('nothing is loading');
+			log.debug('nothing is loading: hiding load message');
 		}
 	}
 },500);

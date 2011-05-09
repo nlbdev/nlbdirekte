@@ -1,7 +1,7 @@
 <?php
 
 # version of NLBdirekte
-$version = '0.21.4';
+$version = '0.22';
 
 include('config/config.inc.php'); // import users config-file
 
