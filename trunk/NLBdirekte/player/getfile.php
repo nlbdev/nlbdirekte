@@ -7,7 +7,7 @@
 include('common.inc.php');
 
 list($user, $book) = decodeTicket($_REQUEST['ticket']);
-authorize($user,$book,isset($_REQUEST['session'])?$_REQUEST['session']:'');
+authorize($user,$book,isset($_REQUEST['session'])?$_REQUEST['session']:'',false);
 
 # if launchTime is set, use that to put log entries in its own log
 if (isset($_REQUEST['launchTime']))

@@ -28,11 +28,14 @@ $calabashExec = "calabash"; // full path example: "C:\\xmlcalabash-0.9.29\\calab
 $debug = isset($debug)?$debug:true;
 
 # default authorization function
-function authorize($user, $book, $session) {
+function authorize($user, $book, $session, $redirect) {
 	if (!empty($user) and !empty($book)) {
 		return true;
 	} else {
-		header("Location: http://128.39.10.81/cgi-bin/mappami");
+		if ($redirect)
+			header("Location: http://128.39.10.81/cgi-bin/mappami");
+		else
+			header('HTTP/1.0 401 Unauthorized');
 		exit;
 	}
 }

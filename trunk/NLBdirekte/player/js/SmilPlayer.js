@@ -97,7 +97,7 @@ function SmilPlayer() {
 	function update() {
 		if (skipTo >= 0) {
 			currentTime = skipTo;
-			if (typeof log=='object') log.debug('#4 currentTime = '+currentTime+' audioObject.duration:'+(audioObject===null?'?':(audioObject.duration/1000.)));
+			if (typeof log=='object') log.trace('#4 currentTime = '+currentTime+' audioObject.duration:'+(audioObject===null?'?':(audioObject.duration/1000.)));
 		}
 		
 		var activeSmilElements = this.getSmilElements.call(that, currentTime);
@@ -127,7 +127,7 @@ function SmilPlayer() {
 		
 		if (skipTo >= 0) {
 			if (!paused && audioObject !== null)
-				if (typeof log=='object') log.debug('isSameSrc #1: audioObject.url:'+audioObject.url);
+				if (typeof log=='object') log.debug('isSameSrc #1: audioObject.url:'+audioObject.url+' , server.getUrl(getAttr(audio,"s","")):'+this.server.getUrl(getAttr(audio,'s','')));
 			
 			if (   (audioObject === null || isSameSrc(audioObject.url,this.server.getUrl(getAttr(audio,'s',''))) &&
 											Math.abs(audioObjectBegin+audioObject.position/1000. - currentTime) < inaccurateTimeMeasurement)) {

@@ -11,7 +11,7 @@ else
 	header('Content-Type: application/json; charset=utf-8');
 
 list($user, $book) = decodeTicket($_REQUEST['ticket']);
-authorize($user,$book,isset($_REQUEST['session'])?$_REQUEST['session']:'');
+authorize($user,$book,isset($_REQUEST['session'])?$_REQUEST['session']:'',false);
 
 # use launchTime to put log entries in its own log
 $logfile = microtimeAndUsername2logfile(isset($_REQUEST['launchTime'])?$_REQUEST['launchTime']:0,$user);
@@ -26,7 +26,7 @@ $userHasRunningProcess = isProcessing($user, $book);
 // Book exists?
 if (!$book or !file_exists(fix_directory_separators("$shared/$book"))) {
 	// does not check whether the whole book exists, just whether the folder exists!
-	// (process will fail and start over if isprepared.php is called before the entire book is copied)
+	// (prepare-process will fail and start over if isprepared.php is called before the entire book is copied)
 	global $debug;
 	if ($debug) trigger_error("book with bookId $book does not exist in the location ".fix_directory_separators("$shared/$book"));
 	$result = array(

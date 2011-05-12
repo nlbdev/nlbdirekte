@@ -1,6 +1,21 @@
 var server = null;
 var player = null;
 var loader = null;
+
+var lastMenuPage = 'settings-page';
+function toggleMenu() {
+	if (player !== null && player.doneLoading) {
+		if ($.mobile.activePage[0].id==='content-page') {
+			$.mobile.changePage(lastMenuPage,"slide");
+			log.debug('toggled page from content-page to '+lastMenuPage);
+		} else {
+			lastMenuPage = $.mobile.activePage[0].id;
+			$.mobile.changePage('content-page',"slide",true);
+			log.debug('toggled page from '+lastMenuPage+' to content-page');
+		}
+	}
+}
+
 function niceTime(s) {
 	ms = Math.floor((s - Math.floor(s))*1000);
 	s = Math.floor(s);
@@ -101,7 +116,14 @@ function playerIsLoaded() {
 				for (var l = previousLevel; l > toc[i][1]['level']; l--) {
 					txt += "</ul>\n";
 				}
-				txt += '<li class="toc-level toc-level-'+toc[i][1]['level']+'"><a href="javascript:player.skipToTime('+toc[i][1]['b']+');scrollToHighlightedText();" data-role="button">'+toc[i][1]['title']+" <small class='timerange'>("+niceTime(toc[i][1]['b'])+' - '+niceTime(toc[i][1]['e'])+')</small></a></li>'+"\n";
+				txt += '<li class="toc-level toc-level-'+toc[i][1]['level']+'">'+
+						'<a href="javascript:fromMenuSkipToTime('+toc[i][1]['b']+');" data-role="button">'+
+							toc[i][1]['title']+" <small class='timerange'>("+
+								niceTime(toc[i][1]['b'])+
+								' - '+
+								(i+1==toc.length?niceTime(player.smil[1]['e']):niceTime(toc[i+1][1]['b']))+
+							')</small>'+
+						'</a></li>'+"\n";
 				previousLevel = toc[i][1]['level'];
 			}
 			for (var l = previousLevel; l > 0; l--) {
@@ -119,9 +141,12 @@ function playerIsLoaded() {
 			txt = "";
 			for (var i = $.isArray(pagelist[1])?1:2; i < pagelist.length; i++) {
 				// {page,id,begin,end}
-				txt += "<a href='javascript:player.skipToTime("+pagelist[i][1]['b']+");scrollToHighlightedText();' data-role='button' data-inline='true' class='pagelist-entry'>"+
-						pagelist[i][1]['page']+" <small class='timerange'>("+niceTime(i===0?0:pagelist[i][1]['b'])+" - "+
-						niceTime((i+1===pagelist.length)?player.getTotalTime():pagelist[i+1][1]['b'])+")</small></a>\n";
+				txt += "<a href='javascript:fromMenuSkipToTime("+pagelist[i][1]['b']+");' data-role='button' data-inline='true' class='pagelist-entry'>"+
+						pagelist[i][1]['page']+" <small class='timerange'>("+
+							niceTime(pagelist[i][1]['b'])+
+							" - "+
+							niceTime(i+1===pagelist.length?player.getTotalTime():pagelist[i+1][1]['b'])+
+						")</small></a>\n";
 			}
 		} else {
 			if (typeof log=='object') log.info('no page information in book');
@@ -149,6 +174,17 @@ function playerIsLoaded() {
 	}
 }
 playerIsLoaded();
+
+function fromMenuSkipToTime(time) {
+	toggleMenu();
+	$(function(){
+		player.skipToTime(time);
+		$(function(){
+			scrollToHighlightedText();
+			player.play();
+		});
+	});
+}
 
 function playerHasMetadata() {
 	var hasMetadata = false;
@@ -228,7 +264,7 @@ function scrollToHighlightedText() {
 		isAnimatingScroll = false;
 	});
 }
-var autoScroll = false;
+var autoScroll = true;
 function keepHighlightedTextOnScreen() {
 	var element = player.getHighlightedTextElement();
 	if (element === null)
@@ -249,9 +285,11 @@ $("select#autoscroll").live("change", function() {
 	// toggle autoScroll variable here
 	switch ($(this).val()) {
 	case 'on':
+		log.debug('autoscrolling switch changed to enabled');
 		autoScroll = true;
 		break;
 	case 'off':
+		log.debug('autoscrolling switch changed to disabled');
 		autoScroll = false;
 		break;
 	}
@@ -336,7 +374,8 @@ window.setInterval(function(){
 	// make sure autoScroll toggle switch is up to date (hopefully not too slow)
 	if (!($('select#autoscroll').val() == 'off' && !autoScroll || $('select#autoscroll').val() == 'on' && autoScroll)) {
 		if (typeof log=='object') log.debug("$('select#autoscroll').val():"+$('select#autoscroll').val()+" , autoScroll:"+autoScroll+"="+(autoScroll?'true':'false'));
-		$('select#autoscroll').click();
+		$('select#autoscroll').val(autoScroll?"on":"off") 
+		log.debug('select#autoscroll changed to '+$('select#autoscroll').val());
 	}
 	
 	if (player.doneLoading) {

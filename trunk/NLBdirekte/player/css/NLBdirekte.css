@@ -143,7 +143,7 @@ div, ul, li {
 
 .nav-nlbdirekte .ui-btn .ui-btn-inner { padding-top: 40px !important; }
 .nav-nlbdirekte .ui-btn .ui-icon { width: 36px!important; height: 36px!important; margin-left: -18px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: none !important; border-radius: none !important; }
-#backward .ui-icon { background:  url(../img/icons/png/32x32/media-fast-backward.png) 50% 50% no-repeat; background-size: 32px 32px; }
+#backward .ui-icon  { background:  url(../img/icons/png/32x32/media-fast-backward.png) 50% 50% no-repeat; background-size: 32px 32px; }
 .paused .ui-icon { background:  url(../img/icons/png/32x32/media-play.png) 50% 50% no-repeat; background-size: 32px 32px; }
 .playing .ui-icon { background:  url(../img/icons/png/32x32/media-pause.png) 50% 50% no-repeat; background-size: 32px 32px; }
 #forward .ui-icon { background:  url(../img/icons/png/32x32/media-fast-forward.png) 50% 50% no-repeat; background-size: 32px 32px;  }

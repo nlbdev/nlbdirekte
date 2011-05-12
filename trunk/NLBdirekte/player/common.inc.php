@@ -1,7 +1,7 @@
 <?php
 
 # version of NLBdirekte
-$version = '0.22';
+$version = '0.23';
 
 include('config/config.inc.php'); // import users config-file
 
@@ -33,7 +33,7 @@ if (!isset($debug)) $debug = false;
 
 # default authorization function
 if (!function_exists('authorize')) {
-	function authorize($user, $book, $session) { return true; }
+	function authorize($user, $book, $session, $redirect) { return true; }
 }
 
 # ---- end of default configuration variables ----
