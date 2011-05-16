@@ -191,7 +191,7 @@ function playerHasMetadata() {
 	if (player !== null && player.metadata !== null && player.metadata) {
 		// show book information
 		var m = player.metadata[1];
-		var txt = "<table>";
+		var txt = "<table id='metadata-table'>";
 		
 		if (typeof m['dc:title'] !== 'undefined')
 			txt += "<tr><td>Tittel:</td><td>"+m['dc:title']+"</td></tr>\n";
@@ -220,14 +220,8 @@ function playerHasMetadata() {
 		if (typeof player.metadata[1]['dc:format'] !== 'undefined')
 			txt += "<tr><td>Format:</td><td>"+m['dc:format']+"</td></tr>\n";
 		
-		if (typeof player.metadata[1]['dc:identifier'] !== 'undefined')
-			txt += "<tr><td>Identifikator:</td><td>"+m['dc:identifier']+"</td></tr>\n";
-		
-		if (typeof player.metadata[1]['dc:source'] !== 'undefined')
-			txt += "<tr><td>Kilde:</td><td>"+m['dc:source']+"</td></tr>\n";
-		
 		if (typeof player.metadata[1]['dc:language'] !== 'undefined')
-			txt += "<tr><td>Spr&aring;k:</td><td>"+m['dc:language']+"</td></tr>\n";
+			txt += "<tr><td>Spr&aring;k:</td><td>"+iso369ToText(m['dc:language'])+"</td></tr>\n";
 		
 		if (typeof player.metadata[1]['dc:relation'] !== 'undefined')
 			txt += "<tr><td>Relasjon:</td><td>"+m['dc:relation']+"</td></tr>\n";

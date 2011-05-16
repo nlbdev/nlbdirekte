@@ -80,11 +80,11 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		</script>
 		
 		<!-- jQuery Mobile -->
-		<link rel="stylesheet" href="css/jQuery/jquery.mobile-1.0a4.1<?php echo $debug?'':'min.';?>.css" />
-		<script type="text/javascript" src="js/jQuery/jquery-1.5.2<?php echo $debug?'':'min.';?>.js"></script>
-		<script type="text/javascript" src="js/jQuery/jquery.mobile-1.0a4.1<?php echo $debug?'':'min.';?>.js"></script>
+		<link rel="stylesheet" href="css/jQuery/jquery.mobile-1.0a4.1<?php echo $debug?'':'.min';?>.css" />
+		<script type="text/javascript" src="js/jQuery/jquery-1.5.2<?php echo $debug?'':'.min';?>.js"></script>
+		<script type="text/javascript" src="js/jQuery/jquery.mobile-1.0a4.1<?php echo $debug?'':'.min';?>.js"></script>
 		
-		<!-- NLBdirekte; stylesheets and configuration -->
+		<!-- NLBdirekte; stylesheets and configuration (default and custom) -->
 		<link type="text/css" href="css/NLBdirekte.css" rel="stylesheet" />
 		<link type="text/css" href="css/Daisy202Book.css" rel="stylesheet" />
 		<script type="text/javascript" src="js/common.js"></script>
@@ -92,7 +92,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		
 		<!-- Logging framework -->
 		<script type="text/javascript" src="js/javascript-stacktrace/stacktrace.js"></script>
-		<script type="text/javascript" src="js/log4javascript/log4javascript.js"></script>
+		<script type="text/javascript" src="js/log4javascript/log4javascript<?php echo $debug?'_uncompressed':'';?>.js"></script>
 		<script type="text/javascript">
 			//<![CDATA[
 			log4javascript.logLog.setQuietMode(true);
@@ -137,7 +137,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		</script>
 		
 		<!-- SoundManager 2 -->
-		<script type="text/javascript" src="js/soundmanager/script/soundmanager2.js"></script>
+		<script type="text/javascript" src="js/soundmanager/script/soundmanager2<?php echo $debug?'':'-jsmin';?>.js"></script>
 		<script type="text/javascript">
 			var soundManagerBackend = 'unknown';
 			$(function(){

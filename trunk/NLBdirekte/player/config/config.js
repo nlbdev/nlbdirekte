@@ -16,3 +16,11 @@ var debug = true;
 var log4javascript_disabled = false;
 var logging_client_level = 'DEBUG';
 var logging_server_level = 'DEBUG';
+
+// Custom extensions
+$.getScript('custom/js/bokelskere.js');
+$.getScript('lib/countrycodes-to-norwegian.js');
+
+function iso369ToText(txt) {
+	return countryCodeToNorwegian(txt);
+}

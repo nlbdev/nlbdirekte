@@ -16,3 +16,8 @@ var debug = true;
 var log4javascript_disabled = false;
 var logging_client_level = 'DEBUG';
 var logging_server_level = 'DEBUG';
+
+function iso369ToText(txt) {
+	// placeholder function. override it in config.js.
+	return txt;
+}
