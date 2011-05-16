@@ -2,7 +2,7 @@ var bokelskere_thread = window.setInterval(function(){
 	if ($('#metadata-table').size() > 0) {
 		tnr = ticket.split('_')[1];
 		$('<tr><td>Lenke til tittelen hos NLB:</td><td><a href="http://128.39.10.81/cgi-bin/websok?tnr='+tnr+'" target="_blank">http://128.39.10.81/cgi-bin/websok?tnr='+tnr+'</a></td></tr>').appendTo('#metadata-table');
-		$.getJSON('http://localhost/nlb-metadata/rdfjson.php?format=json&namespaces=hide&tnr='+tnr+'&callback=?',
+		$.getJSON('http://beta.nlb.no/metadata/rdf.php?format=json&namespaces=hide&tnr='+tnr+'&callback=?',
 			'',
 			function (data, textStatus, jqXHR) {
 				isbn = null;
