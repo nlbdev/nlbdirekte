@@ -17,15 +17,17 @@ var bokelskere_thread = window.setInterval(function(){
 						break;
 					}
 				}
-				$('<tr><td>ISBN:</td><td>'+isbn+'</td></tr>').appendTo('#metadata-table');
-				isbn = isbn.replace(/[^\d]/g,'');
-				$.getJSON('http://bokelskere.no/api/1.0/boker/info/'+isbn+'/?format=json&callback=?',
-					'',
-					function (data, textStatus, jqXHR) {
-						$('<tr><td>Gjennomsnittlig terningkast hos Bokelskere.no:</td><td>'+data['gjennomsnittelig_terningkast']+'</td></tr>').appendTo('#metadata-table');
-						$('<tr><td>Lenke til tittelen hos Bokelskere.no:</td><td><a href="'+data['link']+'" target="_blank">'+data['link']+'</a></td></tr>').appendTo('#metadata-table');
-					}
-				);
+				if (isbn !== null) {
+					$('<tr><td>ISBN:</td><td>'+isbn+'</td></tr>').appendTo('#metadata-table');
+					isbn = isbn.replace(/[^\d]/g,'');
+					$.getJSON('http://bokelskere.no/api/1.0/boker/info/'+isbn+'/?format=json&callback=?',
+						'',
+						function (data, textStatus, jqXHR) {
+							$('<tr><td>Gjennomsnittlig terningkast hos Bokelskere.no:</td><td>'+data['gjennomsnittelig_terningkast']+'</td></tr>').appendTo('#metadata-table');
+							$('<tr><td>Lenke til tittelen hos Bokelskere.no:</td><td><a href="'+data['link']+'" target="_blank">'+data['link']+'</a></td></tr>').appendTo('#metadata-table');
+						}
+					);
+				}
 			}
 		);
 		window.clearTimeout(bokelskere_thread);
