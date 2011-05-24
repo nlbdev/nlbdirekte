@@ -336,16 +336,18 @@ function forward() {
 }
 function toggleMute() {
 	var button = $('#mute-unmute');
-	if (button.hasClass('muted')) {
-		button.removeClass('muted');
-		button.addClass('unmuted');
-		player.setVolume(100);
-		log.debug('toggled from muted to unmuted');
-	} else {
-		button.removeClass('unmuted');
-		button.addClass('muted');
-		player.setVolume(0);
-		log.debug('toggled from unmuted to muted');
+	if (button.length >= 1) {
+		if (button.hasClass('muted')) {
+			button.removeClass('muted');
+			button.addClass('unmuted');
+			player.setVolume(100);
+			log.debug('toggled from muted to unmuted');
+		} else {
+			button.removeClass('unmuted');
+			button.addClass('muted');
+			player.setVolume(0);
+			log.debug('toggled from unmuted to muted');
+		}
 	}
 }
 touchToggleEnabled = false;

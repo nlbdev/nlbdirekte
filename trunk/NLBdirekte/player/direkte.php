@@ -195,7 +195,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 							<li><a href="javascript:backward();"   alt="Bakover"     data-role="button" id="backward"    data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="1"> </a></li>
 							<li><a href="javascript:togglePlay();" alt="Start/stopp" data-role="button" id="play-pause"  data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="2" class="paused"> </a></li>
 							<li><a href="javascript:forward();"    alt="Fremover"    data-role="button" id="forward"     data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="3"> </a></li>
-							<li><a href="javascript:toggleMute();" alt="Lyd av/på"   data-role="button" id="mute-unmute" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="4" class="unmuted"> </a></li>
+							<!--li><a href="javascript:toggleMute();" alt="Lyd av/på"   data-role="button" id="mute-unmute" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="4" class="unmuted"> </a></li-->
 							<li><a href="javascript:toggleMenu();" alt="Meny"        data-role="button" id="menu"        data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="5"> </a></li>
 						</ul>
 					</div>
@@ -207,7 +207,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 							<li id="backward">                   <input type="button" onclick="backward();"   value="Bakover"           alt="Bakover"     data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="1" aria-disabled="false"/></li>
 							<li id="play-pause"  class="paused"> <input type="button" onclick="togglePlay();" value="Start / Stopp"     alt="Start/stopp" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="2" aria-disabled="false"/></li>
 							<li id="forward">                    <input type="button" onclick="forward();"    value="Fremover"          alt="Fremover"    data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="3" aria-disabled="false"/></li>
-							<li id="mute-unmute" class="unmuted"><input type="button" onclick="toggleMute();" value="Lyd av / p&aring;" alt="Lyd av/på"   data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="4" aria-disabled="false"/></li>
+							<!--li id="mute-unmute" class="unmuted"><input type="button" onclick="toggleMute();" value="Lyd av / p&aring;" alt="Lyd av/på"   data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="4" aria-disabled="false"/></li-->
 							<li id="menu">                       <input type="button" onclick="toggleMenu();" value="Meny"              alt="Meny"        data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" accesskey="5" aria-disabled="false"/></li>
 						</ul>
 					</div>
@@ -243,9 +243,9 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 						<ul>
 							<li><a href="javascript:toggleMenu();" alt="Lukk meny"           class="exit-menu-link"     data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"> </a></li>
 							<li><a href="#settings-page"           alt="Innstillinger"       class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
-							<li><a href="#metadata-page"           alt="Om boken"            class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="paused"> </a></li>
+							<li><a href="#metadata-page"           alt="Om boken"            class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
 							<li><a href="#toc-page"                alt="Innholdsfortegnelse" class="toc-page-link"      data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
-							<li><a href="#pages-page"              alt="Sideliste"           class="pages-page-link"    data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="unmuted"> </a></li>
+							<li><a href="#pages-page"              alt="Sideliste"           class="pages-page-link"    data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
 						</ul>
 					</div>
 				</div>
@@ -276,9 +276,9 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 						<ul>
 							<li><a href="javascript:toggleMenu();" alt="Lukk meny"           class="exit-menu-link"     data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"> </a></li>
 							<li><a href="#settings-page"           alt="Innstillinger"       class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
-							<li><a href="#metadata-page"           alt="Om boken"            class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="paused"> </a></li>
+							<li><a href="#metadata-page"           alt="Om boken"            class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
 							<li><a href="#toc-page"                alt="Innholdsfortegnelse" class="toc-page-link"      data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
-							<li><a href="#pages-page"              alt="Sideliste"           class="pages-page-link"    data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="unmuted"> </a></li>
+							<li><a href="#pages-page"              alt="Sideliste"           class="pages-page-link"    data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
 						</ul>
 					</div>
 				</div>
@@ -309,9 +309,9 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 						<ul>
 							<li><a href="javascript:toggleMenu();" alt="Lukk meny"           class="exit-menu-link"     data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"> </a></li>
 							<li><a href="#settings-page"           alt="Innstillinger"       class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
-							<li><a href="#metadata-page"           alt="Om boken"            class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="paused"> </a></li>
+							<li><a href="#metadata-page"           alt="Om boken"            class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
 							<li><a href="#toc-page"                alt="Innholdsfortegnelse" class="toc-page-link"      data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
-							<li><a href="#pages-page"              alt="Sideliste"           class="pages-page-link"    data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="unmuted"> </a></li>
+							<li><a href="#pages-page"              alt="Sideliste"           class="pages-page-link"    data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
 						</ul>
 					</div>
 				</div>
@@ -342,9 +342,9 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 						<ul>
 							<li><a href="javascript:toggleMenu();" alt="Lukk meny"           class="exit-menu-link"     data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"> </a></li>
 							<li><a href="#settings-page"           alt="Innstillinger"       class="settings-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
-							<li><a href="#metadata-page"           alt="Om boken"            class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="paused"> </a></li>
+							<li><a href="#metadata-page"           alt="Om boken"            class="metadata-page-link" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
 							<li><a href="#toc-page"                alt="Innholdsfortegnelse" class="toc-page-link"      data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
-							<li><a href="#pages-page"              alt="Sideliste"           class="pages-page-link"    data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade" class="unmuted"> </a></li>
+							<li><a href="#pages-page"              alt="Sideliste"           class="pages-page-link"    data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>" data-transition="fade"> </a></li>
 						</ul>
 					</div>
 				</div>
