@@ -31,3 +31,6 @@ syntax: regexp
 (^|/)profiles/
 (^|/)player/logs/
 (^|/)player/prepare/temp/
+
+# ignore custom configuration files
+(^|/)player/config/.*(?!example)$

@@ -53,12 +53,13 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
         <base href="." />
         <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
         <meta charset="utf-8" />
-		<title>NLBdirekte v<?php echo $version;?></title>
+		<title>NLBdirekte</title>
 		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 		
 		<!-- The code recieved from the library system, used to validate the session -->
 		<script type="text/javascript" charset="utf-8">
 		/* <![CDATA[ */
+			var nlbdirekteVersion = '<?php echo $version;?>';
 			var ticket = '<?php echo $_REQUEST['ticket']; ?>';
 			var launchTime = '<?php echo $launchTime; ?>';
 		/* ]]> */
@@ -88,7 +89,9 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 		<link type="text/css" href="css/NLBdirekte.css" rel="stylesheet" />
 		<link type="text/css" href="css/Daisy202Book.css" rel="stylesheet" />
 		<script type="text/javascript" src="js/common.js"></script>
-		<script type="text/javascript" src="config/config.js"></script>
+		<?php if (file_exists('config/config.js')) { ?>
+			<script type="text/javascript" src="config/config.js"></script>
+		<?php } ?>
 		
 		<!-- Logging framework -->
 		<script type="text/javascript" src="js/javascript-stacktrace/stacktrace.js"></script>

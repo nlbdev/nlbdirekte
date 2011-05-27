@@ -13,7 +13,7 @@ else
 list($user, $book) = decodeTicket($_REQUEST['ticket']);
 authorize($user,$book,isset($_REQUEST['session'])?$_REQUEST['session']:'',false);
 
-# use launchTime to put log entries in its own log
+// use launchTime to put log entries in its own log
 $logfile = microtimeAndUsername2logfile(isset($_REQUEST['launchTime'])?$_REQUEST['launchTime']:0,$user);
 
 // Make sure that the patron has a profile directory
@@ -31,10 +31,10 @@ if (!$book or !file_exists(fix_directory_separators("$shared/$book"))) {
 	if ($debug) trigger_error("book with bookId $book does not exist in the location ".fix_directory_separators("$shared/$book"));
 	$result = array(
 		"ready" => false,
-		"state" => "book does not exist",
-		"progress" => 0
+		"state" => "DOES_NOT_EXIST",
+		"message" => "The book does not exist in storage."
 	);
-	echo json_or_jsonp($result);
+	echo json_or_jsonp(prepareStruct($result));
 	trigger_error("JSON-PROGRESS:".json_encode($result));
 }
 
@@ -63,12 +63,12 @@ else if (!$userHasRunningProcess and (
 	}
 	$progress = array(
 		"ready" => false,
-		"state" => "a book is being prepared",
+		"state" => "STARTED",
+		"message" => "The book started preparing.",
 		"progress" => 0,
-		"startedTime" => time(),
-		"estimatedRemainingTime" => 120
+		"startedTime" => time()
 	);
-	echo json_or_jsonp($progress);
+	echo json_or_jsonp(prepareStruct($progress));
 	trigger_error("JSON-PROGRESS:".json_encode($progress));
 }
 
@@ -77,8 +77,9 @@ else if ($userHasRunningProcess) {
 	if ($debug) trigger_error("a book is already being prepared; will not start a new process.");
 	$progress = getProgress($user, $book);
 	$progress['ready'] = false;
-	$progress['state'] = "a book is being prepared";
-	echo json_or_jsonp($progress);
+	$progress['state'] = "PREPARING";
+	$progress['message'] = "The book is being prepared.";
+	echo json_or_jsonp(prepareStruct($progress));
 	trigger_error("JSON-PROGRESS:".json_encode($progress));
 }
 
@@ -87,10 +88,12 @@ else {
 	trigger_error("book $book is ready for user $user");
 	$progress = array(
 		"progress" => 100,
+		"estimatedRemainingTime" => 0,
 		"ready" => true,
-		"state" => "a book is ready for playback"
+		"state" => "READY",
+		"message" => "The book is ready for playback."
 	);
-	echo json_or_jsonp($progress);
+	echo json_or_jsonp(prepareStruct($progress));
 	trigger_error("JSON-PROGRESS:".json_encode($progress));
 }
 
@@ -187,14 +190,14 @@ function execCalabashInBackground($args, $catalog = NULL) {
 				$pid = $pidAfter;
 			}
 			else {
-				if ($debug) trigger_error("execInBackground(): Multiple new ".($isWindows?"Java":"Calabash")."-processes found! (found $nameAfter with PID = $pidAfter)");
-				$pid = -2;
+				trigger_error("execInBackground(): Warning: found multiple new ".($isWindows?"Java":"Calabash")."-processes; using the one with the highest PID! (found $nameAfter with PID = $pidAfter)");
+				$pid = max($pid,$pidAfter);
 			}
 		}
 	}
 	if ($debug) {
 		switch ($pid) {
-		case -2: trigger_error("execInBackground(): Warning: Unable to determine the correct PID. (Multiple new processes found)"); break;
+		//case -2: trigger_error("execInBackground(): Warning: Unable to determine the correct PID. (Multiple new processes found)"); break;
 		case -1: trigger_error("execInBackground(): Warning: Unable to determine the correct PID. (No new processes found)"); break;
 		case 0: trigger_error("execInBackground(): Warning: Unable to determine the correct PID. (PID=0 identified as the process)"); break;
 		default:
@@ -319,7 +322,7 @@ function getProgress($user, $book) {
 		}
 		fclose($processesFile);
 	}
-	if (count($logfiles)==0) return array("progress"=>0, "startedTime"=>floor($launchTime), "estimatedRemainingTime"=>120);
+	if (count($logfiles)==0) return array("progress"=>0);
 	$progressLogs = array();
 	$pythonLogs = array();
 	foreach ($logfiles as $logfilename) {
@@ -335,7 +338,7 @@ function getProgress($user, $book) {
 			}
 		}
 	}
-	if (count($pythonLogs)==0) return array("progress"=>0, "startedTime"=>floor($launchTime), "estimatedRemainingTime"=>120);
+	if (count($pythonLogs)==0) return array("progress"=>0);
 	foreach ($pythonLogs as $pythonlog => $requestTime) {
 		if (file_exists(fix_directory_separators("$pythonlog")) and $file = file(fix_directory_separators("$pythonlog"))) {
 			foreach ($file as $logEntry) {
@@ -348,8 +351,14 @@ function getProgress($user, $book) {
 				}
 			}
 		}
+		else if (count($progressLogs)==0) {
+			$ret = array("progress"=>min(10,(date("U")-$requestTime)/2.), "estimatedRemainingTime"=>-1, "timeSpent"=>date("U")-$requestTime);
+			if ($ret['timeSpent'] > 0 and $ret['progress'] > 0.1)
+				$ret['estimatedRemainingTime'] = $ret['timeSpent']/($ret['progress']/100.) - $ret['timeSpent'];
+			return $ret;
+		}
 	}
-	if (count($progressLogs)==0) return array("progress"=>0, "startedTime"=>floor($launchTime), "estimatedRemainingTime"=>120);
+	if (count($progressLogs)==0) return array("progress"=>0);
 	// sort logs by requestTime, then logTime
 	function logCmp($a, $b) {
 		if ($a['requestTime'] == $b['requestTime']) {
@@ -366,42 +375,50 @@ function getProgress($user, $book) {
 		return ($a['requestTime'] < $b['requestTime']) ? -1 : 1;
 	}
 	usort($progressLogs, "logCmp");
-	$firstProgressAboveZero;
+	$logTimeOfFirstProgressAboveZero;
+	$progressOfLast6090Progress; // "6090"="outside of the range [60,90>"
+	$timeOfLast6090Progress;
 	$progressLogCount = count($progressLogs);
+	$startTime = floatval($progressLogs[$progressLogCount-1]['requestTime']);
 	foreach ($progressLogs as $progressLog) {
 		if ($progressLog['startTime'] != $progressLogs[$progressLogCount-1]['startTime'])
 			continue;
 		if (preg_match('/^.*:(.*)%$/', $progressLog['message'], $matches)) {
 			if (floatval($matches[1]) >= 0.001) {
-				$firstProgressAboveZero = $progressLog['logTime'];
+				$logTimeOfFirstProgressAboveZero = $progressLog['logTime'];
 				break;
 			}
 		}
 	}
-	if (preg_match('/^.*:(.*)%$/', $progressLogs[$progressLogCount-1]['message'], $matches)) {
-		$lastProgress = floatval($matches[1])/100;
-		$lastTime = floatval($progressLogs[$progressLogCount-1]['logTime']);
-		$startTime = floatval($progressLogs[$progressLogCount-1]['requestTime']);
-		$nowTime = date("U");
-		$nowProgress = $lastProgress;
-		$estimatedRemainingTime = 120;
-		try {
-			$damping = 0.6;
-			$nowProgress = 1 - (1-$lastProgress)*exp($damping*$lastProgress*(1 - ($nowTime-$startTime)/($lastTime-$startTime)));
-			if ($lastTime - $firstProgressAboveZero > 1)
-				$estimatedRemainingTime = ($nowTime-$startTime)/$nowProgress*(1.-$nowProgress)*(1.-$nowProgress)*2.;
-		} catch (Exception $e) {}
-		$progress = array(
-			"progress" => $nowProgress*100,
-			"startedTime" => $progressLogs[$progressLogCount-1]['requestTime'],
-			"estimatedRemainingTime" => $estimatedRemainingTime
-		);
-		if ($debug) trigger_error(json_or_jsonp($progress));
-		return $progress;
-	} else {
-		trigger_error("Unable to parse progress: ".$progressLogs[$progressLogCount-1]['message']);
-		return array("progress"=>0, "startedTime"=>floor($startTime), "estimatedRemainingTime"=>120);
+	foreach (array_reverse($progressLogs) as $progressLog) {
+		if ($progressLog['startTime'] != $progressLog[$progressLogCount-1]['startTime'])
+			continue;
+		if (preg_match('/^.*:(.*)%$/', $progressLog['message'], $matches)) {
+			if (floatval($matches[1])/100. < 0.6 or floatval($matches[1])/100. >= 0.9) {
+				$progressOfLast6090Progress = floatval($matches[1])/100.;
+				$timeOfLast6090Progress = $progressLog['logTime'];
+				break;
+			}
+		}
 	}
+	/*
+	  x0: last progress not in range [60%,90%>
+	  x1: estimated current progress from 0.0 to 1.0 (0%-100%)
+	  t0: time in seconds corresponding to x0, counted since start time
+	  t1: current time in seconds since start time
+	  t2: estimated total time / end time in seconds counted since start time
+	*/
+	$x0 = $progressOfLast6090Progress;
+	$t0 = $timeOfLast6090Progress - $startTime;
+	$t1 = date("U") - $startTime;
+	$t2 =  (
+		($x0 < 0.01) ? -1 : (
+		($x0 < 0.10) ? (0.5*$t0/$x0) : (
+		($x0 < 0.95) ? (-3*$t0/log(1-$x0)) : (
+			       (max(1,min(10,$t1/$t0)) + $t0)
+		))));
+	$x1 = min(1, $t1/$t2);
+	return array("progress"=>$x1*90+10, "startedTime"=>floor($startTime), "estimatedRemainingTime"=>($t2-$t1), "timeSpent"=>$t1);
 }
 
 function json_or_jsonp($structure) {
@@ -409,5 +426,18 @@ function json_or_jsonp($structure) {
 		return $_REQUEST['callback'].'('.json_encode($structure).')';
 	else
 		return json_encode($structure);
+}
+
+function prepareStruct($struct) {
+	$fixedStruct = array(
+		"ready" => (isset($struct['ready'])?$struct['ready']:false),
+		"state" => (isset($struct['state'])?$struct['state']:""),
+		"progress" => (isset($struct['progress'])?$struct['progress']:0),
+		"startedTime" => (isset($struct['startedTime'])?$struct['startedTime']:time()),
+		"estimatedRemainingTime" => (isset($struct['estimatedRemainingTime'])?$struct['estimatedRemainingTime']:-1),
+		"message" => (isset($struct['message'])?$struct['message']:"")
+	);
+	$fixedStruct['timeSpent'] = (isset($struct['timeSpent'])?$struct['timeSpent']:(time()-$fixedStruct['startedTime']));
+	return $fixedStruct;
 }
 ?>

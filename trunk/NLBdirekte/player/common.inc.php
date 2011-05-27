@@ -1,9 +1,11 @@
 <?php
 
 # version of NLBdirekte
-$version = '0.25';
+$version = '1.0.0';
 
-include('config/config.inc.php'); // import users config-file
+# import users config-file
+if (file_exists('config/config.inc.php'))
+	include('config/config.inc.php');
 
 # ---- default configuration variables ----
 
@@ -222,6 +224,7 @@ function logMessage($log) {
 	$log_string = preg_replace('/\r?\n/', '', $log_string);
 	$fd = fopen(fix_directory_separators($logfile), "a");
 	fwrite($fd, $log_string."\n");
+	fflush($fd);
 	fclose($fd);
 }
 ?>
