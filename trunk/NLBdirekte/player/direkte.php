@@ -45,6 +45,11 @@ logMessage(array(
 
 $iconpos = $browser['isMobileDevice']?'notext':'top';
 
+if (!isset($_REQUEST['launchTime'])) {
+	include('browsersupported.inc.php');
+	browserSupported($browser, $launchTime);
+}
+
 ?><!doctype html>
 <html class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
     <head>
@@ -62,6 +67,7 @@ $iconpos = $browser['isMobileDevice']?'notext':'top';
 			var nlbdirekteVersion = '<?php echo $version;?>';
 			var ticket = '<?php echo $_REQUEST['ticket']; ?>';
 			var launchTime = '<?php echo $launchTime; ?>';
+			var browscap = <?php echo json_encode($browser);?>;
 		/* ]]> */
 		</script>
 		
