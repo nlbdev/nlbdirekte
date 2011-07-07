@@ -86,11 +86,19 @@ if (!isset($_REQUEST['launchTime'])) {
 		}
 		</script>
 		
-		<!-- jQuery Mobile -->
-		<link rel="stylesheet" href="css/jQuery/jquery.mobile-1.0a4.1<?php echo $debug?'':'.min';?>.css" />
-		<script type="text/javascript" src="js/jQuery/jquery-1.5.2<?php echo $debug?'':'.min';?>.js"></script>
-		<script type="text/javascript" src="js/jQuery/jquery.mobile-1.0a4.1<?php echo $debug?'':'.min';?>.js"></script>
-		
+		<!-- jQuery + jQuery Mobile -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery<?php echo $debug?'':'.min';?>.js"></script>
+		<script>window.jQuery || document.write("<script src='js/jQuery/jquery-1.6.2<?php echo $debug?'':'.min';?>.js'>\x3C/script>")</script>
+		<script src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1<?php echo $debug?'':'.min';?>.js"></script>
+		<script>
+			if (typeof jQuery.mobile == 'undefined') {
+				document.write("<script src='js/jQuery/jquery.mobile-1.0b1<?php echo $debug?'':'.min';?>.js'>\x3C/script>");
+				document.write("<link rel='stylesheet' href='css/jQuery/jquery.mobile-1.0b1<?php echo $debug?'':'.min';?>.css' />");
+			} else {
+				document.write("<link rel='stylesheet' href='http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1<?php echo $debug?'':'.min';?>.css' />");
+			}
+		</script>
+
 		<!-- NLBdirekte; stylesheets and configuration (default and custom) -->
 		<link type="text/css" href="css/NLBdirekte.css" rel="stylesheet" />
 		<link type="text/css" href="css/Daisy202Book.css" rel="stylesheet" />
