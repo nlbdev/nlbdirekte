@@ -6,11 +6,11 @@ var lastMenuPage = 'settings-page';
 function toggleMenu() {
 	if (player !== null && player.doneLoading) {
 		if ($.mobile.activePage[0].id==='content-page') {
-			$.mobile.changePage(lastMenuPage,"slide");
+			$.mobile.changePage('#'+lastMenuPage,"slide");
 			log.debug('toggled page from content-page to '+lastMenuPage);
 		} else {
 			lastMenuPage = $.mobile.activePage[0].id;
-			$.mobile.changePage('content-page',"slide",true);
+			$.mobile.changePage('#content-page',"slide",true);
 			log.debug('toggled page from '+lastMenuPage+' to content-page');
 		}
 	}

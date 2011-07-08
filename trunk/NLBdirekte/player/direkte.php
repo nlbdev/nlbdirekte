@@ -272,9 +272,9 @@ if (!isset($_REQUEST['launchTime'])) {
 						<ul>
 							<li class="exit-menu-link">    <input type="button" onclick="toggleMenu();"                                value="Tilbake"             alt="Lukk meny"           data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
 							<li class="settings-page-link"><input type="button" onclick=""                                             value="Innstillinger"       alt="Innstillinger"       data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
-							<li class="metadata-page-link"><input type="button" onclick="$.mobile.changePage('metadata-page','fade');" value="Om boken"            alt="Om boken"            data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
-							<li class="toc-page-link">     <input type="button" onclick="$.mobile.changePage('toc-page','fade');"      value="Innholdsfortegnelse" alt="Innholdsfortegnelse" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
-							<li class="pages-page-link">   <input type="button" onclick="$.mobile.changePage('pages-page','fade');"    value="Sideliste"           alt="Sideliste"           data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
+							<li class="metadata-page-link"><input type="button" onclick="$.mobile.changePage('#metadata-page','fade');" value="Om boken"            alt="Om boken"            data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
+							<li class="toc-page-link">     <input type="button" onclick="$.mobile.changePage('#toc-page','fade');"      value="Innholdsfortegnelse" alt="Innholdsfortegnelse" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
+							<li class="pages-page-link">   <input type="button" onclick="$.mobile.changePage('#pages-page','fade');"    value="Sideliste"           alt="Sideliste"           data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
 						</ul>
 					</div>
 				</div>
@@ -304,10 +304,10 @@ if (!isset($_REQUEST['launchTime'])) {
 					<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 						<ul>
 							<li class="exit-menu-link">    <input type="button" onclick="toggleMenu();"                                value="Tilbake"             alt="Lukk meny"           data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
-							<li class="settings-page-link"><input type="button" onclick="$.mobile.changePage('settings-page','fade');" value="Innstillinger"       alt="Innstillinger"       data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
+							<li class="settings-page-link"><input type="button" onclick="$.mobile.changePage('#settings-page','fade');" value="Innstillinger"       alt="Innstillinger"       data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
 							<li class="metadata-page-link"><input type="button" onclick=""                                             value="Om boken"            alt="Om boken"            data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
-							<li class="toc-page-link">     <input type="button" onclick="$.mobile.changePage('toc-page','fade');"      value="Innholdsfortegnelse" alt="Innholdsfortegnelse" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
-							<li class="pages-page-link">   <input type="button" onclick="$.mobile.changePage('pages-page','fade');"    value="Sideliste"           alt="Sideliste"           data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
+							<li class="toc-page-link">     <input type="button" onclick="$.mobile.changePage('#toc-page','fade');"      value="Innholdsfortegnelse" alt="Innholdsfortegnelse" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
+							<li class="pages-page-link">   <input type="button" onclick="$.mobile.changePage('#pages-page','fade');"    value="Sideliste"           alt="Sideliste"           data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
 						</ul>
 					</div>
 				</div>
@@ -337,10 +337,10 @@ if (!isset($_REQUEST['launchTime'])) {
 					<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 						<ul>
 							<li class="exit-menu-link">    <input type="button" onclick="toggleMenu();"                                value="Tilbake"             alt="Lukk meny"           data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
-							<li class="settings-page-link"><input type="button" onclick="$.mobile.changePage('settings-page','fade');" value="Innstillinger"       alt="Innstillinger"       data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
-							<li class="metadata-page-link"><input type="button" onclick="$.mobile.changePage('metadata-page','fade');" value="Om boken"            alt="Om boken"            data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
+							<li class="settings-page-link"><input type="button" onclick="$.mobile.changePage('#settings-page','fade');" value="Innstillinger"       alt="Innstillinger"       data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
+							<li class="metadata-page-link"><input type="button" onclick="$.mobile.changePage('#metadata-page','fade');" value="Om boken"            alt="Om boken"            data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
 							<li class="toc-page-link">     <input type="button" onclick=""                                             value="Innholdsfortegnelse" alt="Innholdsfortegnelse" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
-							<li class="pages-page-link">   <input type="button" onclick="$.mobile.changePage('pages-page','fade');"    value="Sideliste"           alt="Sideliste"           data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
+							<li class="pages-page-link">   <input type="button" onclick="$.mobile.changePage('#pages-page','fade');"    value="Sideliste"           alt="Sideliste"           data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
 						</ul>
 					</div>
 				</div>
@@ -370,9 +370,9 @@ if (!isset($_REQUEST['launchTime'])) {
 					<div data-role="navbar" role="navigation" class="nav-nlbdirekte">
 						<ul>
 							<li class="exit-menu-link">    <input type="button" onclick="toggleMenu();"                                value="Tilbake"             alt="Lukk meny"           data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
-							<li class="settings-page-link"><input type="button" onclick="$.mobile.changePage('settings-page','fade');" value="Innstillinger"       alt="Innstillinger"       data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
-							<li class="metadata-page-link"><input type="button" onclick="$.mobile.changePage('metadata-page','fade');" value="Om boken"            alt="Om boken"            data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
-							<li class="toc-page-link">     <input type="button" onclick="$.mobile.changePage('toc-page','fade');"      value="Innholdsfortegnelse" alt="Innholdsfortegnelse" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
+							<li class="settings-page-link"><input type="button" onclick="$.mobile.changePage('#settings-page','fade');" value="Innstillinger"       alt="Innstillinger"       data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
+							<li class="metadata-page-link"><input type="button" onclick="$.mobile.changePage('#metadata-page','fade');" value="Om boken"            alt="Om boken"            data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
+							<li class="toc-page-link">     <input type="button" onclick="$.mobile.changePage('#toc-page','fade');"      value="Innholdsfortegnelse" alt="Innholdsfortegnelse" data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
 							<li class="pages-page-link">   <input type="button" onclick=""                                             value="Sideliste"           alt="Sideliste"           data-role="button" data-icon="custom" data-iconpos="<?php echo $iconpos;?>"/></li>
 						</ul>
 					</div>
