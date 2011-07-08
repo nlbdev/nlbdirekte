@@ -100,16 +100,16 @@ if (!isset($_REQUEST['launchTime'])) {
 		</script>
 
 		<!-- NLBdirekte; stylesheets and configuration (default and custom) -->
-		<link type="text/css" href="css/NLBdirekte.css" rel="stylesheet" />
-		<link type="text/css" href="css/Daisy202Book.css" rel="stylesheet" />
-		<script type="text/javascript" src="js/common.js"></script>
+		<link type="text/css" href="css/NLBdirekte.css?v=<?php echo $version;?>" rel="stylesheet" />
+		<link type="text/css" href="css/Daisy202Book.css?v=<?php echo $version;?>" rel="stylesheet" />
+		<script type="text/javascript" src="js/common.js?v=<?php echo $version;?>"></script>
 		<?php if (file_exists('config/config.js')) { ?>
-			<script type="text/javascript" src="config/config.js"></script>
+			<script type="text/javascript" src="config/config.js?v=<?php echo $version;?>"></script>
 		<?php } ?>
 		
 		<!-- Logging framework -->
-		<script type="text/javascript" src="js/javascript-stacktrace/stacktrace.js"></script>
-		<script type="text/javascript" src="js/log4javascript/log4javascript<?php echo $debug?'_uncompressed':'';?>.js"></script>
+		<script type="text/javascript" src="js/javascript-stacktrace/stacktrace.js?v=<?php echo $version;?>"></script>
+		<script type="text/javascript" src="js/log4javascript/log4javascript<?php echo $debug?'_uncompressed':'';?>.js?v=<?php echo $version;?>"></script>
 		<script type="text/javascript">
 			//<![CDATA[
 			log4javascript.logLog.setQuietMode(true);
@@ -154,7 +154,7 @@ if (!isset($_REQUEST['launchTime'])) {
 		</script>
 		
 		<!-- SoundManager 2 -->
-		<script type="text/javascript" src="js/soundmanager/script/soundmanager2<?php echo $debug?'':'-jsmin';?>.js"></script>
+		<script type="text/javascript" src="js/soundmanager/script/soundmanager2<?php echo $debug?'':'-jsmin';?>.js?v=<?php echo $version; ?>"></script>
 		<script type="text/javascript">
 			var soundManagerBackend = 'unknown';
 			$(function(){
@@ -188,15 +188,15 @@ if (!isset($_REQUEST['launchTime'])) {
 			The server is an interface to a specific server that resolves URLs amongst other things.
 			The loader is an interface for a specific format that parses books into the player
 			The player is the object that handles the playback logic, including synchronization -->
-		<script type="text/javascript" src='js/NLBServer.js'></script>
-		<script type="text/javascript" src='js/Daisy202Loader.js'></script>
-		<script type="text/javascript" src='js/SmilPlayer.js'></script>
+		<script type="text/javascript" src='js/NLBServer.js?v=<?php echo $version;?>'></script>
+		<script type="text/javascript" src='js/Daisy202Loader.js?v=<?php echo $version;?>'></script>
+		<script type="text/javascript" src='js/SmilPlayer.js?v=<?php echo $version;?>'></script>
 		
 		<!-- Bookmarks synchronization -->
-		<script type="text/javascript" src="js/Bookmarks.js"></script>
+		<script type="text/javascript" src="js/Bookmarks.js?v=<?php echo $version;?>"></script>
 		
 		<!-- (loads the player, updates the graphics etc.) -->
-		<script type="text/javascript" src="js/SmilPlayerUI.js"></script>
+		<script type="text/javascript" src="js/SmilPlayerUI.js?v=<?php echo $version;?>"></script>
     </head>
     <body class="ui-mobile-viewport">
 		
