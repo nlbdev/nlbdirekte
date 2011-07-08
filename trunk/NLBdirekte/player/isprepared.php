@@ -313,7 +313,7 @@ function getProgress($user, $book) {
 	$processesFilename = str_replace("\\","/","$profiles/$user/processes.csv");
 	if (file_exists($processesFilename)) {
 		$processesFile = fopen($processesFilename, "rb");
-		while (($csvLine = fgetcsv($processesFile, 1000)) !== false) {
+		while (($csvLine = fgetcsv($processesFile, 10000)) !== false) {
 			if ($csvLine[3] == $book) {
 				$logfiles[] = microtimeAndUsername2logfile($csvLine[2],$user);
 				if ($csvLine[2] < $launchTime)
@@ -322,7 +322,20 @@ function getProgress($user, $book) {
 		}
 		fclose($processesFile);
 	}
-	if (count($logfiles)==0) return array("progress"=>0);
+	if (count($logfiles)==0) {
+		if ($debug) {
+			$debugString = "getProgress($user,$book): No logfiles found. $processesFilename:\n";
+			if (!file_exists($processesFilename)) {
+				$debugString .= "does not exist";
+			} else {
+				$processesFile = fopen($processesFilename, "rb");
+				$debugString .= fread($fh, filesize($processesFilename))."\n";
+				fclose($processesFile);
+			}
+			trigger_error($debugString);
+		}
+		return array("progress"=>0);
+	}
 	$progressLogs = array();
 	$pythonLogs = array();
 	foreach ($logfiles as $logfilename) {
@@ -338,7 +351,11 @@ function getProgress($user, $book) {
 			}
 		}
 	}
-	if (count($pythonLogs)==0) return array("progress"=>0);
+	if (count($pythonLogs)==0) {
+		if ($debug)
+			trigger_error("getProgress($user,$book): No python logs found in log(s) (".implode(' , ',$logfiles).")");
+		return array("progress"=>0);
+	}
 	foreach ($pythonLogs as $pythonlog => $requestTime) {
 		if (file_exists(fix_directory_separators("$pythonlog")) and $file = file(fix_directory_separators("$pythonlog"))) {
 			foreach ($file as $logEntry) {
@@ -351,14 +368,17 @@ function getProgress($user, $book) {
 				}
 			}
 		}
-		else if (count($progressLogs)==0) {
-			$ret = array("progress"=>min(10,(date("U")-$requestTime)/2.), "estimatedRemainingTime"=>-1, "timeSpent"=>date("U")-$requestTime);
-			if ($ret['timeSpent'] > 0 and $ret['progress'] > 0.1)
-				$ret['estimatedRemainingTime'] = $ret['timeSpent']/($ret['progress']/100.) - $ret['timeSpent'];
-			return $ret;
-		}
 	}
-	if (count($progressLogs)==0) return array("progress"=>0);
+	if (count($progressLogs)==0) {
+		if ($debug)
+			trigger_error("getProgress($user,$book): No progress logs found in python log(s) (".implode(' , ',$pythonLogs).")\ndate(\"U\")=".date("U")." , \$requestTime=$requestTime");
+		$ret = array("progress"=>min(10,(date("U")-$requestTime)/2.), "estimatedRemainingTime"=>-1, "timeSpent"=>date("U")-$requestTime);
+		if ($ret['timeSpent'] > 0 and $ret['progress'] > 0.1)
+			$ret['estimatedRemainingTime'] = $ret['timeSpent']/($ret['progress']/100.) - $ret['timeSpent'];
+			if ($debug)
+				trigger_error("getProgress($user,$book): Setting estimatedRemainingTime to $estimatedRemainingTime (timeSpent=".$ret['timeSpent']." , progress=".$ret['progress'].")");
+		return $ret;
+	}
 	// sort logs by requestTime, then logTime
 	function logCmp($a, $b) {
 		if ($a['requestTime'] == $b['requestTime']) {
@@ -408,9 +428,9 @@ function getProgress($user, $book) {
 	  t1: current time in seconds since start time
 	  t2: estimated total time / end time in seconds counted since start time
 	*/
-	$x0 = $progressOfLast6090Progress;
-	$t0 = $timeOfLast6090Progress - $startTime;
-	$t1 = date("U") - $startTime;
+	$x0 = min(0.9,max(0.6,$progressOfLast6090Progress));
+	$t0 = max(0,$timeOfLast6090Progress - $startTime);
+	$t1 = max(0,date("U") - $startTime);
 	$t2 =  (
 		($x0 < 0.01) ? -1 : (
 		($x0 < 0.10) ? (0.5*$t0/$x0) : (
@@ -418,7 +438,10 @@ function getProgress($user, $book) {
 			       (max(1,min(10,$t1/$t0)) + $t0)
 		))));
 	$x1 = min(1, $t1/$t2);
-	return array("progress"=>$x1*90+10, "startedTime"=>floor($startTime), "estimatedRemainingTime"=>($t2-$t1), "timeSpent"=>$t1);
+	if ($debug) {
+		trigger_error("getProgress($user,$book): Estimating progress and remaining time using formula.\nprogressOfLast6090Progress=$progressOfLast6090Progress , timeOfLast6090Progress=$timeOfLast6090Progress , date(\"U\")=".date("U")." , x0=$x0 , t0=$t0 , t1=$t1 , t2=$t2 , x1=$x1");
+	}
+	return array("progress"=>min(99,$x1*90+10), "startedTime"=>floor($startTime), "estimatedRemainingTime"=>max(-1,$t2-$t1), "timeSpent"=>max(0,$t1));
 }
 
 function json_or_jsonp($structure) {

@@ -1,7 +1,7 @@
 <?php
 
 # version of NLBdirekte
-$version = '1.2.0';
+$version = '1.2.1';
 
 # import users config-file
 if (file_exists('config/config.inc.php'))
@@ -71,7 +71,10 @@ function fix_directory_separators($filepath) {
 
 function microtimeAndUsername2logfile($time,$user) {
 	global $logdir;
-	return $logdir.'/log_'.date("Y-m-d.H-i-s.",floor($time)).preg_replace('/^0.(...).*$/','$1',strval($time-floor($time))).'_'.$user.'.log';
+	if ($time)
+		return $logdir.'/log_'.date("Y-m-d.H-i-s.",floor($time)).preg_replace('/^0\.(...).*$/','$1',strval($time-floor($time))).'_'.$user.'.log';
+	else
+		return $logdir.'/log_'.date("Y-m-d").'_'.$user.'.log';
 }
 
 function microtime2isostring($time,$utc=false) {
