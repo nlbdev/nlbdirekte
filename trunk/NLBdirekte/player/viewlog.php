@@ -5,6 +5,21 @@
 $debug = false;
 include('common.inc.php');
 
+$human = isset($_REQUEST['human']) || !isset($_REQUEST['robot']);
+
+function xml($value) {
+	$value = str_replace('"','&quot;',$value);
+	$value = str_replace('&','&amp;',$value);
+	$value = str_replace("'",'&apos;',$value);
+	$value = str_replace('<','&lt;',$value);
+	$value = str_replace('>','&gt;',$value);
+	return $value;
+}
+
+function row($name, $value) {
+	echo utf8_encode("\t<tr>\n\t\t<td>".xml($name)."</td>\n\t\t<td>".xml($value)."</td>\n\t</tr>\n");
+}
+
 function prettyTimeToDate($microtime) {
 	$time = date("j.",floor($microtime));
 	switch (date("n",floor($microtime))) {
@@ -20,7 +35,7 @@ function prettyTimeToDate($microtime) {
 	case 10: $time .= "oktober"; break;
 	case 11: $time .= "november"; break;
 	case 12: $time .= "desember"; break;
-	default: $time .= "ukjent-måned";
+	default: $time .= utf8_encode("ukjent-måned");
 	}
 	$time .= date(" Y",(floor($microtime)+intval(date("Z",floor($microtime)))));
 	return $time;
@@ -41,13 +56,20 @@ function prettyTimeToMillisecond($microtime) {
 	return $time;
 }
 
-header('Content-Type: text/html; charset=utf-8');
+if (!$human) {
+	header('Content-Type: text/xml; charset=utf-8');
+	echo utf8_encode("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+	echo utf8_encode("<html xmlns=\"http://www.w3.org/1999/xhtml\">\n");
+	echo utf8_encode("<head><title>Log for robots</title></head>\n");
+	echo utf8_encode("<body>\n");
+} else {
+	header('Content-Type: text/html; charset=utf-8');
 ?><!doctype html>
 <html>
 <head>
 	<title>Logg for NLBdirekte</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta charset="utf-8" />
+	<meta charset="utf-8" />
 	<style type="text/css">
 		header h1 {
 			color: #333;
@@ -143,7 +165,7 @@ header('Content-Type: text/html; charset=utf-8');
 	</style>
 </head>
 <body style="font-family: helvetica, arial, sans-serif;">
-<?php
+<?php }
 
 if (isset($_REQUEST['type'])) {
 	switch ($_REQUEST['type']) {
@@ -151,14 +173,14 @@ if (isset($_REQUEST['type'])) {
 		case 'day': echoDayLog(); break;
 		case 'calabash': echoCalabashLog(); break;
 		case 'python': echoPythonLog(); break;
-		default: echo '<p><em>Unknown log type: '.$_REQUEST['type'].'.</em></p>';
+		default: echo '<p><em>Unknown log type: '.utf8_encode($_REQUEST['type']).'.</em></p>';
 	}
 } else {
 	echo '<p><em>Log type not defined.</em></p>';
 }
 
 function echoSessionLog() {
-	global $logdir;
+	global $logdir, $human;
 	
 	$logname = $_REQUEST['logname'];
 	list($formatted_time, $userId) = explode('_',$logname);
@@ -179,12 +201,12 @@ function echoSessionLog() {
 	}
 	
 	// load common log entries belonging to the session log entries (only checks the current day)
-	if ($logFile = file(fix_directory_separators("$logdir/log_$date.log"))) {
+	if ($human and $logFile = file(fix_directory_separators("$logdir/log_$date.log"))) {
 		appendJsonLog($logFile, $log, $requestTimes, false, $pythonlogs, $calabashlogs, $bookId, $browser);
 	}
 	
 	// load python logs
-	foreach ($pythonlogs as $pythonlog => $requestTime) {
+	if ($human) foreach ($pythonlogs as $pythonlog => $requestTime) {
 		$beforeCount = count($log);
 		if ($logFile = file(fix_directory_separators("$pythonlog"))) {
 			appendJsonLog($logFile, $log);
@@ -195,7 +217,7 @@ function echoSessionLog() {
 	}
 	
 	// load calabash logs
-	foreach ($calabashlogs as $calabashlog => $requestTime) {
+	if ($human) foreach ($calabashlogs as $calabashlog => $requestTime) {
 		$beforeCount = count($log);
 		if ($logFile = file(fix_directory_separators("$calabashlog"))) {
 			appendCalabashLog($logFile, $log);
@@ -207,20 +229,28 @@ function echoSessionLog() {
 	
 	usort($log, "logCmp");
 	
+	if ($human) {
 	?><header class="page-header">
 		<h1>Logg for NLBdirekte</h1>
 	</header>
 	<hr/><?php
+	}
+	
+	if (!$human) echo "<table>\n";
 	echoSessionHeader($userId, $bookId, $log);
-	echo '<hr/>';
-	echo '<table><tr><td>';
+	if ($human) {
+		echo '<hr/>';
+		echo '<table><tr><td>';
+	}
 	echoBrowserInfo($browser);
-	echo '</td><td>';
+	if ($human) echo '</td><td>';
 	$progress = progressList($log);
 	echoProgress($progress);
-	echo '</td></tr></table>';
-	echo '<hr/>';
-	echoLog($log);
+	if ($human) {
+		echo '</td></tr></table>';
+		echo '<hr/>';
+	} else echo "</table>\n";
+	if ($human) echoLog($log);
 }
 
 function echoDayLog() {
@@ -405,6 +435,9 @@ function logCmp($a, $b) {
 }
 
 function echoSessionHeader($userId, $bookId, $log) {
+	global $human;
+	$logSpan = $log[count($log)-1]['requestTime']-$log[0]['requestTime'];
+	if ($human) {
 	?>
 	<header>
 		<table width="100%">
@@ -414,7 +447,7 @@ function echoSessionHeader($userId, $bookId, $log) {
 				<th>Lånernummer</th>
 			</tr>
 			<tr style="text-align: center; font-size: 1.5em; font-weight: bold;">
-				<td><?php echo $bookId;?><br/><div style="font-size: 0.5em; margin-left: auto; margin-right: auto; text-align: center;"><?php
+				<td><?php echo utf8_encode($bookId);?><br/><div style="font-size: 0.5em; margin-left: auto; margin-right: auto; text-align: center;"><?php
 					$dcLanguage = '';
 					$dcTitle = '';
 					$dcPublisher = '';
@@ -433,15 +466,15 @@ function echoSessionHeader($userId, $bookId, $log) {
 							}
 						}
 					}
-					if (!empty($dcTitle)) echo "Tittel: $dcTitle<br/>";
-					if (!empty($dcPublisher)) echo "Utgiver: $dcPublisher<br/>";
-					if (!empty($dcFormat)) echo "Format: $dcFormat<br/>";
-					if (!empty($dcType)) echo "Type: $dcType<br/>";
-					if (!empty($dcLanguage)) echo "Språk: $dcLanguage";
+					if (!empty($dcTitle)) echo utf8_encode("Tittel: $dcTitle<br/>");
+					if (!empty($dcPublisher)) echo utf8_encode("Utgiver: $dcPublisher<br/>");
+					if (!empty($dcFormat)) echo utf8_encode("Format: $dcFormat<br/>");
+					if (!empty($dcType)) echo utf8_encode("Type: $dcType<br/>");
+					if (!empty($dcLanguage)) echo utf8_encode("Språk: $dcLanguage");
 					?></div></td>
 				<td><nobr><?php echo prettyTimeToMinute($log[0]['requestTime']);?></nobr><br/>
 				<span style="font-size: 0.5em;">varighet: <?php
-					$logSpan = floor($log[count($log)-1]['requestTime']-$log[0]['requestTime']);
+					$logSpan = floor($logSpan);
 					$logSpanString = '';
 					if ($logSpan > 3600) $logSpanString .= floor($logSpan/3600)." timer, ";
 					$logSpan = $logSpan%3600;
@@ -450,23 +483,28 @@ function echoSessionHeader($userId, $bookId, $log) {
 					$logSpanString .= $logSpan." sekunder";
 					echo $logSpanString;
 				?></span></td>
-				<td><?php echo $userId;?></td>
+				<td><?php echo utf8_encode($userId);?></td>
 			</tr>
 		</table>
 	</header>
 	<?php
+	} else {
+		row('duration', $logSpan, '');
+		row('userId', $userId, '');
+	}
 }
 
 function echoBrowserInfo($browser) {
+	if ($human) {
 	?><section id="browser_info">
 		<table>
 		<tr class="general">
 			<td>Browser</td>
-			<td><img src="img/logsymbols/<?php echo $browser['Browser'];?>.png"/> <?php echo isset($browser["Parent"])?$browser["Parent"]:'';?></td>
+			<td><img src="img/logsymbols/<?php echo utf8_encode($browser['Browser']);?>.png"/> <?php echo isset($browser["Parent"])?utf8_encode($browser["Parent"]):'';?></td>
 		</tr>
 		<tr class="general">
 			<td>Platform</td>
-			<td><img src="img/logsymbols/<?php echo $browser['Platform'];?>.png"/> <?php echo isset($browser["Platform"])?$browser["Platform"]:'';?></td>
+			<td><img src="img/logsymbols/<?php echo utf8_encode($browser['Platform']);?>.png"/> <?php echo isset($browser["Platform"])?utf8_encode($browser["Platform"]):'';?></td>
 		</tr>
 		<tr class="general">
 			<td>Architecture</td>
@@ -491,7 +529,7 @@ function echoBrowserInfo($browser) {
 		<!--
 		<tr class="technical">
 			<td>User Agent</td>
-			<td><?php echo $browser["browser_name"];?></td>
+			<td><?php echo utf8_encode($browser["browser_name"]);?></td>
 		</tr>
 		<tr class="technical">
 			<td>Browser is alpha version</td>
@@ -564,7 +602,11 @@ function echoBrowserInfo($browser) {
 		-->
 		</table>
 	</section>
-	<?php
+	<?php } else {
+		foreach ($browser as $key => $value) {
+			row('browser.'.$key, $value, '');
+		}
+	}
 }
 
 function echoLog($log) {
@@ -596,7 +638,7 @@ function echoLog($log) {
 					<tr>
 						<td colspan="1" class="requestDivider"><b><nobr><?php echo prettyTimeToMillisecond($logEntry['requestTime']);?></nobr></b></th>
 						<td colspan="2" class="requestDivider"></td>
-						<td colspan="1" class="requestDivider"><b><nobr><?php echo $requestFile;?></nobr></b></th>
+						<td colspan="1" class="requestDivider"><b><nobr><?php echo utf8_encode($requestFile);?></nobr></b></th>
 						<td colspan="2" class="requestDivider"></td>
 					</tr>
 					<?php
@@ -606,13 +648,13 @@ function echoLog($log) {
 				<tr>
 					<!--td><nobr><?php echo prettyTimeToMillisecond($logEntry['logTime']);?></nobr></td-->
 					<td><nobr><?php echo prettyTimeToMillisecond($logEntry['eventTime']);?></nobr></td>
-					<td><?php echo $logEntry['language'];?></td>
-					<td><?php echo $logEntry['type'];?></td>
-					<td><?php echo preg_replace('/^.*[\\/\\\\]([^\\/\\\\]*)$/','$1',$logEntry['file']);?></td>
-					<td><?php echo $logEntry['line'];?></td>
+					<td><?php echo utf8_encode($logEntry['language']);?></td>
+					<td><?php echo utf8_encode($logEntry['type']);?></td>
+					<td><?php echo utf8_encode(preg_replace('/^.*[\\/\\\\]([^\\/\\\\]*)$/','$1',$logEntry['file']));?></td>
+					<td><?php echo utf8_encode(xml($logEntry['line']));?></td>
 					<td><pre><?php
 						if (is_string($logEntry['message']))
-							echo $logEntry['message'];
+							echo utf8_encode(xml($logEntry['message']));
 						else
 							var_dump($logEntry['message']);
 					?></td>
@@ -673,8 +715,10 @@ function progressList($log) {
 }
 
 function echoProgress($progress) {
+	global $human;
+	if ($human) {
 	echo '<table id="progress">';
-	echo '<tr><th>Tid</th><th>Fremdrift</th><th>Gjenstående</th></tr>';
+	echo utf8_encode('<tr><th>Tid</th><th>Fremdrift</th><th>Gjenstående</th></tr>');
 	foreach ($progress as $p) {
 		echo '<tr><td>';
 		echo round($p->requestTime-$progress[0]->requestTime,3);
@@ -685,9 +729,8 @@ function echoProgress($progress) {
 		echo '</td></tr>';
 	}
 	echo '</table>';
+	}
 }
 
-?>
-
-</body>
-</html>
+echo "</body>\n";
+echo "</html>\n";
