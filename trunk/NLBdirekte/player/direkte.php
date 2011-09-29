@@ -87,15 +87,15 @@ if (!isset($_REQUEST['launchTime'])) {
 		</script>
 		
 		<!-- jQuery + jQuery Mobile -->
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery<?php echo $debug?'':'.min';?>.js"></script>
-		<script>window.jQuery || document.write("<script src='js/jQuery/jquery-1.6.2<?php echo $debug?'':'.min';?>.js'>\x3C/script>")</script>
-		<script src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1<?php echo $debug?'':'.min';?>.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery<?php echo $debug?'':'.min';?>.js"></script>
+		<script>window.jQuery || document.write("<script src='js/jQuery/jquery-1.6.4<?php echo $debug?'':'.min';?>.js'>\x3C/script>")</script>
+		<script src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b3<?php echo $debug?'':'.min';?>.js"></script>
 		<script>
 			if (typeof jQuery.mobile == 'undefined') {
-				document.write("<script src='js/jQuery/jquery.mobile-1.0b1<?php echo $debug?'':'.min';?>.js'>\x3C/script>");
-				document.write("<link rel='stylesheet' href='css/jQuery/jquery.mobile-1.0b1<?php echo $debug?'':'.min';?>.css' />");
+				document.write("<script src='js/jQuery/jquery.mobile-1.0b3<?php echo $debug?'':'.min';?>.js'>\x3C/script>");
+				document.write("<link rel='stylesheet' href='css/jQuery/jquery.mobile-1.0b3<?php echo $debug?'':'.min';?>.css' />");
 			} else {
-				document.write("<link rel='stylesheet' href='http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1<?php echo $debug?'':'.min';?>.css' />");
+				document.write("<link rel='stylesheet' href='http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b3<?php echo $debug?'':'.min';?>.css' />");
 			}
 		</script>
 
