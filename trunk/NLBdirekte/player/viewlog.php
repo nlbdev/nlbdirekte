@@ -489,8 +489,9 @@ function echoSessionHeader($userId, $bookId, $log) {
 	</header>
 	<?php
 	} else {
-		row('duration', $logSpan, '');
+		row('bookId', $bookId, '');
 		row('userId', $userId, '');
+		row('duration', $logSpan, '');
 	}
 }
 
