@@ -132,7 +132,7 @@ echo "<table".($human?'id="logs"':'').">\n";
 	$logDirectoryHandle = opendir(fix_directory_separators($logdir));
 	$logFiles = array();
 	$files = 0;
-	while ($logFilename = readdir($logDirectoryHandle)) {
+	while (false !== ($logFilename = readdir($logDirectoryHandle))) {
 		if (preg_match('/log_(\d\d\d\d)-(\d\d)-(\d\d).(\d\d)-(\d\d)-(\d\d.\d\d\d)_(.*).log$/',$logFilename,$matches)) {
 			$logFiles[] = array(
 				"filename" => $logFilename,
