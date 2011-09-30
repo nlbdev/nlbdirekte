@@ -181,9 +181,9 @@ echo "<table".($human?'id="logs"':'').">\n";
 	
 	$pages = ceil(count($logFiles)/$logsPerPage);
 	$page = max(0,min((isset($_REQUEST['page'])?$_REQUEST['page']:0),$pages));
-//	if ($human) {
+	if ($human) {
 		$logFiles = array_splice($logFiles, $logsPerPage*$page, ($page<$pages?$logsPerPage:(count($logFiles)%$logsPerPage)));
-//	}
+	}
 	if ($human) { ?>
 		<tr>
 			<th><?php echo "Type" ?></th>
