@@ -186,7 +186,9 @@
         <p:with-option name="command" select="'python'">
             <p:pipe port="result" step="ncc-json"/>
         </p:with-option>
-        <p:with-option name="args" select="concat('prepare.py ',replace($tempDir,'^file:',''),' ',$python-log)">
+        <p:with-option name="args" select="concat('prepare.py ',
+													if (matches($tempDir,'file:/\w:/')) then replace(replace($tempDir,'^file:/(\w:)','$1'),'/','\\') else replace($tempDir,'^file:',''),
+													' ',$python-log)">
             <p:pipe port="result" step="smil-json"/>
         </p:with-option>
         <p:with-option name="result-is-xml" select="'false'"/>
@@ -197,13 +199,6 @@
         <xd:detail>This method is not thread-safe. However, Calabash is single-threaded (as of 2010) and runs all steps in sequence, so that a dependency on
             "prepare" can be introduced.</xd:detail>
     </p:documentation>
-    <p:sink>
-        <p:input port="source">
-            <p:pipe port="result" step="prepare"/>
-            <p:pipe port="result" step="ncc-json"/>
-            <p:pipe port="result" step="smil-json"/>
-        </p:input>
-    </p:sink>
     <p:group>
         <p:identity>
             <p:input port="source">
