@@ -17,8 +17,20 @@ authorize($user,$book,isset($_REQUEST['session'])?$_REQUEST['session']:'',false)
 $logfile = microtimeAndUsername2logfile(isset($_REQUEST['launchTime'])?$_REQUEST['launchTime']:0,$user);
 
 // Make sure that the patron has a profile directory
-if (!is_dir("$profiles/$user"))
-	mkdir("$profiles/$user");
+if (!is_dir("$profiles/$user")) {
+    mkdir("$profiles/$user");
+    chmod("$profiles/$user", 0777);
+}
+// Make sure that the patron has a book directory
+if (!is_dir("$profiles/$user/books")) {
+    mkdir("$profiles/$user/books");
+    chmod("$profiles/$user/books", 0777);
+}
+// Make sure that the patron has a directory for the current book
+if (!is_dir("$profiles/$user/books/$book")) {
+    mkdir("$profiles/$user/books/$book");
+    chmod("$profiles/$user/books/$book", 0777);
+}
 
 // So we don't have to run this twice...
 $userHasRunningProcess = isProcessing($user, $book);
@@ -102,7 +114,7 @@ else {
 function execCalabashInBackground($args, $catalog = NULL) {
 	global $debug;
 	global $logdir;
-	global $calabashExec;
+    global $calabashExec;
 	$logfile = fix_directory_separators($logdir.'/calabash-'.date('Ymd_His').'.'.((microtime(true)*1000000)%1000000).'.txt');
 	$pythonLogfile = fix_directory_separators($logdir.'/python-'.date('Ymd_His').'.'.((microtime(true)*1000000)%1000000).'.txt');
 	$pythonLogArg = "python-log=\"$pythonLogfile\"";
@@ -113,7 +125,7 @@ function execCalabashInBackground($args, $catalog = NULL) {
 	
 	// start process
 	$isWindows = (substr(php_uname(), 0, 7) == "Windows")?true:false;
-	$cmd = "calabash -E org.apache.xml.resolver.tools.CatalogResolver -U org.apache.xml.resolver.tools.CatalogResolver";
+	$cmd = "$calabashExec -E org.apache.xml.resolver.tools.CatalogResolver -U org.apache.xml.resolver.tools.CatalogResolver";
 	if ($isWindows){
 		$cmd = "$calabashExec -E org.apache.xml.resolver.tools.CatalogResolver -U org.apache.xml.resolver.tools.CatalogResolver";
 		$catalog = empty($catalog)?"":"set _JAVA_OPTIONS=-Dcom.xmlcalabash.phonehome=false -Dxml.catalog.files=$catalog -Dxml.catalog.staticCatalog=1 -Dxml.catalog.verbosity=".($debug?10:0)." &&";

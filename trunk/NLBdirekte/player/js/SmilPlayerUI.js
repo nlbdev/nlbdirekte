@@ -90,7 +90,7 @@ function postProcessText() {
 		resizeImage($(this),maxWidth,maxHeight);
 	});});
 	
-	$.fixedToolbars.show(true); // make sure buttons are showing after loading new text
+	$.mobile.fixedToolbars.show(true); // make sure buttons are showing after loading new text
 	
 	//loadBookmarks();
 }
@@ -351,7 +351,7 @@ function toggleMute() {
 	}
 }
 touchToggleEnabled = false;
-$.fixedToolbars.setTouchToggleEnabled(false); // always show buttons
+$.mobile.fixedToolbars.setTouchToggleEnabled(false); // always show buttons
 var backend = null;
 window.setInterval(function(){
 	if (player === null || server === null || loader === null)
@@ -417,7 +417,7 @@ window.setInterval(function(){
 	// if wrong volume; $('#volume').progressbar('value', player.getVolume() );
 },100);
 window.setInterval(function(){
-	$.fixedToolbars.show(true); // make sure buttons are showing
+	$.mobile.fixedToolbars.show(true); // make sure buttons are showing
 	
 	if (player === null || server === null || loader === null)
 		return;
@@ -429,7 +429,7 @@ window.setInterval(function(){
 			default: $('div.ui-loader h1').html('Ukjent feil');
 		}
 		if (!$('html').hasClass("ui-loading")) {
-			$.mobile.pageLoading(false);
+			$.mobile.showPageLoadingMsg();
 		}
 	}
 	else if (!player.doneLoading) {
@@ -446,24 +446,24 @@ window.setInterval(function(){
 			$('div.ui-loader h1').html('Boken klargjøres ('+Math.floor(loader.prepareProgress)+'%)<br/><small>Gjenstående tid: '+estimatedRemaining+'</small>');
 		}
 		if (!$('html').hasClass("ui-loading")) {
-			$.mobile.pageLoading(false);
+			$.mobile.showPageLoadingMsg();
 			log.debug('player is loading');
 		}
 	} else if (player.buffering() < 1.) {
 		$('div.ui-loader h1').html('Laster lyd... ('+Math.round(player.buffering()*100.)+'%)');
 		if (!$('html').hasClass("ui-loading")) {
-			$.mobile.pageLoading(false);
+			$.mobile.showPageLoadingMsg();
 			log.debug('audio is buffering');
 		}
 	} else if (soundManagerBackend == 'noaudio') {
 		$('div.ui-loader h1').html('Nettleseren din støtter ikke avspilling av lyd');
 		if (!$('html').hasClass("ui-loading")) {
-			$.mobile.pageLoading(false);
+			$.mobile.showPageLoadingMsg();
 			log.debug('no audio support: showing message');
 		}
 	} else {
 		if ($('html').hasClass("ui-loading")) {
-			$.mobile.pageLoading(true);
+			$.mobile.hidePageLoadingMsg();
 			log.debug('nothing is loading: hiding load message');
 		}
 	}

@@ -31,23 +31,33 @@
 		&nbsp;
 		<select id="bookId" size="15" style="width:228px;">
 			<!-- Add options for each test book here, with value=bookId and title as the text: -->
-			<!--option value="613757">Frosken finn ein venn</option-->
 			<option value="613757" selected="yes">Jamen, Benny</option>
 			<option value="613839">Bare r&oslash;re, ikke se</option>
-			<option value="213755">Verneombudet</option>
-			<option value="606939">Bestemors julebok for de sm&aring;</option>
-			<option value="608816">Bake kake s&oslash;te</option>
-			<option value="610289">Presten i Nibbleswicke</option>
+			<option value="608816">Bake kake s&oslash;te: rim og regler for de minste</option>
+			<option value="209999">Methodology and Ideology</option>
+			<option value="210001">Rettskildel&aerlig;re</option>
+			<option value="210525">Hvordan gjenomf&oslash;re undersøkelser. Innf&oslash;ring i samfunnsvitenskapelig metode</option>
+			<option value="210812">Northern Lights</option>
+			<option value="210826">Aktiv og supplerende kommunikasjon</option>
+			<option value="211250">Moderne omsorgsbilder</option>
+			<option value="211550">S9321_Allmennmedisin.Klinisk Arbeid</option>
+			<option value="211641">Pedagogikk.</option>
+			<option value="213403">Clinical pharmacy and therapeutics</option>
+			<option value="213987">Classical and Contemporary Sociological Theory</option>
+			<option value="214210">Med mattebriller i barnehagen</option>
+			<option value="214214">Drama i barnehagen</option>
+			<option value="600002">Tilbake til jorden. ¤I</option>
+			<option value="601005">Kjerringa som ble s&aring; lita som ei teskje. av Pr&oslash;ysen, Alf</option>
+			<option value="601061">Vett og uvett av Aas og Wessel Zappfe</option>
+			<option value="610289">PRESTEN I NIBBLESWICKE</option>
 			<option value="611288">Fru Andersen har hump i halen</option>
-			<option value="612430">Illustrert vitenskap nr 01/2008</option>
-			<option value="614172">Illustrert vitenskap nr 01/2010</option>
-			<option value="614188">Illustrert vitenskap nr 17/2011</option>
-			<option value="614202">Min kamp: femte bok</option>
-			<option value="612045">TV-guiden</option>
-			<option value="210012">Idrettens treningsl&aelig;re</option>
-			<option value="601005">Kjerringa som ble s&aring; lita som ei teskje</option>
-			<option value="601061">Vett og uvett</option>
-			<option value="604389">I d&oslash;dens fotspor</option>
+			<option value="612045">TV-Guiden</option>
+			<option value="612430">Illustrert Vitenskap Nr. 1, 2008</option>
+			<option value="614202">MIN KAMP 5</option>
+			<option value="615165">STELL PENT MED MANNEN</option>
+			<option value="615503">The Complete Stories Volume 2</option>
+			<option value="616564">Artemis Fowl og Atlantiskomplekset</option>
+			<option value="616565">Ikke bare villle Wilma</option>
 		</select>
 	</div>
 </body>

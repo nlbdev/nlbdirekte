@@ -11,7 +11,7 @@ $bookmarks_db_hostname = 'localhost';
 $bookmarks_db_database = 'bookmarks';
 
 # relative paths to general DMZ and profile storage
-$shared = getcwd().'/../books';
+$shared = getcwd().'/../../../../../../media/500GB/minishare';
 $profiles = getcwd().'/../profiles';
 
 # other logfiles go in this directory
@@ -22,7 +22,7 @@ $logfile = $logdir.'/log_'.date("Y-m-d").'.log';
 
 # If Calabash is not in PATH, then the full path can be specified here
 # Note that spaces in the path probably won't work.
-$calabashExec = "calabash"; // full path example: "C:\\xmlcalabash-0.9.29\\calabash.bat"
+$calabashExec = "/home/jostein/xmlcalabash-0.9.44.94/calabash"; // windows full path example: "C:\\xmlcalabash-0.9.29\\calabash.bat"
 
 # debugging
 $debug = isset($debug)?$debug:true;

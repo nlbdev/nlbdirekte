@@ -89,13 +89,13 @@ if (!isset($_REQUEST['launchTime'])) {
 		<!-- jQuery + jQuery Mobile -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery<?php echo $debug?'':'.min';?>.js"></script>
 		<script>window.jQuery || document.write("<script src='js/jQuery/jquery-1.6.4<?php echo $debug?'':'.min';?>.js'>\x3C/script>")</script>
-		<script src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b3<?php echo $debug?'':'.min';?>.js"></script>
+		<script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0<?php echo $debug?'':'.min';?>.js"></script>
 		<script>
 			if (typeof jQuery.mobile == 'undefined') {
-				document.write("<script src='js/jQuery/jquery.mobile-1.0b3<?php echo $debug?'':'.min';?>.js'>\x3C/script>");
-				document.write("<link rel='stylesheet' href='css/jQuery/jquery.mobile-1.0b3<?php echo $debug?'':'.min';?>.css' />");
-			} else {
-				document.write("<link rel='stylesheet' href='http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b3<?php echo $debug?'':'.min';?>.css' />");
+				document.write("<script src='js/jQuery/jquery.mobile-1.0<?php echo $debug?'':'.min';?>.js'>\x3C/script>");
+				document.write("<link rel='stylesheet' href='css/jQuery/jquery.mobile-1.0<?php echo $debug?'':'.min';?>.css' />");
+            } else {
+				document.write("<link rel='stylesheet' href='http://code.jquery.com/mobile/1.0/jquery.mobile-1.0<?php echo $debug?'':'.min';?>.css' />");
 			}
 		</script>
 
@@ -171,7 +171,7 @@ if (!isset($_REQUEST['launchTime'])) {
 					log.debug('soundManager: '+sText);
 					return true;
 				};
-				soundManager.useHTML5Audio = false;
+				//soundManager.useHTML5Audio = false;
 				soundManager.onerror = function() {
 					soundManagerBackend = 'noaudio';
 					soundManagerBackendChanged(soundManagerBackend);

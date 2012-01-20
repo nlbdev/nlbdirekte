@@ -126,7 +126,7 @@ if ($human) {
 	<h1>Logger for NLBdirekte</small></h1>
 </header>
 <?php }
-echo "<table".($human?'id="logs"':'').">\n";
+echo "<table".($human?' id="logs"':'').">\n";
 
 	// open this directory 
 	$logDirectoryHandle = opendir(fix_directory_separators($logdir));
@@ -292,8 +292,8 @@ echo "<table".($human?'id="logs"':'').">\n";
 				break;
 			default:
 				echo '<td colspan="3">Ukjent loggtype</td>';
-			}
-			echo "</table>\n";
+            }
+            echo "</tr>";
 		}
 	}
 echo "</table>\n";
