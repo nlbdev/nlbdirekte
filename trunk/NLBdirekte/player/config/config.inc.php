@@ -25,7 +25,8 @@ $logfile = $logdir.'/log_'.date("Y-m-d").'.log';
 $calabashExec = "/home/jostein/xmlcalabash-0.9.44.94/calabash"; // windows full path example: "C:\\xmlcalabash-0.9.29\\calabash.bat"
 
 # debugging
-$debug = isset($debug)?$debug:true;
+$debug = true;
+#$debug = isset($debug)?$debug:true;
 
 # default authorization function
 function authorize($user, $book, $session, $redirect) {
@@ -33,7 +34,7 @@ function authorize($user, $book, $session, $redirect) {
 		return true;
 	} else {
 		if ($redirect)
-			header("Location: http://128.39.10.81/cgi-bin/mappami");
+			header("Location: http://websok.nlb.no/cgi-bin/mappami");
 		else
 			header('HTTP/1.0 401 Unauthorized');
 		exit;

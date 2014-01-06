@@ -154,13 +154,13 @@ if (!isset($_REQUEST['launchTime'])) {
 		</script>
 		
 		<!-- SoundManager 2 -->
-		<script type="text/javascript" src="js/soundmanager/script/soundmanager2<?php echo $debug?'':'-jsmin';?>.js?v=<?php echo $version; ?>"></script>
+		<script type="text/javascript" src="js/soundmanager-v297a-20111220/script/soundmanager2<?php echo $debug?'':'-jsmin';?>.js?v=<?php echo $version; ?>"></script>
 		<script type="text/javascript">
 			var soundManagerBackend = 'unknown';
 			$(function(){
 				if (!soundManager)
 						soundManager = new SoundManager();
-				soundManager.url = 'js/soundmanager/swf'; // path to directory containing SoundManager2 .SWF file
+				soundManager.url = 'js/soundmanager-v297a-20111220/swf'; // path to directory containing SoundManager2 .SWF file
 				soundManager.flashVersion = 8;
 				soundManager.allowFullScreen = false;
 				soundManager.wmode = 'transparent';
