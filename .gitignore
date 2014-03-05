@@ -1,5 +1,3 @@
-syntax: glob
-
 # Scripts used for backing up stuff like the database etc (would be specific for each computer)
 backup.bat
 backup.sh
@@ -22,15 +20,15 @@ backup.sh
 syntax: regexp
 
 # ignore all output/ directories
-(^|/)output/
+*output/
 
 # ignore all books in books/ directories except 613839
-(^|/)books/(?!613839)
+*books/
 
 # ignore temporary files, logs and profile area
-(^|/)profiles/
-(^|/)player/logs/
-(^|/)player/prepare/temp/
+*profiles/
+*player/logs/
+*player/prepare/temp/
 
 # ignore custom configuration files
-(^|/)player/config/.*(?!example)$
+*player/config/*example
