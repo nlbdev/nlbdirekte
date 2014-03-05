@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Safari_5331_Linux.NLBServer_params" errors="0" failures="0" tests="1" time="0.0010">
-<testcase classname="Safari_5331_Linux.NLBServer_params" name="test this.server with empty base url, two parameters and no argument url" time="0.0010"/>
-</testsuite>

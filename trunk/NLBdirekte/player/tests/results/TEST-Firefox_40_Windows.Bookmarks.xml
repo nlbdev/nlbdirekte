@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Firefox_40_Windows.Bookmarks" errors="0" failures="0" tests="1" time="0.014">
-<testcase classname="Firefox_40_Windows.Bookmarks" name="test nothing" time="0.014"/>
-</testsuite>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Safari_5331_Linux.NLBServer_init" errors="0" failures="0" tests="4" time="0.0020">
-<testcase classname="Safari_5331_Linux.NLBServer_init" name="test new this.server objects should have initialized as state" time="0.0010"/>
-<testcase classname="Safari_5331_Linux.NLBServer_init" name="test default this.server url is empty" time="0.0"/>
-<testcase classname="Safari_5331_Linux.NLBServer_init" name="test this.server with empty base url and empty argument url" time="0.0"/>
-<testcase classname="Safari_5331_Linux.NLBServer_init" name="test empty base url and no parameters" time="0.0010"/>
-</testsuite>

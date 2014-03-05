@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Chrome_100648151_Windows.SoundManagerTest" errors="0" failures="0" tests="1" time="11.978">
-<testcase classname="Chrome_100648151_Windows.SoundManagerTest" name="testSoundManager" time="11.978"/>
-<system-out><![CDATA[[LOG] initialize soundmanager]]></system-out>
-</testsuite>

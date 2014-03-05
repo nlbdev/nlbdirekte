@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Chrome_100648204_Windows.QueueTest" errors="0" failures="0" tests="1" time="0.0040">
-<testcase classname="Chrome_100648204_Windows.QueueTest" name="testSomething" time="0.0040"/>
-</testsuite>

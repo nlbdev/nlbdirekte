@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Chrome_100648204_Windows.NLBServer_url" errors="0" failures="0" tests="3" time="0.0">
-<testcase classname="Chrome_100648204_Windows.NLBServer_url" name="test this.server with base url, empty argument url and no parameters" time="0.0"/>
-<testcase classname="Chrome_100648204_Windows.NLBServer_url" name="test this.server with base url, argument url and no parameters" time="0.0"/>
-<testcase classname="Chrome_100648204_Windows.NLBServer_url" name="test base url and no parameters" time="0.0"/>
-</testsuite>
