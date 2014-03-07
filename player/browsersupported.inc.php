@@ -4,14 +4,10 @@
 function browserSupported($browser, $launchTime) {
 	global $debug;
 	
-	if (		$browser['Browser'] == 'Chrome' and $browser['MajorVer'] >= 8 or
-			$browser['Browser'] == 'Chromium' and $browser['MajorVer'] >= 8 or
-			$browser['Browser'] == 'Opera' and $browser['MajorVer'] >= 11 or
-			$browser['Browser'] == 'IE' and $browser['MajorVer'] >= 9 or
-			$browser['Browser'] == 'Android' or
-			strpos($_SERVER['HTTP_USER_AGENT'],'WebKit')
-			); // These should work; continue
-	else {
+    if (        $browser['Browser'] == 'Chrome' and $browser['MajorVer'] < 8 or
+            $browser['Browser'] == 'Chromium' and $browser['MajorVer'] < 8 or
+            $browser['Browser'] == 'Opera' and $browser['MajorVer'] < 11 or
+            $browser['Browser'] == 'IE' and $browser['MajorVer'] < 9) { // These are known not to work
 		?><!doctype html>
 		<html class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
 			<head>
@@ -50,7 +46,7 @@ function browserSupported($browser, $launchTime) {
 			?>
 			</h1>
 			<ul data-role="listview">
-				<li><a rel="external" href="http://www.opera.com/"><img src="img/logsymbols/Opera.png" class="ui-li-icon"/><h2>Opera</h2></a></li>
+                <li><a rel="external" href="http://www.opera.com/"><img src="img/logsymbols/Opera.png" class="ui-li-icon"/><h2>Opera (11 eller nyere)</h2></a></li>
 				<li><a rel="external" href="http://www.google.com/chrome/index.html?hl=no"><img src="img/logsymbols/Chrome.png" class="ui-li-icon"/><h2>Chrome</h2></a></li>
 				<li><a rel="external" href="http://www.apple.com/no/safari/"><img src="img/logsymbols/Safari.png" class="ui-li-icon"/><h2>Safari</h2></a></li>
 				<li><a rel="external" href="http://windows.microsoft.com/nb-NO/internet-explorer/products/ie/home"><img src="img/logsymbols/IE.png" class="ui-li-icon"/><h2>Internet Explorer 9 (eller nyere)</h2></a></li>
@@ -65,5 +61,7 @@ function browserSupported($browser, $launchTime) {
 			</html>
 		<?php
 		exit;
+    } else {
+        return true;
 	}
 }
