@@ -132,7 +132,8 @@ function execCalabashInBackground($args, $catalog = NULL) {
 		exec("tasklist /V /FO CSV", $before);
 		if ($debug) {
 			trigger_error("forking Windows process: '$catalog start /B $cmd $args $pythonLogArg 1>$logfile 2>&1'");
-			pclose(popen("$catalog start /B $cmd $args $pythonLogArg 1>$logfile 2>&1","rb"));
+			//pclose(popen("$catalog start /B $cmd $args $pythonLogArg 1>$logfile 2>&1","rb"));
+			pclose(popen("$catalog start /B $cmd $args $pythonLogArg","rb"));
 		} else {
 			pclose(popen("$catalog start /B $cmd $args $pythonLogArg", "rb"));
 		}
